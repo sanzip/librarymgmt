@@ -44,9 +44,7 @@
 
 <body>
     <ul>
-        <sec:ifAllGranted roles="ROLE_STUDENT">
-            <g:link controller="member" action="history" params="[id: params.id]"><li>History</li></g:link>
-        </sec:ifAllGranted>
+        <g:link controller="member" action="history" params="[id: params.id]"><li>History</li></g:link>
         <sec:ifAllGranted roles="ROLE_LIBRARIAN">
             <a href="#"><li>Issue</li></a>
 
