@@ -45,12 +45,12 @@
         })*/
     </script>
     <g:javascript>
+        function selectBook(id){
+
+            $('#mo').show();
+        }
         $(function(){
 
-            $("#bookRow").on('click', function(){
-
-                $('#mo').show();
-            });
             $("#cancel").on('click', function(){
 
                 $('#mo').hide();
@@ -103,6 +103,7 @@
 
     <div id="ajaxed_div">
         <g:render template="dashBordAfterChange"/>
+        <input type="hidden" id = "bookForIssue"/>
     </div>
 </div>
 </body>

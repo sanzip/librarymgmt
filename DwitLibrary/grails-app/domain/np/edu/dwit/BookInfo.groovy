@@ -5,7 +5,7 @@ package np.edu.dwit
  */
 class BookInfo {
     Book book
-    Integer bookNumber
+    String bookNumber
     String edition
     String publishedYear
     String pages
