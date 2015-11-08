@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="layout" content="main">
+    <meta name="layout" content="main_page">
     <g:set var="entityName" value="${message(code: 'member.label', default: 'Member')}"/>
     <title><g:message code="default.create.label" args="[entityName]"/></title>
+    <style>
+        form{
+            text-align: left !important;
+        }
+     </style>
 </head>
 
 <body>
-<a href="#create-member" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
-                                                               default="Skip to content&hellip;"/></a>
+<div class="ui compact menu">
+    <div class="active item">
+        <a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
+    </div>
 
-<div class="nav" role="navigation">
-    <ul>
-        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]"/></g:link></li>
-    </ul>
+    <div class="active item">
+        <g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]"/></g:link>
+    </div>
 </div>
-
 <div id="create-member" class="content scaffold-create" role="main">
-    <h1><g:message code="default.create.label" args="[entityName]"/></h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
@@ -35,8 +38,7 @@
             <g:render template="form"/>
         </fieldset>
         <fieldset class="buttons">
-            <g:submitButton name="create" class="save"
-                            value="${message(code: 'default.button.create.label', default: 'Create')}"/>
+            <g:submitButton name="create" class="ui white button" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
         </fieldset>
     </g:form>
 </div>

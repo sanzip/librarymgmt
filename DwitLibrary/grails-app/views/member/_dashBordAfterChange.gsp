@@ -1,4 +1,4 @@
-<table id="first_table" class="display" cellspacing="0" width="100%">
+<table class="ui celled table">
     <thead>
     <tr>
         <th>S.No</th>
@@ -30,3 +30,4 @@
     </g:each>
     </tbody>
 </table>
+

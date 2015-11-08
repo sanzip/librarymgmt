@@ -1,0 +1,1355 @@
+2015-11-08 09:09:27,865 [http-bio-8080-exec-5] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at groovy.lang.GroovyClassLoader.doParseClass(GroovyClassLoader.java:279)
+	at groovy.lang.GroovyClassLoader.parseClass(GroovyClassLoader.java:258)
+	at groovy.lang.GroovyClassLoader.parseClass(GroovyClassLoader.java:244)
+	at groovy.lang.GroovyClassLoader.parseClass(GroovyClassLoader.java:202)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.compileGroovyPage(GroovyPagesTemplateEngine.java:620)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.buildPageMetaInfo(GroovyPagesTemplateEngine.java:568)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.createTemplate(GroovyPagesTemplateEngine.java:470)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.createTemplateWithResource(GroovyPagesTemplateEngine.java:452)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.createTemplate(GroovyPagesTemplateEngine.java:267)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.createTemplate(GroovyPagesTemplateEngine.java:347)
+	at org.codehaus.groovy.grails.web.servlet.view.GroovyPageView.initTemplate(GroovyPageView.java:249)
+	at org.codehaus.groovy.grails.web.servlet.view.GroovyPageView.afterPropertiesSet(GroovyPageView.java:239)
+	at org.codehaus.groovy.grails.web.servlet.view.GrailsViewResolver.createGroovyPageView(GrailsViewResolver.java:183)
+	at org.codehaus.groovy.grails.web.servlet.view.GrailsViewResolver.createGrailsView(GrailsViewResolver.java:166)
+	at org.codehaus.groovy.grails.scaffolding.view.ScaffoldingViewResolver.createGrailsView(ScaffoldingViewResolver.java)
+	at org.codehaus.groovy.grails.web.servlet.view.GrailsViewResolver.loadView(GrailsViewResolver.java:91)
+	at org.codehaus.groovy.grails.scaffolding.view.ScaffoldingViewResolver.loadView(ScaffoldingViewResolver.java)
+	at org.springframework.web.servlet.view.AbstractCachingViewResolver.createView(AbstractCachingViewResolver.java:241)
+	at org.springframework.web.servlet.view.UrlBasedViewResolver.createView(UrlBasedViewResolver.java:401)
+	at org.codehaus.groovy.grails.scaffolding.view.ScaffoldingViewResolver.createView(ScaffoldingViewResolver.java)
+	at org.springframework.web.servlet.view.AbstractCachingViewResolver.resolveViewName(AbstractCachingViewResolver.java:143)
+	at org.codehaus.groovy.grails.web.servlet.view.GrailsViewResolver.resolveViewName(GrailsViewResolver.java:80)
+	at org.codehaus.groovy.grails.scaffolding.view.ScaffoldingViewResolver.resolveViewName(ScaffoldingViewResolver.java)
+	at org.springframework.web.servlet.DispatcherServlet.resolveViewName(DispatcherServlet.java:1239)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1188)
+	at org.codehaus.groovy.grails.web.servlet.GrailsDispatcherServlet.doDispatch(GrailsDispatcherServlet.java:388)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:856)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:936)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:827)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:812)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.simple.MemoryPageFragmentCachingFilter.doFilter(MemoryPageFragmentCachingFilter.java)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:343)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:260)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:749)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:487)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:412)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:339)
+	at org.codehaus.groovy.grails.web.util.WebUtils.forwardRequestForUrlMappingInfo(WebUtils.java:330)
+	at org.codehaus.groovy.grails.web.util.WebUtils.forwardRequestForUrlMappingInfo(WebUtils.java:295)
+	at org.codehaus.groovy.grails.web.util.WebUtils.forwardRequestForUrlMappingInfo(WebUtils.java:286)
+	at org.codehaus.groovy.grails.web.mapping.filter.UrlMappingsFilter.doFilterInternal(UrlMappingsFilter.java:217)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.codehaus.groovy.grails.web.sitemesh.GrailsPageFilter.executeFilterChainWithWrappedResponse(GrailsPageFilter.java:233)
+	at org.codehaus.groovy.grails.web.sitemesh.GrailsPageFilter.obtainContent(GrailsPageFilter.java:208)
+	at org.codehaus.groovy.grails.web.sitemesh.GrailsPageFilter.doFilter(GrailsPageFilter.java:153)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at javax.servlet.FilterChain$doFilter.call(Unknown Source)
+	at org.grails.plugin.resource.DevModeSanityFilter.doFilter(DevModeSanityFilter.groovy:45)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:118)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:84)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:113)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:146)
+	at grails.plugin.springsecurity.web.filter.GrailsRememberMeAuthenticationFilter.doFilter(GrailsRememberMeAuthenticationFilter.java)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:154)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:199)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:87)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:192)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:160)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:343)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:260)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequestFilter.doFilterInternal(GrailsWebRequestFilter.java:69)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.codehaus.groovy.grails.web.filters.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:67)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:343)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:260)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:100)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1041)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:603)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 09:09:27,881 [http-bio-8080-exec-5] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 09:09:27,882 [http-bio-8080-exec-5] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 09:09:27,883 [http-bio-8080-exec-5] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 09:09:28,002 [http-bio-8080-exec-5] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.compileGroovyPage(GroovyPagesTemplateEngine.java:632)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.buildPageMetaInfo(GroovyPagesTemplateEngine.java:568)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.createTemplate(GroovyPagesTemplateEngine.java:470)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.createTemplateWithResource(GroovyPagesTemplateEngine.java:452)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.createTemplate(GroovyPagesTemplateEngine.java:267)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.createTemplate(GroovyPagesTemplateEngine.java:347)
+	at org.codehaus.groovy.grails.web.servlet.view.GroovyPageView.initTemplate(GroovyPageView.java:249)
+	at org.codehaus.groovy.grails.web.servlet.view.GroovyPageView.afterPropertiesSet(GroovyPageView.java:239)
+	at org.codehaus.groovy.grails.web.servlet.view.GrailsViewResolver.createGroovyPageView(GrailsViewResolver.java:183)
+	at org.codehaus.groovy.grails.web.servlet.view.GrailsViewResolver.createGrailsView(GrailsViewResolver.java:166)
+	at org.codehaus.groovy.grails.scaffolding.view.ScaffoldingViewResolver.createGrailsView(ScaffoldingViewResolver.java)
+	at org.codehaus.groovy.grails.web.servlet.view.GrailsViewResolver.loadView(GrailsViewResolver.java:91)
+	at org.codehaus.groovy.grails.scaffolding.view.ScaffoldingViewResolver.loadView(ScaffoldingViewResolver.java)
+	at org.springframework.web.servlet.view.AbstractCachingViewResolver.createView(AbstractCachingViewResolver.java:241)
+	at org.springframework.web.servlet.view.UrlBasedViewResolver.createView(UrlBasedViewResolver.java:401)
+	at org.codehaus.groovy.grails.scaffolding.view.ScaffoldingViewResolver.createView(ScaffoldingViewResolver.java)
+	at org.springframework.web.servlet.view.AbstractCachingViewResolver.resolveViewName(AbstractCachingViewResolver.java:143)
+	at org.codehaus.groovy.grails.web.servlet.view.GrailsViewResolver.resolveViewName(GrailsViewResolver.java:80)
+	at org.codehaus.groovy.grails.scaffolding.view.ScaffoldingViewResolver.resolveViewName(ScaffoldingViewResolver.java)
+	at org.springframework.web.servlet.DispatcherServlet.resolveViewName(DispatcherServlet.java:1239)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1188)
+	at org.codehaus.groovy.grails.web.servlet.GrailsDispatcherServlet.doDispatch(GrailsDispatcherServlet.java:388)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:856)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:936)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:827)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:812)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.simple.MemoryPageFragmentCachingFilter.doFilter(MemoryPageFragmentCachingFilter.java)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:343)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:260)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:749)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:487)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:412)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:339)
+	at org.codehaus.groovy.grails.web.util.WebUtils.forwardRequestForUrlMappingInfo(WebUtils.java:330)
+	at org.codehaus.groovy.grails.web.util.WebUtils.forwardRequestForUrlMappingInfo(WebUtils.java:295)
+	at org.codehaus.groovy.grails.web.util.WebUtils.forwardRequestForUrlMappingInfo(WebUtils.java:286)
+	at org.codehaus.groovy.grails.web.mapping.filter.UrlMappingsFilter.doFilterInternal(UrlMappingsFilter.java:217)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.codehaus.groovy.grails.web.sitemesh.GrailsPageFilter.executeFilterChainWithWrappedResponse(GrailsPageFilter.java:233)
+	at org.codehaus.groovy.grails.web.sitemesh.GrailsPageFilter.obtainContent(GrailsPageFilter.java:208)
+	at org.codehaus.groovy.grails.web.sitemesh.GrailsPageFilter.doFilter(GrailsPageFilter.java:153)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at javax.servlet.FilterChain$doFilter.call(Unknown Source)
+	at org.grails.plugin.resource.DevModeSanityFilter.doFilter(DevModeSanityFilter.groovy:45)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:118)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:84)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:113)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:146)
+	at grails.plugin.springsecurity.web.filter.GrailsRememberMeAuthenticationFilter.doFilter(GrailsRememberMeAuthenticationFilter.java)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:154)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:199)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:87)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:192)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:160)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:343)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:260)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequestFilter.doFilterInternal(GrailsWebRequestFilter.java:69)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.codehaus.groovy.grails.web.filters.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:67)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:343)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:260)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:100)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1041)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:603)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	... 3 more
+2015-11-08 09:09:28,005 [http-bio-8080-exec-5] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 09:09:28,005 [http-bio-8080-exec-5] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	... 8 more
+2015-11-08 09:09:28,112 [http-bio-8080-exec-5] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	... 8 more
+2015-11-08 09:09:28,113 [http-bio-8080-exec-5] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 09:09:28,114 [http-bio-8080-exec-5] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	... 8 more
+2015-11-08 09:09:28,114 [http-bio-8080-exec-5] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	... 8 more
+2015-11-08 09:09:28,115 [http-bio-8080-exec-5] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 09:09:28,115 [http-bio-8080-exec-5] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	... 8 more
+2015-11-08 09:31:55,155 [http-bio-8080-exec-3] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	... 8 more
+2015-11-08 09:31:55,178 [http-bio-8080-exec-3] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 09:31:55,201 [http-bio-8080-exec-3] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	... 8 more
+2015-11-08 09:31:55,219 [http-bio-8080-exec-3] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	... 8 more
+2015-11-08 09:31:55,219 [http-bio-8080-exec-3] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 09:31:55,219 [http-bio-8080-exec-3] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	... 8 more
+2015-11-08 09:31:55,220 [http-bio-8080-exec-3] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	... 8 more
+2015-11-08 09:31:55,242 [http-bio-8080-exec-3] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 09:31:55,242 [http-bio-8080-exec-3] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	... 8 more
+2015-11-08 10:34:13,170 [http-bio-8090-exec-2] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at groovy.lang.GroovyClassLoader.doParseClass(GroovyClassLoader.java:279)
+	at groovy.lang.GroovyClassLoader.parseClass(GroovyClassLoader.java:258)
+	at groovy.lang.GroovyClassLoader.parseClass(GroovyClassLoader.java:244)
+	at groovy.lang.GroovyClassLoader.parseClass(GroovyClassLoader.java:202)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.compileGroovyPage(GroovyPagesTemplateEngine.java:620)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.buildPageMetaInfo(GroovyPagesTemplateEngine.java:568)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.createTemplate(GroovyPagesTemplateEngine.java:470)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.createTemplateWithResource(GroovyPagesTemplateEngine.java:452)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.createTemplate(GroovyPagesTemplateEngine.java:267)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.createTemplate(GroovyPagesTemplateEngine.java:347)
+	at org.codehaus.groovy.grails.web.servlet.view.GroovyPageView.initTemplate(GroovyPageView.java:249)
+	at org.codehaus.groovy.grails.web.servlet.view.GroovyPageView.afterPropertiesSet(GroovyPageView.java:239)
+	at org.codehaus.groovy.grails.web.servlet.view.GrailsViewResolver.createGroovyPageView(GrailsViewResolver.java:183)
+	at org.codehaus.groovy.grails.web.servlet.view.GrailsViewResolver.createGrailsView(GrailsViewResolver.java:166)
+	at org.codehaus.groovy.grails.scaffolding.view.ScaffoldingViewResolver.createGrailsView(ScaffoldingViewResolver.java)
+	at org.codehaus.groovy.grails.web.servlet.view.GrailsViewResolver.loadView(GrailsViewResolver.java:91)
+	at org.codehaus.groovy.grails.scaffolding.view.ScaffoldingViewResolver.loadView(ScaffoldingViewResolver.java)
+	at org.springframework.web.servlet.view.AbstractCachingViewResolver.createView(AbstractCachingViewResolver.java:241)
+	at org.springframework.web.servlet.view.UrlBasedViewResolver.createView(UrlBasedViewResolver.java:401)
+	at org.codehaus.groovy.grails.scaffolding.view.ScaffoldingViewResolver.createView(ScaffoldingViewResolver.java)
+	at org.springframework.web.servlet.view.AbstractCachingViewResolver.resolveViewName(AbstractCachingViewResolver.java:143)
+	at org.codehaus.groovy.grails.web.servlet.view.GrailsViewResolver.resolveViewName(GrailsViewResolver.java:80)
+	at org.codehaus.groovy.grails.scaffolding.view.ScaffoldingViewResolver.resolveViewName(ScaffoldingViewResolver.java)
+	at org.springframework.web.servlet.DispatcherServlet.resolveViewName(DispatcherServlet.java:1239)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1188)
+	at org.codehaus.groovy.grails.web.servlet.GrailsDispatcherServlet.doDispatch(GrailsDispatcherServlet.java:388)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:856)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:936)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:827)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:812)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.simple.MemoryPageFragmentCachingFilter.doFilter(MemoryPageFragmentCachingFilter.java)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:343)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:260)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:749)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:487)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:412)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:339)
+	at org.codehaus.groovy.grails.web.util.WebUtils.forwardRequestForUrlMappingInfo(WebUtils.java:330)
+	at org.codehaus.groovy.grails.web.util.WebUtils.forwardRequestForUrlMappingInfo(WebUtils.java:295)
+	at org.codehaus.groovy.grails.web.util.WebUtils.forwardRequestForUrlMappingInfo(WebUtils.java:286)
+	at org.codehaus.groovy.grails.web.mapping.filter.UrlMappingsFilter.doFilterInternal(UrlMappingsFilter.java:217)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.codehaus.groovy.grails.web.sitemesh.GrailsPageFilter.executeFilterChainWithWrappedResponse(GrailsPageFilter.java:233)
+	at org.codehaus.groovy.grails.web.sitemesh.GrailsPageFilter.obtainContent(GrailsPageFilter.java:208)
+	at org.codehaus.groovy.grails.web.sitemesh.GrailsPageFilter.doFilter(GrailsPageFilter.java:153)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at javax.servlet.FilterChain$doFilter.call(Unknown Source)
+	at org.grails.plugin.resource.DevModeSanityFilter.doFilter(DevModeSanityFilter.groovy:45)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:118)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:84)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:113)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:146)
+	at grails.plugin.springsecurity.web.filter.GrailsRememberMeAuthenticationFilter.doFilter(GrailsRememberMeAuthenticationFilter.java)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:154)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:199)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:87)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:192)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:160)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:343)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:260)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequestFilter.doFilterInternal(GrailsWebRequestFilter.java:69)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.codehaus.groovy.grails.web.filters.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:67)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:343)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:260)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:100)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1041)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:603)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 10:34:13,206 [http-bio-8090-exec-2] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 10:34:13,206 [http-bio-8090-exec-2] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 10:34:13,207 [http-bio-8090-exec-2] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 10:34:13,481 [http-bio-8090-exec-2] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.compileGroovyPage(GroovyPagesTemplateEngine.java:632)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.buildPageMetaInfo(GroovyPagesTemplateEngine.java:568)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.createTemplate(GroovyPagesTemplateEngine.java:470)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.createTemplateWithResource(GroovyPagesTemplateEngine.java:452)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.createTemplate(GroovyPagesTemplateEngine.java:267)
+	at org.codehaus.groovy.grails.web.pages.GroovyPagesTemplateEngine.createTemplate(GroovyPagesTemplateEngine.java:347)
+	at org.codehaus.groovy.grails.web.servlet.view.GroovyPageView.initTemplate(GroovyPageView.java:249)
+	at org.codehaus.groovy.grails.web.servlet.view.GroovyPageView.afterPropertiesSet(GroovyPageView.java:239)
+	at org.codehaus.groovy.grails.web.servlet.view.GrailsViewResolver.createGroovyPageView(GrailsViewResolver.java:183)
+	at org.codehaus.groovy.grails.web.servlet.view.GrailsViewResolver.createGrailsView(GrailsViewResolver.java:166)
+	at org.codehaus.groovy.grails.scaffolding.view.ScaffoldingViewResolver.createGrailsView(ScaffoldingViewResolver.java)
+	at org.codehaus.groovy.grails.web.servlet.view.GrailsViewResolver.loadView(GrailsViewResolver.java:91)
+	at org.codehaus.groovy.grails.scaffolding.view.ScaffoldingViewResolver.loadView(ScaffoldingViewResolver.java)
+	at org.springframework.web.servlet.view.AbstractCachingViewResolver.createView(AbstractCachingViewResolver.java:241)
+	at org.springframework.web.servlet.view.UrlBasedViewResolver.createView(UrlBasedViewResolver.java:401)
+	at org.codehaus.groovy.grails.scaffolding.view.ScaffoldingViewResolver.createView(ScaffoldingViewResolver.java)
+	at org.springframework.web.servlet.view.AbstractCachingViewResolver.resolveViewName(AbstractCachingViewResolver.java:143)
+	at org.codehaus.groovy.grails.web.servlet.view.GrailsViewResolver.resolveViewName(GrailsViewResolver.java:80)
+	at org.codehaus.groovy.grails.scaffolding.view.ScaffoldingViewResolver.resolveViewName(ScaffoldingViewResolver.java)
+	at org.springframework.web.servlet.DispatcherServlet.resolveViewName(DispatcherServlet.java:1239)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1188)
+	at org.codehaus.groovy.grails.web.servlet.GrailsDispatcherServlet.doDispatch(GrailsDispatcherServlet.java:388)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:856)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:936)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:827)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:812)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.simple.MemoryPageFragmentCachingFilter.doFilter(MemoryPageFragmentCachingFilter.java)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:343)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:260)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:749)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:487)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:412)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:339)
+	at org.codehaus.groovy.grails.web.util.WebUtils.forwardRequestForUrlMappingInfo(WebUtils.java:330)
+	at org.codehaus.groovy.grails.web.util.WebUtils.forwardRequestForUrlMappingInfo(WebUtils.java:295)
+	at org.codehaus.groovy.grails.web.util.WebUtils.forwardRequestForUrlMappingInfo(WebUtils.java:286)
+	at org.codehaus.groovy.grails.web.mapping.filter.UrlMappingsFilter.doFilterInternal(UrlMappingsFilter.java:217)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.codehaus.groovy.grails.web.sitemesh.GrailsPageFilter.executeFilterChainWithWrappedResponse(GrailsPageFilter.java:233)
+	at org.codehaus.groovy.grails.web.sitemesh.GrailsPageFilter.obtainContent(GrailsPageFilter.java:208)
+	at org.codehaus.groovy.grails.web.sitemesh.GrailsPageFilter.doFilter(GrailsPageFilter.java:153)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at javax.servlet.FilterChain$doFilter.call(Unknown Source)
+	at org.grails.plugin.resource.DevModeSanityFilter.doFilter(DevModeSanityFilter.groovy:45)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:330)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:118)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:84)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:113)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:146)
+	at grails.plugin.springsecurity.web.filter.GrailsRememberMeAuthenticationFilter.doFilter(GrailsRememberMeAuthenticationFilter.java)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:154)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:199)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:87)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:342)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:192)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:160)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:343)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:260)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequestFilter.doFilterInternal(GrailsWebRequestFilter.java:69)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.codehaus.groovy.grails.web.filters.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:67)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:343)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:260)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:100)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1041)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:603)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	... 3 more
+2015-11-08 10:34:13,506 [http-bio-8090-exec-2] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 10:34:13,506 [http-bio-8090-exec-2] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	... 8 more
+2015-11-08 10:34:13,767 [http-bio-8090-exec-2] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	... 8 more
+2015-11-08 10:34:13,768 [http-bio-8090-exec-2] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 10:34:13,768 [http-bio-8090-exec-2] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	... 8 more
+2015-11-08 10:34:13,769 [http-bio-8090-exec-2] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	... 8 more
+2015-11-08 10:34:13,769 [http-bio-8090-exec-2] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2015-11-08 10:34:13,769 [http-bio-8090-exec-2] ERROR StackTrace  - Full Stack Trace:
+org.codehaus.groovy.grails.web.pages.exceptions.GroovyPagesException: Could not parse script [/grails-app/views/member/history.gsp]: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at grails.plugin.cache.web.filter.PageFragmentCachingFilter.doFilter(PageFragmentCachingFilter.java:200)
+	at grails.plugin.cache.web.filter.AbstractFilter.doFilter(AbstractFilter.java:63)
+	at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.RequestHolderAuthenticationFilter.doFilter(RequestHolderAuthenticationFilter.java:53)
+	at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+BSCCSIT_librarymgmt_DwitLibrary_grails_app_views_member_history_gsp: 1: unable to resolve class dwit_library.constants.DWITLibraryConstants
+ @ line 1, column 1.
+   import dwit_library.constants.DWITLibraryConstants
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	... 8 more

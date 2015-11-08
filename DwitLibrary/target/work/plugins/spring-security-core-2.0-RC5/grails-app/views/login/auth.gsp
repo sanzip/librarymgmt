@@ -273,8 +273,8 @@
 			%{--
                             <input type='submit' id="submit" value='${message(code: "springSecurity.login.button")}'/>
             --}%
-			<button class="ui basic button" style="height: 20%;margin-left: 95px;background: white !important;" type="submit" value="${message(code:"springSecurity.login.button")}">
-				<strong>Login</strong>
+			<button class="ui basic button" style="height: 6%;border-radius:1px;margin-left: 95px;background:rgba(255, 255, 255, 0.71) !important;" type="submit" value="${message(code:"springSecurity.login.button")}">
+				Login
 			</button>
 		</form>​​​​
 	</section>

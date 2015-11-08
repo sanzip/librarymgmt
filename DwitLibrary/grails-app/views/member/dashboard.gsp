@@ -8,13 +8,18 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title></title>
+    <meta name="layout" content="main_page">
+    <title> Dashboard </title>
     <script src="${resource(dir: 'js', file: 'jquery-2.1.4.min.js')}"> </script>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
     <g:javascript src="datatable-min.js"/>
     <style>
     .dataTables_filter {
         display: none;
+    }
+    #wrapper{
+        margin: 0px auto;
+        width: 95%;
     }
     </style>
     <script>
@@ -43,32 +48,50 @@
 </head>
 
 <body>
-    <ul>
-        <g:link controller="member" action="history" params="[id: params.id]"><li>History</li></g:link>
-        <sec:ifAllGranted roles="ROLE_LIBRARIAN">
-            <a href="#"><li>Issue</li></a>
-
-            <g:link action="returnBook" controller="book">Return book</g:link>
-            <g:link action="report" controller="book">Report</g:link>
-            <a href="#"><li>Configure</li></a>
+<div id="wrapper">
+<div class="ui six item menu">
+    <div class="item">
+        <g:link controller="member" action="history" params="[id: params.id]">History</g:link>
+    </div>
+    <sec:ifAllGranted roles="ROLE_LIBRARIAN">
+        <div class="item">
+        <a href="#">Issue</a>
+        </div>
+    <div class="item">
+        <g:link action="returnBook" controller="book">Return book</g:link>
+    </div>
+    <div class="item">
+        <g:link action="create" controller="member">User</g:link>
+    </div>
+        <div class="item">
             <g:link action="create" controller="book">Book</g:link>
-            <g:link action="create" controller="member">User</g:link>
-
-        </sec:ifAllGranted>
+        </div>
+        <div class="item">
+            <a href="#">Configure</a>
+        </div>
+    </sec:ifAllGranted>
+    </div>
+    </br></br></br>
+        %{--
         <form name="logout" method="POST" action="${createLink(controller:'logout') }">
-            <input type="submit" value="logout"></form>
-    </ul>
-    Book Name: <input type="text" name="bookName" id="bookName"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp; AuthorName<input type="text" name="authorName" id="authorName" >
-
-
+            <input type="submit" value="logout"></form>--}%
+    <strong><span style="font-size: 18px;">Book Name:</span></strong>
+    <div class="ui icon input">
+        <input type="text" placeholder="Search Books" id="bookName" name="bookName">
+        <i class="inverted circular search link icon"></i>
+    </div>
+    &nbsp;&nbsp;&nbsp;<strong><span style="font-size: 18px;">Author Name:</span></strong>
+    <div class="ui icon input">
+        <input type="text" placeholder="Search Author" id="authorName" name="authorName">
+        <i class="inverted circular search link icon"></i>
+    </div>
     <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
         <div>Number of allowed : <input type="text" name="allowed" id="allowed" value="${count}" disabled></div>
     </sec:ifAnyGranted>
-
+</br></br>
     <div id="ajaxed_div">
         <g:render template="dashBordAfterChange"/>
     </div>
-
+</div>
 </body>
 </html>
