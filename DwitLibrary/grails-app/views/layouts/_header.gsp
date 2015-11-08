@@ -17,10 +17,10 @@
 
         <sec:ifAllGranted roles="ROLE_LIBRARIAN">
             <div class="ui simple link item">
-                <g:link controller="member" action="return"> <i class="icon users"></i> Issue </g:link>
+                <g:link controller="book" action="issueBook"> <i class="icon users"></i> Issue </g:link>
             </div>
             <div class="ui simple link item">
-                <g:link controller="member" action="return"> <i class="icon users"></i> Return </g:link>
+                <g:link controller="book" action="returnBook"> <i class="icon users"></i> Return </g:link>
             </div>
             <div class="ui simple link item">
                 <g:link controller="book" action="report"> <i class="icon users"></i> Report </g:link>
