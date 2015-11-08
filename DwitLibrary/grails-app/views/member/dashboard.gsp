@@ -47,34 +47,11 @@
     </script>
 </head>
 
+
 <body>
 <div id="wrapper">
-<div class="ui six item menu">
-    <div class="item">
-        <g:link controller="member" action="history" params="[id: params.id]">History</g:link>
-    </div>
-    <sec:ifAllGranted roles="ROLE_LIBRARIAN">
-        <div class="item">
-        <a href="#">Issue</a>
-        </div>
-    <div class="item">
-        <g:link action="returnBook" controller="book">Return book</g:link>
-    </div>
-    <div class="item">
-        <g:link action="create" controller="member">User</g:link>
-    </div>
-        <div class="item">
-            <g:link action="create" controller="book">Book</g:link>
-        </div>
-        <div class="item">
-            <a href="#">Configure</a>
-        </div>
-    </sec:ifAllGranted>
-    </div>
-    </br></br></br>
-        %{--
-        <form name="logout" method="POST" action="${createLink(controller:'logout') }">
-            <input type="submit" value="logout"></form>--}%
+    <br>
+
     <strong><span style="font-size: 18px;">Book Name:</span></strong>
     <div class="ui icon input">
         <input type="text" placeholder="Search Books" id="bookName" name="bookName">
@@ -85,10 +62,22 @@
         <input type="text" placeholder="Search Author" id="authorName" name="authorName">
         <i class="inverted circular search link icon"></i>
     </div>
+
+    <br>
     <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
         <div>Number of allowed : <input type="text" name="allowed" id="allowed" value="${count}" disabled></div>
     </sec:ifAnyGranted>
-</br></br>
+
+    <g:if test="${flash.message}">
+        <div class="ui center aligned segment">
+            <div class="ui positive message">
+                <div class="header">
+                    <h1 style="text-align: center">${flash.message}</h1>
+                </div>
+            </div>
+        </div>
+    </g:if>
+
     <div id="ajaxed_div">
         <g:render template="dashBordAfterChange"/>
     </div>
