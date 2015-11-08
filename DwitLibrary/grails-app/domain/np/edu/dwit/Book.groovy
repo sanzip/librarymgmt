@@ -3,7 +3,7 @@ package np.edu.dwit
 class Book {
     String name
     String author
-    Integer bookNumber
+    String publication
     Integer availableQuantity
     Integer totalQuantity
     String bookType
@@ -11,10 +11,10 @@ class Book {
     static constraints = {
         name blank: false, nullable: false
         author blank: false, nullable: false
-        bookNumber nullable: false
+        publication blank: false, nullable: false
         availableQuantity nullable: false
         totalQuantity nullable: false
-        bookType nullable: false, blank: false, inList: ['Reference', 'Gifted', 'Bought']
+        bookType nullable: false, blank: false, inList: ['Reference', 'Gifted', 'Borrowable', 'Novel']
     }
     static mapping = {
         version false
