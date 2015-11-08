@@ -9,6 +9,37 @@
 <html>
 <head>
     <title></title>
+    <script src="${resource(dir: 'js', file: 'jquery-2.1.4.min.js')}"> </script>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
+    <g:javascript src="datatable-min.js"/>
+    <style>
+    .dataTables_filter {
+        display: none;
+    }
+    </style>
+    <script>
+        function setValue(){
+            $("#bookName").val('');
+            $("#authorName").val('');
+        }
+        $(document).ready(function(){
+            setValue();
+            var table = $('#first_table').DataTable();
+
+            $('#bookName').on( 'keyup', function () {
+                table
+                        .columns( 1 )
+                        .search( this.value )
+                        .draw();
+            } );
+            $('#authorName').on( 'keyup', function () {
+                table
+                        .columns( 2 )
+                        .search( this.value )
+                        .draw();
+            } );
+        })
+    </script>
 </head>
 
 <body>
@@ -27,40 +58,17 @@
         <form name="logout" method="POST" action="${createLink(controller:'logout') }">
             <input type="submit" value="logout"></form>
     </ul>
-    <input type="text" name="bookName" id="bookName"><g:submitButton name="submit" value="Submit"/>
+    Book Name: <input type="text" name="bookName" id="bookName"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp; AuthorName<input type="text" name="authorName" id="authorName" >
+
 
     <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
         <div>Number of allowed : <input type="text" name="allowed" id="allowed" value="${count}" disabled></div>
     </sec:ifAnyGranted>
 
-    <table border="1px">
-        <thead>
-            <tr>
-                <th>S.No</th>
-                <th>Name</th>
-                <th>Author</th>
-                <sec:ifAllGranted roles="ROLE_LIBRARIAN">
-                    <th>Total Quantity</th>
-                </sec:ifAllGranted>
-                <th>Available Quantity</th>
-                <th>Issue</th>
-            </tr>
-        </thead>
-        <tbody>
-            <g:each in="${list}" var="booklist" status="i">
-                <tr>
-                    <td>${i+1}</td>
-                    <td>${booklist.name}</td>
-                    <td>${booklist.author}</td>
-                    <sec:ifAllGranted roles="ROLE_LIBRARIAN">
-                        <td>${booklist.totalQuantity}</td>
-                    </sec:ifAllGranted>
-                    <td>${booklist.availableQuantity}</td>
-                    <td><g:link controller="book" action="issueBook" params="[bookId: booklist.id]">Issue</g:link></td>
-                </tr>
-            </g:each>
-        </tbody>
-    </table>
+    <div id="ajaxed_div">
+        <g:render template="dashBordAfterChange"/>
+    </div>
 
 </body>
 </html>

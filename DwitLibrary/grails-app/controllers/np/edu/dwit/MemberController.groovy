@@ -28,10 +28,10 @@ class MemberController {
 
     @Secured("permitAll")
     def dashboard() {
-        def currentUser= User.findById(springSecurityService.principal.id)
-        def count = Book.executeQuery("SELECT COUNT(b.id) from Borrow b where b.member = ? and b.returned = true",currentUser);
+        def currentUser= Member.findById(springSecurityService.principal.id)
+        def count = Borrow.findAllByMemberAndReturned(currentUser, false);
         def bookList = Book.list();
-        render (view: "dashboard", model:[list: bookList, count: count[0]])
+        render (view: "dashboard", model:[list: bookList, count: (3-count.size())])
     }
 
 
