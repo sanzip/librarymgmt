@@ -59,6 +59,25 @@
 
             <sec:ifAllGranted roles="ROLE_LIBRARIAN">
                 <div class="ui simple link item">
+                    <g:link controller="book" action="issueBook"> <i class="icon users"></i> Issue </g:link>
+                </div>
+                <div class="ui simple link item">
+                    <g:link controller="book" action="returnBook"> <i class="icon users"></i> Return </g:link>
+                </div>
+                <div class="ui simple link item">
+                    <g:link controller="member" action="report"> <i class="icon users"></i> Report </g:link>
+                </div>
+                <div class="ui simple dropdown link item">
+                    <i class="icon book"></i> Configure <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <g:link controller="member" action="create" class="item"> <i class="list icon"></i>  User  </g:link>
+                        <g:link controller="book" action="create" class="item"> <i class="plus icon"></i>  Book  </g:link>
+                    </div>
+                </div>
+            </sec:ifAllGranted>
+        </div>
+            <sec:ifAllGranted roles="ROLE_LIBRARIAN">
+                <div class="ui simple link item">
                     <g:link controller="member" action="return"> <i class="icon users"></i> Return </g:link>
                 </div>
                 <div class="ui simple link item">

@@ -10,6 +10,10 @@
         <g:sortableColumn style="text-align: center;" property="availableQuantity" title="${message(code: 'book.availableQuantity.label', default: 'Available Quantity')}" />
     </tr>
     </thead>
+    <tbody style="text-align: center;">
+    <g:each in="${list}" status="i" var="booklist">
+        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+            <td  style="text-align: center;">${fieldValue(bean: booklist, field: "id")}</td>
 
     <tbody style="text-align: center;">
     <g:each in="${list}" status="i" var="booklist">
@@ -33,6 +37,7 @@
             </sec:ifAllGranted>
             <td  style="text-align: center;">${fieldValue(bean: booklist, field: "availableQuantity")}</td>
 
+            <td  style="text-align: center;">${fieldValue(bean: booklist, field: "availableQuantity")}</td>
         </tr>
     </g:each>
     </tbody>
