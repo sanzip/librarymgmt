@@ -26,6 +26,13 @@
     <link href="${resource(dir: 'css/assets/css', file: 'style.css')}" rel="stylesheet">
     <script src="${resource(dir: 'semantic/dist', file: 'jquery-2.1.4.min.js')}"></script>
     <script src="${resource(dir: 'js', file: 'custom.js')}"></script>
+    <script type="text/javascript">
+        $(function()
+        {
+            /*$("#datepicker").datepicker({dateFormat: 'yy/mm/dd'});*/
+        })
+    </script>
+    <g:javascript library="jquery" plugin="jquery"/>
     <g:layoutHead/>
     <g:javascript library="application"/>
     <r:layoutResources />

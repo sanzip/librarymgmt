@@ -1,3 +1,4 @@
+<%@ page import="np.edu.dwit.Member" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,6 +37,8 @@
     <g:form url="[resource: memberInstance, action: 'save']">
         <fieldset class="form">
             <g:render template="form"/>
+        </fieldset>
+        <fieldset>
         </fieldset>
         <fieldset class="buttons">
             <g:submitButton name="create" class="ui white button" value="${message(code: 'default.button.create.label', default: 'Create')}"/>

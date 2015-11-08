@@ -5,7 +5,7 @@
   Time: 10:51 AM
 --%>
 
-<%@ page import="dwit_library.constants.DWITLibraryConstants; np.edu.dwit.Borrow; np.edu.dwit.Fine" contentType="text/html;charset=UTF-8" %>
+<%@ page import="np.edu.dwit.Borrow; np.edu.dwit.Fine" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title></title>
