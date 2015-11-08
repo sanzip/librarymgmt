@@ -2,7 +2,7 @@ package np.edu.dwit
 
 class Borrow {
 
-    np.edu.dwit.Book book
+    Book book
     Date borrowedDate = new Date()
     Boolean returned = false
     Member member

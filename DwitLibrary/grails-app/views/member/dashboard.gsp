@@ -10,13 +10,12 @@
 <head>
     <meta name="layout" content="main_page">
     <title> Dashboard </title>
-    <script src="${resource(dir: 'js', file: 'jquery-2.1.4.min.js')}"> </script>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
-    <g:javascript src="datatable-min.js"/>
+%{--    <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
+    <g:javascript src="datatable-min.js"/>--}%
     <style>
-    .dataTables_filter {
+    /*.dataTables_filter {
         display: none;
-    }
+    }*/
     #wrapper{
         margin: 0px auto;
         width: 95%;
@@ -27,7 +26,7 @@
             $("#bookName").val('');
             $("#authorName").val('');
         }
-        $(document).ready(function(){
+        /*$(function(){
             setValue();
             var table = $('#first_table').DataTable();
 
@@ -43,8 +42,21 @@
                         .search( this.value )
                         .draw();
             } );
-        })
+        })*/
     </script>
+    <g:javascript>
+        $(function(){
+
+            $("#bookRow").on('click', function(){
+
+                $('#mo').show();
+            });
+            $("#cancel").on('click', function(){
+
+                $('#mo').hide();
+            });
+        });
+    </g:javascript>
 </head>
 
 <body>
