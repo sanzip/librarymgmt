@@ -51,19 +51,19 @@
 <body>
 <div id="wrapper">
     <br>
-
-    <strong><span style="font-size: 18px;">Book Name:</span></strong>
-    <div class="ui icon input">
-        <input type="text" placeholder="Search Books" id="bookName" name="bookName">
-        <i class="inverted circular search link icon"></i>
+    <div style="text-align: center;">
+        <strong><span style="font-size: 18px;">Book Name:</span></strong>
+        <div class="ui icon input">
+            <input type="text" placeholder="Search Books" id="bookName" name="bookName">
+            <i class="inverted circular search link icon"></i>
+        </div>
+        &nbsp;&nbsp;&nbsp;<strong><span style="font-size: 18px;">Author Name:</span></strong>
+        <div class="ui icon input">
+            <input type="text" placeholder="Search Author" id="authorName" name="authorName">
+            <i class="inverted circular search link icon"></i>
+        </div>
     </div>
-    &nbsp;&nbsp;&nbsp;<strong><span style="font-size: 18px;">Author Name:</span></strong>
-    <div class="ui icon input">
-        <input type="text" placeholder="Search Author" id="authorName" name="authorName">
-        <i class="inverted circular search link icon"></i>
-    </div>
 
-    <br>
     <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
         <div>Number of allowed : <input type="text" name="allowed" id="allowed" value="${count}" disabled></div>
     </sec:ifAnyGranted>
@@ -77,7 +77,7 @@
             </div>
         </div>
     </g:if>
-
+    <br>
     <div id="ajaxed_div">
         <g:render template="dashBordAfterChange"/>
     </div>
