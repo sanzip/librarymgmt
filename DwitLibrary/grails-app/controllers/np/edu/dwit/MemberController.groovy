@@ -17,7 +17,7 @@ class MemberController {
             def currentUser = User.findById(springSecurityService.principal.id)
             println("current user:"+currentUser)
             println("=========="+role.substring(6,9))
-            redirect(controller:'Member', action:'dashboard', params: [id: springSecurityService.principal.id])
+            redirect(controller:'Member', action:'dashboard')
 
         }
         else {
@@ -31,7 +31,7 @@ class MemberController {
         def currentUser= Member.findById(springSecurityService.principal.id)
         def count = Borrow.findAllByMemberAndReturned(currentUser, false);
         def bookList = Book.list();
-        render (view: "dashboard", model:[list: bookList, count: (3-count.size())])
+        render (view: "dashboard", model:[list: bookList, count: (3-count.size()), id: springSecurityService.principal.id])
     }
 
 
