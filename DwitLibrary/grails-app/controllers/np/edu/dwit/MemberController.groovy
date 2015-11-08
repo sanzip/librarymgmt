@@ -64,6 +64,7 @@ class MemberController {
         respond new Member(params)
     }
 
+    @Secured("ROLE_LIBRARIAN")
     @Transactional
     def save(Member memberInstance) {
         if (memberInstance == null) {
