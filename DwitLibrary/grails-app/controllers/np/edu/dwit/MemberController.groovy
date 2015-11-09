@@ -34,15 +34,15 @@ class MemberController {
         def currentUser= Member.findById(springSecurityService.principal.id)
         def count = Borrow.findAllByMemberAndReturned(currentUser, false);
         def bookList = Book.list();
-        render (view: "dashboard", model:[list: bookList, count: (3-count.size()), id: springSecurityService.principal.id])
+        render (view: "dashboard", model:[list: bookList, count: (3-count.size())])
     }
 
 
     @Secured("permitAll")
     def history(){
 
-        def member = Member.findById(params?.id as Long)
         def currentUser = springSecurityService.currentUser
+        def member = Member.findByUsername(currentUser)
         if(!member.username.equalsIgnoreCase(currentUser.username)){
             flash.message = "Sorry, you're not authorized to view this page."
             redirect(action: 'index')
@@ -112,7 +112,9 @@ class MemberController {
             respond memberInstance.errors, view: 'create'
             return
         }
-
+        memberInstance.fullName=memberInstance.fullName+"-"+memberInstance.userId
+        def fName = memberInstance.fullName.toLowerCase().split(" ")
+        memberInstance.username=fName[0]+"_"+memberInstance.userId
         memberInstance.save flush: true
 
         request.withFormat {

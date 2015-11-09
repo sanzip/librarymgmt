@@ -9,11 +9,15 @@
         form{
             text-align: left !important;
         }
+        fieldset{
+            margin: 0 13px;
+        }
      </style>
 </head>
 
+
 <body>
-<div class="ui compact menu">
+<div class="ui compact menu" style="margin: 13px;">
     <div class="active item">
         <a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
     </div>
@@ -37,8 +41,6 @@
     <g:form url="[resource: memberInstance, action: 'save']">
         <fieldset class="form">
             <g:render template="form"/>
-        </fieldset>
-        <fieldset>
         </fieldset>
         <fieldset class="buttons">
             <g:submitButton name="create" class="ui white button" value="${message(code: 'default.button.create.label', default: 'Create')}"/>

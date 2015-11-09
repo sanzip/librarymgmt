@@ -5,45 +5,26 @@
   Time: 12:15 PM
 --%>
 
+
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta name="layout" content="main_page">
     <title> Dashboard </title>
-%{--    <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
-    <g:javascript src="datatable-min.js"/>--}%
+    <script src="${resource(dir: 'js', file: 'jquery-2.1.4.min.js')}"> </script>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
+    <g:javascript src="datatable-min.js"/>
     <style>
-    /*.dataTables_filter {
+    .dataTables_filter {
         display: none;
-    }*/
-    #wrapper{
+    }
+    #wrapper1{
         margin: 0px auto;
         width: 95%;
     }
-    </style>
-    <script>
-        function setValue(){
-            $("#bookName").val('');
-            $("#authorName").val('');
-        }
-        /*$(function(){
-            setValue();
-            var table = $('#first_table').DataTable();
 
-            $('#bookName').on( 'keyup', function () {
-                table
-                        .columns( 1 )
-                        .search( this.value )
-                        .draw();
-            } );
-            $('#authorName').on( 'keyup', function () {
-                table
-                        .columns( 2 )
-                        .search( this.value )
-                        .draw();
-            } );
-        })*/
-    </script>
+    </style>
+
     <g:javascript>
         function selectBook(id){
 
@@ -76,8 +57,7 @@
 </head>
 
 
-<body>
-<div id="wrapper">
+<div id="wrapper1">
     <br>
     <div style="text-align: center;">
         <strong><span style="font-size: 18px;">Book Name:</span></strong>
@@ -91,11 +71,41 @@
             <i class="inverted circular search link icon"></i>
         </div>
     </div>
-
+</br></br>
     <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
-        <div>Number of allowed : <input type="text" name="allowed" id="allowed" value="${count}" disabled></div>
+        %{--<div>Number of allowed : <input type="text" name="allowed" id="allowed" value="${count}" disabled></div>--}%
+        <div class="ui label" style="text-align: center;margin: 0px auto;width:300px;display: table;background-color: #F7F7F7">
+            <div class="ui input">
+                Number Of Books Allowed:
+                <input style="text-align: center;width:20%" type="text" name="allowed" id="allowed" value="${count}" disabled="">
+            </div>
+        </div>
+
     </sec:ifAnyGranted>
 
+    <g:if test="${flash.message}">
+        <div class="ui center aligned segment">
+            <div class="ui positive message">
+                <div class="header">
+                    <h1 style="text-align: center">${flash.message}</h1>
+                </div>
+            </div>
+        </div>
+    </g:if>
+    <br>
+
+    <g:if test="${flash.message}">
+        <div class="ui center aligned segment">
+            <div class="ui positive message">
+                <div class="header">
+                    <h1 style="text-align: center">${flash.message}</h1>
+                </div>
+            </div>
+        </div>
+    </g:if>
+
+<div id="ajaxed_div">
+    <g:render template="dashBordAfterChange"/>
     <div id="ajaxed_div">
         <g:render template="dashBordAfterChange"/>
     </div>

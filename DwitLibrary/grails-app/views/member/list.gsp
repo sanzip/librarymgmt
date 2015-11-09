@@ -2,29 +2,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="layout" content="main">
+    <meta name="layout" content="main_page">
     <g:set var="entityName" value="${message(code: 'member.label', default: 'Member')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
+    <style>
+    #wrapper{
+        margin: 0px auto;
+        width: 95%;
+    }
+        </style>
 </head>
 
 <body>
-<a href="#list-member" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
-                                                             default="Skip to content&hellip;"/></a>
+<div id="wrapper">
+<div class="ui compact menu">
+    <div class="active item">
+        <a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
+    </div>
 
-<div class="nav" role="navigation">
-    <ul>
-        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><g:link class="create" action="create"><g:message code="default.new.label"
-                                                              args="[entityName]"/></g:link></li>
-    </ul>
+    <div class="active item">
+        <g:link class="list" action="create"><g:message code="default.list.label" args="[entityName]"/></g:link>
+    </div>
 </div>
-
 <div id="list-member" class="content scaffold-list" role="main">
-    <h1><g:message code="default.list.label" args="[entityName]"/></h1>
+    <br>
+    <h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]"/></h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-    <table>
+    <table class="ui celled table">
         <thead>
         <tr>
 
@@ -42,7 +48,7 @@
 
             <g:sortableColumn property="accountExpired"
                               title="${message(code: 'member.accountExpired.label', default: 'Account Expired')}"/>
-
+            <th> Action </th>
         </tr>
         </thead>
         <tbody>
@@ -62,7 +68,14 @@
 
                 <td><g:formatBoolean boolean="${memberInstance.accountExpired}"/></td>
 
-            </tr>
+               <td> <div class="ui buttons">
+                    <button class="ui button"><i class="edit icon"> </i>  <g:link style="color:#000000;"> Edit </g:link>
+                    </button>
+                    <div class="or"></div>
+                    <button class="ui button"><i class="delete icon"> </i> <g:link> Delete </g:link>
+                </div>
+               </td>
+           </tr>
         </g:each>
         </tbody>
     </table>
@@ -71,5 +84,6 @@
         <g:paginate total="${memberInstanceCount ?: 0}"/>
     </div>
 </div>
+    </div>
 </body>
 </html>

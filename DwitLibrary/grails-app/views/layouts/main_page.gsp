@@ -26,6 +26,11 @@
     <script src="${resource(dir: 'semantic/dist', file: 'jquery-2.1.4.min.js')}"></script>
     <script src="${resource(dir: 'js', file: 'typeahead.js')}"></script>
     <script src="${resource(dir: 'js', file: 'custom.js')}"></script>
+    <script src="${resource(dir: 'semantic/dist/components', file: 'modal.js')}"></script>
+    <script src="${resource(dir: 'semantic/dist/components', file: 'modal.min.js')}"></script>
+    <link href="${resource(dir: 'semantic/dist/components', file: 'modal.css')}" rel="stylesheet">
+    <link href="${resource(dir: 'semantic/dist/components', file: 'modal.min.css')}" rel="stylesheet">
+
     <script src="${resource(dir: 'js/noty/packaged', file: 'jquery.noty.packaged.min.js')}"></script>
     <script type="text/javascript">
         $(function()
@@ -45,9 +50,9 @@
             /* all your other css */
             height: 100%;
         }
-        i{
-            color: white;
-        }
+       /* i{
+            color: black;
+        }*/
         form{
             text-align: right;
         }
