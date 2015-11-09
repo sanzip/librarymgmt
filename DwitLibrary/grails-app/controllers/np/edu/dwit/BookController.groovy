@@ -49,15 +49,17 @@ class BookController {
             return
         }
 
+        bookInstance.availableQuantity=bookInstance.totalQuantity
         bookInstance.save flush: true
 
-        request.withFormat {
+        redirect(controller:'book', action:'index')
+        /*request.withFormat {
             form {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'bookInstance.label', default: 'Book'), bookInstance.id])
                 redirect bookInstance
             }
             '*' { respond bookInstance, [status: CREATED] }
-        }
+        }*/
     }
 
     def edit(Book bookInstance) {

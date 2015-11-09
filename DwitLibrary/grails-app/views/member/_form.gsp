@@ -1,11 +1,19 @@
 <%@ page import="np.edu.dwit.Member" %>
 <div class="ui form" style="margin: 0px auto;width:90%;">
     <h2 style="text-align: center;font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif">Create Member</h2>
-<div class="fieldcontain ${hasErrors(bean: memberInstance, field: 'username', 'error')} required">
-      <h3 class="ui dividing header">Username <span class="required-indicator">*</span> </h3>
-    <g:textField name="username" required="" value="${memberInstance?.username}"/>
+<div class="fieldcontain ${hasErrors(bean: memberInstance, field: 'fullName', 'error')} required">
+      <h3 class="ui dividing header">Full Name <span class="required-indicator">*</span> </h3>
+    <g:textField name="fullName" required="" value="${memberInstance?.fullName}"/>
 </div>
     <br>
+
+<div class="fieldcontain ${hasErrors(bean: memberInstance, field: 'userId', 'error')} required">
+
+    <h3 class="ui dividing header">User Id <span class="required-indicator">*</span> </h3>
+
+    <g:textField name="userId" required="" value="${memberInstance?.userId}"/>
+</div>
+<br>
 
 <div class="fieldcontain ${hasErrors(bean: memberInstance, field: 'password', 'error')} required">
 
