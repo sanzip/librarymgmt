@@ -201,7 +201,7 @@ class BookController {
     def checkValidBookType() {
         def bookTypeResult = BookInfo.findByBookNumber(params.bookNumber);
 
-        def book = Book.findByBookInfo(bookTypeResult)
+        def book = bookTypeResult.book
 
 
         if(book){
@@ -236,7 +236,8 @@ class BookController {
             println("ic:"+borrowCount)
             def role = borrowingUser.getAuthorities()[0].toString();
             def borrowingBook = BookInfo.findByBookNumber(params.bookNumber)
-            def book = Book.findByBookInfo(borrowingBook)
+            def book = borrowingBook.book
+
 
             if(borrowCount>0){
                 //to not let already issued book,again reissuing mistakely,
@@ -319,7 +320,7 @@ class BookController {
     def checkBorrowedMember(){
 
         def borrowingBook = BookInfo.findByBookNumber(params.bookNumber)
-        def book = Book.findByBookInfo(borrowingBook)
+        def book = borrowingBook.book
         def borrowedMember = Borrow.createCriteria().list {
             and{
                 eq("book",book)
@@ -352,7 +353,7 @@ def amount
 
         def borrowingUser = Member.findByFullName(params.memberName)
         def borrowedBook = BookInfo.findByBookNumber(params.bookNumber)
-        def book = Book.findByBookInfo(borrowedBook)
+        def book = borrowedBook.book
         def borrow = Borrow.findByBookAndMemberAndReturned(book,borrowingUser,false)
 
 
