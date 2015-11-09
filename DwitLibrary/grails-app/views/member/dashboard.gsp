@@ -20,6 +20,7 @@
         margin: 0px auto;
         width: 95%;
     }
+
     </style>
     <script>
         function setValue(){
@@ -75,9 +76,16 @@
             <i class="inverted circular search link icon"></i>
         </div>
     </div>
-
+</br></br>
     <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
-        <div>Number of allowed : <input type="text" name="allowed" id="allowed" value="${count}" disabled></div>
+        %{--<div>Number of allowed : <input type="text" name="allowed" id="allowed" value="${count}" disabled></div>--}%
+        <div class="ui label" style="text-align: center;margin: 0px auto;width:300px;display: table;background-color: #F7F7F7">
+            <div class="ui input">
+                Number Of Books Allowed:
+                <input style="text-align: center;width:20%" type="text" name="allowed" id="allowed" value="${count}" disabled="">
+            </div>
+        </div>
+
     </sec:ifAnyGranted>
 
     <g:if test="${flash.message}">

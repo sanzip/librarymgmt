@@ -246,6 +246,17 @@
 	.form-5 input[type=text]{
 		border-radius: 5px;
 	}
+    #submit {
+        color: #fff;
+        font-size: 20px;
+        width: 100px;
+        height: 40px;
+        border: 1px solid black;
+        background-color: #2F2515;
+        border-radius: 4px;
+        padding: 0;
+        margin-left: 100px;
+    }
 	</style>
 </head>
 
@@ -258,24 +269,20 @@
 		</g:if>
 	</header>
 	<section class="main">
-		<h1 style="text-align: center; font-size: 36px;color:white;">Login</h1>
+		<h1 style="text-align: center; font-size: 0px;color:white;">Login</h1>
 		<form class="form-5 clearfix" action="${postUrl}" autocomplete='off' method="POST" style="box-shadow: none">
 			%{--
                             <label for='username' style="color:white"><g:message code="springSecurity.login.username.label"/>:</label>
             --}%
 			<input type='text' id="login" class='text_' name='j_username' id='username' placeholder="Username"/>
-			<br><br>
+			<br><br><br>
 			%{--
                             <label for='password' style="color:white"><g:message code="springSecurity.login.password.label"/>:</label>
             --}%
 			<input type='password' placeholder="Password" class='text_' name='j_password' id='password'/>
 			<br><br>
-			%{--
-                            <input type='submit' id="submit" value='${message(code: "springSecurity.login.button")}'/>
-            --}%
-			<button class="ui basic button" style="height: 6%;border-radius:1px;margin-left: 95px;background:rgba(255, 255, 255, 0.71) !important;" type="submit" value="${message(code:"springSecurity.login.button")}">
-				Login
-			</button>
+
+             <input id="submit" type='submit' id="submit" value='Login'/>
 		</form>​​​​
 	</section>
 </div>

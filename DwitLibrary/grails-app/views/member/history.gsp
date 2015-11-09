@@ -8,11 +8,12 @@
 <%@ page import="np.edu.dwit.Borrow; np.edu.dwit.Fine" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title></title>
+    <meta name="layout" content="main_page">
+    <title> History</title>
 </head>
 
 <body>
-    <table>
+    <table class="ui sortable celled table" style="margin: 0px auto;width: 95%">
         <thead>
             <tr>
                 <th>S.N.</th>
