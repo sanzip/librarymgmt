@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="active item">
-			<g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]"/></g:link>
+			<g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]"/></g:link>
 		</div>
 	</div>
 		<div id="create-book" class="content scaffold-create" role="main">
