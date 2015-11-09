@@ -1,20 +1,39 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'book.label', default: 'Book')}" />
-		<title><g:message code="default.create.label" args="[entityName]" /></title>
-	</head>
+<head>
+	<meta name="layout" content="main_page">
+	<g:set var="entityName" value="${message(code: 'book.label', default: 'Book')}"/>
+	<title><g:message code="default.create.label" args="[entityName]"/></title>
+	<style>
+	form{
+		text-align: left !important;
+	}
+	fieldset{
+		margin: 0 13px;
+	}
+	</style>
+
+</head>
 	<body>
-		<a href="#create-book" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
+		%{--<a href="#create-book" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
+		%{--<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 			</ul>
+		</div>--}%
+
+	<div class="ui compact menu" style="margin: 13px;">
+		<div class="active item">
+			<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
 		</div>
+
+		<div class="active item">
+			<g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]"/></g:link>
+		</div>
+	</div>
 		<div id="create-book" class="content scaffold-create" role="main">
-			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
+			%{--<h1><g:message code="default.create.label" args="[entityName]" /></h1>--}%
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>

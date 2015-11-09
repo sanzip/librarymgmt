@@ -17,7 +17,7 @@
     .dataTables_filter {
         display: none;
     }
-    #wrapper{
+    #wrapper1{
         margin: 0px auto;
         width: 95%;
     }
@@ -39,7 +39,7 @@
 </head>
 
 
-<div id="wrapper">
+<div id="wrapper1">
     <br>
     <div style="text-align: center;">
         <strong><span style="font-size: 18px;">Book Name:</span></strong>
