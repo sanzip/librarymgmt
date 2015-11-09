@@ -257,7 +257,7 @@ class BookController {
 
     @Transactional
     def saveIssue() {
-        def borrowingUser = Member.findByFullName(params.memberName)
+        def borrowingUser = Member.findByUsername(params.username)
 
         if(borrowingUser){
             def c = Borrow.createCriteria()
@@ -277,10 +277,9 @@ class BookController {
             if(borrowCount>0){
                 //to not let already issued book,again reissuing mistakely,
                 // 261 already issued, so not letting it to reissue
-
+                println book.name
                 def isAlreadyBorrowed = Borrow.findByBookAndReturned(book,false)
-
-                if(isAlreadyBorrowed.returned){
+                if(isAlreadyBorrowed?.returned || isAlreadyBorrowed == null){
                     Borrow borrow = new Borrow();
                     borrow.book = book
                     borrow.borrowedDate=new Timestamp(new Date().getTime())
@@ -295,7 +294,6 @@ class BookController {
 
                             book.availableQuantity-=1
                             book.save(flush: true)
-                            render "issue"
                         }
                     }else if(role.equals("ROLE_LIBRARY")){
                         if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_LIBRARIAN) {
@@ -306,7 +304,6 @@ class BookController {
 
                             book.availableQuantity-=1
                             book.save(flush: true)
-                            render "issue"
                         }
                     }
 
@@ -318,7 +315,6 @@ class BookController {
 
                             book.availableQuantity-=1
                             book.save(flush: true)
-                            render "issue"
                         }
                     }else if(role.equals("ROLE_STUDENT")){
                         if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_STUDENT) {
@@ -328,11 +324,14 @@ class BookController {
 
                             book.availableQuantity-=1
                             book.save(flush: true)
-                            render "issue"
                         }
                     }
+
+                    flash.message = "Book Issued"
+                    redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
                 }else{
-                    render "error"
+                    flash.message = "Cannot Issue the book twice to same user"
+                    redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                 }
 
             }else {
@@ -347,7 +346,8 @@ class BookController {
                 book.availableQuantity-=1
                 book.save(flush: true)
 
-                render "issue"
+                flash.message = "Book Issued"
+                redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
             }
         }
     }

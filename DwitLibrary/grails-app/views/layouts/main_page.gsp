@@ -32,12 +32,6 @@
     <link href="${resource(dir: 'semantic/dist/components', file: 'modal.min.css')}" rel="stylesheet">
 
     <script src="${resource(dir: 'js/noty/packaged', file: 'jquery.noty.packaged.min.js')}"></script>
-    <script type="text/javascript">
-        $(function()
-        {
-            /*$("#datepicker").datepicker({dateFormat: 'yy/mm/dd'});*/
-        })
-    </script>
     <g:layoutHead/>
     <g:javascript library="application"/>
     <r:layoutResources />

@@ -11,7 +11,6 @@
 <head>
     <meta name="layout" content="main_page">
     <title> Dashboard </title>
-    <script src="${resource(dir: 'js', file: 'jquery-2.1.4.min.js')}"> </script>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
     <g:javascript src="datatable-min.js"/>
     <style>
@@ -83,32 +82,9 @@
 
     </sec:ifAnyGranted>
 
-    <g:if test="${flash.message}">
-        <div class="ui center aligned segment">
-            <div class="ui positive message">
-                <div class="header">
-                    <h1 style="text-align: center">${flash.message}</h1>
-                </div>
-            </div>
-        </div>
-    </g:if>
-    <br>
-
-    <g:if test="${flash.message}">
-        <div class="ui center aligned segment">
-            <div class="ui positive message">
-                <div class="header">
-                    <h1 style="text-align: center">${flash.message}</h1>
-                </div>
-            </div>
-        </div>
-    </g:if>
-
 <div id="ajaxed_div">
     <g:render template="dashBordAfterChange"/>
-    <div id="ajaxed_div">
-        <g:render template="dashBordAfterChange"/>
-    </div>
+</div>
 </div>
 </body>
 </html>

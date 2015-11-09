@@ -44,31 +44,47 @@
             <th>Total Quantity</th>
         </sec:ifAllGranted>
         <th>Available Quantity</th>
-        <sec:ifAllGranted roles="ROLE_LIBRARIAN">
-            <th>Issue</th>
-        </sec:ifAllGranted>
     </tr>
     </thead>
     <tbody>
-    <g:each in="${list}" var="booklist" status="i">
-        <tr>
-            <td>${i+1}.</td>
+    <g:each in="${list}" var="book" status="i">
+        <g:if test="${book.availableQuantity > 0}">
+            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}" style="background-color: #1aa62a; color: #FFFFFF;">
+        </g:if>
+        <g:else>
+            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}" style="background-color: #843534; color: #FFFFFF;">
+        </g:else>
+        <td>${i+1}.</td>
+        <g:if test="${book.availableQuantity > 0}">
             <sec:ifAllGranted roles="ROLE_LIBRARIAN">
-                <td  style="text-align: center;"><button id = "bookRow" onclick="selectBook(${booklist.id});">${fieldValue(bean: booklist, field: "name")}</button></td>
+                <td  style="text-align: center;"><button onclick="select(${book.id});">${fieldValue(bean: book, field: "name")}</button></td>
             </sec:ifAllGranted>
             <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
-                <td  style="text-align: center;">${fieldValue(bean: booklist, field: "name")}</td>
+                <td  style="text-align: center;"><button onclick="select(${book.id});">${fieldValue(bean: book, field: "name")}</button></td>
             </sec:ifAnyGranted>
-            <td  style="text-align: center;">${fieldValue(bean: booklist, field: "author")}</td>
+        </g:if>
+        <g:else>
             <sec:ifAllGranted roles="ROLE_LIBRARIAN">
-                <td  style="text-align: center;">${fieldValue(bean: booklist, field: "totalQuantity")}</td>
+                <td  style="text-align: center;">${fieldValue(bean: book, field: "name")}</td>
             </sec:ifAllGranted>
-            <td  style="text-align: center;">${fieldValue(bean: booklist, field: "availableQuantity")}</td>
+            <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
+                <td  style="text-align: center;">${fieldValue(bean: book, field: "name")}</td>
+            </sec:ifAnyGranted>
+        </g:else>
+            <td  style="text-align: center;">${fieldValue(bean: book, field: "author")}</td>
+            <sec:ifAllGranted roles="ROLE_LIBRARIAN">
+                <td  style="text-align: center;">${fieldValue(bean: book, field: "totalQuantity")}</td>
+            </sec:ifAllGranted>
+            <td  style="text-align: center;">${fieldValue(bean: book, field: "availableQuantity")}</td>
         </tr>
     </g:each>
     </tbody>
 </table>
-    <div id = "issueBook">
+<div class="ui small modal" id = "mo" style="position: absolute;top: 18%;left: 50%;">
+    <div class="header" id = "issueBookHeader">Issue Book</div>
+    <form action="<g:createLink controller="book" action="saveIssue"/>" method="POST">
+        <div class="content" style="text-align: left; padding: 50px;">
+            <div id = "issueBook">
 
             </div>
             <div id="the-basics">
