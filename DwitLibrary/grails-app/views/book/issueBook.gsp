@@ -12,36 +12,58 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $("#issue").hide();
+            $("#fullName").hide();
+            $("#reset").hide();
+
+            $("#bookNumber").on("contextmenu",function(){
+                return false;
+            });
+
+            $("#fullName").on("contextmenu",function(){
+                return false;
+            });
+
+
             $.ajax({
                 type: "GET",
                 url: "${createLink(controller:"book",action:"getAllUsers")}",
                 success : function(response) {
 
                     $("#fullName").autocomplete({
-                        source: response
+                        source: response,
+                        select: function(event, ui) {
+                            if (ui.item) {
+                                    $("#fullName").prop("readonly", true);
+                                    $("#issue").show();
+
+                                alert("Member selected: "+ui.item.value);
+                            }
+                        }
                     });
 
                 }
+
 
             });
 
         });
 
 
-        function checkValid(id) {
-            if(isNaN(id)) {
-                $('#bookId').focus(function(){
+
+        function checkValid(bookNumber) {
+            if(isNaN(bookNumber)) {
+                $('#bookNumber').focus(function(){
                     $(this).val('');
                 });
                 alert("Invalid book number.");
-            }else if(!(/^\d*$/.test(id))){
-                $('#bookId').focus(function(){
+            }else if(!(/^\d*$/.test(bookNumber))){
+                $('#bookNumber').focus(function(){
                     $(this).val('');
                 });
                 alert("Invalid book number.");
 
-            }else if(id.length>4){
-                $("#bookId").val('');
+            }else if(bookNumber.length>4){
+                $("#bookNumber").val('');
                 alert("Invalid book number.");
 
             }
@@ -49,14 +71,18 @@
             $.ajax({
                 url:"${createLink(controller: "book",action: "checkValidBookType")}",
                 type:"post",
-                data:'bookId='+id,
+                data:'bookNumber='+bookNumber,
                 success:function(result){
                     if(result=='gifted'){
                         alert("Gifted book cannot be issued.");
                     }else if(result=='reference') {
                         alert("Reference book cannot be issued.");
-                    }else if(result=='bought') {
-                        $("#issue").show();
+                    }else if(result=='borrowable') {
+                        $("#fullName").show();
+                        $("#reset").show();
+                    }else if(result=='novel') {
+                        $("#fullName").show();
+                        $("#reset").show();
                     }
                 }
             })
@@ -66,6 +92,7 @@
         function issue() {
             var bookNumber=$("#bookNumber").val();
             var memberName=$("#fullName").val();
+
                 $.ajax({
                     url:"${createLink(controller:"book" ,action:"saveIssue" )}",
                     data:"bookNumber="+bookNumber+"&memberName="+memberName,
@@ -75,16 +102,30 @@
                         if(result=="greaterborrowcount"){
                             alert("You have already borrowed three books");
                         }else if(result=="issue") {
+                            $("#fullName").hide();
+                            $("#issue").hide();
                             alert("Book issued");
                         }else if(result=="error") {
                             $("#bookNumber").val("");
                             $("#fullName").val("");
+                            $("#fullName").hide();
+                            $("#issue").hide();
                             alert("This book is already borrowed.");
                         }
                     }
                 })
 
+
         }
+
+    function reset() {
+        $("#bookNumber").val("");
+        $("#fullName").val("");
+        $("#fullName").hide();
+        $("#issue").hide();
+        $("#fullName").prop("readonly", false);
+
+    }
 
 
 
@@ -94,9 +135,10 @@
 </head>
 
 <body>
-Book Id: <input type="text" name="bookNumber" id="bookNumber" placeholder="Book Id" onkeyup="checkValid(this.value);"/><br/>
-Member name: <input type="text" name="fullName" id="fullName" placeholder="Member Name"/><br/>
+<input type="text" name="bookNumber" id="bookNumber" placeholder="Book Number" onkeyup="checkValid(this.value);" required="required"/><br/>
+<input type="text" name="fullName" id="fullName" placeholder="Member Name" /><br/>
 <input type="submit" value="Issue" id="issue" onclick="issue();"/>
+<input type="submit" value="Reset" id="reset" onclick="reset();"/>
 
 <r:layoutResources/>
 </body>

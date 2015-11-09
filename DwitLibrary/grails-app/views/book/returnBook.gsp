@@ -71,22 +71,26 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#return').hide();
+
+            $("#bookNumber").on("contextmenu",function(){
+                return false;
+            });
         });
 
         function checkValid(id) {
             if (isNaN(id)) {
-                $('#bookId').focus(function () {
+                $('#bookNumber').focus(function () {
                     $(this).val('');
                 });
                 alert("Invalid book number.");
             } else if (!(/^\d*$/.test(id))) {
-                $('#bookId').focus(function () {
+                $('#bookNumber').focus(function () {
                     $(this).val('');
                 });
                 alert("Invalid book number.");
 
             } else if (id.length > 4) {
-                $("#bookId").val('');
+                $("#bookNumber").val('');
                 alert("Invalid book number.");
 
             }
@@ -97,10 +101,13 @@
                 type: "post",
                 data: 'bookNumber=' + bookNumber,
                 success: function (result) {
-                    var res = result.split(":");
-                    $("#fullName").val(res[0]);
-                    $("#fine").val(res[1]);
-                    $("#return").show();
+                        var res = result.split(":");
+
+                        $("#fullName").val(res[0]);
+                        $("#fine").val(res[1]);
+                        $("#return").show();
+
+
                 }
             })
 
@@ -116,6 +123,9 @@
             data:'bookNumber='+bookNumber+'&memberName='+memberName,
             success: function(result) {
                 if(result="success") {
+                    $("#bookNumber").val("");
+                    $("#fullName").val();
+                    $("#fine").val();
                     alert("Book returned.")
                 }
             }
@@ -135,9 +145,9 @@
 
 <body>
 Book Id: <input type="text" name="bookNumber" id="bookNumber" placeholder="Book Id" onkeyup="checkValid(this.value);"/><br/>
-Member name: <input type="text" name="fullName" id="fullName" placeholder="Member Name"/><br/>
+Member name: <input type="text" name="fullName" id="fullName" placeholder="Member Name" readonly/><br/>
 Fine: <input type="text" name="fine" id="fine"  readonly/><br/>
-<input type="submit" value="return" id="return"  on onclick="saveReturn();" /><br/>
+<input type="submit" value="return" id="return"  onclick="saveReturn();" /><br/>
 
 <r:layoutResources/>
 </body>
