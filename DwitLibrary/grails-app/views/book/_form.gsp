@@ -1,6 +1,7 @@
 <%@ page import="np.edu.dwit.Book" %>
 
 
+
 <div class="ui form" style="margin: 0px auto;width:90%;">
 	<h2 style="text-align: center;font-family:Open Sans Helvetica Neue Helvetica, Arial sans-serif">Create Book</h2>
 	<div class="fieldcontain ${hasErrors(bean: bookInstance, field: 'name', 'error')} required">

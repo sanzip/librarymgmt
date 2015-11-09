@@ -12,7 +12,6 @@
 		margin: 0 13px;
 	}
 	</style>
-
 </head>
 	<body>
 		%{--<a href="#create-book" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
