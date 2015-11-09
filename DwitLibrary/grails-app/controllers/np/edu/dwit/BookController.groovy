@@ -192,6 +192,39 @@ class BookController {
         render(view: "issueBook",model:[userInstanceList: User.list(params), userInstanceTotal: User.count()])
     }
 
+    @Secured("ROLE_LIBRARIAN")
+    def issue(){
+
+        def bookInfoId = params.bookInfoId
+        def username = params.username
+
+        println bookInfoId
+        println username
+
+        Member member = Member.findByUsername((String)username)
+        Book book = BookInfo.findById(bookInfoId as Long).book
+        Borrow borrow = new Borrow()
+        borrow.member = member
+        borrow.book = book
+        if (Borrow.findAllByMember(member).book.contains(book)){
+
+            flash.message = "Cannot Issue the book twice to same user"
+            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
+        }else{
+
+            borrow.save(failOnError: true)
+            flash.message = "Book Issued"
+            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
+        }
+    }
+
+    @Secured("ROLE_LIBRARIAN")
+    def bookInfoList(){
+
+        def bookId = params?.bookId
+        render(template: 'issueBook', model: [bookInfos: BookInfo.findAllByBook(Book.findById(bookId as Long))])
+    }
+
     def getAllUsers() {
         def users = User.list()
         def response = []

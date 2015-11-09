@@ -18,21 +18,21 @@
         })
     </script>
     <title><g:layoutTitle/></title>
-    <g:javascript library="jquery"/>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="generator" content="Bootply" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="${resource(dir: 'semantic/dist', file: 'semantic.min.css')}" rel="stylesheet">
     <link href="${resource(dir: 'css/assets/css', file: 'style.css')}" rel="stylesheet">
     <script src="${resource(dir: 'semantic/dist', file: 'jquery-2.1.4.min.js')}"></script>
+    <script src="${resource(dir: 'js', file: 'typeahead.js')}"></script>
     <script src="${resource(dir: 'js', file: 'custom.js')}"></script>
+    <script src="${resource(dir: 'js/noty/packaged', file: 'jquery.noty.packaged.min.js')}"></script>
     <script type="text/javascript">
         $(function()
         {
             /*$("#datepicker").datepicker({dateFormat: 'yy/mm/dd'});*/
         })
     </script>
-    <g:javascript library="jquery" plugin="jquery"/>
     <g:layoutHead/>
     <g:javascript library="application"/>
     <r:layoutResources />

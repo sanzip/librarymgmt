@@ -51,6 +51,7 @@ grails.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
          runtime 'mysql:mysql-connector-java:5.1.24'
+         compile 'com.googlecode.json-simple:json-simple:1.1.1'
     }
 
     plugins {
@@ -65,6 +66,7 @@ grails.project.dependency.resolution = {
         runtime ":hibernate:3.6.10.6" // or ":hibernate4:4.1.11.6"
         runtime ":database-migration:1.3.8"
         runtime ":jquery:1.10.2.2"
+        compile ":jquery-ui:1.10.4"
         runtime ":resources:1.2.1"
         compile ":spring-security-core:2.0-RC5"
         // Uncomment these (or add new ones) to enable additional resources capabilities

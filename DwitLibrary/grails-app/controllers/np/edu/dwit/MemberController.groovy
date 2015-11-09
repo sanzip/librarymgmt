@@ -1,6 +1,9 @@
 package np.edu.dwit
 
+import grails.converters.JSON
 import grails.transaction.Transactional
+import org.json.simple.JSONArray
+import org.json.simple.JSONObject
 import org.springframework.security.access.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
@@ -45,6 +48,39 @@ class MemberController {
             redirect(action: 'index')
         }
         [history : memberService.getHistory(member)]
+    }
+
+    @Secured("ROLE_LIBRARIAN")
+    def search(){
+
+        String query = params?.query
+        def states =  params?.states
+        states = states.split(',')
+        if (query.length() > 0) {
+            def probableMembers = Member.findAllByUsernameIlike(query + '%')
+            JSONArray jsonArray = new JSONArray()
+            for(Member member : probableMembers) {
+                JSONObject jsonObject = new JSONObject()
+                if(!states.contains(member.username)) {
+                    jsonObject.put("username", member.username)
+                    jsonArray.add(jsonObject)
+                }
+            }
+            if(jsonArray.size() > 0)
+                render jsonArray.toJSONString()
+        }
+    }
+
+    @Secured("ROLE_LIBRARIAN")
+    def tryit(){
+
+        /*def probableMembers = Member.findAllByUsernameIlike('s%')
+        JSONArray probableMembersAsJSON = new JSONArray()
+
+        for(Member member : probableMembers)
+            probableMembersAsJSON.add(member as JSON)
+        println probableMembersAsJSON
+        respond probableMembersAsJSON*/
     }
 
     @Secured("ROLE_LIBRARIAN")

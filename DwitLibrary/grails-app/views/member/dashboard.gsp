@@ -55,6 +55,22 @@
 
                 $('#mo').hide();
             });
+            <g:if test="${flash.message}">
+                var n = noty({
+                    layout: 'topRight',
+                    theme: 'relax',
+                    type: '${params.messageType}',
+                    text: '${flash.message}',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing', // easing
+                        speed: 500
+                    },
+                    timeout: 10000
+                });
+                n.animate();
+            </g:if>
         });
     </g:javascript>
 </head>
@@ -80,30 +96,8 @@
         <div>Number of allowed : <input type="text" name="allowed" id="allowed" value="${count}" disabled></div>
     </sec:ifAnyGranted>
 
-    <g:if test="${flash.message}">
-        <div class="ui center aligned segment">
-            <div class="ui positive message">
-                <div class="header">
-                    <h1 style="text-align: center">${flash.message}</h1>
-                </div>
-            </div>
-        </div>
-    </g:if>
-    <br>
-
-    <g:if test="${flash.message}">
-        <div class="ui center aligned segment">
-            <div class="ui positive message">
-                <div class="header">
-                    <h1 style="text-align: center">${flash.message}</h1>
-                </div>
-            </div>
-        </div>
-    </g:if>
-
     <div id="ajaxed_div">
         <g:render template="dashBordAfterChange"/>
-        <input type="hidden" id = "bookForIssue"/>
     </div>
 </div>
 </body>
