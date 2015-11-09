@@ -9,10 +9,20 @@
         form{
             text-align: left !important;
         }
+        fieldset{
+            margin:0px auto;
+            width:50%;
+            background-color: aliceblue;
+        }
+        #head{
+            text-align: center;
+        }
      </style>
+
 </head>
 
 <body>
+<div id="head">
 <div class="ui compact menu">
     <div class="active item">
         <a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
@@ -22,6 +32,8 @@
         <g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]"/></g:link>
     </div>
 </div>
+    </div>
+<br>
 <div id="create-member" class="content scaffold-create" role="main">
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
@@ -38,8 +50,7 @@
         <fieldset class="form">
             <g:render template="form"/>
         </fieldset>
-        <fieldset>
-        </fieldset>
+
         <fieldset class="buttons">
             <g:submitButton name="create" class="ui white button" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
         </fieldset>
