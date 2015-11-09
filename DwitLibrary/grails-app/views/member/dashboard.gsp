@@ -10,40 +10,19 @@
 <head>
     <meta name="layout" content="main_page">
     <title> Dashboard </title>
-%{--    <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
-    <g:javascript src="datatable-min.js"/>--}%
+    <script src="${resource(dir: 'js', file: 'jquery-2.1.4.min.js')}"> </script>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
+    <g:javascript src="datatable-min.js"/>
     <style>
-    /*.dataTables_filter {
+    .dataTables_filter {
         display: none;
-    }*/
+    }
     #wrapper{
         margin: 0px auto;
         width: 95%;
     }
     </style>
-    <script>
-        function setValue(){
-            $("#bookName").val('');
-            $("#authorName").val('');
-        }
-        /*$(function(){
-            setValue();
-            var table = $('#first_table').DataTable();
 
-            $('#bookName').on( 'keyup', function () {
-                table
-                        .columns( 1 )
-                        .search( this.value )
-                        .draw();
-            } );
-            $('#authorName').on( 'keyup', function () {
-                table
-                        .columns( 2 )
-                        .search( this.value )
-                        .draw();
-            } );
-        })*/
-    </script>
     <g:javascript>
         function selectBook(id){
 
@@ -60,7 +39,6 @@
 </head>
 
 
-<body>
 <div id="wrapper">
     <br>
     <div style="text-align: center;">
@@ -101,8 +79,8 @@
         </div>
     </g:if>
 
-    <div id="ajaxed_div">
-        <g:render template="dashBordAfterChange"/>
+<div id="ajaxed_div">
+    <g:render template="dashBordAfterChange"/>
         <input type="hidden" id = "bookForIssue"/>
     </div>
 </div>

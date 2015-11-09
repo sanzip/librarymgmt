@@ -1,39 +1,69 @@
-<table class="ui sortable celled table" style="margin: 0px auto;width: 95%">
+%{--<table class="ui sortable celled table" id="first_table" style="margin: 0px auto;width: 95%">--}%
+<table id="first_table" class="ui sortable celled table" cellspacing="0" width="100% margin: 0px">
     <thead>
     <tr>
-        <th style="text-align: center;color: #E7746F">S.No</th>
-        <g:sortableColumn style="text-align: center;" property="name" title="${message(code: 'book.name.label', default: 'Book Name')}" />
-        <g:sortableColumn style="text-align: center;" property="author" title="${message(code: 'book.author.label', default: 'Author')}" />
+        <th>S.No</th>
+        <th>Name</th>
+        <th>Author</th>
         <sec:ifAllGranted roles="ROLE_LIBRARIAN">
-            <g:sortableColumn style="text-align: center;" property="totalQuantity" title="${message(code: 'book.totalQuantity.label', default: 'Total Quantity')}" />
+            <th>Total Quantity</th>
         </sec:ifAllGranted>
-        <g:sortableColumn style="text-align: center;" property="availableQuantity" title="${message(code: 'book.availableQuantity.label', default: 'Available Quantity')}" />
+        <th>Available Quantity</th>
+        <sec:ifAllGranted roles="ROLE_LIBRARIAN">
+            <th>Issue</th>
+        </sec:ifAllGranted>
     </tr>
     </thead>
-        <tbody style="text-align: center;">
-            <g:each in="${list}" var="booklist" status="i">
-                <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                    <td>${i+1}.</td>
-                    <sec:ifAllGranted roles="ROLE_LIBRARIAN">
-                        <td  style="text-align: center;"><button id = "bookRow" onclick="selectBook(${booklist.id});">${fieldValue(bean: booklist, field: "name")}</button></td>
-                    </sec:ifAllGranted>
-                    <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
-                        <td  style="text-align: center;">${fieldValue(bean: booklist, field: "name")}</td>
-                    </sec:ifAnyGranted>
-                    <td  style="text-align: center;">${fieldValue(bean: booklist, field: "author")}</td>
-                    <sec:ifAllGranted roles="ROLE_LIBRARIAN">
-                        <td  style="text-align: center;">${fieldValue(bean: booklist, field: "totalQuantity")}</td>
-                    </sec:ifAllGranted>
-                    <td  style="text-align: center;">${fieldValue(bean: booklist, field: "availableQuantity")}</td>
-                </tr>
-            </g:each>
-        </tbody>
+    <tbody>
+    <g:each in="${list}" var="booklist" status="i">
+        <tr>
+            <td>${i+1}</td>
+            <sec:ifAllGranted roles="ROLE_LIBRARIAN">
+                <td  style="text-align: center;"><button id = "bookRow" onclick="selectBook(${booklist.id});">${fieldValue(bean: booklist, field: "name")}</button></td>
+            </sec:ifAllGranted>
+            <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
+                <td  style="text-align: center;">${fieldValue(bean: booklist, field: "name")}</td>
+            </sec:ifAnyGranted>
+            <td>${booklist.author}</td>
+            <sec:ifAllGranted roles="ROLE_LIBRARIAN">
+                <td>${booklist.totalQuantity}</td>
+            </sec:ifAllGranted>
+            <td>${booklist.availableQuantity}</td>
+            <sec:ifAllGranted roles="ROLE_LIBRARIAN">
+                <td><g:link controller="book" action="issueBook" params="[bookId: booklist.id]">Issue</g:link></td>
+            </sec:ifAllGranted>
+        </tr>
+    </g:each>
+    </tbody>
 </table>
-    <div id = "issueBook">
+    %{--<div id = "issueBook">
 
     </div>
 <br>
 <div id="space">
     <g:paginate total="$list ?: 0}" />
 </div>
+--}%
+<script>
+    function setValue(){
+        $("#bookName").val('');
+        $("#authorName").val('');
+    }
+    $(document).ready(function(){
+        setValue();
+        var table = $('#first_table').DataTable();
 
+        $('#bookName').on( 'keyup', function () {
+            table
+                    .columns( 1 )
+                    .search( this.value )
+                    .draw();
+        } );
+        $('#authorName').on( 'keyup', function () {
+            table
+                    .columns( 2 )
+                    .search( this.value )
+                    .draw();
+        } );
+    })
+</script>
