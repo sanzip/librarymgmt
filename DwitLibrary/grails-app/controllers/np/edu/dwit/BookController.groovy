@@ -115,11 +115,7 @@ class BookController {
             '*' { render status: NOT_FOUND }
         }
     }
-/*
-    @Secured("ROLE_LIBRARIAN")
-    def issueBook() {
-        render(view: "issueBook",model: ["bookId":params.bookId])
-    }*/
+
 
     @Secured("ROLE_LIBRARIAN")
     @Transactional
@@ -203,16 +199,23 @@ class BookController {
     }
 
     def checkValidBookType() {
-        def bookTypeResult = Book.findByBookNumber(Integer.valueOf(params.bookId).intValue());
-        if(bookTypeResult){
-            if(bookTypeResult.bookType.equalsIgnoreCase("Reference")){
+        def bookTypeResult = BookInfo.findByBookNumber(params.bookNumber);
+
+        def book = Book.findByBookInfo(bookTypeResult)
+
+
+        if(book){
+            if(book.bookType.equalsIgnoreCase("Reference")){
                 render "reference"
             }
-            if(bookTypeResult.bookType.equalsIgnoreCase("Gifted")){
+            if(book.bookType.equalsIgnoreCase("Gifted")){
                 render "gifted"
             }
-            if(bookTypeResult.bookType.equalsIgnoreCase("bought")){
-                render "bought"
+            if(book.bookType.equalsIgnoreCase("Borrowable")){
+                render "borrowable"
+            }
+            if(book.bookType.equalsIgnoreCase("novel")){
+                render "novel"
             }
         }
     }
@@ -232,14 +235,18 @@ class BookController {
 
             println("ic:"+borrowCount)
             def role = borrowingUser.getAuthorities()[0].toString();
-            def borrowingBook = Book.findByBookNumber(Integer.valueOf(params.bookNumber).intValue())
+            def borrowingBook = BookInfo.findByBookNumber(params.bookNumber)
+            def book = Book.findByBookInfo(borrowingBook)
 
             if(borrowCount>0){
-                def isAlreadyBorrowed = Borrow.findByBookAndReturned(borrowingBook,false)
+                //to not let already issued book,again reissuing mistakely,
+                // 261 already issued, so not letting it to reissue
+
+                def isAlreadyBorrowed = Borrow.findByBookAndReturned(book,false)
 
                 if(isAlreadyBorrowed.returned){
                     Borrow borrow = new Borrow();
-                    borrow.book = borrowingBook
+                    borrow.book = book
                     borrow.borrowedDate=new Timestamp(new Date().getTime())
                     borrow.returned=false
                     borrow.member=borrowingUser
@@ -250,8 +257,8 @@ class BookController {
                         }else {
                             borrow.save(flush: true)
 
-                            borrowingBook.availableQuantity-=1
-                            borrowingBook.save(flush: true)
+                            book.availableQuantity-=1
+                            book.save(flush: true)
                             render "issue"
                         }
                     }else if(role.equals("ROLE_LIBRARY")){
@@ -261,8 +268,8 @@ class BookController {
 
                             borrow.save(flush: true)
 
-                            borrowingBook.availableQuantity-=1
-                            borrowingBook.save(flush: true)
+                            book.availableQuantity-=1
+                            book.save(flush: true)
                             render "issue"
                         }
                     }
@@ -273,8 +280,8 @@ class BookController {
                         }else {
                             borrow.save(flush: true)
 
-                            borrowingBook.availableQuantity-=1
-                            borrowingBook.save(flush: true)
+                            book.availableQuantity-=1
+                            book.save(flush: true)
                             render "issue"
                         }
                     }else if(role.equals("ROLE_STUDENT")){
@@ -283,60 +290,82 @@ class BookController {
                         }else {
                             borrow.save(flush: true)
 
-                            borrowingBook.availableQuantity-=1
-                            borrowingBook.save(flush: true)
+                            book.availableQuantity-=1
+                            book.save(flush: true)
                             render "issue"
                         }
                     }
+                }else{
+                    render "error"
                 }
 
             }else {
-                println("here")
+                //if member had not borrowed book yet it will come here
                 Borrow borrow = new Borrow();
-                borrow.book = borrowingBook
+                borrow.book = book
                 borrow.borrowedDate=new Timestamp(new Date().getTime())
                 borrow.returned=false
                 borrow.member=borrowingUser
                 borrow.save(flush: true)
 
-                borrowingBook.availableQuantity-=1
-                borrowingBook.save(flush: true)
+                book.availableQuantity-=1
+                book.save(flush: true)
+
                 render "issue"
             }
         }
     }
     @Transactional
     def checkBorrowedMember(){
-        println("params: "+params)
-        def borrowingBook = Book.findByBookNumber(Integer.valueOf(params.bookNumber).intValue())
-        println "borrowingBook = $borrowingBook"
+
+        def borrowingBook = BookInfo.findByBookNumber(params.bookNumber)
+        def book = Book.findByBookInfo(borrowingBook)
         def borrowedMember = Borrow.createCriteria().list {
             and{
-                eq("book",borrowingBook)
+                eq("book",book)
                 eq("returned",false)
             }
 
         }
 
-        fineService.calculatefine(borrowedMember,Integer.valueOf(params.bookNumber).intValue());
-        def fineAmt = Fine.findByBookNumberAndMember(Integer.valueOf(params.bookNumber).intValue(),borrowedMember[0].member)
 
-        render borrowedMember[0].member.fullName+":"+fineAmt.fineAmount
+        fineService.calculatefine(borrowedMember);
+        def borrowInfo = Borrow.createCriteria().list {
+            and{
+                eq("book",book)
+                eq("member",borrowedMember[0].member)
+                eq("returned",false)
+            }
+        }
+def amount
+        def fineAmt = Fine.findByBorrow(borrowInfo[0])
+
+        if(fineAmt) {
+            amount = fineAmt.fineAmount
+        }else {
+            amount = 0
+        }
+        render borrowedMember[0].member.fullName +":"+amount
     }
     @Transactional
     def saveReturn() {
 
         def borrowingUser = Member.findByFullName(params.memberName)
-        def borrowedBook = Book.findByBookNumber(Integer.valueOf(params.bookNumber).intValue())
+        def borrowedBook = BookInfo.findByBookNumber(params.bookNumber)
+        def book = Book.findByBookInfo(borrowedBook)
+        def borrow = Borrow.findByBookAndMemberAndReturned(book,borrowingUser,false)
 
 
         if(borrowingUser){
-            Borrow borrow = new Borrow();
+
             borrow.member = borrowingUser
-            borrow.book=borrowedBook
+            borrow.book=book
             borrow.returned = true
             borrow.returnedDate=new Timestamp(new Date().getTime())
             borrow.save(flush: true)
+
+            book.availableQuantity +=1;
+            book.save()
 
             render "success"
 

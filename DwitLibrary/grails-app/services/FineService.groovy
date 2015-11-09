@@ -13,11 +13,9 @@ class FineService {
         return rDate-bDate
     }
 
-    def calculatefine(List<Borrow> borrow,int bookNum){
+    def calculatefine(List<Borrow> borrow){
         Fine fine = new Fine()
-//        fine.bookNumber=bookNum
-        fine.borrow = borrow[0]
-        fine.member=borrow[0].member
+
         def member = borrow[0].member
         def book = borrow[0].book
         def bDate = borrow[0].borrowedDate
@@ -25,7 +23,7 @@ class FineService {
         def tDays=calculateTotalDays(bDate)
 
         if(member.getAuthorities()[0].toString().equals("ROLE_STUDENT")){
-            if(book.bookType.equals("Bought")){
+            if(book.bookType.equals("Borrowable")){
                 fine.days=tDays - DWITLibraryConstants.COURSE_BOOK_BORROWABLE_STUDENT
                 if(fine.days>0){
                     fine.fineAmount=fine.days * DWITLibraryConstants.FINE_AMT_STUDENT
@@ -40,7 +38,7 @@ class FineService {
         }
 
         if(member.getAuthorities()[0].toString().equals("ROLE_FACULTY")){
-            if(book.bookType.equals("Bought")){
+            if(book.bookType.equals("Borrowable")){
                 fine.days=tDays - DWITLibraryConstants.COURSE_BOOK_BORROWABLE_FACULTY
                 if(fine.days>0){
                     fine.fineAmount=fine.days * DWITLibraryConstants.FINE_AMT_FACULTY
@@ -55,7 +53,7 @@ class FineService {
         }
 
         if(member.getAuthorities()[0].toString().equals("ROLE_ADMIN")){
-            if(book.bookType.equals("Bought")){
+            if(book.bookType.equals("Borrowable")){
                 fine.days=tDays - DWITLibraryConstants.COURSE_BOOK_BORROWABLE_ADMIN
                 if(fine.days>0){
                     fine.fineAmount=fine.days * DWITLibraryConstants.FINE_AMT_ADMIN
@@ -70,8 +68,8 @@ class FineService {
         }
 
         if(member.getAuthorities()[0].toString().equals("ROLE_LIBRARIAN")){
-            if(book.bookType.equals("Bought")){
-                fine.days=50 - DWITLibraryConstants.COURSE_BOOK_BORROWABLE_LIBRARIAN
+            if(book.bookType.equals("Borrowable")){
+                fine.days=tDays - DWITLibraryConstants.COURSE_BOOK_BORROWABLE_LIBRARIAN
                 if(fine.days>0){
                     fine.fineAmount=fine.days * DWITLibraryConstants.FINE_AMT_LIBRARIAN
                 }
@@ -83,6 +81,9 @@ class FineService {
                 }
             }
         }
+
+        fine.borrow=borrow[0]
+        fine.member=borrow[0].member
         fine.save(flush: true)
     }
 }

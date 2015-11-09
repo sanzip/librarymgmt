@@ -8,6 +8,8 @@ class Book {
     Integer totalQuantity
     String bookType
 
+    BookInfo bookInfo
+
     static constraints = {
         name blank: false, nullable: false
         author blank: false, nullable: false
