@@ -195,7 +195,7 @@
 <div class="ui five item menu" style="margin: 0px auto;width: 98%;">
     <div class="ui large menu">
         <div class="ui simple link item">
-            <g:link controller="member" action="history" params="[id: id]"><i class="history icon"></i> History</g:link>
+            <g:link controller="member" action="history"><i class="history icon"></i> History</g:link>
         </div>
 
 
