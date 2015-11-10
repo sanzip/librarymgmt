@@ -115,7 +115,7 @@
 
             </div>
             <div id="the-basics">
-                <label for="username">Username:</label>
+                <label for="username">FullName:</label>
                 <input class="typeahead" type="text" onkeyup="pop(this);" id = "username" name="fullName">
             </div>
         </div>
