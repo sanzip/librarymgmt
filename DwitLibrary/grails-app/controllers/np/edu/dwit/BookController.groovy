@@ -199,14 +199,11 @@ class BookController {
         def bookId = params?.bookId
         def book = Book.findById(bookId as Long)
 
-        def bookInfos = BookInfo.createCriteria()
-
-        def borrowCriteria = Borrow.createCriteria()
-
-        println Borrow.findAll{
-
-            distinct('bookInfo')
+        def bookInfos = Borrow.list().unique {
+            it.bookInfo
         }
+
+        def bookInfoList
 
         render(template: 'issueBook', model: [bookInfos: bookInfoList])
     }
