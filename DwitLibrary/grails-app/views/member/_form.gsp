@@ -47,52 +47,60 @@
 
 </script>
 <div class="ui form" style="margin: 0px auto;width:90%;">
-    <h2 style="text-align: center;font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif">Create Member</h2>
-<div class="fieldcontain ${hasErrors(bean: memberInstance, field: 'fullName', 'error')} required">
+<br>
+    <h2 style="text-align: center;font-family: "Open Sans", "Helvetica Neue', Helvetica, Arial, sans-serif'>Create Member</h2>
+<div class="two fields">
+
+<div class="field">
       <h3 class="ui dividing header">Full Name <span class="required-indicator">*</span> </h3>
     <g:textField name="fullName" required="" onkeypress="return onlyAlphabets(event,this);" value="${memberInstance?.fullName}"/>
 </div>
-    <br>
-
-<div class="fieldcontain ${hasErrors(bean: memberInstance, field: 'userId', 'error')} required">
+<div class="field">
 
     <h3 class="ui dividing header">User Id <span class="required-indicator">*</span> </h3>
 
     <g:textField name="userId" required="" onkeypress="return onlyNumbers(event,this);" value="${memberInstance?.userId}"/>
-</div>
-<br>
 
-<div class="fieldcontain ${hasErrors(bean: memberInstance, field: 'password', 'error')} required">
+</div>
+</div>
+    <br>
+
+<div class="two fields">
+<div class="field">
 
     <h3 class="ui dividing header">Password <span class="required-indicator">*</span> </h3>
 
     <g:passwordField name="password" required="" value="${memberInstance?.password}"/>
-</div>
-<br>
 
-<div class="fieldcontain ${hasErrors(bean: memberInstance, field: 'role', 'error')} ">
-    <h3 class="ui dividing header">Role <span class="required-indicator">*</span> </h3>
-    <div class="field">
-        <select class="ui fluid dropdown">
-            <g:each in="${np.edu.dwit.Role.all}" var="roleList">
-                <option>${roleList.authority}</option>
-            </g:each>
+</div>
+
+ <div class="field">
+     <h3 class="ui dividing header">Role <span class="required-indicator">*</span> </h3>
+     <div class="field">
+         <select class="ui fluid dropdown">
+             <g:each in="${np.edu.dwit.Role.all}" var="roleList">
+                 <option>${roleList.authority}</option>
+             </g:each>
          </select>
-    </div>
-</div>
-<br>
+     </div>
 
-<div class="fieldcontain ${hasErrors(bean: memberInstance, field: 'email', 'error')} ">
+     </div>
+
+
+</div>
+
+<br>
+<div class="two fields">
+<div class="field">
     <h3 class="ui dividing header">Email <span class="required-indicator">*</span> </h3>
     <g:textField name="email" value="${memberInstance?.email}"/>
 </div>
-<br>
-<div class="fieldcontain ${hasErrors(bean: memberInstance, field: 'contact', 'error')} ">
+<div class="field">
     <h3 class="ui dividing header">Contact <span class="required-indicator">*</span> </h3>
 
     <g:textField name="contact" onkeypress="return onlyNumbers(event,this);" value="${memberInstance?.contact}"/>
 </div>
-
+</div>
 %{--<div class="fieldcontain ${hasErrors(bean: memberInstance, field: 'status', 'error')} ">--}%
 %{--    <label for="status">--}%
 %{--        <g:message code="member.status.label" default="Status"/>--}%

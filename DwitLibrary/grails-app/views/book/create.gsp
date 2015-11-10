@@ -5,12 +5,19 @@
 	<g:set var="entityName" value="${message(code: 'book.label', default: 'Book')}"/>
 	<title><g:message code="default.create.label" args="[entityName]"/></title>
 	<style>
-	form{
-		text-align: left !important;
-	}
-	fieldset{
-		margin: 0 13px;
-	}
+    form{
+        text-align: left !important;
+    }
+    fieldset{
+        margin:0px auto;
+        width:50%;
+        background-color: rgba(53, 115, 163, 0.03);
+        border-radius: 2px;
+        box-shadow:  10px 10px 5px ;
+    }
+    #head{
+        text-align: center;
+    }
 	</style>
 </head>
 	<body>
@@ -21,7 +28,7 @@
 				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>--}%
-
+<div id="head">
 	<div class="ui compact menu" style="margin: 13px;">
 		<div class="active item">
 			<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
@@ -31,6 +38,7 @@
 			<g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]"/></g:link>
 		</div>
 	</div>
+        </div>
 		<div id="create-book" class="content scaffold-create" role="main">
 			%{--<h1><g:message code="default.create.label" args="[entityName]" /></h1>--}%
 			<g:if test="${flash.message}">
