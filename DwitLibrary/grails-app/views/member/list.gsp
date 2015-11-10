@@ -10,20 +10,27 @@
         margin: 0px auto;
         width: 95%;
     }
+        #head{
+            text-align: center;
+        }
         </style>
 </head>
 
 <body>
 <div id="wrapper">
+    <div id="head">
 <div class="ui compact menu">
     <div class="active item">
         <a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
     </div>
 
     <div class="active item">
-        <g:link class="list" action="create"><g:message code="default.list.label" args="[entityName]"/></g:link>
+        <g:link class="list" action="create">Create User</g:link>
     </div>
 </div>
+        </div>
+
+
 <div id="list-member" class="content scaffold-list" role="main">
     <br>
     <h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]"/></h1>
