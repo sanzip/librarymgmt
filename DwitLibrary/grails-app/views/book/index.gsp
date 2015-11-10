@@ -3,24 +3,41 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+        <meta name="layout" content="main_page">
 		<g:set var="entityName" value="${message(code: 'book.label', default: 'Book')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
+        <style>
+        #wrapper{
+            margin: 0px auto;
+            width: 95%;
+        }
+        #head{
+            text-align: center;
+        }
+        </style>
 	</head>
 	<body>
-		<a href="#list-book" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
+    <div id="wrapper">
+        <div id="head">
+            <div class="ui compact menu">
+                <div class="active item">
+				    <a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
+		        </div>
+                <div class="active item">
+                    <g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+
+                </div>
+                </div>
+            </div>
 		<div id="list-book" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+
+            <br>
+            <h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]" /></h1>
+
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table>
+			<table class="ui celled table">
 			<thead>
 					<tr>
 					
@@ -35,8 +52,9 @@
 						<g:sortableColumn property="totalQuantity" title="${message(code: 'book.totalQuantity.label', default: 'Total Quantity')}" />
 					
 						<g:sortableColumn property="bookType" title="${message(code: 'book.bookType.label', default: 'Book Type')}" />
-					
-					</tr>
+                        <th> Action </th>
+
+                    </tr>
 				</thead>
 				<tbody>
 				<g:each in="${bookInstanceList}" status="i" var="bookInstance">
@@ -54,7 +72,13 @@
 						<td>${fieldValue(bean: bookInstance, field: "totalQuantity")}</td>
 					
 						<td>${fieldValue(bean: bookInstance, field: "bookType")}</td>
-					
+                        <td> <div class="ui buttons">
+                            <button class="ui button"><i class="edit icon"> </i>  <g:link style="color:#000000;"> Edit </g:link>
+                            </button>
+                            <div class="or"></div>
+                            <button class="ui button"><i class="delete icon"> </i> <g:link> Delete </g:link>
+                        </div>
+                        </td>
 					</tr>
 				</g:each>
 				</tbody>
@@ -63,5 +87,6 @@
 				<g:paginate total="${bookInstanceCount ?: 0}" />
 			</div>
 		</div>
+        </div>
 	</body>
 </html>
