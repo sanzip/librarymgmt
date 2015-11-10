@@ -15,7 +15,7 @@ class MemberController {
     @Secured(['IS_AUTHENTICATED_ANONYMOUSLY'])
     def index() {
         println(springSecurityService.isLoggedIn())
-        if (springSecurityService.isLoggedIn()) {
+        if (springSecurityService.loggedIn) {
             def role = springSecurityService.getAuthentication().authorities.toString()
             def currentUser = User.findById(springSecurityService.principal.id)
             println("current user:"+currentUser)
@@ -29,7 +29,7 @@ class MemberController {
 
     }
 
-    @Secured("permitAll")
+    @Secured(['ROLE_LIBRARIAN', 'ROLE_ADMIN', 'ROLE_STUDENT', 'ROLE_FACULTY'])
     def dashboard() {
         def currentUser= Member.findById(springSecurityService.principal.id)
         def count = Borrow.findAllByMemberAndReturned(currentUser, false);
@@ -38,7 +38,7 @@ class MemberController {
     }
 
 
-    @Secured("permitAll")
+    @Secured(['ROLE_ADMIN', 'ROLE_STUDENT', 'ROLE_FACULTY'])
     def history(){
 
         def currentUser = springSecurityService.currentUser
