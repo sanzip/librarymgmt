@@ -15,6 +15,7 @@
     }
 
     var states = [];
+    var max = 7;
     function pop(input){
 
         var data = "query=" + $("#username").val() + "&states=" + states;
@@ -35,6 +36,8 @@
                 var fullNamesUnique = userFullnames.filter(onlyUnique);
                 for(i = 0; i < fullNamesUnique.length; i++) {
                     states.push(fullNamesUnique[i]);
+                    if(states.length == max)
+                        break;
                 }
             }
         });

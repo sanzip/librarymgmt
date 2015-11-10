@@ -53,18 +53,22 @@ class MemberController {
     @Secured("ROLE_LIBRARIAN")
     def search(){
 
+        def max = 7
         String query = params?.query
         def states =  params?.states
         states = states.split(',')
         if (query.length() > 0) {
             def probableMembers = Member.findAllByFullNameIlike(query + '%')
             JSONArray jsonArray = new JSONArray()
+            int i = 0
             for(Member member : probableMembers) {
                 JSONObject jsonObject = new JSONObject()
                 if(!states.contains(member.fullName)) {
                     jsonObject.put("fullName", member.fullName)
                     jsonArray.add(jsonObject)
                 }
+                if(i++ == max)
+                    break;
             }
             if(jsonArray.size() > 0)
                 render jsonArray.toJSONString()
