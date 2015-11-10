@@ -197,15 +197,23 @@ class BookController {
     def bookInfoList(){
 
         def bookId = params?.bookId
-        def book = Book.findById(bookId as Long)
+        def bookInfos = BookInfo.findAllByBook(Book.findById(bookId as Long))
 
-        def bookInfos = Borrow.list().unique {
-            it.bookInfo
+        def bookInfosToRemove = Borrow.createCriteria().list {
+            eq('returned', false)
+            inList('bookInfo', bookInfos)
+        }.bookInfo
+
+        bookInfos = Borrow.createCriteria().list{
+
+            inList('bookInfo', bookInfos)
+            not {'in'('bookInfo', bookInfosToRemove)}
+            projections {
+                distinct('bookInfo')
+            }
         }
 
-        def bookInfoList
-
-        render(template: 'issueBook', model: [bookInfos: bookInfoList])
+        render(template: 'issueBook', model: [bookInfos: bookInfos])
     }
 
     @Secured("ROLE_LIBRARIAN")
@@ -418,7 +426,7 @@ class BookController {
 
 
 
-    def addDays(Date date, int days) {
+    private static def addDays(Date date, int days) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.DATE, days);
