@@ -199,13 +199,13 @@ class BookController {
         def bookId = params?.bookId
         def book = Book.findById(bookId as Long)
 
-        def bookInfos = BookInfo.all
+        def bookInfos = BookInfo.createCriteria()
 
         def borrowCriteria = Borrow.createCriteria()
 
-        borrowCriteria.list{
+        println Borrow.findAll{
 
-            inList('bookInfo', bookInfos)
+            distinct('bookInfo')
         }
 
         render(template: 'issueBook', model: [bookInfos: bookInfoList])
@@ -251,7 +251,7 @@ class BookController {
 
     @Transactional
     def saveIssue() {
-        def borrowingUser = Member.findByUsername(params.username)
+        def borrowingUser = Member.findByFullName(params.fullName)
 
         if(borrowingUser){
             def c = Borrow.createCriteria()

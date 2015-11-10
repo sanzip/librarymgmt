@@ -57,30 +57,18 @@ class MemberController {
         def states =  params?.states
         states = states.split(',')
         if (query.length() > 0) {
-            def probableMembers = Member.findAllByUsernameIlike(query + '%')
+            def probableMembers = Member.findAllByFullNameIlike(query + '%')
             JSONArray jsonArray = new JSONArray()
             for(Member member : probableMembers) {
                 JSONObject jsonObject = new JSONObject()
-                if(!states.contains(member.username)) {
-                    jsonObject.put("username", member.username)
+                if(!states.contains(member.fullName)) {
+                    jsonObject.put("fullName", member.fullName)
                     jsonArray.add(jsonObject)
                 }
             }
             if(jsonArray.size() > 0)
                 render jsonArray.toJSONString()
         }
-    }
-
-    @Secured("ROLE_LIBRARIAN")
-    def tryit(){
-
-        /*def probableMembers = Member.findAllByUsernameIlike('s%')
-        JSONArray probableMembersAsJSON = new JSONArray()
-
-        for(Member member : probableMembers)
-            probableMembersAsJSON.add(member as JSON)
-        println probableMembersAsJSON
-        respond probableMembersAsJSON*/
     }
 
     @Secured("ROLE_LIBRARIAN")

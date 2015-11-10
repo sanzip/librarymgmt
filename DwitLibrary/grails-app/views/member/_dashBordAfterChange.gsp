@@ -26,8 +26,8 @@
 
                 var users = jQuery.parseJSON(html);
                 for(i = 0; i < users.length; i++){
-                    if(users[i].username != null) {
-                        states.push(users[i].username);
+                    if(users[i].fullName != null) {
+                        states.push(users[i].fullName);
                     }
                 }
             }
@@ -94,7 +94,7 @@
             </div>
             <div id="the-basics">
                 <label for="username">Username:</label>
-                <input class="typeahead" type="text" onkeyup="pop(this);" id = "username" name="username">
+                <input class="typeahead" type="text" onkeyup="pop(this);" id = "username" name="fullName">
             </div>
         </div>
         <div class = "actions" style="text-align: right;">
