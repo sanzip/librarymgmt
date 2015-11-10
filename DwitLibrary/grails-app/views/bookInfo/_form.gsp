@@ -1,5 +1,15 @@
 <%@ page import="np.edu.dwit.BookInfo" %>
 
+<g:javascript>
+
+	function duplicateAdd(){
+		$('#bookNumberInput .addbutton').remove();
+		$('#bookNumberInput').append('<input type="text" name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>');
+		$('#bookNumberInput').append('<button type="button" onclick="duplicateAdd();">Add</button>');
+	}
+
+</g:javascript>
+
 <div class="fieldcontain ${hasErrors(bean: bookInfoInstance, field: 'book', 'error')} required">
 	<label for="book">
 		<g:message code="bookInfo.book.label" default="Book" />
@@ -13,9 +23,16 @@
 	<label for="bookNumber">
 		<g:message code="bookInfo.bookNumber.label" default="Book Number" />
 		<span class="required-indicator">*</span>
+
 	</label>
-	<g:textField name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>
+%{--	<g:textField name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>--}%
+	<div id="bookNumberInput" >
+
+	<input type="text" name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>
+	<button type="button" class = "addbutton" onclick="duplicateAdd();">Add</button>
+
 </div>
+	</div>
 
 <div class="fieldcontain ${hasErrors(bean: bookInfoInstance, field: 'edition', 'error')} required">
 	<label for="edition">
