@@ -1,6 +1,41 @@
 <%@ page import="np.edu.dwit.Book" %>
 
 
+<script language="JavaScript" type="text/javascript">
+
+	function onlyNumbers(e, t) {
+
+		try {
+
+			if (window.event) {
+				var intCode = window.event.keyCode;
+			}
+			else if (e) {
+				var intCode = e.which;
+			}
+			else { return true; }
+			if ((intCode >=48   && intCode <= 57)){
+				return true;
+			}
+			else{
+				alert("Please Enter Numeric Character")
+				return false;
+			}
+		}
+		catch (err) {
+			alert(err.Description);
+		}
+	}
+</script>
+<style type="text/css">
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	/* display: none; <- Crashes Chrome on hover */
+	-webkit-appearance: none;
+	margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+</style>
+
 
 <div class="ui form" style="margin: 0px auto;width:90%;">
 	<h2 style="text-align: center;font-family:Open Sans Helvetica Neue Helvetica, Arial sans-serif">Create Book</h2>
@@ -32,9 +67,9 @@
     --}%
 
 	<div class="fieldcontain ${hasErrors(bean: bookInstance, field: 'totalQuantity', 'error')} required">
-	<h3 class="ui dividing header">Total Quantity <span class="required-indicator">*</span> </h3>
+	<h3 class="ui dividing header" >Total Quantity <span class="required-indicator">*</span> </h3>
 
-	<g:field name="totalQuantity" type="number" value="${bookInstance.totalQuantity}" required=""/>
+	<g:field name="totalQuantity" onkeypress="onlyNumbers(event,this)" type="number" value="${bookInstance.totalQuantity}" required=""/>
 	</div>
 
 	<div class="fieldcontain ${hasErrors(bean: bookInstance, field: 'bookType', 'error')} required">
