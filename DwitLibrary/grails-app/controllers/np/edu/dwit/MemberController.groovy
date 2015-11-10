@@ -100,7 +100,9 @@ class MemberController {
             respond memberInstance.errors, view: 'create'
             return
         }
-        memberInstance.fullName=memberInstance.fullName+"-"+memberInstance.userId
+        memberInstance.fullName=memberInstance.fullName/*+"-"+memberInstance.userId*/
+
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+memberInstance.fullName)
         def fName = memberInstance.fullName.toLowerCase().split(" ")
         memberInstance.username=fName[0]+"_"+memberInstance.userId
         memberInstance.save flush: true
