@@ -258,9 +258,11 @@
 </div>
 <div class="ui five item menu" style="margin: 0px auto;width: 98%;">
     <div class="ui large menu">
-        <div class="ui simple link item">
-            <g:link controller="member" action="history"><i class="history icon"></i> History</g:link>
-        </div>
+        <sec:ifNotGranted roles="ROLE_LIBRARIAN">
+            <div class="ui simple link item">
+                <g:link controller="member" action="history"><i class="history icon"></i> History</g:link>
+            </div>
+        </sec:ifNotGranted>
 
 
 
@@ -271,8 +273,12 @@
             <div class="ui simple link item">
                 <g:link controller="book" action="returnBook"> <i class="reply icon"></i> Return </g:link>
             </div>
-            <div class="ui simple link item">
-                <g:link controller="book" action="report"> <i class="browser icon"></i> Report </g:link>
+            <div class="ui simple dropdown link item">
+                <i class="browser icon"></i> Report <i class="dropdown icon"></i>
+                <div class="menu">
+                    <g:link controller="book" action="report" class="item"> <i class="browser icon"></i>  Issued Book  </g:link>
+                    <g:link controller="borrow" action="report" class="item"> <i class="browser icon"></i>  Fine Report </g:link>
+                </div>
             </div>
             <div class="ui simple dropdown link item">
                 <i class="configure icon"></i> Configure <i class="dropdown icon"></i>
