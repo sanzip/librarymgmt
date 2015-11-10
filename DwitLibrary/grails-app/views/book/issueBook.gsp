@@ -11,7 +11,7 @@
     <r:require module="jquery-ui"/>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(function() {
             $("#issue").hide();
             $("#fullName").hide();
             $("#reset").hide();
@@ -52,6 +52,7 @@
 
 
         function checkValid(bookNumber) {
+
             if(isNaN(bookNumber)) {
                 $('#bookNumber').focus(function(){
                     $(this).val('');

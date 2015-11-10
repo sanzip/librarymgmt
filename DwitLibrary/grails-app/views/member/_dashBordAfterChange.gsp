@@ -34,6 +34,11 @@
         });
     }
 </script>
+<style>
+    a{
+        color: blue;
+    }
+</style>
 <table id="first_table" class="ui sortable celled table" cellspacing="0" width="100% margin: 0px">
     <thead>
     <tr>
@@ -57,10 +62,10 @@
         <td>${i+1}.</td>
         <g:if test="${book.availableQuantity > 0}">
             <sec:ifAllGranted roles="ROLE_LIBRARIAN">
-                <td  style="text-align: center;"><button onclick="select(${book.id});">${fieldValue(bean: book, field: "name")}</button></td>
+                <td  style="text-align: center;"><a href="#" onclick = "select(${book.id});">${fieldValue(bean: book, field: "name")}</a></td>
             </sec:ifAllGranted>
             <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
-                <td  style="text-align: center;"><button onclick="select(${book.id});">${fieldValue(bean: book, field: "name")}</button></td>
+                <td  style="text-align: center;">${fieldValue(bean: book, field: "name")}</td>
             </sec:ifAnyGranted>
         </g:if>
         <g:else>

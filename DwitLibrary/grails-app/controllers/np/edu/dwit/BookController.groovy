@@ -6,6 +6,7 @@ import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 import java.sql.Timestamp
+import java.text.SimpleDateFormat
 
 import static org.springframework.http.HttpStatus.*
 
@@ -190,37 +191,30 @@ class BookController {
         render(view: "issueBook",model:[userInstanceList: User.list(params), userInstanceTotal: User.count()])
     }
 
-    @Secured("ROLE_LIBRARIAN")
-    def issue(){
 
-        def bookInfoId = params.bookInfoId
-        def username = params.username
-
-        println bookInfoId
-        println username
-
-        Member member = Member.findByUsername((String)username)
-        Book book = BookInfo.findById(bookInfoId as Long).book
-        Borrow borrow = new Borrow()
-        borrow.member = member
-        borrow.book = book
-        if (Borrow.findAllByMember(member).book.contains(book)){
-
-            flash.message = "Cannot Issue the book twice to same user"
-            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
-        }else{
-
-            borrow.save(failOnError: true)
-            flash.message = "Book Issued"
-            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
-        }
-    }
 
     @Secured("ROLE_LIBRARIAN")
     def bookInfoList(){
 
         def bookId = params?.bookId
-        render(template: 'issueBook', model: [bookInfos: BookInfo.findAllByBook(Book.findById(bookId as Long))])
+        def book = Book.findById(bookId as Long)
+
+        def bookInfos = BookInfo.all
+
+        def borrowCriteria = Borrow.createCriteria()
+
+        borrowCriteria.list{
+
+            inList('bookInfo', bookInfos)
+        }
+
+        render(template: 'issueBook', model: [bookInfos: bookInfoList])
+    }
+
+    @Secured("ROLE_LIBRARIAN")
+    def issueBookNav() {
+        //params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        render(template: "issue",model:[userInstanceList: User.list(params), userInstanceTotal: User.count()])
     }
 
     def getAllUsers() {
@@ -271,17 +265,16 @@ class BookController {
             println("ic:"+borrowCount)
             def role = borrowingUser.getAuthorities()[0].toString();
             def borrowingBook = BookInfo.findByBookNumber(params.bookNumber)
-            def book = borrowingBook.book
+            def bookInfo = borrowingBook
 
 
             if(borrowCount>0){
                 //to not let already issued book,again reissuing mistakely,
                 // 261 already issued, so not letting it to reissue
-                println book.name
-                def isAlreadyBorrowed = Borrow.findByBookAndReturned(book,false)
+                def isAlreadyBorrowed = Borrow.findByBookInfoAndReturned(bookInfo,false)
                 if(isAlreadyBorrowed?.returned || isAlreadyBorrowed == null){
                     Borrow borrow = new Borrow();
-                    borrow.book = book
+                    borrow.bookInfo = bookInfo
                     borrow.borrowedDate=new Timestamp(new Date().getTime())
                     borrow.returned=false
                     borrow.member=borrowingUser
@@ -292,8 +285,8 @@ class BookController {
                         }else {
                             borrow.save(flush: true)
 
-                            book.availableQuantity-=1
-                            book.save(flush: true)
+                            bookInfo.book.availableQuantity-=1
+                            bookInfo.save(flush: true)
                         }
                     }else if(role.equals("ROLE_LIBRARY")){
                         if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_LIBRARIAN) {
@@ -302,8 +295,8 @@ class BookController {
 
                             borrow.save(flush: true)
 
-                            book.availableQuantity-=1
-                            book.save(flush: true)
+                            bookInfo.book.availableQuantity-=1
+                            bookInfo.save(flush: true)
                         }
                     }
 
@@ -313,8 +306,8 @@ class BookController {
                         }else {
                             borrow.save(flush: true)
 
-                            book.availableQuantity-=1
-                            book.save(flush: true)
+                            bookInfo.book.availableQuantity-=1
+                            bookInfo.save(flush: true)
                         }
                     }else if(role.equals("ROLE_STUDENT")){
                         if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_STUDENT) {
@@ -322,8 +315,8 @@ class BookController {
                         }else {
                             borrow.save(flush: true)
 
-                            book.availableQuantity-=1
-                            book.save(flush: true)
+                            bookInfo.book.availableQuantity-=1
+                            bookInfo.save(flush: true)
                         }
                     }
 
@@ -337,75 +330,193 @@ class BookController {
             }else {
                 //if member had not borrowed book yet it will come here
                 Borrow borrow = new Borrow();
-                borrow.book = book
+                borrow.bookInfo = bookInfo
                 borrow.borrowedDate=new Timestamp(new Date().getTime())
                 borrow.returned=false
                 borrow.member=borrowingUser
                 borrow.save(flush: true)
 
-                book.availableQuantity-=1
-                book.save(flush: true)
+                bookInfo.book.availableQuantity-=1
+                bookInfo.save(flush: true)
+
+                saveTimestamp(borrowingBook,borrowingUser)
 
                 flash.message = "Book Issued"
                 redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
             }
         }
+
+
     }
+    def saveTimestamp(BookInfo bookInfo,Member member) {
+        TimeStamp timeStamp = new TimeStamp()
+        def borrow =Borrow.findByBookInfoAndMemberAndReturned(bookInfo,member,false)
+        def role = borrow.member.getAuthorities()[0].toString()
+        println(role.equals("ROLE_STUDENT"))
+        def date = getBorrowedDate(borrow)
+        if(role.equals("ROLE_STUDENT")) {
+
+            if(borrow.bookInfo.book.bookType.equalsIgnoreCase("Borrowable")) {
+                def deadline = addDays(date, DWITLibraryConstants.COURSE_BOOK_BORROWABLE_STUDENT);
+                timeStamp.deadline = deadline;
+
+            }else if(borrow.bookInfo.book.bookType.equalsIgnoreCase("Novel")) {
+
+                def deadline = addDays(date, DWITLibraryConstants.NOVEL_BOOK_BORROWABLE);
+
+                timeStamp.deadline = deadline;
+            }
+
+
+
+        }else if(role.equals("ROLE_LIBRARIAN")) {
+            if(borrow.bookInfo.book.bookType.equalsIgnoreCase("Borrowable")) {
+                def deadline = addDays(date, DWITLibraryConstants.COURSE_BOOK_BORROWABLE_LIBRARIAN)
+
+                timeStamp.deadline = deadline
+            }else if(borrow.bookInfo.book.bookType.equalsIgnoreCase("Novel")) {
+                def deadline = addDays(date, DWITLibraryConstants.NOVEL_BOOK_BORROWABLE);
+
+                timeStamp.deadline = deadline;
+            }
+
+
+
+        }else if(role.equals("ROLE_ADMIN")) {
+            if(borrow.bookInfo.book.bookType.equalsIgnoreCase("Borrowable")) {
+                def deadline = addDays(date, DWITLibraryConstants.COURSE_BOOK_BORROWABLE_ADMIN)
+
+                timeStamp.deadline = deadline
+            }else if(borrow.bookInfo.book.bookType.equalsIgnoreCase("Novel")) {
+                def deadline = addDays(date, DWITLibraryConstants.NOVEL_BOOK_BORROWABLE);
+
+                timeStamp.deadline = deadline;
+                println timeStamp.deadline
+            }
+
+
+        }else if(role.equals("ROLE_FACULTY")) {
+            if(borrow.bookInfo.book.bookType.equalsIgnoreCase("Borrowable")) {
+                def deadline = addDays(date, DWITLibraryConstants.COURSE_BOOK_BORROWABLE_FACULTY)
+
+                timeStamp.deadline = deadline
+            }else if(borrow.bookInfo.book.bookType.equalsIgnoreCase("Novel")) {
+                def deadline = addDays(date, DWITLibraryConstants.NOVEL_BOOK_BORROWABLE);
+
+                timeStamp.deadline = deadline;
+            }
+        }
+        timeStamp.borrow = borrow
+        timeStamp.save(flush: true, failOnError: true)
+
+
+    }
+
+    def getBorrowedDate(Borrow borrow) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = format.parse(borrow.borrowedDate.toString());
+
+        return date
+    }
+
+
+
+    def addDays(Date date, int days) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days);
+
+        return cal.getTime().format("yyyy-MM-dd")
+
+    }
+
     @Transactional
     def checkBorrowedMember(){
-
+        def amount
         def borrowingBook = BookInfo.findByBookNumber(params.bookNumber)
-        def book = borrowingBook.book
         def borrowedMember = Borrow.createCriteria().list {
             and{
-                eq("book",book)
+                eq("bookInfo",borrowingBook)
                 eq("returned",false)
             }
 
         }
 
 
-        fineService.calculatefine(borrowedMember);
+        def fine = fineService.calculatefine(borrowedMember[0]);
         def borrowInfo = Borrow.createCriteria().list {
             and{
-                eq("book",book)
+                eq("bookInfo",borrowingBook)
                 eq("member",borrowedMember[0].member)
                 eq("returned",false)
             }
         }
-def amount
-        def fineAmt = Fine.findByBorrow(borrowInfo[0])
 
-        if(fineAmt) {
-            amount = fineAmt.fineAmount
+        def amt = fine.fineAmount
+
+        if(amt) {
+            amount = amt
         }else {
             amount = 0
         }
-        render borrowedMember[0].member.fullName +":"+amount
+
+        def totalBorrowedDays = borrowInfo[0].borrowedDate-new Date()
+        render borrowedMember[0].member.fullName +":"+amount+":"+fine.days+":"+totalBorrowedDays
     }
+
+
     @Transactional
     def saveReturn() {
 
         def borrowingUser = Member.findByFullName(params.memberName)
         def borrowedBook = BookInfo.findByBookNumber(params.bookNumber)
-        def book = borrowedBook.book
-        def borrow = Borrow.findByBookAndMemberAndReturned(book,borrowingUser,false)
-
+        def borrow = Borrow.findByBookInfoAndMemberAndReturned(borrowedBook,borrowingUser,false)
 
         if(borrowingUser){
 
             borrow.member = borrowingUser
-            borrow.book=book
+            borrow.bookInfo=borrowedBook
             borrow.returned = true
             borrow.returnedDate=new Timestamp(new Date().getTime())
             borrow.save(flush: true)
 
-            book.availableQuantity +=1;
-            book.save()
+            borrowedBook.book.availableQuantity +=1;
+            borrowedBook.book.save()
+
+            Fine fine = new Fine()
+            fine.borrow = borrow
+            fine.fineAmount = Double.valueOf(params.fine).doubleValue()
+            fine.days = Short.valueOf(params.totalFineDays).shortValue()
+            fine.member=borrowingUser
+
+            fine.save(flush: true)
 
             render "success"
 
         }
+
+    }
+
+    def recalculateFine() {
+        def amount
+        def borrowingUser = Member.findByFullName(params.memberName)
+
+        def borrowedBook = BookInfo.findByBookNumber(params.bookNumber)
+        def borrow = Borrow.findByBookInfoAndMemberAndReturned(borrowedBook,borrowingUser,false)
+
+        def fine = fineService.recalculatefine(borrow,params.days as int);
+
+        def amt = fine.fineAmount
+
+        if(amt) {
+            amount = amt
+        }else {
+            amount = 0
+        }
+
+        def totalBorrowedDays = borrow.borrowedDate-new Date()
+        render borrowingUser.fullName +":"+amount+":"+params.days+":"+totalBorrowedDays
+
 
     }
 }

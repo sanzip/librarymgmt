@@ -2,7 +2,7 @@ package np.edu.dwit
 
 class Borrow {
 
-    Book book
+    BookInfo bookInfo
     Date borrowedDate = new Date()
     Boolean returned = false
     Member member
@@ -10,7 +10,7 @@ class Borrow {
 
     static constraints = {
 
-        book nullable: false
+        bookInfo nullable: false
         borrowedDate nullable: false
         member nullable: false
         returnedDate nullable: true

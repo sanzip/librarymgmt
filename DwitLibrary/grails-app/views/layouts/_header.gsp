@@ -60,21 +60,33 @@
 
 
         function checkValid(bookNumber) {
+            var n = noty({
+                layout: 'topRight',
+                theme: 'relax',
+                type: 'error',
+                text: 'Invalid book number.',
+                animation: {
+                    open: {height: 'toggle'},
+                    close: {height: 'toggle'},
+                    easing: 'swing', // easing
+                    speed: 500
+                },
+                timeout: 1000
+            });
             if(isNaN(bookNumber)) {
                 $('#bookNumber').focus(function(){
                     $(this).val('');
                 });
-                alert("Invalid book number.");
+                n.animate();
             }else if(!(/^\d*$/.test(bookNumber))){
                 $('#bookNumber').focus(function(){
                     $(this).val('');
                 });
-                alert("Invalid book number.");
+                n.animate();
 
             }else if(bookNumber.length>4){
                 $("#bookNumber").val('');
-                alert("Invalid book number.");
-
+                n.animate();
             }
 
             $.ajax({
@@ -109,17 +121,56 @@
                 success: function (result) {
                     console.log(result);
                     if(result=="greaterborrowcount"){
-                        alert("You have already borrowed three books");
+                        var n = noty({
+                            layout: 'topRight',
+                            theme: 'relax',
+                            type: 'error',
+                            text: 'You have already borrowed three books',
+                            animation: {
+                                open: {height: 'toggle'},
+                                close: {height: 'toggle'},
+                                easing: 'swing', // easing
+                                speed: 500
+                            },
+                            timeout: 10000
+                        });
+                        n.animate();
                     }else if(result=="issue") {
                         $("#fullName").hide();
                         $("#issue").hide();
-                        alert("Book issued");
+                        var n = noty({
+                            layout: 'topRight',
+                            theme: 'relax',
+                            type: 'error',
+                            text: 'Book Issued',
+                            animation: {
+                                open: {height: 'toggle'},
+                                close: {height: 'toggle'},
+                                easing: 'swing', // easing
+                                speed: 500
+                            },
+                            timeout: 10000
+                        });
+                        n.animate();
                     }else if(result=="error") {
                         $("#bookNumber").val("");
                         $("#fullName").val("");
                         $("#fullName").hide();
                         $("#issue").hide();
-                        alert("This book is already borrowed.");
+                        var n = noty({
+                            layout: 'topRight',
+                            theme: 'relax',
+                            type: 'error',
+                            text: 'This book is already borrowed.',
+                            animation: {
+                                open: {height: 'toggle'},
+                                close: {height: 'toggle'},
+                                easing: 'swing', // easing
+                                speed: 500
+                            },
+                            timeout: 10000
+                        });
+                        n.animate();
                     }
                 }
             })
@@ -171,6 +222,19 @@
         $('#issues').click(function() {
             $.post('book/issueBook');
         });
+        function issueBookNav(){
+
+            $.ajax({
+                url:"${createLink(controller:"book" ,action:"issueBookNav" )}",
+                data:"",
+                type:'post',
+                success: function (result) {
+                    console.log(result);
+                    $("#issueBook").html(result);
+                    $('#mo').show();
+                }
+            })
+        }
     </script>
 </head>
 <body>
@@ -202,7 +266,7 @@
 
         <sec:ifAllGranted roles="ROLE_LIBRARIAN">
             <div class="ui simple link item">
-                <a href="#" id="pop"> Issue </a>
+                <a href="#" id="issueBookNav" onclick = "issueBookNav();"> Issue </a>
             </div>
             <div class="ui simple link item">
                 <g:link controller="book" action="returnBook"> <i class="reply icon"></i> Return </g:link>
