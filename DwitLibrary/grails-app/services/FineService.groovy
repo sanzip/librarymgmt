@@ -1,7 +1,6 @@
 import constants.DWITLibraryConstants
 import np.edu.dwit.Borrow
 import np.edu.dwit.Fine
-import np.edu.dwit.Member
 
 /**
  * Created by zephyr on 11/5/15.
@@ -169,7 +168,10 @@ class FineService {
                     borrowFineMap.put(borrow, fine)
             }
 
-            return borrowFineMap
+            TreeMap sortedBorrowFineMap = new TreeMap(new BorrowMapComparator(borrowFineMap));
+            sortedBorrowFineMap.putAll(borrowFineMap);
+
+            return sortedBorrowFineMap
         }
     }
 }

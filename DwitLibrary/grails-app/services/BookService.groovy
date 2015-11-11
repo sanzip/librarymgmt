@@ -10,10 +10,13 @@ class BookService {
 
     def getBooksWithBorrowCount() {
 
-        Map sortedBooksWithBorrowCount = new HashMap()
+        Map booksWithBorrowCount = new HashMap()
 
         for (Book book: Book.all)
-            sortedBooksWithBorrowCount.put(book, Borrow.countByBookInfoInList(BookInfo.findAllByBook(book)))
+            booksWithBorrowCount.put(book, Borrow.countByBookInfoInList(BookInfo.findAllByBook(book)))
+
+        TreeMap sortedBooksWithBorrowCount = new TreeMap(new BookMapComparator(booksWithBorrowCount));
+        sortedBooksWithBorrowCount.putAll(booksWithBorrowCount);
 
         return sortedBooksWithBorrowCount
     }
