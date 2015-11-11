@@ -249,15 +249,15 @@
     <input type="submit" value="Reset" id="reset" onclick="reset();"/>
 </form>
 <div class="ui center aligned segment" style="background-color: #3573A3;">
-       <g:link controller="member" action="dashboard"> <img style="float: left; height: 80px;width: 80px" src="${resource(dir: 'img', file: 'deerwalk.png')}" alt="Logo" ></g:link>
-<h1 style="color:white;float:left"><b>Library Management System</b></h1></img>
-<div style="float:right;color: white; font-style: oblique; font-size: 20px" class="item">
-    <form name="logout" method="POST" style="float: right;color: #E7746F" class="item" action="${createLink(controller:'logout') }">
-        <em>
-            <input type="submit" class="ui button" value="logout" style="color:#fff;background-color:rgba(255, 0, 0, 0.04)">
-        </em>
-    </form>
-</div>
+    <g:link controller="member" action="dashboard"> <img style="float: left; height: 80px;width: 80px" src="${resource(dir: 'img', file: 'deerwalk.png')}" alt="Logo" />
+    <h1 style="color:white;float:left"><b>Library Management System</b></h1></g:link>
+    <div style="float:right;color: white; font-style: oblique; font-size: 20px" class="item">
+        <form name="logout" method="POST" style="float: right;color: #E7746F" class="item" action="${createLink(controller:'logout') }">
+            <em>
+                <input type="submit" class="ui button" value="logout" style="color:#fff;background-color:rgba(255, 0, 0, 0.04)">
+            </em>
+        </form>
+    </div>
 </div>
 <br>
 <div class="ui four item menu" style="margin: 0px auto;width: 98%;">
