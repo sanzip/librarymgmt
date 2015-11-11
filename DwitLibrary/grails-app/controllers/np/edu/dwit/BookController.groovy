@@ -182,16 +182,9 @@ class BookController {
     }
 
     @Secured("ROLE_LIBRARIAN")
-    def returnBook() {
-
+    def returnBookNav() {
+        render(template: "returnBook",model:[userInstanceList: User.list(params), userInstanceTotal: User.count()])
     }
-    @Secured("ROLE_LIBRARIAN")
-    def issueBook() {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        render(view: "issueBook",model:[userInstanceList: User.list(params), userInstanceTotal: User.count()])
-    }
-
-
 
     @Secured("ROLE_LIBRARIAN")
     def bookInfoList(){
@@ -209,7 +202,6 @@ class BookController {
 
     @Secured("ROLE_LIBRARIAN")
     def issueBookNav() {
-        //params.max = Math.min(params.max ? params.int('max') : 10, 100)
         render(template: "issue",model:[userInstanceList: User.list(params), userInstanceTotal: User.count()])
     }
 
@@ -436,31 +428,28 @@ class BookController {
 
     }
 
-    @Transactional
+    @Secured("ROLE_LIBRARIAN")
     def checkBorrowedMember(){
         def amount
         def borrowingBook = BookInfo.findByBookNumber(params.bookNumber)
-        def borrowedMember = Borrow.createCriteria().list {
-            and{
-                eq("bookInfo",borrowingBook)
-                eq("returned",false)
-            }
+        def borrowedMember = Borrow.findByBookInfoAndReturned(borrowingBook, false)
 
-        }
-
-        if(borrowedMember.size() > 0) {
-            def fine = fineService.calculatefine(borrowedMember[0]);
+        if(borrowedMember) {
+            def fine = fineService.calculatefine(borrowedMember);
             def borrowInfo = Borrow.createCriteria().list {
                 and {
                     eq("bookInfo", borrowingBook)
-                    eq("member", borrowedMember[0].member)
+                    eq("member", borrowedMember.member)
                     eq("returned", false)
                 }
             }
             amount = fine.fineAmount ?: 0
 
             def totalBorrowedDays = new Date() - borrowInfo[0].borrowedDate
-            render borrowedMember[0].member.fullName + ":" + amount + ":${fine.days >= 0 ? fine.days : 0}:${totalBorrowedDays >= 0 ? totalBorrowedDays : 0}"
+
+            def result = borrowedMember.member.fullName + ":" + amount + ":${fine.days >= 0 ? fine.days : 0}:${totalBorrowedDays >= 0 ? totalBorrowedDays : 0}"
+
+            render result
         }
     }
 
