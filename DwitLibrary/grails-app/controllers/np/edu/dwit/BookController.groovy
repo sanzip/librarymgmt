@@ -197,15 +197,14 @@ class BookController {
     def bookInfoList(){
 
         def bookId = params?.bookId
-        def book = Book.findById(bookId as Long)
+        def bookInfos = BookInfo.findAllByBook(Book.findById(bookId as Long))
 
-        def bookInfos = Borrow.list().unique {
-            it.bookInfo
-        }
+        def bookInfosToRemove = Borrow.createCriteria().list {
+            eq('returned', false)
+            inList('bookInfo', bookInfos)
+        }.bookInfo
 
-        def bookInfoList
-
-        render(template: 'issueBook', model: [bookInfos: bookInfoList])
+        render(template: 'issueBook', model: [bookInfos: bookInfos - bookInfosToRemove])
     }
 
     @Secured("ROLE_LIBRARIAN")
@@ -418,7 +417,7 @@ class BookController {
 
 
 
-    def addDays(Date date, int days) {
+    private static def addDays(Date date, int days) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.DATE, days);
@@ -439,26 +438,20 @@ class BookController {
 
         }
 
-
-        def fine = fineService.calculatefine(borrowedMember[0]);
-        def borrowInfo = Borrow.createCriteria().list {
-            and{
-                eq("bookInfo",borrowingBook)
-                eq("member",borrowedMember[0].member)
-                eq("returned",false)
+        if(borrowedMember.size() > 0) {
+            def fine = fineService.calculatefine(borrowedMember[0]);
+            def borrowInfo = Borrow.createCriteria().list {
+                and {
+                    eq("bookInfo", borrowingBook)
+                    eq("member", borrowedMember[0].member)
+                    eq("returned", false)
+                }
             }
+            amount = fine.fineAmount ?: 0
+
+            def totalBorrowedDays = new Date() - borrowInfo[0].borrowedDate
+            render borrowedMember[0].member.fullName + ":" + amount + ":${fine.days >= 0 ? fine.days : 0}:${totalBorrowedDays >= 0 ? totalBorrowedDays : 0}"
         }
-
-        def amt = fine.fineAmount
-
-        if(amt) {
-            amount = amt
-        }else {
-            amount = 0
-        }
-
-        def totalBorrowedDays = borrowInfo[0].borrowedDate-new Date()
-        render borrowedMember[0].member.fullName +":"+amount+":"+fine.days+":"+totalBorrowedDays
     }
 
 
@@ -475,18 +468,19 @@ class BookController {
             borrow.bookInfo=borrowedBook
             borrow.returned = true
             borrow.returnedDate=new Timestamp(new Date().getTime())
-            borrow.save(flush: true)
+            borrow.save(flush: true, failOnError: true)
 
             borrowedBook.book.availableQuantity +=1;
-            borrowedBook.book.save()
+            borrowedBook.book.save(failOnError: true)
 
             Fine fine = new Fine()
             fine.borrow = borrow
-            fine.fineAmount = Double.valueOf(params.fine).doubleValue()
-            fine.days = Short.valueOf(params.totalFineDays).shortValue()
+            fine.fineAmount = params.fine as double
+            def fineDays = params.totalFineDays as short
+            fine.days = fineDays >= 0 ? fineDays : 0
             fine.member=borrowingUser
 
-            fine.save(flush: true)
+            fine.save(flush: true, failOnError: true)
 
             render "success"
 
