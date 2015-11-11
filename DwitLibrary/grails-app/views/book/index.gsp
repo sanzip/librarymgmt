@@ -72,12 +72,23 @@
 						<td>${fieldValue(bean: bookInstance, field: "totalQuantity")}</td>
 					
 						<td>${fieldValue(bean: bookInstance, field: "bookType")}</td>
-                        <td> <div class="ui buttons">
-                            <button class="ui button"><i class="edit icon"> </i>  <g:link style="color:#000000;"> Edit </g:link>
-                            </button>
-                            <div class="or"></div>
-                            <button class="ui button"><i class="delete icon"> </i> <g:link> Delete </g:link>
-                        </div>
+                        <td>
+                            <div class="ui buttons">
+                                <g:form url="[resource: bookInstance, action: 'delete']" method="DELETE">
+                                    <g:link class="edit" action="edit" resource="${bookInstance}" style="color:#000000;">
+                                        <button type="button" class="ui button">
+                                            <i class="edit icon"> </i>
+                                            <g:message code="default.button.edit.label" default="Edit"/>
+                                        </button>
+                                    </g:link>
+                                    <div class="or"></div>
+
+                                    <button type="submit" class="ui button" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">
+                                        <i class="delete icon"> </i>
+                                        <g:message code="default.button.delete.label" default="Delete"/>
+                                    </button>
+                                </g:form>
+                            </div>
                         </td>
 					</tr>
 				</g:each>
