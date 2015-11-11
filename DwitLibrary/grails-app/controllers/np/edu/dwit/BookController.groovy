@@ -334,10 +334,10 @@ class BookController {
                     saveTimestamp(borrowingBook,borrowingUser)
 
                     flash.message = "Book Issued"
-                    redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
+                    redirect(controller: params.currentController, action: params.currentAction, params: [messageType: 'success'])
                 }else {
                     flash.message = "Book is already borrowed by other user."
-                    redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
+                    redirect(controller: params.currentController, action: params.currentAction, params: [messageType: 'error'])
                 }
 
 
@@ -454,11 +454,12 @@ class BookController {
     }
 
 
-    @Transactional
+    @Secured("ROLE_LIBRARIAN")@Transactional
     def saveReturn() {
 
-        def borrowingUser = Member.findByFullName(params.memberName)
+        def borrowingUser = Member.findByFullName(params.fullName)
         def borrowedBook = BookInfo.findByBookNumber(params.bookNumber)
+
         def borrow = Borrow.findByBookInfoAndMemberAndReturned(borrowedBook,borrowingUser,false)
 
         if(borrowingUser){
@@ -481,10 +482,12 @@ class BookController {
 
             fine.save(flush: true, failOnError: true)
 
-            render "success"
+            flash.message = "Book Successfully returned"
 
+            println params.currentController
+
+            redirect(controller: params.currentController, action: params.currentAction, params: [messageType: 'success'])
         }
-
     }
 
     def recalculateFine() {

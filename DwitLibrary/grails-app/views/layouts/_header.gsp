@@ -248,15 +248,10 @@
                 type:'post',
                 data:'bookNumber='+bookNumber+'&memberName='+memberName+'&totalKeptdays='+totalKeptDays+'&totalFineDays='+totalFineDays+'&fine='+totalFineAmount,
                 success: function(result) {
-                    if(result="success") {
-                        $("#bookNumber").val("");
-                        $("#fullNameReturn").val("");
-                        $("#fine").val("");
-                        $("#totalKeptDays").val("");
-                        $("#totalFineDays").val("");
+                        reset();
+                        $("#asim").close();
 
                         alert("Book returned.")
-                    }
                 }
             })
         }
@@ -491,7 +486,7 @@
 <div class="ui small modal" id = "mo" style="position: absolute;top: 18%;left: 50%;">
     <div class="header" id = "issueBookHeader">Issue Book</div>
     <form action="<g:createLink controller="book" action="saveIssue"/>" method="POST">
-        <div class="content" style="text-align: left; padding: 50px;">
+        <div class="content" style="text-align: left; padding: 30px;">
             <div id = "issueBook">
 
             </div>
@@ -505,6 +500,8 @@
                 <div class="ui negative button" id = "cancel">Cancel</div>
                 <div class="or"></div>
                 <input type="submit" class="ui positive button" value="Issue"/>
+                <input type="hidden" value="${params.controller}" name="currentController"/>
+                <input type="hidden" value="${params.action}" name="currentAction"/>
             </div>
         </div>
     </form>
@@ -512,13 +509,15 @@
 <div class="ui small modal" id = "asim" style="position: absolute;top: 10%;left: 50%;">
     <div class="header" id = "returnBookHeader">Return Book</div>
     <form action="<g:createLink controller="book" action="saveReturn"/>" method="POST">
-        <div class="content" style="text-align: left; padding: 50px;" id = "returnBook">
+        <div class="content" style="text-align: left; padding: 30px;" id = "returnBook">
         </div>
         <div class = "actions" style="text-align: right;">
             <div class="ui buttons">
                 <div class="ui negative button" id = "cancelReturn">Cancel</div>
                 <div class="or"></div>
-                <input type="submit" class="ui positive button" value="Return" onclick="saveReturn();"/>
+                <input type="submit" class="ui positive button" value="Return"/>
+                <input type="hidden" value="${params.controller}" name="currentController"/>
+                <input type="hidden" value="${params.action}" name="currentAction"/>
             </div>
         </div>
     </form>

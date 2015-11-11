@@ -1,7 +1,7 @@
 <div class = "ui form">
     <div class="ui icon input" style="text-align: right">
         <div class = "ui green button"  onclick="reset();">
-            Reset
+            <i class="repeat icon"></i>Reset
         </div>
     </div>
     <div class = "ui icon input">
