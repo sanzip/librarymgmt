@@ -56,6 +56,8 @@
 
             <g:submitButton name="create" class="ui blue button" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
 
+            <g:field type="reset" class="ui red button" name="myReset" value="Reset" />
+
         </fieldset>
     </g:form>
 </div>

@@ -476,8 +476,8 @@
             <div class="ui simple dropdown link item">
                 <i class="configure icon"></i> Configure <i class="dropdown icon"></i>
                 <div class="menu">
-                    <g:link controller="member" action="create" class="item"> <i class="user icon"></i>  Add User  </g:link>
-                    <g:link controller="book" action="create" class="item"> <i class="book icon"></i>  Add Book  </g:link>
+                    <g:link controller="member" action="list" class="item"> <i class="user icon"></i>   User  </g:link>
+                    <g:link controller="book" action="index" class="item"> <i class="book icon"></i>  Book  </g:link>
                 </div>
             </div>
         </sec:ifAllGranted>

@@ -21,7 +21,14 @@
         margin: 0px auto;
         width: 95%;
     }
-
+    #authorSearch{
+        text-align: center;
+        margin-top:-37px;
+        margin-left:180px;
+    }
+    #bookSearch{
+        text-align: left;
+    }
     </style>
 
     <g:javascript>
@@ -34,20 +41,25 @@
 
 
 <div id="wrapper1">
+    <br><hr>
     <br>
     <div style="text-align: center;">
-        <strong><span style="font-size: 18px;">Book Name:</span></strong>
-        <div class="ui icon input">
-            <input type="text" placeholder="Search Books" id="bookName" name="bookName">
-            <i class="inverted circular search link icon"></i>
+        <div id="bookSearch">
+            <strong><span style="font-size: 18px;">Book Name:</span></strong>
+            <div class="ui icon input">
+                <input type="text" placeholder="Search Books" id="bookName" name="bookName">
+                <i class="inverted circular search link icon"></i>
+            </div>
         </div>
-        &nbsp;&nbsp;&nbsp;<strong><span style="font-size: 18px;">Author Name:</span></strong>
-        <div class="ui icon input">
-            <input type="text" placeholder="Search Author" id="authorName" name="authorName">
-            <i class="inverted circular search link icon"></i>
+        <div id="authorSearch">
+            <strong><span style="font-size: 18px;">Author Name:</span></strong>
+            <div class="ui icon input">
+                <input type="text" placeholder="Search Author" id="authorName" name="authorName">
+                <i class="inverted circular search link icon"></i>
+            </div>
         </div>
     </div>
-</br></br>
+    <br><hr>
     <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
         %{--<div>Number of allowed : <input type="text" name="allowed" id="allowed" value="${count}" disabled></div>--}%
         <div class="ui label" style="text-align: center;margin: 0px auto;width:300px;display: table;background-color: #F7F7F7">
