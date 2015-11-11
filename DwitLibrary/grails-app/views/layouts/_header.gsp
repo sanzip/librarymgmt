@@ -63,54 +63,60 @@
 
 
         function checkValid(bookNumber) {
-            var n = noty({
-                layout: 'topRight',
-                theme: 'relax',
-                type: 'error',
-                text: 'Invalid book number.',
-                animation: {
-                    open: {height: 'toggle'},
-                    close: {height: 'toggle'},
-                    easing: 'swing', // easing
-                    speed: 500
-                },
-                timeout: 1000
-            });
             if(isNaN(bookNumber)) {
                 $('#bookNo').focus(function(){
                     $(this).val('');
+                });
+                var n = noty({
+                    layout: 'topRight',
+                    theme: 'relax',
+                    type: 'error',
+                    text: 'Invalid book number.',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing', // easing
+                        speed: 500
+                    },
+                    timeout: 1000
                 });
                 n.animate();
             }else if(!(/^\d*$/.test(bookNumber))){
                 $('#bookNo').focus(function(){
                     $(this).val('');
                 });
+                var n = noty({
+                    layout: 'topRight',
+                    theme: 'relax',
+                    type: 'error',
+                    text: 'Only numbers are accepted',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing', // easing
+                        speed: 500
+                    },
+                    timeout: 1000
+                });
                 n.animate();
 
             }else if(bookNumber.length>4){
                 $("#bookNo").val('');
+                var n = noty({
+                    layout: 'topRight',
+                    theme: 'relax',
+                    type: 'error',
+                    text: 'Length of book number is invalid',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing', // easing
+                        speed: 500
+                    },
+                    timeout: 1000
+                });
                 n.animate();
             }
-
-            $.ajax({
-                url:"${createLink(controller: "book",action: "checkValidBookType")}",
-                type:"post",
-                data:'bookNumber='+bookNumber,
-                success:function(result){
-                    if(result=='gifted'){
-                        alert("Gifted book cannot be issued.");
-                    }else if(result=='reference') {
-                        alert("Reference book cannot be issued.");
-                    }else if(result=='borrowable') {
-                        $("#fullNameReturn").show();
-                        $("#reset").show();
-                    }else if(result=='novel') {
-                        $("#fullNameReturn").show();
-                        $("#reset").show();
-                    }
-                }
-            })
-
         }
 
         function issue() {
