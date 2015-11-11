@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="layout" content="main">
+    <meta name="layout" content="main_page">
     <g:set var="entityName" value="${message(code: 'member.label', default: 'Member')}"/>
     <title><g:message code="default.edit.label" args="[entityName]"/></title>
 </head>
@@ -25,14 +25,15 @@
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-    <g:hasErrors bean="${memberInstance}">
-        <ul class="errors" role="alert">
-            <g:eachError bean="${memberInstance}" var="error">
-                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
-                        error="${error}"/></li>
-            </g:eachError>
-        </ul>
-    </g:hasErrors>
+%{-- <g:hasErrors bean="${memberInstance}">
+     <ul class="errors" role="alert">
+         <g:eachError bean="${memberInstance}" var="error">
+             <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
+                     error="${error}"/></li>
+         </g:eachError>
+     </ul>
+ </g:hasErrors>
+--}%
     <g:form url="[resource: memberInstance, action: 'update']" method="PUT">
         <g:hiddenField name="version" value="${memberInstance?.version}"/>
         <fieldset class="form">
