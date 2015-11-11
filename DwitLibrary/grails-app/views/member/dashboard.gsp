@@ -29,29 +29,6 @@
 
             $('#mo').show();
         }
-        $(function(){
-
-            $("#cancel").on('click', function(){
-
-                $('#mo').hide();
-            });
-            <g:if test="${flash.message}">
-                var n = noty({
-                    layout: 'topRight',
-                    theme: 'relax',
-                    type: '${params.messageType}',
-                    text: '${flash.message}',
-                    animation: {
-                        open: {height: 'toggle'},
-                        close: {height: 'toggle'},
-                        easing: 'swing', // easing
-                        speed: 500
-                    },
-                    timeout: 10000
-                });
-                n.animate();
-            </g:if>
-        });
     </g:javascript>
 </head>
 

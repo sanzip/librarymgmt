@@ -13,38 +13,6 @@
         });
         $('#mo').show();
     }
-
-    var states = [];
-    var max = 7;
-    function pop(input){
-
-        var data = "query=" + $("#username").val() + "&states=" + states;
-        jQuery.ajax({
-            type: 'post',
-            data: data,
-            url: '<g:createLink controller="member" action="search" />',
-            success: function (html) {
-
-                var users = jQuery.parseJSON(html);
-                var userFullnames = [];
-                states.length = 0;
-                for(i = 0; i < users.length; i++){
-                    if(users[i].fullName != null) {
-                        userFullnames.push(users[i].fullName);
-                    }
-                }
-                var fullNamesUnique = userFullnames.filter(onlyUnique);
-                for(i = 0; i < fullNamesUnique.length; i++) {
-                    states.push(fullNamesUnique[i]);
-                    if(states.length == max)
-                        break;
-                }
-            }
-        });
-    }
-    function onlyUnique(value, index, self) {
-        return self.indexOf(value) === index;
-    }
 </script>
 <style>
     a{
@@ -109,27 +77,6 @@
     </g:each>
     </tbody>
 </table>
-<div class="ui small modal" id = "mo" style="position: absolute;top: 18%;left: 50%;">
-    <div class="header" id = "issueBookHeader">Issue Book</div>
-    <form action="<g:createLink controller="book" action="saveIssue"/>" method="POST">
-        <div class="content" style="text-align: left; padding: 50px;">
-            <div id = "issueBook">
-
-            </div>
-            <div id="the-basics">
-                <label for="username">FullName:</label>
-                <input class="typeahead" type="text" onkeyup="pop(this);" id = "username" name="fullName">
-            </div>
-        </div>
-        <div class = "actions" style="text-align: right;">
-            <div class="ui buttons">
-                <div class="ui negative button" id = "cancel">Cancel</div>
-                <div class="or"></div>
-                <input type="submit" class="ui positive button" value="Issue"/>
-            </div>
-        </div>
-    </form>
-</div>
 <br>
 <div id="space">
     <g:paginate total="$list ?: 0}" />

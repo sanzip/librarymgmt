@@ -238,6 +238,60 @@
                 }
             })
         }
+        $(function(){
+
+            $("#cancel").on('click', function(){
+
+                $('#mo').hide();
+            });
+            <g:if test="${flash.message}">
+                var n = noty({
+                    layout: 'topRight',
+                    theme: 'relax',
+                    type: '${params.messageType}',
+                    text: '${flash.message}',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing', // easing
+                        speed: 500
+                    },
+                    timeout: 10000
+                });
+                n.animate();
+            </g:if>
+        });
+        var states = [];
+        var max = 7;
+        function pop(input){
+
+            var data = "query=" + $("#username").val() + "&states=" + states;
+            jQuery.ajax({
+                type: 'post',
+                data: data,
+                url: '<g:createLink controller="member" action="search" />',
+                success: function (html) {
+
+                    var users = jQuery.parseJSON(html);
+                    var userFullnames = [];
+                    states.length = 0;
+                    for(i = 0; i < users.length; i++){
+                        if(users[i].fullName != null) {
+                            userFullnames.push(users[i].fullName);
+                        }
+                    }
+                    var fullNamesUnique = userFullnames.filter(onlyUnique);
+                    for(i = 0; i < fullNamesUnique.length; i++) {
+                        states.push(fullNamesUnique[i]);
+                        if(states.length == max)
+                            break;
+                    }
+                }
+            });
+        }
+        function onlyUnique(value, index, self) {
+            return self.indexOf(value) === index;
+        }
     </script>
 </head>
 <body>
@@ -281,7 +335,7 @@
                 <i class="browser icon"></i> Report <i class="dropdown icon"></i>
                 <div class="menu">
                     <g:link controller="book" action="report" class="item"> <i class="browser icon"></i>  Issued Book  </g:link>
-                    <g:link controller="borrow" action="report" class="item"> <i class="browser icon"></i>  Fine Report </g:link>
+                    <g:link controller="fine" action="report" class="item"> <i class="browser icon"></i>  Fine Report </g:link>
                 </div>
             </div>
             <div class="ui simple dropdown link item">
@@ -293,6 +347,27 @@
             </div>
         </sec:ifAllGranted>
     </div>
+</div>
+<div class="ui small modal" id = "mo" style="position: absolute;top: 18%;left: 50%;">
+    <div class="header" id = "issueBookHeader">Issue Book</div>
+    <form action="<g:createLink controller="book" action="saveIssue"/>" method="POST">
+        <div class="content" style="text-align: left; padding: 50px;">
+            <div id = "issueBook">
+
+            </div>
+            <div id="the-basics">
+                <label for="username">FullName:</label>
+                <input class="typeahead" type="text" onkeyup="pop(this);" id = "username" name="fullName">
+            </div>
+        </div>
+        <div class = "actions" style="text-align: right;">
+            <div class="ui buttons">
+                <div class="ui negative button" id = "cancel">Cancel</div>
+                <div class="or"></div>
+                <input type="submit" class="ui positive button" value="Issue"/>
+            </div>
+        </div>
+    </form>
 </div>
 <br/>
 <br/>
