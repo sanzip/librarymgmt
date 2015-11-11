@@ -110,15 +110,17 @@ class MemberController {
         memberInstance.username=fName[0]+"_"+memberInstance.userId
         memberInstance.save flush: true
 
-        request.withFormat {
-            form {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'memberInstance.label', default: 'Member'), memberInstance.id])
-                redirect memberInstance
-                redirect (controller:'member', action:'list')
-            }
-            '*' { respond memberInstance, [status: CREATED] }
+        redirect (controller:'member', action:'list')
 
-        }
+        /* request.withFormat {
+             form {
+                 flash.message = message(code: 'default.created.message', args: [message(code: 'memberInstance.label', default: 'Member'), memberInstance.id])
+                 redirect memberInstance
+                 redirect (controller:'member', action:'list')
+             }
+             '*' { respond memberInstance, [status: CREATED] }
+
+         }*/
     }
 
     @Secured("ROLE_LIBRARIAN")
@@ -179,4 +181,5 @@ class MemberController {
             '*' { render status: NOT_FOUND }
         }
     }
+
 }
