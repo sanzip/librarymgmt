@@ -3,24 +3,42 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main_page">
+        <meta name="layout" content="main_page">
 		<g:set var="entityName" value="${message(code: 'bookInfo.label', default: 'BookInfo')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
+        <style>
+        #wrapper{
+            margin: 0px auto;
+            width: 95%;
+        }
+        #head{
+            text-align: center;
+        }
+        </style>
 	</head>
 	<body>
-		<a href="#list-bookInfo" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create" params="[id: params.id]"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
+    <div id="wrapper">
+        <div id="head">
+            <div class="ui compact menu">
+                <div class="active item">
+
+				<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
+                    </div>
+                <div class="active item">
+				    <g:link class="create" action="create" params="[id: params.id]"><g:message code="default.new.label" args="[entityName]" /></g:link>
+
+                 </div>
+            </div>
+
 		</div>
+        <br><br>
 		<div id="list-bookInfo" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
+            <h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]" /></h1>
+
+            <g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table>
+			<table class="ui celled table">
 			<thead>
 					<tr>
 					
@@ -67,5 +85,6 @@
 				<g:paginate total="${bookInfoInstanceCount ?: 0}" />
 			</div>
 		</div>
+            </div>
 	</body>
 </html>
