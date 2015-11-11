@@ -41,17 +41,20 @@
         <thead>
         <tr>
 
-            <g:sortableColumn property="username"
-                              title="${message(code: 'member.username.label', default: 'Username')}"/>
+            <g:sortableColumn property="fullName"
+                              title="${message(code: 'member.username.label', default: 'Full Name')}"/>
 
-            %{--<g:sortableColumn property="password"
-                              title="${message(code: 'member.password.label', default: 'Password')}"/>
---}%
+            <g:sortableColumn property="userId"
+                              title="${message(code: 'member.password.label', default: 'User Id')}"/>
+
+            <g:sortableColumn property="username"
+                              title="${message(code: 'member.password.label', default: 'User Name')}"/>
+
             <g:sortableColumn property="email" title="${message(code: 'member.email.label', default: 'Email')}"/>
 
             <g:sortableColumn property="contact" title="${message(code: 'member.contact.label', default: 'Contact')}"/>
 
-            <g:sortableColumn property="status" title="${message(code: 'member.status.label', default: 'Status')}"/>
+            %{--<g:sortableColumn property="status" title="${message(code: 'member.status.label', default: 'Status')}"/>--}%
 
             <g:sortableColumn property="accountExpired"
                               title="${message(code: 'member.accountExpired.label', default: 'Account Expired')}"/>
@@ -66,13 +69,20 @@
 
                 <td>${fieldValue(bean: memberInstance, field: "userId")}</td>
 
-                <td>${fieldValue(bean: memberInstance, field: "username")}</td>
-                %{--
-                <td>${fieldValue(bean: memberInstance, field: "password")}</td>--}%
+                <td>${fieldValue(bean:memberInstance,field: "username")}</td>
 
                 <td>${fieldValue(bean: memberInstance, field: "email")}</td>
 
                 <td>${fieldValue(bean: memberInstance, field: "contact")}</td>
+
+               %{-- <td>${fieldValue(bean: memberInstance, field: "status")}</td>--}%
+
+                <td>${fieldValue(bean: memberInstance, field: "accountExpired")}</td>
+
+                %{--
+                <td>${fieldValue(bean: memberInstance, field: "password")}</td>--}%
+
+
 
 
                 <td>
