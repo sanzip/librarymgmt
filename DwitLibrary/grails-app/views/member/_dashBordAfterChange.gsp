@@ -25,13 +25,22 @@
             success: function (html) {
 
                 var users = jQuery.parseJSON(html);
+                var userFullnames = [];
+                states.length = 0;
                 for(i = 0; i < users.length; i++){
                     if(users[i].fullName != null) {
-                        states.push(users[i].fullName);
+                        userFullnames.push(users[i].fullName);
                     }
+                }
+                var fullNamesUnique = userFullnames.filter(onlyUnique);
+                for(i = 0; i < fullNamesUnique.length; i++) {
+                    states.push(fullNamesUnique[i]);
                 }
             }
         });
+    }
+    function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
     }
 
     function highlightTr(tag){
