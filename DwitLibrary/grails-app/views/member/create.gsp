@@ -52,9 +52,10 @@
     <g:form url="[resource: memberInstance, action: 'save']">
         <fieldset class="form">
             <g:render template="form"/>
-        </fieldset>
-        <fieldset class="buttons">
-            <g:submitButton name="create" class="ui white button" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
+            <br>            <br>
+
+            <g:submitButton name="create" class="ui blue button" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
+
         </fieldset>
     </g:form>
 </div>

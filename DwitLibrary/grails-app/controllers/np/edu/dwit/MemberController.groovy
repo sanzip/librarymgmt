@@ -163,7 +163,7 @@ class MemberController {
         request.withFormat {
             form {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'Member.label', default: 'Member'), memberInstance.id])
-                redirect action: "index", method: "GET"
+                redirect action: "list", method: "GET"
             }
             '*' { render status: NO_CONTENT }
         }

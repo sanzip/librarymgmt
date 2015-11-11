@@ -17,6 +17,9 @@
         text-decoration: none;
         margin: 0 auto;
     }
+    .ui.segment{
+        margin: 0px ;
+    }
     </style>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -246,17 +249,18 @@
     <input type="submit" value="Reset" id="reset" onclick="reset();"/>
 </form>
 <div class="ui center aligned segment" style="background-color: #3573A3;">
-        <img style="float: left; height: 80px;width: 80px" src="${resource(dir: 'img', file: 'deerwalk.png')}" alt="Logo" >
-<h1 style="color:white;float:left"><b>Library Management System</b></h1></img>
-<div style="float:right;color: white; font-style: oblique; font-size: 20px" class="item">
-    <form name="logout" method="POST" style="float: right;color: #E7746F" class="item" action="${createLink(controller:'logout') }">
-        <em>
-            <input type="submit" class="ui button" value="logout" style="color:#fff;background-color:rgba(255, 0, 0, 0.04)">
-        </em>
-    </form>
+    <g:link controller="member" action="dashboard"> <img style="float: left; height: 80px;width: 80px" src="${resource(dir: 'img', file: 'deerwalk.png')}" alt="Logo" />
+    <h1 style="color:white;float:left"><b>Library Management System</b></h1></g:link>
+    <div style="float:right;color: white; font-style: oblique; font-size: 20px" class="item">
+        <form name="logout" method="POST" style="float: right;color: #E7746F" class="item" action="${createLink(controller:'logout') }">
+            <em>
+                <input type="submit" class="ui button" value="logout" style="color:#fff;background-color:rgba(255, 0, 0, 0.04)">
+            </em>
+        </form>
+    </div>
 </div>
-</div>
-<div class="ui five item menu" style="margin: 0px auto;width: 98%;">
+<br>
+<div class="ui four item menu" style="margin: 0px auto;width: 98%;">
     <div class="ui large menu">
         <sec:ifNotGranted roles="ROLE_LIBRARIAN">
             <div class="ui simple link item">
@@ -268,7 +272,7 @@
 
         <sec:ifAllGranted roles="ROLE_LIBRARIAN">
             <div class="ui simple link item">
-                <a href="#" id="issueBookNav" onclick = "issueBookNav();"> Issue </a>
+               <i class="barcode icon"> </i> <a href="#" id="issueBookNav" onclick = "issueBookNav();"> Issue </a>
             </div>
             <div class="ui simple link item">
                 <g:link controller="book" action="returnBook"> <i class="reply icon"></i> Return </g:link>
@@ -292,5 +296,6 @@
 </div>
 <br/>
 <br/>
+
 </body>
 </html>
