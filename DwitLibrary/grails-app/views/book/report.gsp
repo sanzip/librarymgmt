@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title></title>
+    <title>Issued Books Report</title>
     <meta name="layout" content="main_page">
 
 
@@ -56,12 +56,19 @@
             <tr>
                 <th>S.No</th>
                 <th>Name</th>
+                <th>Author</th>
                 <th>No. of Issues</th>
-                <th>Issuable</th>
             </tr>
             </thead>
             <tbody>
-
+                <g:each in="${booksWithBorrowCount}" var="bookWithBorrowCount" status="i">
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td>${bookWithBorrowCount.key.name}</td>
+                        <td>${bookWithBorrowCount.key.author}</td>
+                        <td>${bookWithBorrowCount.value}</td>
+                    </tr>
+                </g:each>
             </tbody>
         </table>
         %{--<div id = "issueBook">

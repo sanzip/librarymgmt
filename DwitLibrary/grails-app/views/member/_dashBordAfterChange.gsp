@@ -15,6 +15,7 @@
     }
 
     var states = [];
+    var max = 7;
     function pop(input){
 
         var data = "query=" + $("#username").val() + "&states=" + states;
@@ -35,22 +36,14 @@
                 var fullNamesUnique = userFullnames.filter(onlyUnique);
                 for(i = 0; i < fullNamesUnique.length; i++) {
                     states.push(fullNamesUnique[i]);
+                    if(states.length == max)
+                        break;
                 }
             }
         });
     }
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
-    }
-
-    function highlightTr(tag){
-
-        $("#" + tag.id).css("background", "green");
-    }
-
-    function removeHighlight(tag){
-
-        $("#" + tag.id).css("background", "");
     }
 </script>
 <style>
@@ -86,7 +79,7 @@
         <g:if test="${book.availableQuantity > 0}">
             <sec:ifAllGranted roles="ROLE_LIBRARIAN">
                <td style="text-align: center"> <div class="ui buttons">
-                    <button class="ui green basic button" id = "${"row" + i}" style="text-align: center;" class = "availableRow"><a href="#" onclick = "select(${book.id});" style="color: black;">${fieldValue(bean: book, field: "name")}</a> </button>
+                    <button class="ui green basic button" style="text-align: center;"><a href="#" onclick = "select(${book.id});" style="color: black;">${fieldValue(bean: book, field: "name")}</a> </button>
                 </div>
 </td>
 %{--
@@ -96,15 +89,15 @@
 --}%
             </sec:ifAllGranted>
             <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
-                <td  style="text-align: center;"><strong>${fieldValue(bean: book, field: "name")}</strong></td>
+                <td  style="text-align: center;">${fieldValue(bean: book, field: "name")}</td>
             </sec:ifAnyGranted>
         </g:if>
         <g:else>
             <sec:ifAllGranted roles="ROLE_LIBRARIAN">
-                <td  style="text-align: center;"><strong>${fieldValue(bean: book, field: "name")}</strong></td>
+                <td  style="text-align: center;">${fieldValue(bean: book, field: "name")}</td>
             </sec:ifAllGranted>
             <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
-                <td  style="text-align: center;"><strong>${fieldValue(bean: book, field: "name")}</strong></td>
+                <td  style="text-align: center;">${fieldValue(bean: book, field: "name")}</td>
             </sec:ifAnyGranted>
         </g:else>
             <td  style="text-align: center;">${fieldValue(bean: book, field: "author")}</td>
@@ -124,7 +117,7 @@
 
             </div>
             <div id="the-basics">
-                <label for="username">Username:</label>
+                <label for="username">FullName:</label>
                 <input class="typeahead" type="text" onkeyup="pop(this);" id = "username" name="fullName">
             </div>
         </div>
