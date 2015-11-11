@@ -61,7 +61,13 @@
             </tr>
             </thead>
             <tbody>
-
+                <g:each in="${booksWithBorrowCount}" var="bookWithBorrowCount" status="i">
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td>${bookWithBorrowCount.key.name}</td>
+                        <td>${bookWithBorrowCount.value}</td>
+                    </tr>
+                </g:each>
             </tbody>
         </table>
         %{--<div id = "issueBook">
