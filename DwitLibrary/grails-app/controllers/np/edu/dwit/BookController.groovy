@@ -258,16 +258,15 @@ class BookController {
 
             }
 
-            println("ic:"+borrowCount)
             def role = borrowingUser.getAuthorities()[0].toString();
             def borrowingBook = BookInfo.findByBookNumber(params.bookNumber)
             def bookInfo = borrowingBook
+            def isAlreadyBorrowed = Borrow.findByBookInfoAndReturned(bookInfo,false)
 
 
             if(borrowCount>0){
                 //to not let already issued book,again reissuing mistakely,
                 // 261 already issued, so not letting it to reissue
-                def isAlreadyBorrowed = Borrow.findByBookInfoAndReturned(bookInfo,false)
                 if(isAlreadyBorrowed?.returned || isAlreadyBorrowed == null){
                     Borrow borrow = new Borrow();
                     borrow.bookInfo = bookInfo
@@ -283,6 +282,7 @@ class BookController {
 
                             bookInfo.book.availableQuantity-=1
                             bookInfo.save(flush: true)
+                            saveTimestamp(borrowingBook,borrowingUser)
                         }
                     }else if(role.equals("ROLE_LIBRARY")){
                         if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_LIBRARIAN) {
@@ -293,6 +293,7 @@ class BookController {
 
                             bookInfo.book.availableQuantity-=1
                             bookInfo.save(flush: true)
+                            saveTimestamp(borrowingBook,borrowingUser)
                         }
                     }
 
@@ -304,6 +305,7 @@ class BookController {
 
                             bookInfo.book.availableQuantity-=1
                             bookInfo.save(flush: true)
+                            saveTimestamp(borrowingBook,borrowingUser)
                         }
                     }else if(role.equals("ROLE_STUDENT")){
                         if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_STUDENT) {
@@ -313,6 +315,7 @@ class BookController {
 
                             bookInfo.book.availableQuantity-=1
                             bookInfo.save(flush: true)
+                            saveTimestamp(borrowingBook,borrowingUser)
                         }
                     }
 
@@ -323,22 +326,29 @@ class BookController {
                     redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                 }
 
-            }else {
+            }else{
                 //if member had not borrowed book yet it will come here
-                Borrow borrow = new Borrow();
-                borrow.bookInfo = bookInfo
-                borrow.borrowedDate=new Timestamp(new Date().getTime())
-                borrow.returned=false
-                borrow.member=borrowingUser
-                borrow.save(flush: true)
+                if(isAlreadyBorrowed?.returned || isAlreadyBorrowed == null){
+                    Borrow borrow = new Borrow();
+                    borrow.bookInfo = bookInfo
+                    borrow.borrowedDate=new Timestamp(new Date().getTime())
+                    borrow.returned=false
+                    borrow.member=borrowingUser
+                    borrow.save(flush: true)
 
-                bookInfo.book.availableQuantity-=1
-                bookInfo.save(flush: true)
+                    bookInfo.book.availableQuantity-=1
+                    bookInfo.save(flush: true)
 
-                saveTimestamp(borrowingBook,borrowingUser)
+                    saveTimestamp(borrowingBook,borrowingUser)
 
-                flash.message = "Book Issued"
-                redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
+                    flash.message = "Book Issued"
+                    redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
+                }else {
+                    flash.message = "Book is already borrowed by other user."
+                    redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
+                }
+
+
             }
         }
 
