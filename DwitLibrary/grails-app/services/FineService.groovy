@@ -154,5 +154,22 @@ class FineService {
         return fine
     }
 
+    def getReport(){
 
+        def borrows = Borrow.createCriteria().list {
+            eq("returned",false)
+        }
+
+        if(borrows.size() > 0) {
+
+            Map<Borrow, Fine> borrowFineMap = new HashMap<>()
+            for(Borrow borrow: borrows) {
+                def fine = calculatefine(borrow)
+                if(fine.fineAmount >= 0)
+                    borrowFineMap.put(borrow, fine)
+            }
+
+            return borrowFineMap
+        }
+    }
 }
