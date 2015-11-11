@@ -168,6 +168,9 @@ class MemberController {
             return
         }
 
+        def userRole = UserRole.findByUser(memberInstance)
+
+        userRole.delete flush: true
         memberInstance.delete flush: true
 
         request.withFormat {
