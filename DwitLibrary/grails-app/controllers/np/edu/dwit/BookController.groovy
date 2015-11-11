@@ -19,8 +19,8 @@ class BookController {
 
     def bookService
     def fineService
-    def report() {
 
+    def report() {
         def booksWithBorrowCount = bookService.booksWithBorrowCount
         [booksWithBorrowCount: booksWithBorrowCount]
     }
