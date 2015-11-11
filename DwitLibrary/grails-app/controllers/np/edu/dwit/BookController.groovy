@@ -19,8 +19,8 @@ class BookController {
 
     def bookService
     def fineService
-
     def report() {
+
         def booksWithBorrowCount = bookService.booksWithBorrowCount
         [booksWithBorrowCount: booksWithBorrowCount]
     }
@@ -226,21 +226,20 @@ class BookController {
     def checkValidBookType() {
         def bookTypeResult = BookInfo.findByBookNumber(params.bookNumber);
 
-        def book = bookTypeResult.book
-
-
-        if(book){
-            if(book.bookType.equalsIgnoreCase("Reference")){
-                render "reference"
+        if(bookTypeResult){
+            if(bookTypeResult.bookType.equalsIgnoreCase("Reference")){
+                flash.message = "Reference book cannot be borrowed"
+                redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
             }
-            if(book.bookType.equalsIgnoreCase("Gifted")){
-                render "gifted"
+            if(bookTypeResult.bookType.equalsIgnoreCase("Gifted")){
+                flash.message = "Gifted book cannot be borrowed"
+                redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
             }
             if(book.bookType.equalsIgnoreCase("Borrowable")){
-                render "borrowable"
+                flash.message = "Valid book number"
             }
             if(book.bookType.equalsIgnoreCase("novel")){
-                render "novel"
+                flash.message = "Valid book number"
             }
         }
     }
@@ -248,8 +247,24 @@ class BookController {
     @Transactional
     def saveIssue() {
         def borrowingUser = Member.findByFullName(params.fullName)
+        def borrowingBook = BookInfo.findByBookNumber(params.bookNumber)
 
-        if(borrowingUser){
+        if(!borrowingBook && !borrowingUser) {
+            flash.message = "Book number and username doesnot exist."
+            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
+        }
+
+        if(borrowingBook && !borrowingUser){
+            flash.message = "Username doesnot exist."
+            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
+        }
+
+        if(!borrowingBook && borrowingUser){
+            flash.message = "Book number doesnot exist."
+            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
+        }
+
+        if(borrowingUser && borrowingBook){
             def c = Borrow.createCriteria()
 
             def borrowCount = c.count{
@@ -259,7 +274,7 @@ class BookController {
             }
 
             def role = borrowingUser.getAuthorities()[0].toString();
-            def borrowingBook = BookInfo.findByBookNumber(params.bookNumber)
+
             def bookInfo = borrowingBook
             def isAlreadyBorrowed = Borrow.findByBookInfoAndReturned(bookInfo,false)
 
@@ -276,51 +291,60 @@ class BookController {
 
                     if(role.equals("ROLE_FACULTY")){
                         if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_FACULTY) {
-                            render "greaterborrowcount"
+                            flash.message = "You have already borrowed three books"
+                            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                         }else {
                             borrow.save(flush: true)
 
                             bookInfo.book.availableQuantity-=1
                             bookInfo.save(flush: true)
                             saveTimestamp(borrowingBook,borrowingUser)
+
+                            flash.message = "Book Issued"
+                            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
                         }
                     }else if(role.equals("ROLE_LIBRARY")){
                         if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_LIBRARIAN) {
-                            render "greaterborrowcount"
+                            flash.message = "You have already borrowed three books"
+                            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                         }else {
-
                             borrow.save(flush: true)
-
                             bookInfo.book.availableQuantity-=1
                             bookInfo.save(flush: true)
                             saveTimestamp(borrowingBook,borrowingUser)
+
+                            flash.message = "Book Issued"
+                            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
                         }
                     }
 
                     else if(role.equals("ROLE_ADMIN")){
                         if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_ADMIN) {
-                            render "greaterborrowcount"
+                            flash.message = "You have already borrowed three books"
+                            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                         }else {
                             borrow.save(flush: true)
-
                             bookInfo.book.availableQuantity-=1
                             bookInfo.save(flush: true)
                             saveTimestamp(borrowingBook,borrowingUser)
+
+                            flash.message = "Book Issued"
+                            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
                         }
                     }else if(role.equals("ROLE_STUDENT")){
                         if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_STUDENT) {
-                            render "greaterborrowcount"
+                            flash.message = "You have already borrowed three books"
+                            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                         }else {
                             borrow.save(flush: true)
-
                             bookInfo.book.availableQuantity-=1
                             bookInfo.save(flush: true)
                             saveTimestamp(borrowingBook,borrowingUser)
+
+                            flash.message = "Book Issued"
+                            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
                         }
                     }
-
-                    flash.message = "Book Issued"
-                    redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
                 }else{
                     flash.message = "Cannot Issue the book twice to same user"
                     redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
