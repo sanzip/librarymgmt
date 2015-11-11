@@ -29,7 +29,7 @@ class MemberController {
 
     }
 
-    @Secured(['ROLE_LIBRARIAN', 'ROLE_ADMIN', 'ROLE_STUDENT', 'ROLE_FACULTY'])
+    @Secured(['permitAll'])
     def dashboard() {
         def currentUser= Member.findById(springSecurityService.principal.id)
         def count = Borrow.findAllByMemberAndReturned(currentUser, false);
@@ -102,7 +102,6 @@ class MemberController {
         }
         memberInstance.fullName=memberInstance.fullName/*+"-"+memberInstance.userId*/
 
-        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+memberInstance.fullName)
         def fName = memberInstance.fullName.toLowerCase().split(" ")
         memberInstance.username=fName[0]+"_"+memberInstance.userId
         memberInstance.save flush: true
@@ -111,8 +110,10 @@ class MemberController {
             form {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'memberInstance.label', default: 'Member'), memberInstance.id])
                 redirect memberInstance
+                redirect (controller:'member', action:'list')
             }
             '*' { respond memberInstance, [status: CREATED] }
+
         }
     }
 
