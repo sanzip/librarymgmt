@@ -45,9 +45,32 @@ class BookInfoController {
             return
         }
 
-        bookInfoInstance.save flush:true
 
+        def bookNumber = params.list('bookNumber')
+        println bookInfoInstance.bookNumber
+        boolean saved = false
+        assert bookNumber.size()
+        for(int i=0;i<bookNumber.size();i++){
+
+            /*For Developers: This is working block of code but this code needs to be refactored*/
+
+            if(BookInfo.findByBookNumber((String)bookNumber[i])==null){
+                BookInfo bookInfo = new BookInfo()
+                bookInfo.bookNumber=bookNumber[i]
+                bookInfo.book=bookInfoInstance.book
+                bookInfo.cost=bookInfoInstance.cost
+                bookInfo.edition=bookInfoInstance.edition
+                bookInfo.pages=bookInfoInstance.pages
+                bookInfo.publishedYear=bookInfoInstance.publishedYear
+                bookInfo.source=bookInfoInstance.source
+                bookInfo.save(flush: true,failOnError: true)
+            }
+
+        }
         redirect(controller: "bookInfo", action: "index", params: [id: params.book.id])
+      /*  bookInfoInstance.save flush:true*/
+
+      /*  redirect(controller: "bookInfo", action: "index", params: [id: params.book.id])*/
         /*request.withFormat {
             form {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'bookInfoInstance.label', default: 'BookInfo'), bookInfoInstance.id])
