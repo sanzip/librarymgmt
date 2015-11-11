@@ -108,19 +108,26 @@ class MemberController {
 
         def fName = memberInstance.fullName.toLowerCase().split(" ")
         memberInstance.username=fName[0]+"_"+memberInstance.userId
-        memberInstance.save flush: true
+        params.role
+
+        if (!memberInstance.save(flush: true)) {
+            render(view: "create", model: [userInstance: memberInstance])
+            return
+        }
+        if  (!memberInstance.authorities.contains( Role.findByAuthority(params.role))) {
+            UserRole.create memberInstance, Role.findByAuthority(params.role)
+        }
 
         redirect (controller:'member', action:'list')
+        /*request.withFormat {
+            form {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'memberInstance.label', default: 'Member'), memberInstance.id])
+                redirect memberInstance
 
-        /* request.withFormat {
-             form {
-                 flash.message = message(code: 'default.created.message', args: [message(code: 'memberInstance.label', default: 'Member'), memberInstance.id])
-                 redirect memberInstance
-                 redirect (controller:'member', action:'list')
-             }
-             '*' { respond memberInstance, [status: CREATED] }
+            }
+            '*' { respond memberInstance, [status: CREATED] }
 
-         }*/
+        }*/
     }
 
     @Secured("ROLE_LIBRARIAN")
@@ -161,6 +168,9 @@ class MemberController {
             return
         }
 
+        def userRole = UserRole.findByUser(memberInstance)
+
+        userRole.delete flush: true
         memberInstance.delete flush: true
 
         request.withFormat {
@@ -181,5 +191,4 @@ class MemberController {
             '*' { render status: NOT_FOUND }
         }
     }
-
 }
