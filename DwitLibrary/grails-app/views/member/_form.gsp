@@ -1,4 +1,4 @@
-<%@ page import="np.edu.dwit.Member" %>
+<%@ page import="np.edu.dwit.Member; np.edu.dwit.Role" %>
 <script language="JavaScript" type="text/javascript">
 
     function onlyAlphabets(e, t) {
@@ -74,17 +74,18 @@
 
 </div>
 
+
  <div class="field">
      <h3 class="ui dividing header">Role <span class="required-indicator">*</span> </h3>
-     <div class="field">
-         <select class="ui fluid dropdown">
-             <g:each in="${np.edu.dwit.Role.all}" var="roleList">
-                 <option>${roleList.authority}</option>
-             </g:each>
-         </select>
-     </div>
-
-     </div>
+     <div class="fieldcontain ${hasErrors(bean: memberInstance, field: 'role', 'error')} required">
+         <g:if test="${memberInstance.id}">
+             <g:select name="role" from="${Role.all}" class="ui fluid dropdown" required="" value="${memberInstance.getAuthorities()[0]}" valueMessagePrefix="role.authority"/>
+         </g:if>
+         <g:else>
+             <g:select name="role" from="${Role.all}" class="ui fluid dropdown" required=""  noSelection="['':'-Choose Role-']" valueMessagePrefix="role.authority"/>
+         </g:else>
+    </div>
+ </div>
 
 
 </div>

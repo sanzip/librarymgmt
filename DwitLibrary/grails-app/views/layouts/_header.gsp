@@ -24,14 +24,14 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $("#issue").hide();
-            $("#fullName").hide();
+            $("#fullNameReturn").hide();
             $("#reset").hide();
 
-            $("#bookNumber").on("contextmenu",function(){
+            $("#bookNo").on("contextmenu",function(){
                 return false;
             });
 
-            $("#fullName").on("contextmenu",function(){
+            $("#fullNameReturn").on("contextmenu",function(){
                 return false;
             });
 
@@ -41,11 +41,11 @@
                 url: "${createLink(controller:"book",action:"getAllUsers")}",
                 success : function(response) {
 
-                    $("#fullName").autocomplete({
+                    $("#fullNameReturn").autocomplete({
                         source: response,
                         select: function(event, ui) {
                             if (ui.item) {
-                                $("#fullName").prop("readonly", true);
+                                $("#fullNameReturn").prop("readonly", true);
                                 $("#issue").show();
 
                                 alert("Member selected: "+ui.item.value);
@@ -63,54 +63,60 @@
 
 
         function checkValid(bookNumber) {
-            var n = noty({
-                layout: 'topRight',
-                theme: 'relax',
-                type: 'error',
-                text: 'Invalid book number.',
-                animation: {
-                    open: {height: 'toggle'},
-                    close: {height: 'toggle'},
-                    easing: 'swing', // easing
-                    speed: 500
-                },
-                timeout: 1000
-            });
             if(isNaN(bookNumber)) {
-                $('#bookNumber').focus(function(){
+                $('#bookNo').focus(function(){
                     $(this).val('');
+                });
+                var n = noty({
+                    layout: 'topRight',
+                    theme: 'relax',
+                    type: 'error',
+                    text: 'Invalid book number.',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing', // easing
+                        speed: 500
+                    },
+                    timeout: 1000
                 });
                 n.animate();
             }else if(!(/^\d*$/.test(bookNumber))){
-                $('#bookNumber').focus(function(){
+                $('#bookNo').focus(function(){
                     $(this).val('');
+                });
+                var n = noty({
+                    layout: 'topRight',
+                    theme: 'relax',
+                    type: 'error',
+                    text: 'Only numbers are accepted',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing', // easing
+                        speed: 500
+                    },
+                    timeout: 1000
                 });
                 n.animate();
 
             }else if(bookNumber.length>4){
-                $("#bookNumber").val('');
+                $("#bookNo").val('');
+                var n = noty({
+                    layout: 'topRight',
+                    theme: 'relax',
+                    type: 'error',
+                    text: 'Length of book number is invalid',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing', // easing
+                        speed: 500
+                    },
+                    timeout: 1000
+                });
                 n.animate();
             }
-
-            $.ajax({
-                url:"${createLink(controller: "book",action: "checkValidBookType")}",
-                type:"post",
-                data:'bookNumber='+bookNumber,
-                success:function(result){
-                    if(result=='gifted'){
-                        alert("Gifted book cannot be issued.");
-                    }else if(result=='reference') {
-                        alert("Reference book cannot be issued.");
-                    }else if(result=='borrowable') {
-                        $("#fullName").show();
-                        $("#reset").show();
-                    }else if(result=='novel') {
-                        $("#fullName").show();
-                        $("#reset").show();
-                    }
-                }
-            })
-
         }
 
         function issue() {
@@ -182,12 +188,136 @@
         }
 
         function reset() {
-            $("#bookNumber").val("");
-            $("#fullName").val("");
-            $("#fullName").hide();
+            $("#bookNo").val("");
+            $("#fullNameReturn").val("");
+            $("#fullNameReturn").hide();
             $("#issue").hide();
             $("#fullName").prop("readonly", false);
 
+        }
+
+
+        $(function() {
+            $('#return').hide();
+            $("#reset").hide();
+
+            $("#bookNo").on("contextmenu",function(){
+                return false;
+            });
+        });
+
+        function checkValidBookNumber(id) {
+            if (isNaN(id)) {
+                $('#bookNo').focus(function () {
+                    $(this).val('');
+                });
+                alert("Invalid book number.");
+            } else if (!(/^\d*$/.test(id))) {
+                $('#bookNo').focus(function () {
+                    $(this).val('');
+                });
+                alert("Invalid book number.");
+
+            } else if (id.length > 4) {
+                $("#bookNo").val('');
+                alert("Invalid book number.");
+            }
+            var bookNumber = $("#bookNo").val();
+            $.ajax({
+
+                url: "<g:createLink controller="book" action="checkBorrowedMember"/>",
+                data: 'bookNumber=' + bookNumber,
+                type: "POST",
+                success: function (result) {
+                    var res = result.split(":");
+
+                    $("#fullNameReturn").val(res[0]);
+                    $("#fine").val(res[1]);
+                    $("#totalFineDays").val(res[2]);
+                    $("#totalKeptDays").val(res[3]);
+                    $("#reset").show();
+                    $("#return").show();
+                }
+            })
+
+        }
+
+        function saveReturn() {
+            var bookNumber=$("#bookNo").val();
+            var memberName=$("#fullNameReturn").val();
+            var totalKeptDays=$("#totalKeptDays").val();
+            var totalFineDays=$("#totalFineDays").val();
+            var totalFineAmount=$("#fine").val();
+
+            $.ajax({
+                url:"${createLink(controller: "book",action: "saveReturn")}",
+                type:'post',
+                data:'bookNumber='+bookNumber+'&memberName='+memberName+'&totalKeptdays='+totalKeptDays+'&totalFineDays='+totalFineDays+'&fine='+totalFineAmount,
+                success: function(result) {
+                        reset();
+                        $("#asim").close();
+
+                        alert("Book returned.")
+                }
+            })
+        }
+
+        function changeFine() {
+            var days = $("#totalFineDays").val();
+            var memberName= $("#fullNameReturn").val();
+            var bookNumber = $("#bookNo").val();
+
+            if(days.length>3) {
+                $('#totalFineDays').focus(function () {
+                    $(this).val('');
+                });
+                $("#fine").val('');
+                $('#return').attr("disabled","disabled");
+                alert("Fine days will be not be greater than 3 digit.");
+            }else if(isNaN(days)) {
+                $('#totalFineDays').focus(function () {
+                    $(this).val('');
+                });
+                $("#fine").val('');
+                $('#return').attr("disabled","disabled");
+                alert("invalid fine days.")
+            }else if(!(/^\d*$/.test(days))) {
+                $('#totalFineDays').focus(function () {
+                    $(this).val('');
+                });
+                $("#fine").val('');
+                $('#return').attr("disabled","disabled");
+                alert("invalid fine days.")
+            }else {
+                $.ajax({
+                    url:"${createLink(controller: "book",action: "recalculateFine")}",
+                    data:'days='+days+'&memberName='+memberName+'&bookNumber='+bookNumber,
+                    type:'post',
+                    success: function (result) {
+                        console.log(result);
+                        var res = result.split(":");
+
+                        $("#fullNameReturn").val(res[0]);
+                        $("#fine").val(res[1]);
+                        $("#totalFineDays").val(res[2]);
+                        $("#totalKeptDays").val(res[3]);
+                        $('#return').removeAttr("disabled","disabled");
+                        $("#return").show();
+                    }
+
+                })
+            }
+
+        }
+
+        function reset() {
+            $("#bookNo").val("");
+            $("#fullNameReturn").val("");
+            $("#return").hide();
+            $("#totalKeptDays").val("");
+            $("#totalFineDays").val("");
+            $("#totalFineDays").removeAttr("disabled","disabled");
+            $("#fine").val("");
         }
     </script>
     <script type="text/javascript">
@@ -220,11 +350,6 @@
         //maintain the popup at center of the page when browser resized
         $(window).bind('resize',positionPopup);
 
-    </script>
-    <script type='text/javascript'>
-        $('#issues').click(function() {
-            $.post('book/issueBook');
-        });
         function issueBookNav(){
 
             $.ajax({
@@ -232,9 +357,21 @@
                 data:"",
                 type:'post',
                 success: function (result) {
-                    console.log(result);
                     $("#issueBook").html(result);
                     $('#mo').show();
+                }
+            })
+        }
+        function returnBookNav(){
+
+            $.ajax({
+                url:"${createLink(controller:"book" ,action:"returnBookNav" )}",
+                data:"",
+                type:'post',
+                success: function (result) {
+                    console.log(result);
+                    $("#returnBook").html(result);
+                    $('#asim').show();
                 }
             })
         }
@@ -243,6 +380,10 @@
             $("#cancel").on('click', function(){
 
                 $('#mo').hide();
+            });
+            $("#cancelReturn").on('click', function(){
+
+                $('#asim').hide();
             });
             <g:if test="${flash.message}">
                 var n = noty({
@@ -325,11 +466,11 @@
 
 
         <sec:ifAllGranted roles="ROLE_LIBRARIAN">
-            <div class="ui simple link item">
-               <i class="barcode icon"> </i> <a href="#" id="issueBookNav" onclick = "issueBookNav();"> Issue </a>
+            <div class="ui simple link item" onclick = "issueBookNav();">
+               <i class="barcode icon"> </i>Issue
             </div>
-            <div class="ui simple link item">
-                <g:link controller="book" action="returnBook"> <i class="reply icon"></i> Return </g:link>
+            <div class="ui simple link item" onclick = "returnBookNav();">
+                <i class="reply icon"></i> Return
             </div>
             <div class="ui simple dropdown link item">
                 <i class="browser icon"></i> Report <i class="dropdown icon"></i>
@@ -341,8 +482,8 @@
             <div class="ui simple dropdown link item">
                 <i class="configure icon"></i> Configure <i class="dropdown icon"></i>
                 <div class="menu">
-                    <g:link controller="member" action="create" class="item"> <i class="user icon"></i>  Add User  </g:link>
-                    <g:link controller="book" action="create" class="item"> <i class="book icon"></i>  Add Book  </g:link>
+                    <g:link controller="member" action="list" class="item"> <i class="user icon"></i>   User  </g:link>
+                    <g:link controller="book" action="index" class="item"> <i class="book icon"></i>  Book  </g:link>
                 </div>
             </div>
         </sec:ifAllGranted>
@@ -351,7 +492,7 @@
 <div class="ui small modal" id = "mo" style="position: absolute;top: 18%;left: 50%;">
     <div class="header" id = "issueBookHeader">Issue Book</div>
     <form action="<g:createLink controller="book" action="saveIssue"/>" method="POST">
-        <div class="content" style="text-align: left; padding: 50px;">
+        <div class="content" style="text-align: left; padding: 30px;">
             <div id = "issueBook">
 
             </div>
@@ -365,6 +506,24 @@
                 <div class="ui negative button" id = "cancel">Cancel</div>
                 <div class="or"></div>
                 <input type="submit" class="ui positive button" value="Issue"/>
+                <input type="hidden" value="${params.controller}" name="currentController"/>
+                <input type="hidden" value="${params.action}" name="currentAction"/>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="ui small modal" id = "asim" style="position: absolute;top: 10%;left: 50%;">
+    <div class="header" id = "returnBookHeader">Return Book</div>
+    <form action="<g:createLink controller="book" action="saveReturn"/>" method="POST">
+        <div class="content" style="text-align: left; padding: 30px;" id = "returnBook">
+        </div>
+        <div class = "actions" style="text-align: right;">
+            <div class="ui buttons">
+                <div class="ui negative button" id = "cancelReturn">Cancel</div>
+                <div class="or"></div>
+                <input type="submit" class="ui positive button" value="Return"/>
+                <input type="hidden" value="${params.controller}" name="currentController"/>
+                <input type="hidden" value="${params.action}" name="currentAction"/>
             </div>
         </div>
     </form>

@@ -164,7 +164,7 @@ class FineService {
             Map<Borrow, Fine> borrowFineMap = new HashMap<>()
             for(Borrow borrow: borrows) {
                 def fine = calculatefine(borrow)
-                if(fine.fineAmount >= 0)
+                if(fine.fineAmount > 0)
                     borrowFineMap.put(borrow, fine)
             }
 
