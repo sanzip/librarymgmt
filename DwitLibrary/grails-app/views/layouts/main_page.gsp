@@ -66,6 +66,7 @@
 <body>
     <div id="wrapper">
         <g:render template="/layouts/header"/>
+
         <div class="contents">
             <g:layoutBody/>
             <r:layoutResources />

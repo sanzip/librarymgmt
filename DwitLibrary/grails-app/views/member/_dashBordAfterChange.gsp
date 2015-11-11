@@ -48,6 +48,10 @@
     a{
         color: blue;
     }
+    table tbody td{
+        background-color: white;
+        color: black;
+    }
 </style>
 <table id="first_table" class="ui sortable celled table" cellspacing="0" width="100% margin: 0px">
     <thead>
@@ -64,15 +68,23 @@
     <tbody>
     <g:each in="${list}" var="book" status="i">
         <g:if test="${book.availableQuantity > 0}">
-            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}" style="background-color: #66c17b; color: #FFFFFF;">
+            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}" style="color: #FFFFFF;">
         </g:if>
         <g:else>
-            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}" style="background-color: #dc6868; color: #FFFFFF;">
+            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}" style="color: #FFFFFF;">
         </g:else>
-        <td>${i+1}.</td>
+        <td style="text-align: center">${i+1}.</td>
         <g:if test="${book.availableQuantity > 0}">
             <sec:ifAllGranted roles="ROLE_LIBRARIAN">
-                <td  onmouseover="highlightTr(this);" onmouseout="removeHighlight(this);" id = "${"row" + i}" style="text-align: center;" class = "availableRow"><a href="#" onclick = "select(${book.id});" style="color: white;"><strong>${fieldValue(bean: book, field: "name")}</strong></a></td>
+               <td style="text-align: center"> <div class="ui buttons">
+                    <button class="ui green basic button" id = "${"row" + i}" style="text-align: center;" class = "availableRow"><a href="#" onclick = "select(${book.id});" style="color: black;">${fieldValue(bean: book, field: "name")}</a> </button>
+                </div>
+</td>
+%{--
+                <td  --}%
+%{--onmouseover="highlightTr(this);" onmouseout="removeHighlight(this);"--}%%{--
+ id = "${"row" + i}" style="text-align: center;" class = "availableRow"><a href="#" onclick = "select(${book.id});" style="color: black;"><strong>${fieldValue(bean: book, field: "name")}</strong></a></td>
+--}%
             </sec:ifAllGranted>
             <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
                 <td  style="text-align: center;"><strong>${fieldValue(bean: book, field: "name")}</strong></td>
