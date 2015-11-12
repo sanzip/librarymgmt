@@ -64,7 +64,12 @@ class BookInfoController {
                 bookInfo.publishedYear=bookInfoInstance.publishedYear
                 bookInfo.source=bookInfoInstance.source
                 bookInfo.bookType=bookInfoInstance.bookType
-                bookInfo.save(flush: true,failOnError: true)
+                bookInfo.save flush: true,failOnError: true
+
+                def book = Book.findById(bookInfo.book.id)
+                book.totalQuantity+=1
+                book.availableQuantity+=1
+                book.save flush: true, failOnError: true
             }
 
         }
