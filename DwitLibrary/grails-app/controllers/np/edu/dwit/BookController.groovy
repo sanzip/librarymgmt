@@ -425,7 +425,6 @@ class BookController {
                 def deadline = addDays(date, DWITLibraryConstants.NOVEL_BOOK_BORROWABLE);
 
                 timeStamp.deadline = deadline;
-                println timeStamp.deadline
             }
 
 
@@ -464,8 +463,8 @@ class BookController {
 
     @Secured("ROLE_LIBRARIAN")
     def checkBorrowedMember(){
-        println("checkborrowedmember===="+params)
         def amount
+        def result
         def borrowingBook = BookInfo.findByBookNumber(params.bookNumber)
 
         if(borrowingBook){
@@ -483,8 +482,11 @@ class BookController {
                 amount = fine.fineAmount ?: 0
 
                 def totalBorrowedDays = new Date() - borrowInfo[0].borrowedDate
-
-                def result = borrowedMember.member.fullName + ":" + amount + ":${fine.days >= 0 ? fine.days : 0}:${totalBorrowedDays >= 0 ? totalBorrowedDays : 0}"
+                if(totalBorrowedDays > 0){
+                    result = borrowedMember.member.fullName + ":" + amount + ":${fine.days >= 0 ? fine.days : 0}:${totalBorrowedDays >= 0 ? totalBorrowedDays : 0}"
+                }else {
+                    result = borrowedMember.member.fullName + ":" + amount + ":${totalBorrowedDays >= 0 ? totalBorrowedDays : 0}"
+                }
 
                 render result
             }
@@ -504,32 +506,42 @@ class BookController {
 
             def borrow = Borrow.findByBookInfoAndMemberAndReturned(borrowedBook,borrowingUser,false)
 
-            if(borrowingUser){
+            if(borrow){
+                if(borrowingUser){
 
-                borrow.member = borrowingUser
-                borrow.bookInfo=borrowedBook
-                borrow.returned = true
-                borrow.returnedDate=new Timestamp(new Date().getTime())
-                borrow.save(flush: true, failOnError: true)
+                    borrow.member = borrowingUser
+                    borrow.bookInfo=borrowedBook
+                    borrow.returned = true
+                    borrow.returnedDate=new Timestamp(new Date().getTime())
+                    borrow.save(flush: true, failOnError: true)
 
-                borrowedBook.book.availableQuantity +=1;
-                borrowedBook.book.save(failOnError: true)
+                    borrowedBook.book.availableQuantity +=1;
+                    borrowedBook.book.save(failOnError: true)
 
-                Fine fine = new Fine()
-                fine.borrow = borrow
-                fine.fineAmount = params.fine as double
-                def fineDays = params.totalFineDays as short
-                fine.days = fineDays >= 0 ? fineDays : 0
-                fine.member=borrowingUser
+                    Fine fine = new Fine()
+                    fine.borrow = borrow
+                    fine.fineAmount = params.fine as double
+                    def fineDays
+                    if(params.totalFineDays){
+                        fineDays = params.totalFineDays as short
+                        fine.days = fineDays
+                    }else {
+                        fine.days = 0
+                    }
+                    fine.member=borrowingUser
 
-                fine.save(flush: true, failOnError: true)
+                    fine.save(flush: true, failOnError: true)
 
-                flash.message = "Book Successfully returned"
+                    flash.message = "Book Successfully returned"
 
-                println params.currentController
-
-                redirect(controller: params.currentController, action: params.currentAction, params: [messageType: 'success'])
+                    redirect(controller: params.currentController, action: params.currentAction, params: [messageType: 'success'])
+                }
+            }else {
+                flash.message = "Book Number is not borrowed yet."
+                redirect(controller: params.currentController, action: params.currentAction, params: [messageType: 'error'])
             }
+
+
         }else {
             flash.message = "Book Number does not exist"
             redirect(controller: params.currentController, action: params.currentAction, params: [messageType: 'error'])

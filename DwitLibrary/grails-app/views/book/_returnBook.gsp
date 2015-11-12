@@ -6,7 +6,7 @@
     </div>
     <div class = "ui icon input">
         <label for="bookNo"> Book Number </label>
-        <input type="text" name="bookNumber" id="bookNo" placeholder="Book Number" onkeyup="checkValidBookNumber(this.value);" autocomplete="off" required/><br/>
+        <input type="text" name="bookNumber" id="returnBookNum" placeholder="Book Number" onkeyup="checkValidBookNumber(this.value);" autocomplete="off" required/><br/>
     </div>
     <div class = "ui icon input">
         <label for="fullNameReturn"> Member name </label>
@@ -20,7 +20,7 @@
         <label for="fine"> Fine</label>
         <input type="text" name="fine" id="fine"  readonly/><br/>
     </div>
-    <div class = "ui icon input">
+    <div class = "ui icon input" id="returnFinediv">
         <label for="fine"> Total fine Days</label>
         <input type ="text" name="totalFineDays" id="totalFineDays" onkeyup="changeFine();"/><br/>
     </div>

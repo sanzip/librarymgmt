@@ -227,7 +227,7 @@
                 });
                 n.animate();
             } else if (!(/^\d*$/.test(id))) {
-                $('#bookNo').focus(function () {
+                $('#returnBookNum').focus(function () {
                     $(this).val('');
                 });
                 var n = noty({
@@ -278,12 +278,20 @@
 
                     }else {
                         var res = result.split(":");
-                        $("#fullNameReturn").val(res[0]);
-                        $("#fine").val(res[1]);
-                        $("#totalFineDays").val(res[2]);
-                        $("#totalKeptDays").val(res[3]);
-                        $("#reset").show();
-                        $("#return").show();
+                        if(res.length==4) {
+                            $("#returnFinediv").show();
+                            $("#fullNameReturn").val(res[0]);
+                            $("#fine").val(res[1]);
+                            $("#totalFineDays").val(res[2]);
+                            $("#totalKeptDays").val(res[3]);
+
+                        }else {
+                            $("#fullNameReturn").val(res[0]);
+                            $("#fine").val(res[1]);
+                            $("#returnFinediv").hide();
+                            $("#totalKeptDays").val(res[2]);
+                        }
+
                     }
 
                 }
@@ -292,16 +300,22 @@
         }
 
         function saveReturn() {
-            var bookNumber=$("#bookNo").val();
+            var bookNumber=$("#returnBookNum").val();
             var memberName=$("#fullNameReturn").val();
             var totalKeptDays=$("#totalKeptDays").val();
             var totalFineDays=$("#totalFineDays").val();
             var totalFineAmount=$("#fine").val();
+            var parameter;
+            if(totalFineDays.empty()) {
+                parameter='bookNumber='+bookNumber+'&memberName='+memberName+'&totalKeptdays='+totalKeptDays+'&totalFineDays='+totalFineDays+'&fine='+totalFineAmount;
+            }else {
+                parameter='bookNumber='+bookNumber+'&memberName='+memberName+'&totalKeptdays='+totalKeptDays+'&fine='+totalFineAmount
+            }
 
             $.ajax({
                 url:"${createLink(controller: "book",action: "saveReturn")}",
                 type:'post',
-                data:'bookNumber='+bookNumber+'&memberName='+memberName+'&totalKeptdays='+totalKeptDays+'&totalFineDays='+totalFineDays+'&fine='+totalFineAmount,
+                data:parameter,
                 success: function(result) {
                         reset();
                         $("#asim").close();
@@ -314,17 +328,12 @@
         function changeFine() {
             var days = $("#totalFineDays").val();
             var memberName= $("#fullNameReturn").val();
-            var bookNumber = $("#bookNo").val();
-            console.log(bookNumber);
+            var bookNumber = $("#returnBookNum").val();
 
             if(days.length>3) {
                 $('#totalFineDays').focus(function () {
                     $(this).val('');
                 });
-                $("#fine").val('');
-                $('#return').attr("disabled","disabled");
-
-                $("#bookNo").val('');
                 var n = noty({
                     layout: 'topRight',
                     theme: 'relax',
@@ -344,7 +353,6 @@
                     $(this).val('');
                 });
                 $("#fine").val('');
-                $('#return').attr("disabled","disabled");
 
                 var n = noty({
                     layout: 'topRight',
@@ -389,12 +397,21 @@
                     success: function (result) {
                         console.log(result);
                         var res = result.split(":");
-                        console.log(")"+res[3]);
-
+                        if(res.length==4){
+                            $("#returnFinediv").show();
                             $("#fullNameReturn").val(res[0]);
                             $("#fine").val(res[1]);
                             $("#totalFineDays").val(res[2]);
                             $("#totalKeptDays").val(res[3]);
+                        }else {
+                            $("#fullNameReturn").val(res[0]);
+                            $("#fine").val(res[1]);
+                            $("#totalFineDays").hide();
+                            $("#totalKeptDays").val(res[2]);
+                        }
+
+
+
 
 
 
@@ -406,7 +423,7 @@
         }
 
         function resetclick() {
-            $("#bookNo").val("");
+            $("#returnBookNum").val("");
             $("#fullNameReturn").val("");
             $("#totalKeptDays").val("");
             $("#totalFineDays").val("");
