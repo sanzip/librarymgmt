@@ -11,6 +11,7 @@ class BookInfo {
     String pages
     Double cost
     String source
+    String bookType
 
     static constraints = {
         book blank: false, nullable: false
@@ -20,6 +21,8 @@ class BookInfo {
         pages blank: false, nullable: false
         cost blank:false, nullable: false
         source blank: false, nullable: false
+        bookType nullable: false, blank: false, inList: ['Borrowable', 'Gifted', 'Reference', 'Novel']
+
     }
     static mapping = {
         version false

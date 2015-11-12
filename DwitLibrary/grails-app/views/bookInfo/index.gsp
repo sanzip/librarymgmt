@@ -6,17 +6,39 @@
         <meta name="layout" content="main_page">
 		<g:set var="entityName" value="${message(code: 'bookInfo.label', default: 'BookInfo')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
-        <style>
-        #wrapper{
-            margin: 0px auto;
-            width: 95%;
-        }
+    <script src="${resource(dir: 'js', file: 'jquery-2.1.4.min.js')}"> </script>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
+    <g:javascript src="datatable-min.js"/>
+    <style>
+    .dataTables_filter {
+        display: none;
+    }
+    #wrapper1{
+        margin: 0px auto;
+        width: 95%;
+    }
         #head{
             text-align: center;
         }
         </style>
+        <script>
+            function setValue(){
+                $("#bookNumber").val('');
+            }
+            $(document).ready(function(){
+                setValue();
+                var table = $('#book_info_table').DataTable();
+
+                $('#bookNumber').on( 'keyup', function () {
+                    table
+                            .columns( 1 )
+                            .search( this.value )
+                            .draw();
+                } );
+            })
+        </script>
 	</head>
-	<body>
+
     <div id="wrapper">
         <div id="head">
             <div class="ui compact menu">
@@ -31,6 +53,8 @@
             </div>
 
 		</div>
+        Book Number: <input type="text" name="bookNumber" id="bookNumber"/>
+
         <br><br>
 		<div id="list-bookInfo" class="content scaffold-list" role="main">
             <h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]" /></h1>
@@ -38,22 +62,26 @@
             <g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table class="ui celled table">
+
+    <table class="ui celled table" id="book_info_table">
 			<thead>
 					<tr>
-					
+
 						<th><g:message code="bookInfo.book.label" default="Book" /></th>
-					
+
 						<g:sortableColumn property="bookNumber" title="${message(code: 'bookInfo.bookNumber.label', default: 'Book Number')}" />
 
 						<g:sortableColumn property="edition" title="${message(code: 'bookInfo.edition.label', default: 'Edition')}" />
-					
+
 						<g:sortableColumn property="publishedYear" title="${message(code: 'bookInfo.publishedYear.label', default: 'Published Year')}" />
-					
+
 						<g:sortableColumn property="pages" title="${message(code: 'bookInfo.pages.label', default: 'Pages')}" />
-					
+
 						<g:sortableColumn property="cost" title="${message(code: 'bookInfo.cost.label', default: 'Cost')}" />
-					    <th>Action</th>
+
+                        <g:sortableColumn property="bookType" title="${message(code: 'bookInfo.bookType.label', default: 'Book Type')}" />
+
+                        <th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -68,14 +96,16 @@
                       %{--  <td><g:link action="show" id="${bookInfoInstance.id}">${fieldValue(bean: bookInfoInstance, field: "book.id")}</g:link></td>
 					--}%
 						<td>${fieldValue(bean: bookInfoInstance, field: "bookNumber")}</td>
-					
+
 						<td>${fieldValue(bean: bookInfoInstance, field: "edition")}</td>
-					
+
 						<td>${fieldValue(bean: bookInfoInstance, field: "publishedYear")}</td>
-					
+
 						<td>${fieldValue(bean: bookInfoInstance, field: "pages")}</td>
-					
+
 						<td>${fieldValue(bean: bookInfoInstance, field: "cost")}</td>
+
+                        <td>${fieldValue(bean: bookInfoInstance, field: "bookType")}</td>
 
                         <td>
                             <div class="ui buttons">
@@ -95,7 +125,7 @@
                                 %{--</g:form>--}%
                             </div>
                         </td>
-					
+
 					</tr>
 				</g:each>
 				</tbody>

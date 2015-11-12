@@ -6,7 +6,6 @@ class Book {
     String publication
     Integer availableQuantity
     Integer totalQuantity
-    String bookType
 
     static constraints = {
         name blank: false, nullable: false
@@ -15,7 +14,6 @@ class Book {
 
         availableQuantity nullable: true
         totalQuantity nullable: false
-        bookType nullable: false, blank: false, inList: ['Borrowable', 'Gifted', 'Reference', 'Novel']
     }
     static mapping = {
         version false
