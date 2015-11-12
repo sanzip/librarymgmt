@@ -1,12 +1,12 @@
 <div class = "ui form">
     <div class="ui icon input" style="text-align: right">
-        <div class = "ui green button"  onclick="reset();">
+        <div class = "ui green button"  onclick="resetclick();">
             <i class="repeat icon"></i>Reset
         </div>
     </div>
     <div class = "ui icon input">
         <label for="bookNo"> Book Number </label>
-        <input type="text" name="bookNumber" id="bookNo" placeholder="Book Id" onkeyup="checkValidBookNumber(this.value);" autocomplete="off"/><br/>
+        <input type="text" name="bookNumber" id="bookNo" placeholder="Book Number" onkeyup="checkValidBookNumber(this.value);" autocomplete="off" required/><br/>
     </div>
     <div class = "ui icon input">
         <label for="fullNameReturn"> Member name </label>

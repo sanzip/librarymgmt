@@ -120,7 +120,7 @@
         }
 
         function issue() {
-            var bookNumber=$("#bookNumber").val();
+            var bookNumber=$("#bookNo").val();
             var memberName=$("#fullName").val();
 
             $.ajax({
@@ -162,7 +162,7 @@
                         });
                         n.animate();
                     }else if(result=="error") {
-                        $("#bookNumber").val("");
+                        $("#bookNo").val("");
                         $("#fullName").val("");
                         $("#fullName").hide();
                         $("#issue").hide();
@@ -207,36 +207,85 @@
         });
 
         function checkValidBookNumber(id) {
+
             if (isNaN(id)) {
                 $('#bookNo').focus(function () {
                     $(this).val('');
                 });
-                alert("Invalid book number.");
+                var n = noty({
+                    layout: 'topRight',
+                    theme: 'relax',
+                    type: 'error',
+                    text: 'Invalid book number.',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing', // easing
+                        speed: 500
+                    },
+                    timeout: 1000
+                });
+                n.animate();
             } else if (!(/^\d*$/.test(id))) {
                 $('#bookNo').focus(function () {
                     $(this).val('');
                 });
-                alert("Invalid book number.");
-
+                var n = noty({
+                    layout: 'topRight',
+                    theme: 'relax',
+                    type: 'error',
+                    text: 'Only numbers are accepted',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing', // easing
+                        speed: 500
+                    },
+                    timeout: 1000
+                });
+                n.animate();
             } else if (id.length > 4) {
                 $("#bookNo").val('');
-                alert("Invalid book number.");
+                var n = noty({
+                    layout: 'topRight',
+                    theme: 'relax',
+                    type: 'error',
+                    text: 'Length of book number is invalid',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing', // easing
+                        speed: 500
+                    },
+                    timeout: 1000
+                });
+                n.animate();
             }
-            var bookNumber = $("#bookNo").val();
+            var bookNumber = id;
+
             $.ajax({
 
                 url: "<g:createLink controller="book" action="checkBorrowedMember"/>",
                 data: 'bookNumber=' + bookNumber,
                 type: "POST",
                 success: function (result) {
-                    var res = result.split(":");
+                    console.log(result);
+                    if(result=="error") {
+                        $("#fullNameReturn").val('');
+                        $("#fine").val('');
+                        $("#totalFineDays").val('');
+                        $("#totalKeptDays").val('');
 
-                    $("#fullNameReturn").val(res[0]);
-                    $("#fine").val(res[1]);
-                    $("#totalFineDays").val(res[2]);
-                    $("#totalKeptDays").val(res[3]);
-                    $("#reset").show();
-                    $("#return").show();
+                    }else {
+                        var res = result.split(":");
+                        $("#fullNameReturn").val(res[0]);
+                        $("#fine").val(res[1]);
+                        $("#totalFineDays").val(res[2]);
+                        $("#totalKeptDays").val(res[3]);
+                        $("#reset").show();
+                        $("#return").show();
+                    }
+
                 }
             })
 
@@ -266,6 +315,7 @@
             var days = $("#totalFineDays").val();
             var memberName= $("#fullNameReturn").val();
             var bookNumber = $("#bookNo").val();
+            console.log(bookNumber);
 
             if(days.length>3) {
                 $('#totalFineDays').focus(function () {
@@ -273,21 +323,64 @@
                 });
                 $("#fine").val('');
                 $('#return').attr("disabled","disabled");
-                alert("Fine days will be not be greater than 3 digit.");
+
+                $("#bookNo").val('');
+                var n = noty({
+                    layout: 'topRight',
+                    theme: 'relax',
+                    type: 'error',
+                    text: 'Fine days will be not be greater than 3 digit',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing', // easing
+                        speed: 500
+                    },
+                    timeout: 1000
+                });
+                n.animate();
             }else if(isNaN(days)) {
                 $('#totalFineDays').focus(function () {
                     $(this).val('');
                 });
                 $("#fine").val('');
                 $('#return').attr("disabled","disabled");
-                alert("invalid fine days.")
+
+                var n = noty({
+                    layout: 'topRight',
+                    theme: 'relax',
+                    type: 'error',
+                    text: 'Invalid fine days',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing', // easing
+                        speed: 500
+                    },
+                    timeout: 1000
+                });
+                n.animate();
             }else if(!(/^\d*$/.test(days))) {
                 $('#totalFineDays').focus(function () {
                     $(this).val('');
                 });
                 $("#fine").val('');
                 $('#return').attr("disabled","disabled");
-                alert("invalid fine days.")
+
+                var n = noty({
+                    layout: 'topRight',
+                    theme: 'relax',
+                    type: 'error',
+                    text: 'Invalid fine days',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing', // easing
+                        speed: 500
+                    },
+                    timeout: 1000
+                });
+                n.animate();
             }else {
                 $.ajax({
                     url:"${createLink(controller: "book",action: "recalculateFine")}",
@@ -296,13 +389,15 @@
                     success: function (result) {
                         console.log(result);
                         var res = result.split(":");
+                        console.log(")"+res[3]);
 
-                        $("#fullNameReturn").val(res[0]);
-                        $("#fine").val(res[1]);
-                        $("#totalFineDays").val(res[2]);
-                        $("#totalKeptDays").val(res[3]);
-                        $('#return').removeAttr("disabled","disabled");
-                        $("#return").show();
+                            $("#fullNameReturn").val(res[0]);
+                            $("#fine").val(res[1]);
+                            $("#totalFineDays").val(res[2]);
+                            $("#totalKeptDays").val(res[3]);
+
+
+
                     }
 
                 })
@@ -310,10 +405,9 @@
 
         }
 
-        function reset() {
+        function resetclick() {
             $("#bookNo").val("");
             $("#fullNameReturn").val("");
-            $("#return").hide();
             $("#totalKeptDays").val("");
             $("#totalFineDays").val("");
             $("#totalFineDays").removeAttr("disabled","disabled");
@@ -438,10 +532,10 @@
 <body>
 <form id="overlay_form" style="display:none">
     <h2> Issue Book  </h2>     <a href="#" id="close" >Close</a>
-    <input type="text" name="bookNumber" id="bookNumber" placeholder="Book Number" onkeyup="checkValid(this.value);" required="required"/><br/>
+    <input type="text" name="bookNumber" id="bookNo" placeholder="Book Number" onkeyup="checkValid(this.value);" required="required"/><br/>
     <input type="text" name="fullName" id="fullName" placeholder="Member Name" /><br/>
     <input type="submit" value="Issue" id="issue" onclick="issue();"/>
-    <input type="submit" value="Reset" id="reset" onclick="reset();"/>
+    <input type="submit" value="Reset" id="reset" onclick="resetclick();"/>
 </form>
 <div class="ui center aligned segment" style="background-color: #3573A3;">
     <g:link controller="member" action="dashboard"> <img style="float: left; height: 80px;width: 80px" src="${resource(dir: 'img', file: 'deerwalk.png')}" alt="Logo" />
