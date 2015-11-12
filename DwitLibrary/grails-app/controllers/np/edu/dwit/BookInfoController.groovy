@@ -63,6 +63,7 @@ class BookInfoController {
                 bookInfo.pages=bookInfoInstance.pages
                 bookInfo.publishedYear=bookInfoInstance.publishedYear
                 bookInfo.source=bookInfoInstance.source
+                bookInfo.bookType=bookInfoInstance.bookType
                 bookInfo.save(flush: true,failOnError: true)
             }
 
