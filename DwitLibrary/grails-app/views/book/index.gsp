@@ -92,7 +92,7 @@
 					
 						<g:sortableColumn property="totalQuantity" title="${message(code: 'book.totalQuantity.label', default: 'Total Quantity')}" />
 					
-						<g:sortableColumn property="bookType" title="${message(code: 'book.bookType.label', default: 'Book Type')}" />
+
                         <th> Action </th>
 
                     </tr>
@@ -112,7 +112,6 @@
 					
 						<td>${fieldValue(bean: bookInstance, field: "totalQuantity")}</td>
 					
-						<td>${fieldValue(bean: bookInstance, field: "bookType")}</td>
                         <td>
                             <div class="ui buttons">
                                 <g:link class="edit" action="edit" resource="${bookInstance}" style="color:#000000;">

@@ -68,14 +68,14 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${bookInstance?.bookType}">
+				%{--<g:if test="${bookInstance?.bookType}">
 				<li class="fieldcontain">
 					<span id="bookType-label" class="property-label"><g:message code="book.bookType.label" default="Book Type" /></span>
 					
 						<span class="property-value" aria-labelledby="bookType-label"><g:fieldValue bean="${bookInstance}" field="bookType"/></span>
 					
 				</li>
-				</g:if>
+				</g:if>--}%
 			
 			</ol>
 			<g:form url="[resource:bookInstance, action:'delete']" method="DELETE">
