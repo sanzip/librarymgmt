@@ -98,6 +98,11 @@ class BookController {
             return
         }
 
+        def bookInfo = BookInfo.findAllByBook(bookInstance)
+        for (BookInfo bookInfoInstance : bookInfo){
+            bookInfoInstance.delete flush: true
+        }
+
         bookInstance.delete flush: true
 
         request.withFormat {
