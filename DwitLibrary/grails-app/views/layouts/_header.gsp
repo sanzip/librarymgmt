@@ -448,10 +448,12 @@
     <h1 style="color:white;float:left"><b>Library Management System</b></h1></g:link>
     <div style="float:right;color: white; font-style: oblique; font-size: 20px" class="item">
         <sec:ifLoggedIn>
-            Welcome ${session["userName"]}
+            <div>
+                Welcome ${session["userName"]}
+            </div>
             <form name="logout" method="POST" style="float: right;color: #E7746F" class="item" action="${createLink(controller:'logout') }">
                 <em>
-                    <input type="submit" class="ui button" value="logout" style="color:#fff;background-color:rgba(255, 0, 0, 0.04)">
+                    <input type="submit" class="ui button" value="Logout" style="color:#fff;background-color:rgba(255, 0, 0, 0.04)">
                 </em>
             </form>
         </sec:ifLoggedIn>
