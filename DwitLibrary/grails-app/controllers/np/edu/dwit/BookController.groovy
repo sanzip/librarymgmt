@@ -232,10 +232,10 @@ class BookController {
                 flash.message = "Gifted book cannot be borrowed"
                 redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
             }
-            if(book.bookType.equalsIgnoreCase("Borrowable")){
+            if(bookTypeResult.bookType.equalsIgnoreCase("Borrowable")){
                 flash.message = "Valid book number"
             }
-            if(book.bookType.equalsIgnoreCase("novel")){
+            if(bookTypeResult.bookType.equalsIgnoreCase("novel")){
                 flash.message = "Valid book number"
             }
         }
@@ -383,11 +383,11 @@ class BookController {
         def date = getBorrowedDate(borrow)
         if(role.equals("ROLE_STUDENT")) {
 
-            if(borrow.bookInfo.book.bookType.equalsIgnoreCase("Borrowable")) {
+            if(borrow.bookInfo.bookType.equalsIgnoreCase("Borrowable")) {
                 def deadline = addDays(date, DWITLibraryConstants.COURSE_BOOK_BORROWABLE_STUDENT);
                 timeStamp.deadline = deadline;
 
-            }else if(borrow.bookInfo.book.bookType.equalsIgnoreCase("Novel")) {
+            }else if(borrow.bookInfo.bookType.equalsIgnoreCase("Novel")) {
 
                 def deadline = addDays(date, DWITLibraryConstants.NOVEL_BOOK_BORROWABLE);
 
@@ -397,11 +397,11 @@ class BookController {
 
 
         }else if(role.equals("ROLE_LIBRARIAN")) {
-            if(borrow.bookInfo.book.bookType.equalsIgnoreCase("Borrowable")) {
+            if(borrow.bookInfo.bookType.equalsIgnoreCase("Borrowable")) {
                 def deadline = addDays(date, DWITLibraryConstants.COURSE_BOOK_BORROWABLE_LIBRARIAN)
 
                 timeStamp.deadline = deadline
-            }else if(borrow.bookInfo.book.bookType.equalsIgnoreCase("Novel")) {
+            }else if(borrow.bookInfo.bookType.equalsIgnoreCase("Novel")) {
                 def deadline = addDays(date, DWITLibraryConstants.NOVEL_BOOK_BORROWABLE);
 
                 timeStamp.deadline = deadline;
@@ -410,11 +410,11 @@ class BookController {
 
 
         }else if(role.equals("ROLE_ADMIN")) {
-            if(borrow.bookInfo.book.bookType.equalsIgnoreCase("Borrowable")) {
+            if(borrow.bookInfo.bookType.equalsIgnoreCase("Borrowable")) {
                 def deadline = addDays(date, DWITLibraryConstants.COURSE_BOOK_BORROWABLE_ADMIN)
 
                 timeStamp.deadline = deadline
-            }else if(borrow.bookInfo.book.bookType.equalsIgnoreCase("Novel")) {
+            }else if(borrow.bookInfo.bookType.equalsIgnoreCase("Novel")) {
                 def deadline = addDays(date, DWITLibraryConstants.NOVEL_BOOK_BORROWABLE);
 
                 timeStamp.deadline = deadline;
@@ -423,11 +423,11 @@ class BookController {
 
 
         }else if(role.equals("ROLE_FACULTY")) {
-            if(borrow.bookInfo.book.bookType.equalsIgnoreCase("Borrowable")) {
+            if(borrow.bookInfo.bookType.equalsIgnoreCase("Borrowable")) {
                 def deadline = addDays(date, DWITLibraryConstants.COURSE_BOOK_BORROWABLE_FACULTY)
 
                 timeStamp.deadline = deadline
-            }else if(borrow.bookInfo.book.bookType.equalsIgnoreCase("Novel")) {
+            }else if(borrow.bookInfo.bookType.equalsIgnoreCase("Novel")) {
                 def deadline = addDays(date, DWITLibraryConstants.NOVEL_BOOK_BORROWABLE);
 
                 timeStamp.deadline = deadline;

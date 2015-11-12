@@ -44,9 +44,4 @@
 	</div>
         </div>
     <br>
-
-	<div class="fieldcontain ${hasErrors(bean: bookInstance, field: 'bookType', 'error')} required">
-		<h3 class="ui dividing header">Book Type <span class="required-indicator">*</span> </h3>
-		<g:select name="bookType" from="${bookInstance.constraints.bookType.inList}" required="" value="${bookInstance?.bookType}" valueMessagePrefix="book.bookType"/>
-	</div>
 </div>

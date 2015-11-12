@@ -53,7 +53,10 @@
 						<g:sortableColumn property="pages" title="${message(code: 'bookInfo.pages.label', default: 'Pages')}" />
 					
 						<g:sortableColumn property="cost" title="${message(code: 'bookInfo.cost.label', default: 'Cost')}" />
-					    <th>Action</th>
+
+                        <g:sortableColumn property="bookType" title="${message(code: 'bookInfo.bookType.label', default: 'Book Type')}" />
+
+                        <th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -76,6 +79,8 @@
 						<td>${fieldValue(bean: bookInfoInstance, field: "pages")}</td>
 					
 						<td>${fieldValue(bean: bookInfoInstance, field: "cost")}</td>
+
+                        <td>${fieldValue(bean: bookInfoInstance, field: "bookType")}</td>
 
                         <td>
                             <div class="ui buttons">
