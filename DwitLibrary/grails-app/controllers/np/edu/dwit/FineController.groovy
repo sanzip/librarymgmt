@@ -10,7 +10,15 @@ class FineController {
     @Secured("ROLE_LIBRARIAN")
     def report() {
 
-        [borrowsWithFine: fineService.report]
+        def borrowsWithFine = fineService.report
+
+        def messageType
+        if(borrowsWithFine.size() == 0) {
+            flash.message = "There are no records to show"
+            messageType = 'error'
+        }
+
+        [borrowsWithFine: borrowsWithFine, params:[messageType: messageType]]
     }
 
     @Secured("ROLE_LIBRARIAN")
