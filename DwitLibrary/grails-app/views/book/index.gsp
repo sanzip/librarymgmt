@@ -6,7 +6,13 @@
         <meta name="layout" content="main_page">
 		<g:set var="entityName" value="${message(code: 'book.label', default: 'Book')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
+        <script src="${resource(dir: 'js', file: 'jquery-2.1.4.min.js')}"> </script>
+        <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
+        <g:javascript src="datatable-min.js"/>
         <style>
+        .dataTables_filter {
+            display: none;
+        }
         #wrapper{
             margin: 0px auto;
             width: 95%;
@@ -15,8 +21,31 @@
             text-align: center;
         }
         </style>
+    <script>
+        function setValue(){
+            $("#bookName").val('');
+            $("#authorName").val('');
+        }
+        $(document).ready(function(){
+            setValue();
+            var table = $('#book_table').DataTable();
+
+            $('#bookName').on( 'keyup', function () {
+                table
+                        .columns( 0 )
+                        .search( this.value )
+                        .draw();
+            } );
+            $('#authorName').on( 'keyup', function () {
+                table
+                        .columns( 1 )
+                        .search( this.value )
+                        .draw();
+            } );
+        })
+    </script>
 	</head>
-	<body>
+
     <div id="wrapper">
         <div id="head">
             <div class="ui compact menu">
@@ -37,7 +66,19 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table class="ui celled table">
+            <div style="text-align: center;">
+                <strong><span style="font-size: 18px;">Book Name:</span></strong>
+                <div class="ui icon input">
+                    <input type="text" placeholder="Search Books" id="bookName" name="bookName">
+                    <i class="inverted circular search link icon"></i>
+                </div>
+                &nbsp;&nbsp;&nbsp;<strong><span style="font-size: 18px;">Author Name:</span></strong>
+                <div class="ui icon input">
+                    <input type="text" placeholder="Search Author" id="authorName" name="authorName">
+                    <i class="inverted circular search link icon"></i>
+                </div>
+            </div>
+			<table class="ui celled table" id="book_table">
 			<thead>
 					<tr>
 					

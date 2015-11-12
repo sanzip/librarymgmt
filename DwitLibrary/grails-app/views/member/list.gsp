@@ -5,7 +5,32 @@
     <meta name="layout" content="main_page">
     <g:set var="entityName" value="${message(code: 'member.label', default: 'Member')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
+    <script src="${resource(dir: 'js', file: 'jquery-2.1.4.min.js')}"> </script>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
+    <g:javascript src="datatable-min.js"/>
+
+    <script>
+        function setValue(){
+            $("#userName").val('');
+        }
+        $(document).ready(function(){
+            setValue();
+            var table = $('#user_table').DataTable({
+                bPaginate: false
+            });
+
+            $('#userName').on( 'keyup', function () {
+                table
+                        .columns( 2 )
+                        .search( this.value )
+                        .draw();
+            } );
+        })
+    </script>
     <style>
+    .dataTables_filter {
+        display: none;
+    }
     #wrapper{
         margin: 0px auto;
         width: 95%;
@@ -16,7 +41,6 @@
         </style>
 </head>
 
-<body>
 <div id="wrapper">
     <div id="head">
 <div class="ui compact menu">
@@ -37,7 +61,8 @@
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-    <table class="ui celled table">
+    User Name: <g:textField name="userName" id="userName"/>
+    <table class="ui celled table" id="user_table">
         <thead>
         <tr>
 
