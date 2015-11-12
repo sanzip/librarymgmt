@@ -9,9 +9,9 @@
 <g:javascript>
 
 	function duplicateAdd(){
-		$('#bookNumberInput .addbutton').remove();
-		$('#bookNumberInput').append('<input type="text" name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>');
-		$('#bookNumberInput').append('<button type="button" onclick="duplicateAdd();">Add</button>');
+        $('#bookNumberInput').append('<input type="text" name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>');
+        $('#bookNumberInput .addbutton').remove();
+		$('#bookNumberInput').append('<button type="button" class = "addbutton" onclick="duplicateAdd();">Add</button>');
 	}
 
 </g:javascript>
@@ -38,6 +38,7 @@
 
 	<input type="text" name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>
 	<button type="button" class = "addbutton" onclick="duplicateAdd();">Add</button>
+
 
 </div>
 	</div>
