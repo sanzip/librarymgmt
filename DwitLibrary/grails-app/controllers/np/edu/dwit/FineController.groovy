@@ -13,7 +13,7 @@ class FineController {
         def borrowsWithFine = fineService.report
 
         def messageType
-        if(borrowsWithFine.size() == 0) {
+        if(!borrowsWithFine) {
             flash.message = "There are no records to show"
             messageType = 'error'
         }
@@ -26,8 +26,12 @@ class FineController {
 
         def member = Member.findById(params?.memberId as Long)
 
+        Borrow borrow = Borrow.findById(params?.borrowId as Long)
+        Fine fine = fineService.calculatefine(borrow)
+
         def bodyOfEmail = "\nHello ${member.fullName.split(' ')[0]},\n" +
-                "\t";
+                "\t${borrow.bookInfo.book.name} book you borrowed has crossed the deadline. Your total fine as of today is ${fine.fineAmount}." +
+                "\n\tPlease return the book soon.\nRegards,\nThe DWIT Library";
 
         sendMail {
 
@@ -36,7 +40,5 @@ class FineController {
             subject "Library: Fine Overdue"
             text bodyOfEmail
         }
-
-        flash.message = "Email Sent to ${member.fullName}."
     }
 }

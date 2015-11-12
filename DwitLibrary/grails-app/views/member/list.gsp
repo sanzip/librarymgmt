@@ -5,7 +5,6 @@
     <meta name="layout" content="main_page">
     <g:set var="entityName" value="${message(code: 'member.label', default: 'Member')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
-    <script src="${resource(dir: 'js', file: 'jquery-2.1.4.min.js')}"> </script>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
     <g:javascript src="datatable-min.js"/>
 

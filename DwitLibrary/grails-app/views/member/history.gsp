@@ -33,7 +33,7 @@
                     <td>${item.key.bookInfo.book.name}</td>
                     <td>${item.key.bookInfo.book.author}</td>
                     <td>${item.key.borrowedDate.format("yyyy/MM/dd")}</td>
-                    <td>${item.key.returnedDate}</td>
+                    <td>${item.key.returnedDate ?: '-'}</td>
                     <td style = "color:red">${TimeStamp.findByBorrow((Borrow) item.key).deadline}</td>
                     <td>${item.value?item.value:0.0}</td>
                 </tr>

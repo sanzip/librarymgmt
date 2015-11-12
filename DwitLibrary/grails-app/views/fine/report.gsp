@@ -23,25 +23,23 @@
         $(function(){
             $("#loading").hide();
         });
-        function sendEmail(memberId, memberName){
+        function sendEmail(memberId, memberName, borrowId){
 
-            $('#loadingText').html('Send Email to ' + memberName);
+            $('#loadingText').html('Sending email to ' + memberName);
             $('#loading').show();
 
-            var data = "memberId=" + memberId;
+            var data = "memberId=" + memberId + "&borrowId=" + borrowId;
 
             jQuery.ajax({
                 type: 'post',
                 data: data,
                 url: '<g:createLink controller="fine" action="sendEmail" />',
                 success: function() {
-
-                  $("#loading").hide();
-                  showSuccessAlert();
                 },
                 error: function() {
 
                   $("#loading").hide();
+                  showSuccessAlert();
                 }
             });
         }
@@ -51,7 +49,7 @@
                 layout: 'topRight',
                 theme: 'relax',
                 type: 'success',
-                text: '${flash.message}',
+                text: 'Email Sent',
                 animation: {
                     open: {height: 'toggle'},
                     close: {height: 'toggle'},
@@ -61,7 +59,7 @@
                 timeout: 10000
             });
             n.animate();
-            }
+        }
     </g:javascript>
 </head>
 
@@ -74,9 +72,7 @@
                     <th>S.No</th>
                     <th>Student Name</th>
                     <th>Book Name</th>
-                    <th>Book Number</th>
                     <th>Borrowed Date</th>
-                    <th>Fine Days</th>
                     <th>Fine Amount</th>
                     <th>Email</th>
                 </tr>
@@ -87,11 +83,9 @@
                         <td>${i + 1}</td>
                         <td>${borrowWithFine.key.member.fullName}</td>
                         <td>${borrowWithFine.key.bookInfo.book.name}</td>
-                        <td>${borrowWithFine.key.bookInfo.bookNumber}</td>
                         <td>${borrowWithFine.key.borrowedDate.format("yyyy/MM/dd")}</td>
-                        <td>${borrowWithFine.value.days}</td>
                         <td>${borrowWithFine.value.fineAmount}</td>
-                        <td><button class="ui green basic button" style="text-align: center;" onclick="sendEmail(${borrowWithFine.key.member.id}, '${borrowWithFine.key.member.fullName}');">Email</button></td>
+                        <td><button class="ui green basic button" style="text-align: center;" onclick="sendEmail(${borrowWithFine.key.member.id}, '${borrowWithFine.key.member.fullName}', ${borrowWithFine.key.id});">Email</button></td>
                     </tr>
                 </g:each>
                 </tbody>

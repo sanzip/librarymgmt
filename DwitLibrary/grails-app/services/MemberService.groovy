@@ -11,7 +11,11 @@ class MemberService {
     def getHistory(Member member) {
 
 
-        def borrowedBooks = Borrow.findAllByMemberAndReturned(member, true);
+        def borrowedBooks = Borrow.createCriteria().list {
+
+            eq('member', member)
+            order('returned')
+        }
         def fines = Fine.findAllByBorrowInList(borrowedBooks);
 
         Map<Borrow, Double> history = new HashMap<>()
