@@ -35,10 +35,12 @@
     </div>
     --}%
 
+		
+
 	<div class="field">
 	<h3 class="ui dividing header">Total Quantity <span class="required-indicator">*</span> </h3>
 
-	<g:field name="totalQuantity" type="number" value="${bookInstance.totalQuantity}" required=""/>
+	<g:field name="totalQuantity" type="number" min="0" value="${bookInstance.totalQuantity}" required=""/>
 	</div>
         </div>
     <br>
