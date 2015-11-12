@@ -18,10 +18,8 @@ class MemberController {
         if (springSecurityService.loggedIn) {
             def role = springSecurityService.getAuthentication().authorities.toString()
             def currentUser = User.findById(springSecurityService.principal.id)
-            println("current user:"+currentUser)
-            println("=========="+role.substring(6,9))
+            session["userName"] = currentUser.username
             redirect(controller:'Member', action:'dashboard')
-
         }
         else {
             redirect(controller:'login', action:'index')

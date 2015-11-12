@@ -447,11 +447,14 @@
     <g:link controller="member" action="dashboard"> <img style="float: left; height: 80px;width: 80px" src="${resource(dir: 'img', file: 'deerwalk.png')}" alt="Logo" />
     <h1 style="color:white;float:left"><b>Library Management System</b></h1></g:link>
     <div style="float:right;color: white; font-style: oblique; font-size: 20px" class="item">
-        <form name="logout" method="POST" style="float: right;color: #E7746F" class="item" action="${createLink(controller:'logout') }">
-            <em>
-                <input type="submit" class="ui button" value="logout" style="color:#fff;background-color:rgba(255, 0, 0, 0.04)">
-            </em>
-        </form>
+        <sec:ifLoggedIn>
+            Welcome ${session["userName"]}
+            <form name="logout" method="POST" style="float: right;color: #E7746F" class="item" action="${createLink(controller:'logout') }">
+                <em>
+                    <input type="submit" class="ui button" value="logout" style="color:#fff;background-color:rgba(255, 0, 0, 0.04)">
+                </em>
+            </form>
+        </sec:ifLoggedIn>
     </div>
 </div>
 <br>
