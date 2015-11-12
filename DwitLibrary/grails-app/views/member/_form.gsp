@@ -14,7 +14,34 @@
                 return true;
             else
                 alert("Please enter alphabets")
-            return false;
+            $("#fullName").val('');
+            return false;    function onlyNumbers(e, t) {
+        try {
+            if (window.event) {
+                var intCode = window.event.keyCode;
+            }
+            else if (e) {
+                var intCode = e.which;
+            }
+            else { return true; }
+            if ((intCode >=48   && intCode <= 57)){
+                return true;
+            }
+
+            else{
+
+                alert("Please Enter Numeric Character");
+                $("#userId").val('');
+                return false;
+
+            }
+
+        }
+        catch (err) {
+            alert(err.Description);
+        }
+    }
+
         }
         catch (err) {
             alert(err.Description);
@@ -35,8 +62,38 @@
             }
 
             else{
-                alert("Please Enter Numeric Character")
+
+                alert("Please Enter Numeric Character");
+                $("#userId").val('');
                 return false;
+
+            }
+
+        }
+        catch (err) {
+            alert(err.Description);
+        }
+    }
+
+    function onlyContact(e, t) {
+        try {
+            if (window.event) {
+                var intCode = window.event.keyCode;
+            }
+            else if (e) {
+                var intCode = e.which;
+            }
+            else { return true; }
+            if ((intCode >=48   && intCode <= 57)){
+                return true;
+            }
+
+            else{
+
+                alert("Please Enter Numeric Character");
+                $("#contact").val('');
+                return false;
+
             }
 
         }
@@ -53,13 +110,13 @@
 
 <div class="field">
       <h3 class="ui dividing header">Full Name <span class="required-indicator">*</span> </h3>
-    <g:textField name="fullName" required="" onkeypress="return onlyAlphabets(event,this);" value="${memberInstance?.fullName}"/>
+    <g:textField name="fullName" id="fullName" required="" onkeypress="return onlyAlphabets(event,this);" value="${memberInstance?.fullName}"/>
 </div>
 <div class="field">
 
     <h3 class="ui dividing header">User Id <span class="required-indicator">*</span> </h3>
 
-    <g:textField name="userId" required="" onkeypress="return onlyNumbers(event,this);" value="${memberInstance?.userId}"/>
+    <g:textField name="userId" required="" id="userId" onkeypress="return onlyNumbers(event,this);" value="${memberInstance?.userId}"/>
 
 </div>
 </div>
@@ -99,7 +156,7 @@
 <div class="field">
     <h3 class="ui dividing header">Contact <span class="required-indicator">*</span> </h3>
 
-    <g:textField name="contact" onkeypress="return onlyNumbers(event,this);" value="${memberInstance?.contact}"/>
+    <g:textField name="contact" id="contact" onkeypress="return onlyContact(event,this);" value="${memberInstance?.contact}"/>
 </div>
 </div>
 %{--<div class="fieldcontain ${hasErrors(bean: memberInstance, field: 'status', 'error')} ">--}%
