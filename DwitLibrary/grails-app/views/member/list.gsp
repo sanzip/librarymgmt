@@ -87,20 +87,20 @@
 
                 <td>
                     <div class="ui buttons">
-                        <g:form url="[resource: memberInstance, action: 'delete']" method="DELETE">
-                            <g:link class="edit" action="edit" resource="${memberInstance}" style="color:#000000;">
-                                <button type="button" class="ui button">
-                                    <i class="edit icon"> </i>
-                                    <g:message code="default.button.edit.label" default="Edit"/>
-                                </button>
-                            </g:link>
-                            <div class="or"></div>
-
-                            <button type="submit" class="ui button" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">
-                                <i class="delete icon"> </i>
-                                <g:message code="default.button.delete.label" default="Delete"/>
+                        <g:link class="edit" action="edit" resource="${memberInstance}" style="color:#000000;">
+                            <button type="button" class="ui button">
+                                <i class="edit icon"> </i>
+                                <g:message code="default.button.edit.label" default="Edit"/>
                             </button>
-                        </g:form>
+                        </g:link>
+                        %{--TODO<g:form url="[resource: memberInstance, action: 'delete']" method="DELETE">--}%
+                            %{--<div class="or"></div>--}%
+
+                            %{--<button type="submit" class="ui button" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">--}%
+                                %{--<i class="delete icon"> </i>--}%
+                                %{--<g:message code="default.button.delete.label" default="Delete"/>--}%
+                            %{--</button>--}%
+                        %{--</g:form>--}%
                     </div>
                 </td>
            </tr>
