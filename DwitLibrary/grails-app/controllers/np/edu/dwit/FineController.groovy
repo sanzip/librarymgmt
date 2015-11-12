@@ -13,7 +13,7 @@ class FineController {
         def borrowsWithFine = fineService.report
 
         def messageType
-        if(borrowsWithFine.size() == 0) {
+        if(!borrowsWithFine) {
             flash.message = "There are no records to show"
             messageType = 'error'
         }
