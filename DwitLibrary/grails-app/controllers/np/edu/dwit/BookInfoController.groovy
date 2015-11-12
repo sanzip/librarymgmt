@@ -74,9 +74,9 @@ class BookInfoController {
 
         }
         redirect(controller: "bookInfo", action: "index", params: [id: params.book.id])
-      /*  bookInfoInstance.save flush:true*/
+        /*  bookInfoInstance.save flush:true*/
 
-      /*  redirect(controller: "bookInfo", action: "index", params: [id: params.book.id])*/
+        /*  redirect(controller: "bookInfo", action: "index", params: [id: params.book.id])*/
         /*request.withFormat {
             form {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'bookInfoInstance.label', default: 'BookInfo'), bookInfoInstance.id])
