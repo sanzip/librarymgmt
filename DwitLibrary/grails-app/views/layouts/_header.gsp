@@ -533,8 +533,6 @@
         </div>
     </form>
 </div>
-<br/>
-<br/>
 
 </body>
 </html>
