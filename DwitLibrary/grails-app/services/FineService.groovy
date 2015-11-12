@@ -67,7 +67,7 @@ class FineService {
 
         if(member.getAuthorities()[0].toString().equals("ROLE_LIBRARIAN")){
             if(borrow.bookInfo.bookType.equals("Borrowable")){
-                fine.days=50 - DWITLibraryConstants.COURSE_BOOK_BORROWABLE_LIBRARIAN
+                fine.days=tDays - DWITLibraryConstants.COURSE_BOOK_BORROWABLE_LIBRARIAN
                 if(fine.days>0){
                     fine.fineAmount=fine.days * DWITLibraryConstants.FINE_AMT_LIBRARIAN
                 }
