@@ -13,7 +13,7 @@
     .dataTables_filter {
         display: none;
     }
-    #wrapper1{
+    #wrapper{
         margin: 0px auto;
         width: 95%;
     }
@@ -43,7 +43,6 @@
                 }else{
                     $("#newbooktab").show();
                 }
-
                 <g:if test="${flash.message}">
                 var n = noty({
                     layout: 'topRight',
@@ -61,26 +60,22 @@
                 n.animate();
                 </g:if>
             })
-
-
         </script>
 	</head>
 
     <div id="wrapper">
+        <br>
         <div id="head">
             <div class="ui compact menu">
                 <div class="active item">
-
 				<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
                     </div>
                 <div class="active item" id="newbooktab">
 				    <g:link class="create" action="create" params="[id: params.id]"><g:message code="default.new.label" args="[entityName]" /></g:link>
-
                  </div>
             </div>
-
 		</div>
-        Book Number: <input type="text" name="bookNumber" id="bookNumber"/>
+    <br>
         <div class="ui label" style="text-align: center;margin: 0px auto;width:300px;display: table;background-color: #F7F7F7">
             <div class="ui input">
                 Number Of Book Info remaining to add:
@@ -96,6 +91,10 @@
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
 --}%
+            <div class="ui icon input" style="float: right">
+                <input type="text" name="bookNumber" id="bookNumber" placeholder="Book Number..."/>
+                <i class="inverted circular search link icon"></i>
+            </div>
     <table class="ui celled table" id="book_info_table">
 			<thead>
 					<tr>

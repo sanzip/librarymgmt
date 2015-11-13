@@ -7,7 +7,6 @@
     <title><g:message code="default.list.label" args="[entityName]"/></title>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
     <g:javascript src="datatable-min.js"/>
-    <link href="${resource(dir: 'css', file: 'styles.css')}" rel="stylesheet">
 
     <script>
         function setValue(){
@@ -137,9 +136,9 @@
         </g:each>
         </tbody>
     </table>
-    <div id="paginate">
-        <g:paginate total="${memberInstanceCount ?: 0}"/>
-    </div>
+    <div id="">
+    <g:paginate total="${memberInstanceCount ?: 0}"/>
+
     </div>
     </div>
 </body>

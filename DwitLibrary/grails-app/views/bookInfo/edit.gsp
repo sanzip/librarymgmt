@@ -33,7 +33,6 @@
         </div>
     </div>
     <br>
-
 		<div id="edit-bookInfo" class="content scaffold-edit" role="main">
             <h2 style="text-align: center;font-family:Open Sans Helvetica Neue Helvetica, Arial sans-serif">Edit Book Info</h2>
 			<g:if test="${flash.message}">
@@ -48,8 +47,8 @@
 			</g:hasErrors>
 			<g:form url="[resource:bookInfoInstance, action:'update']" method="PUT" >
 				<g:hiddenField name="version" value="${bookInfoInstance?.version}" />
-				<fieldset class="form">
-					<g:render template="form"/>
+				<fieldset class="form_edit">
+					<g:render template="form" />
                     <br>
                     <g:actionSubmit class="ui blue button" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                 </fieldset>

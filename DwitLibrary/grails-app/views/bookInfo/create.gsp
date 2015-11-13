@@ -45,10 +45,9 @@
 	</g:hasErrors>
 	<g:form url="[resource:bookInfoInstance, action:'save']" >
 		<fieldset class="form">
-			<g:render template="form"/>
+			<g:render template="form" model="[whichAction='create']" />
 			<br><br>
             <g:submitButton name="create" class="ui blue button" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-
 		</fieldset>
 
 	</g:form>
