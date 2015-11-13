@@ -15,14 +15,14 @@ class BookInfoController {
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
 
-        def book = np.edu.dwit.Book.findById(params.id)
+        def book = Book.findById(params.id)
 
-        def bookInfo = np.edu.dwit.BookInfo.findAllByBook(book)
+        def bookInfo = BookInfo.findAllByBook(book)
 
-        def bookCount = BookInfo.countByBook(book)
-        def remainingToAdd = book.totalQuantity-bookCount
-        println bookInfo.bookNumber
-        render view: 'index', model:[bookInfoInstanceList:bookInfo,bookInfoInstanceCount: bookInfo.size(),count:remainingToAdd>0 ? remainingToAdd:0]
+//        def bookCount = BookInfo.countByBook(book)
+//        def remainingToAdd = book.totalQuantity-bookCount
+//        println bookInfo.bookNumber
+        render view: 'index', model:[bookInfoInstanceList:bookInfo,bookInfoInstanceCount: bookInfo.size()/*,count:remainingToAdd>0 ? remainingToAdd:0*/]
 
     }
 
@@ -107,7 +107,6 @@ class BookInfoController {
 //                            break
 //                        }else if(bookcountbybook==bookInfoInstance.book.totalQuantity){
                 flash.message="New book info added"
-                redirect(controller: params.currentController, action: "create", params: [id: bookInfoInstance.book.id,messageType: 'success'])
 //                        }
 //                    }
 //                    else {
@@ -117,10 +116,12 @@ class BookInfoController {
 //                }
             }else{
                 flash.message="Book info with this book number is already added."
-                redirect(controller: params.currentController, action: "create", params: [id: bookInfoInstance.book.id,messageType: 'error'])
                 break
             }
+
         }
+        redirect(controller: params.currentController, action: "create", params: [id: bookInfoInstance.book.id,messageType: 'success'])
+
     }
 
     def edit(BookInfo bookInfoInstance) {
