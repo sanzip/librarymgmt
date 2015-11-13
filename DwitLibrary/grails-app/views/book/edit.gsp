@@ -14,7 +14,6 @@
             width:50%;
             background-color: rgba(53, 115, 163, 0.03);
             border-radius: 2px;
-            box-shadow:  10px 10px 5px ;
         }
         #head{
             text-align: center;
