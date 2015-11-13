@@ -16,6 +16,14 @@
             margin: 0px auto;
             width: 95%;
         }
+        #authorSearch{
+            text-align: center;
+            margin-top:-37px;
+            margin-left:180px;
+        }
+        #bookSearch{
+            text-align: left;
+        }
         #head{
             text-align: center;
         }
@@ -46,6 +54,7 @@
 	</head>
 
     <div id="wrapper">
+        <br>
         <div id="head">
             <div class="ui compact menu">
                 <div class="active item">
@@ -53,7 +62,6 @@
 		        </div>
                 <div class="active item">
                     <g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
-
                 </div>
                 </div>
             </div>
@@ -65,19 +73,28 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
+            <br><hr><br>
+
             <div style="text-align: center;">
-                <strong><span style="font-size: 18px;">Book Name:</span></strong>
+                <div id="bookSearch">
+                    <strong><span style="font-size: 18px;">Book Name:</span></strong>
                 <div class="ui icon input">
-                    <input type="text" placeholder="Search Books" id="bookName" name="bookName">
+                    <input type="text" placeholder="Search Books" id="bookName" name="bookName" style="width: 382px;">
                     <i class="inverted circular search link icon"></i>
                 </div>
-                &nbsp;&nbsp;&nbsp;<strong><span style="font-size: 18px;">Author Name:</span></strong>
+                    </div>
+                <div id="authorSearch">
+
+                    <strong><span style="font-size: 18px;">Author Name:</span></strong>
                 <div class="ui icon input">
                     <input type="text" placeholder="Search Author" id="authorName" name="authorName">
                     <i class="inverted circular search link icon"></i>
                 </div>
+                    </div>
             </div>
-			<table class="ui celled table" id="book_table">
+            <br><hr><br>
+
+            <table class="ui celled table" id="book_table">
 			<thead>
 					<tr>
 					

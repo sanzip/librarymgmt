@@ -31,6 +31,8 @@
 </div>
 
 <br><br>
+<h2 style="text-align: center;font-family:Open Sans Helvetica Neue Helvetica, Arial sans-serif">New Book Info</h2>
+
 <div id="create-bookInfo" class="content scaffold-create" role="main">
 	%{--<g:if test="${flash.message}">
 		<div class="message" role="status">${flash.message}</div>
@@ -46,12 +48,10 @@
 		<fieldset class="form">
 			<g:render template="form"/>
 			<br><br>
+            <g:submitButton name="create" class="ui blue button" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 
 		</fieldset>
-		<fieldset class="buttons">
-			<g:submitButton name="create" class="ui blue button" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 
-		</fieldset>
 	</g:form>
 </div>
 </body>

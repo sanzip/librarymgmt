@@ -21,9 +21,9 @@ $(function() {
     });
 
 function duplicateAdd(){
-$('#bookNumberInput').append('<input type="text" name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>');
+$('#bookNumberInput').append(' <br><input type="text" name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>');
         $('#bookNumberInput .addbutton').remove();
-		$('#bookNumberInput').append('<button type="button" class = "addbutton" onclick="duplicateAdd();">Add</button>');
+		$('#bookNumberInput').append('<br>  <button type="button" class = "ui teal button" onclick="duplicateAdd();">Add</button>');
 	}
 
       function onlyNumbers(e, t) {
@@ -114,43 +114,13 @@ $('#bookNumberInput').append('<input type="text" name="bookNumber" required="" v
 
 <div class="ui form" id="bookInfoForm" style="margin: 0px auto;width:90%;">
     <br>
-    <h2 style="text-align: center;font-family:Open Sans Helvetica Neue Helvetica, Arial sans-serif">New Book Info</h2>
-    <div class="three fields">
+    <div class="two fields">
         <div class="field">
             <h3 class="ui dividing header">Book <span class="required-indicator">*</span> </h3>
-
-
-            <div class="fieldcontain ${hasErrors(bean: bookInfoInstance, field: 'book', 'error')} required">
-                <label for="book">
-                    <g:message code="bookInfo.book.label" default="Book" />
-                    <span class="required-indicator">*</span>
-                </label>
-
                 <g:textField id="book" name="book.id" readonly="" required="" value="${params.id}" class="many-to-one"/>
             </div>
-        </div>
-        <div class="field">
-            <h3 class="ui dividing header">Book Number <span class="required-indicator">*</span> </h3>
-
-            <div class="fieldcontain ${hasErrors(bean: bookInfoInstance, field: 'bookNumber', 'error')} required">
-                <label for="bookNumber">
-                    <g:message code="bookInfo.bookNumber.label" default="Book Number" />
-                    <span class="required-indicator">*</span>
-
-                </label>
-                %{--	<g:textField name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>--}%
-                <div id="bookNumberInput" >
-
-                    <input type="text" name="bookNumber" required="" onkeypress="return onlyNumbers(event,this)" value="${bookInfoInstance?.bookNumber}" autocomplete="off"/>
-                    <button type="button" class = "addbutton" onclick="duplicateAdd();">Add</button>
-
-
-                </div>
-            </div>
-
             <div class="field">
                 <h3 class="ui dividing header">Published Year <span class="required-indicator">*</span> </h3>
-
                 <g:textField name="publishedYear" id="publishedYear" onblur="yearValidation(this.value,event)" onkeypress="yearValidation(this.value,event)" required="" value="${bookInfoInstance?.publishedYear}"/>
             </div>
         </div>
@@ -185,11 +155,23 @@ $('#bookNumberInput').append('<input type="text" name="bookNumber" required="" v
                 <g:textField name="source" required="" value="${bookInfoInstance?.source}"/>
             </div>
         </div>
-
+<div class="two fields">
+    <div class="field">
         <div class="fieldcontain ${hasErrors(bean: bookInfoInstance, field: 'bookType', 'error')} required">
             <h3 class="ui dividing header">Book Type <span class="required-indicator">*</span> </h3>
             <g:select name="bookType" from="${bookInfoInstance.constraints.bookType.inList}" required="" value="${bookInfoInstance?.bookType}" valueMessagePrefix="bookInfo.bookType"/>
         </div>
+        </div>
 
+    <div class="field">
+        <h3 class="ui dividing header">Book Number <span class="required-indicator">*</span> </h3>
+
+            %{--	<g:textField name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>--}%
+            <div id="bookNumberInput" >
+                <input type="text" name="bookNumber" required="" onkeypress="return onlyNumbers(event,this)" value="${bookInfoInstance?.bookNumber}" autocomplete="off"/>
+        <br>
+                <button type="button" class = "ui teal button" onclick="duplicateAdd();">Add</button>
+            </div>
     </div>
 </div>
+    </div>

@@ -4,7 +4,6 @@
 
 <div class="ui form" style="margin: 0px auto;width:90%;">
     <br>
-	<h2 style="text-align: center;font-family:Open Sans Helvetica Neue Helvetica, Arial sans-serif">Create Book</h2>
     <div class="two fields">
 	<div class="field">
 		<h3 class="ui dividing header">Name <span class="required-indicator">*</span> </h3>

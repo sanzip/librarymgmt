@@ -105,7 +105,6 @@
 </script>
 <div class="ui form" style="margin: 0px auto;width:90%;">
 <br>
-    <h2 style="text-align: center;font-family: "Open Sans", "Helvetica Neue', Helvetica, Arial, sans-serif'>Create Member</h2>
 <div class="two fields">
 
 <div class="field">

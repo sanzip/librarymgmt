@@ -47,7 +47,7 @@
         <div id="bookSearch">
             <strong><span style="font-size: 18px;">Book Name:</span></strong>
             <div class="ui icon input">
-                <input type="text" placeholder="Search Books" id="bookName" name="bookName">
+                <input type="text" placeholder="Search Books" id="bookName" name="bookName" style="width: 382px;">
                 <i class="inverted circular search link icon"></i>
             </div>
         </div>

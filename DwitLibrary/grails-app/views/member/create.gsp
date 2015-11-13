@@ -41,6 +41,7 @@
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
+    <h2 style="text-align: center;font-family: "Open Sans", "Helvetica Neue', Helvetica, Arial, sans-serif'>Create Member</h2>
     <g:hasErrors bean="${memberInstance}">
         <ul class="errors" role="alert">
             <g:eachError bean="${memberInstance}" var="error">
