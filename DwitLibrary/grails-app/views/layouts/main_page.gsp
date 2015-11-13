@@ -23,14 +23,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="${resource(dir: 'semantic/dist', file: 'semantic.min.css')}" rel="stylesheet">
     <link href="${resource(dir: 'css/assets/css', file: 'style.css')}" rel="stylesheet">
+    <link href="${resource(dir: 'css', file: 'jquery-ui.min.css')}" rel="stylesheet">
     <script src="${resource(dir: 'semantic/dist', file: 'jquery-2.1.4.min.js')}"></script>
     <script src="${resource(dir: 'js', file: 'typeahead.js')}"></script>
     <script src="${resource(dir: 'js', file: 'custom.js')}"></script>
+    <script src="${resource(dir: 'js', file: 'jquery-ui.min.js')}"></script>
     <script src="${resource(dir: 'semantic/dist/components', file: 'modal.js')}"></script>
     <script src="${resource(dir: 'semantic/dist/components', file: 'modal.min.js')}"></script>
     <link href="${resource(dir: 'semantic/dist/components', file: 'modal.css')}" rel="stylesheet">
     <link href="${resource(dir: 'semantic/dist/components', file: 'modal.min.css')}" rel="stylesheet">
     <script src="${resource(dir: 'js/noty/packaged', file: 'jquery.noty.packaged.min.js')}"></script>
+    <script src="${resource(dir: 'js', file: 'jquery.sessionTimeout.js')}"></script>
     <link href="${resource(dir: 'css',file: 'styles.css')}" rel="stylesheet">
 
     <g:layoutHead/>
@@ -63,6 +66,11 @@
             line-height: 20px;
         }
     </style>
+    <g:javascript>
+        $(function(){
+            $.sessionTimeout();
+        });
+    </g:javascript>
 </head>
 <body>
     <div id="wrapper">
