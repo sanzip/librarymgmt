@@ -42,6 +42,7 @@
 
 <div id="wrapper">
     <div id="head">
+        <br>
 <div class="ui compact menu">
     <div class="active item">
         <a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
@@ -60,7 +61,11 @@
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-    User Name: <g:textField name="userName" id="userName"/>
+    <div class="ui icon input" style="float: right">
+        <g:textField name="userName" id="userName" placeholder="Search Username..."/>
+        <i class="inverted circular search link icon"></i>
+    </div>
+    <br>
     <table class="ui celled table" id="user_table">
         <thead>
         <tr>
