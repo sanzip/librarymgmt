@@ -51,6 +51,7 @@ class BookController {
             return
         }
 
+        bookInstance.totalQuantity=0
         bookInstance.availableQuantity=bookInstance.totalQuantity
         bookInstance.save flush: true
 

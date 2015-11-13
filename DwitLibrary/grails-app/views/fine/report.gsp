@@ -14,10 +14,10 @@
         .dataTables_filter {
             display: none;
         }
-        /* #wrapper{
+       #wrapper{
              margin: 0px auto;
              width: 95%;
-         }*/
+         }
     </style>
     <g:javascript>
         $(function(){
@@ -66,6 +66,7 @@
 <body>
     <div id="wrapper">
         <div id="ajaxed_div">
+            <br><br>
             <table id="first_table" class="ui sortable celled table" cellspacing="0" width="100% margin: 0px">
                 <thead>
                 <tr>

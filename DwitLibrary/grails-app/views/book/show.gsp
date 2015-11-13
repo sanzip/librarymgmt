@@ -3,87 +3,77 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="main_page">
 		<g:set var="entityName" value="${message(code: 'book.label', default: 'Book')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
+        <style>
+        form{
+            text-align: left !important;
+        }
+        fieldset{
+            margin:0px auto;
+            width:19%;
+            background-color: rgba(53, 115, 163, 0.03);
+            border-radius: 2px;
+        }
+        #head{
+            text-align: center;
+        }
+        #wrapper{
+            text-align: center;
+        }
+        </style>
 	</head>
 	<body>
-		<a href="#show-book" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
+    <div id="head">
+        <div class="ui compact menu" style="margin: 13px;">
+            <div class="active item">
+                <g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
+            </div>
+            <div class="active item">
+                <g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper">
+
 		<div id="show-book" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<ol class="property-list book">
-			
-				<g:if test="${bookInstance?.name}">
-				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="book.name.label" default="Name" /></span>
-					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${bookInstance}" field="name"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${bookInstance?.author}">
-				<li class="fieldcontain">
-					<span id="author-label" class="property-label"><g:message code="book.author.label" default="Author" /></span>
-					
-						<span class="property-value" aria-labelledby="author-label"><g:fieldValue bean="${bookInstance}" field="author"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${bookInstance?.publication}">
-				<li class="fieldcontain">
-					<span id="publication-label" class="property-label"><g:message code="book.publication.label" default="Publication" /></span>
-					
-						<span class="property-value" aria-labelledby="publication-label"><g:fieldValue bean="${bookInstance}" field="publication"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${bookInstance?.availableQuantity}">
-				<li class="fieldcontain">
-					<span id="availableQuantity-label" class="property-label"><g:message code="book.availableQuantity.label" default="Available Quantity" /></span>
-					
-						<span class="property-value" aria-labelledby="availableQuantity-label"><g:fieldValue bean="${bookInstance}" field="availableQuantity"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${bookInstance?.totalQuantity}">
-				<li class="fieldcontain">
-					<span id="totalQuantity-label" class="property-label"><g:message code="book.totalQuantity.label" default="Total Quantity" /></span>
-					
-						<span class="property-value" aria-labelledby="totalQuantity-label"><g:fieldValue bean="${bookInstance}" field="totalQuantity"/></span>
-					
-				</li>
-				</g:if>
-			
-				%{--<g:if test="${bookInstance?.bookType}">
-				<li class="fieldcontain">
-					<span id="bookType-label" class="property-label"><g:message code="book.bookType.label" default="Book Type" /></span>
-					
-						<span class="property-value" aria-labelledby="bookType-label"><g:fieldValue bean="${bookInstance}" field="bookType"/></span>
-					
-				</li>
-				</g:if>--}%
-			
-			</ol>
-			<g:form url="[resource:bookInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${bookInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
+            <div class="ui one column grid" style="margin: 0px auto;text-align: center;background-color: #F7F7F7;width:32%;">
+                <div class="column">
+                    <div class="ui raised segment" style="text-align: left">
+                        <a class="ui blue ribbon label"> Name </a>
+                        <span>:  <g:fieldValue bean="${bookInstance}" field="name"/></span>
+                        <p></p>
+
+                        <a class="ui blue ribbon label">Author</a>
+                        <span>:  <g:fieldValue bean="${bookInstance}" field="author"/></span>
+                        <p></p>
+
+                        <a class="ui blue ribbon label"> Available Quantity </a>
+                        <span>: <g:fieldValue bean="${bookInstance}" field="availableQuantity"/></span>
+                        <p></p>
+
+                        <a class="ui blue ribbon label">Total Quantity</a>
+                        <span>: <g:fieldValue bean="${bookInstance}" field="totalQuantity"/></span>
+                        <p></p>
+
+                        <a class="ui blue ribbon label">Publication</a>
+                        <span>: <g:fieldValue bean="${bookInstance}" field="publication"/></span>
+                        <p></p>
+                    </div>
+                </div>
+                <g:form url="[resource:bookInfoInstance, action:'delete']" method="DELETE">
+                    <fieldset class="buttons">
+                        <g:link class="ui green button" action="edit" resource="${bookInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                    </fieldset>
+                </g:form>
+            </div>
+
 		</div>
+        </div>
 	</body>
 </html>

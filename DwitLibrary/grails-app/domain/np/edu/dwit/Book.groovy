@@ -13,7 +13,7 @@ class Book {
         publication blank: false, nullable: false
 
         availableQuantity nullable: true
-        totalQuantity nullable: false
+        totalQuantity nullable: true
     }
     static mapping = {
         version false

@@ -29,7 +29,6 @@
 <g:javascript>
 
 
-
 $(function() {
                 <g:if test="${flash.message}">
     var n = noty({
@@ -204,12 +203,15 @@ $('#bookNumberInput').append(' <br><input type="text" name="bookNumber" required
             <div id="bookNumberInput" >
                 <input type="text" name="bookNumber" required="" onkeypress="return onlyNumbers(event,this)" value="${bookInfoInstance?.bookNumber}" autocomplete="off"/>
                  <div id="TextBoxContainer">
-
-        </div>
-        <br>
-                <button type="button" class= "ui teal button" id="bookNumberButton" onclick="AddTextBox();">Add</button>
             </div>
+        <br>
+        <g:if  test="${whichAction =='create'}">
+            <button type="button" class= "ui teal button" id="bookNumberButton" onclick="AddTextBox();">Add</button>
+        </g:if>
+        <g:else>
+         </g:else>
+          </div>
     </div>
 
 </div>
-    </div>
+</div>

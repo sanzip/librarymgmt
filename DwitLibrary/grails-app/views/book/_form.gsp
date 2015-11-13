@@ -23,24 +23,11 @@
 
 		<g:textField name="publication" required="" value="${bookInstance?.publication}"/>
 	</div>
+	%{--<div class="field">--}%
+	%{--<h3 class="ui dividing header">Total Quantity <span class="required-indicator">*</span> </h3>--}%
 
-	%{--
-    <div class="fieldcontain ${hasErrors(bean: bookInstance, field: 'availableQuantity', 'error')} required">
-        <label for="availableQuantity">
-            <g:message code="book.availableQuantity.label" default="Available Quantity" />
-            <span class="required-indicator">*</span>
-        </label>
-        <g:field name="availableQuantity" type="number" value="${bookInstance.availableQuantity}" required=""/>
-    </div>
-    --}%
-
-		
-
-	<div class="field">
-	<h3 class="ui dividing header">Total Quantity <span class="required-indicator">*</span> </h3>
-
-	<g:field name="totalQuantity" type="number" min="0" value="${bookInstance.totalQuantity}" required=""/>
-	</div>
+	%{--<g:field name="totalQuantity" type="number" min="0" value="${bookInstance.totalQuantity}" required=""/>--}%
+	%{--</div>--}%
         </div>
     <br>
 </div>

@@ -54,7 +54,6 @@
 	</head>
 
     <div id="wrapper">
-        <br>
         <div id="head">
             <div class="ui compact menu">
                 <div class="active item">
