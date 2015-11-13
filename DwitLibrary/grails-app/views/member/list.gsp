@@ -12,11 +12,11 @@
         function setValue(){
             $("#userName").val('');
         }
+        var table = $('#user_table').dataTable({
+            bPaginate: false
+        });
         $(document).ready(function(){
             setValue();
-            var table = $('#user_table').DataTable({
-                bPaginate: false
-            });
 
             $('#userName').on( 'keyup', function () {
                 table
