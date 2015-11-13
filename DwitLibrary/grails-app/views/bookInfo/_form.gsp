@@ -1,9 +1,27 @@
 <%@ page import="np.edu.dwit.BookInfo" %>
 
 <g:javascript>
+$(function() {
+                <g:if test="${flash.message}">
+    var n = noty({
+        layout: 'topRight',
+        theme: 'relax',
+        type: '${params.messageType}',
+                    text: '${flash.message}',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing', // easing
+                        speed: 500
+                    },
+                    timeout: 10000
+                });
+                n.animate();
+</g:if>
+    });
 
-	function duplicateAdd(){
-        $('#bookNumberInput').append('<input type="text" name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>');
+function duplicateAdd(){
+$('#bookNumberInput').append('<input type="text" name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>');
         $('#bookNumberInput .addbutton').remove();
 		$('#bookNumberInput').append('<button type="button" class = "addbutton" onclick="duplicateAdd();">Add</button>');
 	}
@@ -123,7 +141,7 @@
                 %{--	<g:textField name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>--}%
                 <div id="bookNumberInput" >
 
-                    <input type="text" name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>
+                    <input type="text" name="bookNumber" required="" onkeypress="return onlyNumbers(event,this)" value="${bookInfoInstance?.bookNumber}" autocomplete="off"/>
                     <button type="button" class = "addbutton" onclick="duplicateAdd();">Add</button>
 
 

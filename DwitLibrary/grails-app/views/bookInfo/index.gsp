@@ -8,6 +8,7 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
     <g:javascript src="datatable-min.js"/>
+
     <style>
     .dataTables_filter {
         display: none;
@@ -21,6 +22,7 @@
         }
         </style>
         <script>
+
             function setValue(){
                 $("#bookNumber").val('');
             }
@@ -34,7 +36,33 @@
                             .search( this.value )
                             .draw();
                 } );
+
+                var value = $("#allowed").val();
+                if(value==="0") {
+                    $("#newbooktab").hide();
+                }else{
+                    $("#newbooktab").show();
+                }
+
+                <g:if test="${flash.message}">
+                var n = noty({
+                    layout: 'topRight',
+                    theme: 'relax',
+                    type: '${params.messageType}',
+                    text: '${flash.message}',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing', // easing
+                        speed: 500
+                    },
+                    timeout: 10000
+                });
+                n.animate();
+                </g:if>
             })
+
+
         </script>
 	</head>
 
@@ -45,7 +73,7 @@
 
 				<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
                     </div>
-                <div class="active item">
+                <div class="active item" id="newbooktab">
 				    <g:link class="create" action="create" params="[id: params.id]"><g:message code="default.new.label" args="[entityName]" /></g:link>
 
                  </div>
@@ -53,15 +81,21 @@
 
 		</div>
         Book Number: <input type="text" name="bookNumber" id="bookNumber"/>
+        <div class="ui label" style="text-align: center;margin: 0px auto;width:300px;display: table;background-color: #F7F7F7">
+            <div class="ui input">
+                Number Of Book Info remaining to add:
+                <input style="text-align: center;width:20%" type="text" name="allowed" id="allowed" value="${count}" disabled="">
+            </div>
+        </div>
 
         <br><br>
 		<div id="list-bookInfo" class="content scaffold-list" role="main">
             <h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]" /></h1>
 
-            <g:if test="${flash.message}">
+            %{--<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-
+--}%
     <table class="ui celled table" id="book_info_table">
 			<thead>
 					<tr>
