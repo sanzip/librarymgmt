@@ -70,18 +70,18 @@
                 <div class="active item">
 				<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
                     </div>
-                <div class="active item" id="newbooktab">
+                <div class="active item" id="newbook">
 				    <g:link class="create" action="create" params="[id: params.id]"><g:message code="default.new.label" args="[entityName]" /></g:link>
                  </div>
             </div>
 		</div>
     <br>
-        <div class="ui label" style="text-align: center;margin: 0px auto;width:300px;display: table;background-color: #F7F7F7">
-            <div class="ui input">
-                Number Of Book Info remaining to add:
-                <input style="text-align: center;width:20%" type="text" name="allowed" id="allowed" value="${count}" disabled="">
-            </div>
-        </div>
+        %{--<div class="ui label" style="text-align: center;margin: 0px auto;width:300px;display: table;background-color: #F7F7F7">--}%
+            %{--<div class="ui input">--}%
+                %{--Number Of Book Info remaining to add:--}%
+                %{--<input style="text-align: center;width:20%" type="text" name="allowed" id="allowed" value="${count}" disabled="">--}%
+            %{--</div>--}%
+        %{--</div>--}%
 
         <br><br>
 		<div id="list-bookInfo" class="content scaffold-list" role="main">
