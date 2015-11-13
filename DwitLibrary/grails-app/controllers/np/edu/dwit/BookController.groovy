@@ -19,6 +19,7 @@ class BookController {
 
     def bookService
     def fineService
+    def springSecurityService
     def report() {
 
         def booksWithBorrowCount = bookService.booksWithBorrowCount
@@ -244,8 +245,9 @@ class BookController {
     @Transactional
     def saveIssue() {
         def borrowingUser = Member.findByFullName(params.fullName)
-        def borrowingBook = BookInfo.findByBookNumber(params.bookNumber)
-
+        def bookInfo = BookInfo.findByBookNumber(params.bookNumber)
+        def borrowingBook = bookInfo.book
+        def issueSaved = false
         if(!borrowingBook && !borrowingUser) {
             flash.message = "Book number and username doesnot exist."
             redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
@@ -261,7 +263,7 @@ class BookController {
             redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
         }
 
-        else if(borrowingBook.bookType.equalsIgnoreCase("Reference")||borrowingBook.bookType.equalsIgnoreCase("Gifted")) {
+        else if(bookInfo.bookType.equalsIgnoreCase("Reference")||bookInfo.bookType.equalsIgnoreCase("Gifted")) {
             flash.message = "Reference or gifted book cannot be borrowed"
             redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
         }
@@ -278,15 +280,14 @@ class BookController {
 
                 def role = borrowingUser.getAuthorities()[0].toString();
 
-                def bookInfo = borrowingBook
-                def isAlreadyBorrowed = Borrow.findByBookInfoAndReturned(bookInfo,false)
+                def isAlreadyBorrowed = Borrow.findByBookInfoInListAndReturned(BookInfo.findAllByBook(borrowingBook),false)
 
+                Borrow borrow = new Borrow();
 
                 if(borrowCount>0){
                     //to not let already issued book,again reissuing mistakely,
                     // 261 already issued, so not letting it to reissue
                     if(isAlreadyBorrowed?.returned || isAlreadyBorrowed == null){
-                        Borrow borrow = new Borrow();
                         borrow.bookInfo = bookInfo
                         borrow.borrowedDate=new Timestamp(new Date().getTime())
                         borrow.returned=false
@@ -301,7 +302,9 @@ class BookController {
 
                                 bookInfo.book.availableQuantity-=1
                                 bookInfo.save(flush: true)
-                                saveTimestamp(borrowingBook,borrowingUser)
+                                saveTimestamp(bookInfo,borrowingUser)
+
+                                issueSaved = true
 
                                 flash.message = "Book Issued"
                                 redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
@@ -314,7 +317,9 @@ class BookController {
                                 borrow.save(flush: true)
                                 bookInfo.book.availableQuantity-=1
                                 bookInfo.save(flush: true)
-                                saveTimestamp(borrowingBook,borrowingUser)
+                                saveTimestamp(bookInfo,borrowingUser)
+
+                                issueSaved = true
 
                                 flash.message = "Book Issued"
                                 redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
@@ -329,7 +334,9 @@ class BookController {
                                 borrow.save(flush: true)
                                 bookInfo.book.availableQuantity-=1
                                 bookInfo.save(flush: true)
-                                saveTimestamp(borrowingBook,borrowingUser)
+                                saveTimestamp(bookInfo,borrowingUser)
+
+                                issueSaved = true
 
                                 flash.message = "Book Issued"
                                 redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
@@ -342,7 +349,9 @@ class BookController {
                                 borrow.save(flush: true)
                                 bookInfo.book.availableQuantity-=1
                                 bookInfo.save(flush: true)
-                                saveTimestamp(borrowingBook,borrowingUser)
+                                saveTimestamp(bookInfo,borrowingUser)
+
+                                issueSaved = true
 
                                 flash.message = "Book Issued"
                                 redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
@@ -356,7 +365,6 @@ class BookController {
                 }else{
                     //if member had not borrowed book yet it will come here
                     if(isAlreadyBorrowed?.returned || isAlreadyBorrowed == null){
-                        Borrow borrow = new Borrow();
                         borrow.bookInfo = bookInfo
                         borrow.borrowedDate=new Timestamp(new Date().getTime())
                         borrow.returned=false
@@ -366,7 +374,9 @@ class BookController {
                         bookInfo.book.availableQuantity-=1
                         bookInfo.save(flush: true)
 
-                        saveTimestamp(borrowingBook,borrowingUser)
+                        saveTimestamp(bookInfo,borrowingUser)
+
+                        issueSaved = true
 
                         flash.message = "Book Issued"
                         redirect(controller: params.currentController, action: params.currentAction, params: [messageType: 'success'])
@@ -376,6 +386,16 @@ class BookController {
                     }
 
 
+                }
+                if(issueSaved){
+
+                    //Saving log
+                    Log log = new Log()
+                    log.by = springSecurityService.currentUser
+                    log.borrow = borrow
+                    log.to = borrow.member
+                    log.actionType = DWITLibraryConstants.ACTION_TYPE_ISSUE
+                    log.save(failOnError: true)
                 }
             }
         }
@@ -531,6 +551,14 @@ class BookController {
                     fine.member=borrowingUser
 
                     fine.save(flush: true, failOnError: true)
+
+                    //Saving log
+                    Log log = new Log()
+                    log.by = borrow.member
+                    log.borrow = borrow
+                    log.to = springSecurityService.currentUser
+                    log.actionType = DWITLibraryConstants.ACTION_TYPE_RETURN
+                    log.save(failOnError: true)
 
                     flash.message = "Book Successfully returned"
 
