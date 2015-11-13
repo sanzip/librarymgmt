@@ -17,7 +17,7 @@
     .dataTables_filter {
         display: none;
     }
-    #wrapper{
+    #wrappers{
         margin: 0px auto;
         width: 95%;
     }
@@ -26,7 +26,6 @@
 </head>
 
 <body>
-<div id="wrapper">
     <br>
 
     %{--<g:if test="${flash.message}">--}%
@@ -49,6 +48,7 @@
             %{--</div>--}%
         %{--</div>--}%
     %{--</g:if>--}%
+<div id="wrappers">
 
     <div id="ajaxed_div">
         <table id="first_table" class="ui sortable celled table" cellspacing="0" width="100% margin: 0px">

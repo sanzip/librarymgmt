@@ -13,7 +13,7 @@
     .dataTables_filter {
         display: none;
     }
-    #wrapper{
+    #wrappers{
         margin: 0px auto;
         width: 95%;
     }
@@ -63,7 +63,7 @@
         </script>
 	</head>
 
-    <div id="wrapper">
+    <div id="wrappers">
         <br>
         <div id="head">
             <div class="ui compact menu">
@@ -83,7 +83,7 @@
             </div>
         </div>
 
-        <br><br>
+        <br>
 		<div id="list-bookInfo" class="content scaffold-list" role="main">
             <h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]" /></h1>
 
