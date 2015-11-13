@@ -12,7 +12,7 @@
         .dataTables_filter {
             display: none;
         }
-        #wrapper{
+        #wrappers{
             margin: 0px auto;
             width: 95%;
         }
@@ -53,7 +53,8 @@
     </script>
 	</head>
 
-    <div id="wrapper">
+    <div id="wrappers">
+        <br>
         <div id="head">
             <div class="ui compact menu">
                 <div class="active item">
@@ -67,7 +68,6 @@
 		<div id="list-book" class="content scaffold-list" role="main">
 
             <br>
-            <h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]" /></h1>
 
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
@@ -91,7 +91,9 @@
                 </div>
                     </div>
             </div>
+
             <br><hr><br>
+            <h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]" /></h1>
 
             <table class="ui celled table" id="book_table">
 			<thead>

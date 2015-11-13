@@ -30,7 +30,7 @@
     .dataTables_filter {
         display: none;
     }
-    #wrapper{
+    #wrappers{
         margin: 0px auto;
         width: 95%;
     }
@@ -40,7 +40,7 @@
         </style>
 </head>
 
-<div id="wrapper">
+<div id="wrappers">
     <div id="head">
         <br>
 <div class="ui compact menu">
