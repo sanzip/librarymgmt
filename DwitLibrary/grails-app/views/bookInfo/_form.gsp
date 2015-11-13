@@ -1,6 +1,35 @@
 <%@ page import="np.edu.dwit.BookInfo" %>
+<script type="text/javascript">
+    function GetDynamicTextBox(value){
+        return '<input name = "bookNumber" type="text" value = "${bookInfoInstance?.bookNumber}" />' + '<br>' +
+                '<button type="button" class="ui red button" onclick = "RemoveTextBox(this)"> Delete </button>'
+    }
+    function AddTextBox() {
+        var div = document.createElement('div');
+        div.innerHTML = GetDynamicTextBox("");
+        document.getElementById("TextBoxContainer").appendChild(div);
+    }
 
+    function RemoveTextBox(div) {
+        document.getElementById("TextBoxContainer").removeChild(div.parentNode);
+    }
+
+    function RecreateDynamicTextboxes() {
+        var values = eval('<%=Values%>');
+        if (values != null) {
+            var html = "";
+            for (var i = 0; i < values.length; i++) {
+                html += "<div>" + GetDynamicTextBox(values[i]) + "</div>";
+            }
+            document.getElementById("TextBoxContainer").innerHTML = html;
+        }
+    }
+    window.onload = RecreateDynamicTextboxes;
+</script>
 <g:javascript>
+
+
+
 $(function() {
                 <g:if test="${flash.message}">
     var n = noty({
@@ -20,11 +49,16 @@ $(function() {
 </g:if>
     });
 
+%{--function deleteField(){
+$('#bookNumberInput').remove();
+}
+
 function duplicateAdd(){
 $('#bookNumberInput').append(' <br><input type="text" name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>');
-        $('#bookNumberInput .addbutton').remove();
-		$('#bookNumberInput').append('<br>  <button type="button" class = "ui teal button" onclick="duplicateAdd();">Add</button>');
-	}
+        $('#bookNumberButton').remove();
+		$('#bookNumberInput').append('<br>  <button type="button" class = "ui teal button" onclick="duplicateAdd();">Add</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+		 '<button type="button" class = "ui red button" onclick="deleteField();">Delete</button><br>');
+	}--}%
 
       function onlyNumbers(e, t) {
             try {
@@ -169,9 +203,13 @@ $('#bookNumberInput').append(' <br><input type="text" name="bookNumber" required
             %{--	<g:textField name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>--}%
             <div id="bookNumberInput" >
                 <input type="text" name="bookNumber" required="" onkeypress="return onlyNumbers(event,this)" value="${bookInfoInstance?.bookNumber}" autocomplete="off"/>
+                 <div id="TextBoxContainer">
+
+        </div>
         <br>
-                <button type="button" class = "ui teal button" onclick="duplicateAdd();">Add</button>
+                <button type="button" class= "ui teal button" id="bookNumberButton" onclick="AddTextBox();">Add</button>
             </div>
     </div>
+
 </div>
     </div>

@@ -30,8 +30,9 @@
     <script src="${resource(dir: 'semantic/dist/components', file: 'modal.min.js')}"></script>
     <link href="${resource(dir: 'semantic/dist/components', file: 'modal.css')}" rel="stylesheet">
     <link href="${resource(dir: 'semantic/dist/components', file: 'modal.min.css')}" rel="stylesheet">
-
     <script src="${resource(dir: 'js/noty/packaged', file: 'jquery.noty.packaged.min.js')}"></script>
+    <link href="${resource(dir: 'css',file: 'styles.css')}" rel="stylesheet">
+
     <g:layoutHead/>
     <g:javascript library="application"/>
     <r:layoutResources />
