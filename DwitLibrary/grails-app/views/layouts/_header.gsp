@@ -601,19 +601,20 @@
                 </div>
             </div>
             <div class="ui simple dropdown link item">
+                <i class="circle icon"></i> Log <i class="dropdown icon"></i>
+                <div class="menu">
+                    <g:link controller="log" action="viewIssues" class="item"> <i class="circle thin icon "></i>   View Issues  </g:link>
+                    <g:link controller="log" action="viewReturns" class="item"> <i class="circle thin icon"></i>  View Returns  </g:link>
+                </div>
+            </div>
+            <div class="ui simple dropdown link item">
                 <i class="configure icon"></i> Configure <i class="dropdown icon"></i>
                 <div class="menu">
                     <g:link controller="member" action="list" class="item"> <i class="user icon"></i>   User  </g:link>
                     <g:link controller="book" action="index" class="item"> <i class="book icon"></i>  Book  </g:link>
                 </div>
             </div>
-            <div class="ui simple dropdown link item">
-                <i class="configure icon"></i> Log <i class="dropdown icon"></i>
-                <div class="menu">
-                    <g:link controller="log" action="viewIssues" class="item"> <i class="browser icon"></i>   View Issues  </g:link>
-                    <g:link controller="log" action="viewReturns" class="item"> <i class="browser icon"></i>  View Returns  </g:link>
-                </div>
-            </div>
+
         </sec:ifAllGranted>
     </div>
 </div>
