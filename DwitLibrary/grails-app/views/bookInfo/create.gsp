@@ -26,6 +26,9 @@
 			<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
 
 		</div>
+        <div class="active item">
+            <g:link class="list" controller="book" action="index">Book List</g:link>
+        </div>
 	</div>
 </div>
 
