@@ -57,7 +57,7 @@
     jQuery.sessionTimeout = function( options ) {
         var defaults = {
             message      : 'Your session is about to expire in 10 minutes. Do you want to refresh your session?',
-            keepAliveUrl : '/DwitLibrary/logout/ajaxKeepAlive',//'/Annapurna/logout/ajaxKeepAlive'
+            keepAliveUrl : '/DwitLibrary/logout/ajaxKeepAlive',
             logOutUrl : '/DwitLibrary/logout/index',
             firstWarnAfter    :1200000, // 20 minutes   1200000 to test use 3000
             secondWarnAfter   : 300000,//300000, // 5 minutes
@@ -130,11 +130,7 @@
                 case 'start4':
                     // After forth warning period, show dialog and start redirect timer
                     dialogTimer = setTimeout(function(){
-                        //window.location.reload();
                         window.location = o.logOutUrl;
-                        /*var str=window.location.pathname.split("/").join("ef<<f!30/!gsk<<//!@!err/2cphu>><<//co")
-                         window.location.href= '/login/sessionExpired?p='+str*/
-//                        window.location.href= o.deny
                     }, o.forthWarnAfter);
                     break;
                 case 'stop':
