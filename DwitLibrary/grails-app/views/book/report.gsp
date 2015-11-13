@@ -17,10 +17,10 @@
     .dataTables_filter {
         display: none;
     }
-   /* #wrapper{
+    #wrapper{
         margin: 0px auto;
         width: 95%;
-    }*/
+    }
     </style>
 
 </head>
