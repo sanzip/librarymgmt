@@ -13,7 +13,7 @@ class BookService {
         Map booksWithBorrowCount = new HashMap()
 
         for (Book book: Book.all)
-            booksWithBorrowCount.put(book, Borrow.countByBookInfoInList(BookInfo.findAllByBook(book)))
+            booksWithBorrowCount.put(book, Borrow.countByBookInfo(BookInfo.findAllByBook(book)))
 
         TreeMap sortedBooksWithBorrowCount = new TreeMap(new BookMapComparator(booksWithBorrowCount));
         sortedBooksWithBorrowCount.putAll(booksWithBorrowCount);
