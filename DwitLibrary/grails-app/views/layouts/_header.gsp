@@ -470,7 +470,8 @@
                 success: function (result) {
                     $("#issueBook").html(result);
                     $('#mo').show();
-                }
+                    $('#asim').hide();
+                    }
             })
         }
         function returnBookNav(){
@@ -483,6 +484,7 @@
                     console.log(result);
                     $("#returnBook").html(result);
                     $('#asim').show();
+                    $('#mo').hide();
                 }
             })
         }
