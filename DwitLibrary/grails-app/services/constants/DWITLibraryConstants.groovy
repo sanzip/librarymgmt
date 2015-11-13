@@ -19,4 +19,7 @@ class DWITLibraryConstants {
     public static final short LIMIT_BOOK_BORROWABLE_LIBRARIAN = 3;
     public static final short LIMIT_BOOK_BORROWABLE_FACULTY= 3;
 
+    //Constants for Log
+    public static final String ACTION_TYPE_ISSUE = "Issue";
+    public static final String ACTION_TYPE_RETURN = "Return";
 }

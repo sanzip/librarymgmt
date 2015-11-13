@@ -470,8 +470,7 @@
                 success: function (result) {
                     $("#issueBook").html(result);
                     $('#mo').show();
-                    $('#asim').hide();
-                    }
+                }
             })
         }
         function returnBookNav(){
@@ -484,7 +483,6 @@
                     console.log(result);
                     $("#returnBook").html(result);
                     $('#asim').show();
-                    $('#mo').hide();
                 }
             })
         }
@@ -563,7 +561,7 @@
 </form>
 <div class="ui center aligned segment" style="background-color: #3573A3;">
     <g:link controller="member" action="dashboard"> <img style="float: left; height: 80px;width: 80px" src="${resource(dir: 'img', file: 'deerwalk.png')}" alt="Logo" />
-    <h1 style="color:white;float:left"><b>Library Management System</b></h1></g:link>
+    <h1 style="color:white;float:left; margin-left: 190px"><b>Library Management System</b></h1></g:link>
     <div style="float:right;color: white; font-style: oblique; font-size: 20px" class="item">
         <sec:ifLoggedIn>
             <div>
@@ -578,7 +576,7 @@
     </div>
 </div>
 <br>
-<div class="ui four item menu" style="margin: 0px auto;width: 98%;">
+<div class="ui five item menu" style="margin: 0px auto;width: 98%;">
     <div class="ui large menu">
         <sec:ifNotGranted roles="ROLE_LIBRARIAN">
             <div class="ui simple link item">
@@ -609,6 +607,13 @@
                     <g:link controller="book" action="index" class="item"> <i class="book icon"></i>  Book  </g:link>
                 </div>
             </div>
+            <div class="ui simple dropdown link item">
+                <i class="configure icon"></i> Log <i class="dropdown icon"></i>
+                <div class="menu">
+                    <g:link controller="log" action="viewIssues" class="item"> <i class="browser icon"></i>   View Issues  </g:link>
+                    <g:link controller="log" action="viewReturns" class="item"> <i class="browser icon"></i>  View Returns  </g:link>
+                </div>
+            </div>
         </sec:ifAllGranted>
     </div>
 </div>
@@ -629,8 +634,8 @@
                 <div class="ui negative button" id = "cancel">Cancel</div>
                 <div class="or"></div>
                 <input type="submit" class="ui positive button" value="Issue"/>
-                <input type="hidden" value="${params.controller}" name="currentController"/>
-                <input type="hidden" value="${params.action}" name="currentAction"/>
+                <input type="hidden" value="${controllerName}" name="currentController"/>
+                <input type="hidden" value="${actionName}" name="currentAction"/>
             </div>
         </div>
     </form>
@@ -645,8 +650,8 @@
                 <div class="ui negative button" id = "cancelReturn">Cancel</div>
                 <div class="or"></div>
                 <input type="submit" class="ui positive button" value="Return"/>
-                <input type="hidden" value="${params.controller}" name="currentController"/>
-                <input type="hidden" value="${params.action}" name="currentAction"/>
+                <input type="hidden" value="${controllerName}" name="currentController"/>
+                <input type="hidden" value="${actionName}" name="currentAction"/>
             </div>
         </div>
     </form>
