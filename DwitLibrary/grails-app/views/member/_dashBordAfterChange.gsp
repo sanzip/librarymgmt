@@ -12,6 +12,7 @@
             }
         });
         $('#mo').show();
+        $('#asim').hide();
     }
 </script>
 <style>

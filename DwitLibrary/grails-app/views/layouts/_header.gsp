@@ -475,7 +475,6 @@
             })
         }
         function returnBookNav(){
-
             $.ajax({
                 url:"${createLink(controller:"book" ,action:"returnBookNav" )}",
                 data:"",
