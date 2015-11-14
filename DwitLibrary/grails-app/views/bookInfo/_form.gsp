@@ -1,13 +1,76 @@
 <%@ page import="np.edu.dwit.BookInfo" %>
+
+    <script>
+    $(document).ready(function() {
+
+        var iCnt = 0;
+        // CREATE A "DIV" ELEMENT AND DESIGN IT USING JQUERY ".css()" CLASS.
+        var container = $(document.createElement('div')).css({
+            padding: '5px', margin: '20px', width: '170px', border: '1px dashed',
+            borderTopColor: '#999', borderBottomColor: '#999',
+            borderLeftColor: '#999', borderRightColor: '#999'
+        });
+
+        $('#btAdd').click(function() {
+            if (iCnt <= 19) {
+
+                iCnt = iCnt + 1;
+                document.getElementById("TextBoxContainer").appendChild('<input name = "bookNumber" type="text" value = "${bookInfoInstance?.bookNumber}" />' + '<br>');
+                if (iCnt == 1) {
+
+                    var divSubmit = $(document.createElement('div'));
+/*
+                    $(divSubmit).append('<input type=button class="bt" onclick="GetTextValue()"' +'id=btSubmit value=Submit />');
+*/              }
+
+                // ADD BOTH THE DIV ELEMENTS TO THE "main" CONTAINER.
+                $('#main').after(container, divSubmit);
+            }
+            // AFTER REACHING THE SPECIFIED LIMIT, DISABLE THE "ADD" BUTTON.
+            // (20 IS THE LIMIT WE HAVE SET)
+            else {
+
+                $(container).append('<label>Sorry, 20 is the limit.</label>');
+                $('#btAdd').attr('class', 'bt-disable');
+                $('#btAdd').attr('disabled', 'disabled');
+
+            }
+        });
+
+        $('#btRemove').click(function() {   // REMOVE ELEMENTS ONE PER CLICK.
+            if (iCnt != 0) { $('#tb' + iCnt).remove(); iCnt = iCnt - 1; }
+
+            if (iCnt == 0) { $(container).empty();
+
+                $(container).remove();
+                $('#btSubmit').remove();
+                $('#btAdd').removeAttr('disabled');
+                $('#btAdd').attr('class', 'bt')
+
+            }
+        });
+
+        $('#btRemoveAll').click(function() {    // REMOVE ALL THE ELEMENTS IN THE CONTAINER.
+
+            $(container).empty();
+            $(container).remove();
+            $('#btSubmit').remove(); iCnt = 0;
+            $('#btAdd').removeAttr('disabled');
+            $('#btAdd').attr('class', 'bt');
+
+        });
+    });
+</script>
 <script type="text/javascript">
     function GetDynamicTextBox(value){
-        return '<input name = "bookNumber" type="text" value = "${bookInfoInstance?.bookNumber}" />' + '<br>' +
-                '<button type="button" class="ui red button" onclick = "RemoveTextBox(this)"> Delete </button>'
+        return '<input name = "bookNumber" type="text" value = "${bookInfoInstance?.bookNumber}" />' + '<br>'
     }
     function AddTextBox() {
         var div = document.createElement('div');
         div.innerHTML = GetDynamicTextBox("");
         document.getElementById("TextBoxContainer").appendChild(div);
+
+       return '<button type="button" class="ui red button" onclick = "RemoveTextBox(this)"> Delete </button>'
     }
 
     function RemoveTextBox(div) {
@@ -205,12 +268,27 @@ $('#bookNumberInput').append(' <br><input type="text" name="bookNumber" required
                  <div id="TextBoxContainer">
             </div>
         <br>
+
+
         <g:if  test="${whichAction =='create'}">
+            <div id="main">
+                <button type="button" class= "ui teal button" id="btAdd" > Add </button>
+                <button type="button" class= "ui teal button" id="btRemove" > Remove </button>
+                <button type="button" class= "ui teal button" id="btRemoveAll" > Remove All </button>
+%{--
+                <input type="button" id="btRemove" value="Remove Element" class="bt" />
+--}%
+%{--
+                <input type="button" id="btRemoveAll" value="Remove All" class="bt" /><br />
+--}%
+            </div>
+%{--
             <button type="button" class= "ui teal button" id="bookNumberButton" onclick="AddTextBox();">Add</button>
+--}%
         </g:if>
         <g:else>
-         </g:else>
-          </div>
+        </g:else>
+       </div>
     </div>
 
 </div>
