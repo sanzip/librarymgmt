@@ -470,6 +470,7 @@
                 success: function (result) {
                     $("#issueBook").html(result);
                     $('#mo').show();
+                    $('#asim').hide();
                 }
             })
         }
@@ -483,6 +484,7 @@
                     console.log(result);
                     $("#returnBook").html(result);
                     $('#asim').show();
+                    $('#mo').hide();
                 }
             })
         }
