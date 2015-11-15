@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
     <g:javascript src="datatable-min.js"/>
     <style>
-
+        .dataTables_filter {
+            display: none;
+        }
     </style>
     <script>
         function setValue(){
