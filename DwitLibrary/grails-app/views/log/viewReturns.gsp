@@ -10,12 +10,64 @@
 <head>
     <title>Return Log</title>
     <meta name="layout" content="main_page">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
+    <g:javascript src="datatable-min.js"/>
+    <style>
+    .dataTables_filter {
+        display: none;
+    }
+    </style>
+    <script>
+        function setValue(){
+            $("#returned_to").val('');
+            $("#returned_by").val('');
+            $("#book_name").val('');
+        }
+
+        $(document).ready(function(){
+            setValue();
+
+
+            if ( $.fn.dataTable.isDataTable( '#return_table' ) ) {
+                table = $('#return_table').DataTable();
+            }
+            else {
+                table = $('#return_table').DataTable( {
+                    'bPaginate':false,
+                    'bInfo':false,
+                    'bFilter': true
+                } );
+            }
+            $('#returned_to').on( 'keyup', function () {
+                table
+                        .columns( 1 )
+                        .search( this.value )
+                        .draw();
+            } );
+            $('#returned_by').on( 'keyup', function () {
+                table
+                        .columns( 4 )
+                        .search( this.value )
+                        .draw();
+            } );
+            $('#book_name').on( 'keyup', function () {
+                table
+                        .columns( 2 )
+                        .search( this.value )
+                        .draw();
+            } );
+        })
+    </script>
 </head>
 
 <body>
 <br>
+Returned To: <g:textField name="returned_to" id="returned_to"/>
+Returned by: <g:textField name="returned_by" id="returned_by"/>
+Book Name: <g:textField name="book_name" id="book_name"/>
+<br>
 
-    <table class="ui sortable celled table" style="margin: 0px auto;width: 95%">
+    <table class="ui sortable celled table" id="return_table" style="margin: 0px auto;width: 95%">
         <thead>
         <tr>
             <th>S.N.</th>
