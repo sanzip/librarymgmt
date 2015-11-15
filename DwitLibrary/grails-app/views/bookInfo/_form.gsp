@@ -1,14 +1,13 @@
 <%@ page import="np.edu.dwit.BookInfo" %>
 <script type="text/javascript">
     function GetDynamicTextBox(value){
-        return '<input name = "bookNumber" type="text" value = "${bookInfoInstance?.bookNumber}" />' + '<br>'
+        return '<input name = "bookNumber" type="text" value = "${bookInfoInstance?.bookNumber}"/> <i class="delete icon" style="float: right;margin-top: -37px;margin-right: -19px;" onclick="RemoveTextBox(this)"> </i>'/*'<button type="button" class="ui red button" onclick = "RemoveTextBox()"> Delete </button>'*/
+
     }
     function AddTextBox() {
         var div = document.createElement('div');
         div.innerHTML = GetDynamicTextBox("");
         document.getElementById("TextBoxContainer").appendChild(div);
-
-       return '<button type="button" class="ui red button" onclick = "RemoveTextBox(this)"> Delete </button>'
     }
 
     function RemoveTextBox(div) {
@@ -191,20 +190,17 @@ $('#bookNumberInput').append(' <br><input type="text" name="bookNumber" required
         </div>
 <div class="two fields">
     <div class="field">
-        <div class="fieldcontain ${hasErrors(bean: bookInfoInstance, field: 'bookType', 'error')} required">
             <h3 class="ui dividing header">Book Type <span class="required-indicator">*</span> </h3>
             <g:select name="bookType" from="${bookInfoInstance.constraints.bookType.inList}" required="" value="${bookInfoInstance?.bookType}" valueMessagePrefix="bookInfo.bookType"/>
-        </div>
         </div>
 
     <div class="field">
         <h3 class="ui dividing header">Book Number <span class="required-indicator">*</span> </h3>
-
             %{--	<g:textField name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>--}%
             <div id="bookNumberInput" >
                 <input type="text" name="bookNumber" required="" onkeypress="return onlyNumbers(event,this)" value="${bookInfoInstance?.bookNumber}" autocomplete="off"/>
                  <div id="TextBoxContainer">
-            </div>
+                 </div>
         <br>
         <g:if  test="${whichAction =='create'}">
             <button type="button" class= "ui teal button" id="bookNumberButton" onclick="AddTextBox();">Add</button>
