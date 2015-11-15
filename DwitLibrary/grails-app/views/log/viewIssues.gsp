@@ -10,11 +10,61 @@
 <head>
     <title>Issue Log</title>
     <meta name="layout" content="main_page">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
+    <g:javascript src="datatable-min.js"/>
+    <style>
+
+    </style>
+    <script>
+        function setValue(){
+            $("#issued_to").val('');
+            $("#issued_by").val('');
+            $("#book_name").val('');
+        }
+
+        $(document).ready(function(){
+            setValue();
+
+
+            if ( $.fn.dataTable.isDataTable( '#issue_table' ) ) {
+                table = $('#issue_table').DataTable();
+            }
+            else {
+                table = $('#issue_table').DataTable( {
+                    'bPaginate':false,
+                    'bInfo':false,
+                    'bFilter': true
+                } );
+            }
+            $('#issued_to').on( 'keyup', function () {
+                table
+                        .columns( 4 )
+                        .search( this.value )
+                        .draw();
+            } );
+            $('#issued_by').on( 'keyup', function () {
+                table
+                        .columns( 1 )
+                        .search( this.value )
+                        .draw();
+            } );
+            $('#book_name').on( 'keyup', function () {
+                table
+                        .columns( 2 )
+                        .search( this.value )
+                        .draw();
+            } );
+        })
+    </script>
 </head>
 
 <body>
 <br>
-    <table class="ui sortable celled table" style="margin: 0px auto;width: 95%">
+Issued To: <g:textField name="issued_to" id="issued_to"/>
+Issued by: <g:textField name="issued_by" id="issued_by"/>
+Book Name: <g:textField name="book_name" id="book_name"/>
+<br>
+    <table class="ui sortable celled table" id="issue_table" style="margin: 0px auto;width: 95%">
         <thead>
         <tr>
             <th>S.N.</th>
