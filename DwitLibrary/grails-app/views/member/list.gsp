@@ -58,7 +58,7 @@
     </g:if>
     <div id="head">
         <br>
-        <div class="ui compact menu">
+        <div class="ui compact menu" style="float: left;">
             %{--<div class="active item">--}%
             %{--<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>--}%
             %{--</div>--}%
@@ -67,16 +67,15 @@
                 <g:link class="list" action="create">Create User</g:link>
             </div>
         </div>
-        <br>
-        <div>
-            <h1 style="float: left; margin-left: 480px;"><g:message code="default.list.label" args="[entityName]"/></h1>
-        </div>
-        <div class="ui icon input" style="float: right">
-            <g:textField name="userName" id="userName" placeholder="Search Username..."/>
-            <i class="inverted circular search link icon"></i>
-        </div>
+            %{--<h1 style="float: left; margin-left: 350px;margin-top: -5px;"><g:message code="default.list.label" args="[entityName]"/></h1>--}%
+            <div class="ui icon input" style="float: right">
+                <g:textField name="userName" id="userName" placeholder="Search Username..."/>
+                <i class="inverted circular search link icon"></i>
+            </div>
+
 
     </div>
+    <br style="clear: both">
     <table class="ui celled table" id="user_table">
         <thead>
         <tr>
