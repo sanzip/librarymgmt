@@ -32,6 +32,10 @@ td , th{
     text-align: center !important;
 }
 
+th{
+    color: #E7746F !important;
+}
+
 /* ---------------------------------------------- /*
  * Transition elsements
 /* ---------------------------------------------- */
