@@ -198,7 +198,7 @@ $('#bookNumberInput').append(' <br><input type="text" name="bookNumber" required
         <h3 class="ui dividing header">Book Number <span class="required-indicator">*</span> </h3>
             %{--	<g:textField name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}"/>--}%
             <div id="bookNumberInput" >
-                <input type="text" name="bookNumber" required="" onkeypress="return onlyNumbers(event,this)" value="${bookInfoInstance?.bookNumber}" autocomplete="off"/>
+                <input type="text" name="bookNumber" required="" value="${bookInfoInstance?.bookNumber}" autocomplete="off"/>
                  <div id="TextBoxContainer">
                  </div>
         <br>
