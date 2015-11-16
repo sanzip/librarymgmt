@@ -30,7 +30,7 @@
             <g:link class="list" controller="book" action="index">Book List</g:link>
         </div>
 	</div>
-    <h2 style="text-align: center;font-family:Open Sans Helvetica Neue Helvetica, Arial sans-serif">New Book Info</h2>
+    %{--<h2 style="text-align: center;font-family:Open Sans Helvetica Neue Helvetica, Arial sans-serif">New Book Info</h2>--}%
 </div>
 
 
