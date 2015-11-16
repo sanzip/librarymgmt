@@ -120,7 +120,7 @@ class BookInfoController {
             }
 
         }
-        redirect(controller: params.currentController, action: "create", params: [id: bookInfoInstance.book.id,messageType: 'success'])
+        redirect(controller: 'book', action: "create", params: [messageType: 'success'])
 
     }
 
