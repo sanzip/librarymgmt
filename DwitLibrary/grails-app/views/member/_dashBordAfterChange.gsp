@@ -12,6 +12,7 @@
             }
         });
         $('#mo').show();
+        $('#asim').hide();
     }
 </script>
 <style>
@@ -46,10 +47,9 @@
         <td style="text-align: center">${i+1}.</td>
         <g:if test="${book.availableQuantity > 0}">
             <sec:ifAllGranted roles="ROLE_LIBRARIAN">
-               <td style="text-align: center"> <div class="ui buttons">
-                    <button class="ui green basic button" style="text-align: center;"><a href="#" onclick = "select(${book.id});" style="color: black;">${fieldValue(bean: book, field: "name")}</a> </button>
-                </div>
-</td>
+                <td style="text-align: center">
+                  <a class="ui white tag label" href="#" onclick = "select(${book.id});" style="color: black;background-color:rgb(217, 217, 217)">${fieldValue(bean: book, field: "name")}</a>
+        </td>
 %{--
                 <td  --}%
 %{--onmouseover="highlightTr(this);" onmouseout="removeHighlight(this);"--}%%{--
@@ -58,6 +58,7 @@
             </sec:ifAllGranted>
             <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
                 <td  style="text-align: center;">${fieldValue(bean: book, field: "name")}</td>
+
             </sec:ifAnyGranted>
         </g:if>
         <g:else>

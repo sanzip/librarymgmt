@@ -470,11 +470,11 @@
                 success: function (result) {
                     $("#issueBook").html(result);
                     $('#mo').show();
+                    $('#asim').hide();
                 }
             })
         }
         function returnBookNav(){
-
             $.ajax({
                 url:"${createLink(controller:"book" ,action:"returnBookNav" )}",
                 data:"",
@@ -483,6 +483,7 @@
                     console.log(result);
                     $("#returnBook").html(result);
                     $('#asim').show();
+                    $('#mo').hide();
                 }
             })
         }

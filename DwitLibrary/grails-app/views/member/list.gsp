@@ -12,12 +12,21 @@
         function setValue(){
             $("#userName").val('');
         }
-        var table = $('#user_table').dataTable({
-            bPaginate: false
-        });
+
         $(document).ready(function(){
             setValue();
 
+
+            if ( $.fn.dataTable.isDataTable( '#user_table' ) ) {
+                table = $('#user_table').DataTable();
+            }
+            else {
+                table = $('#user_table').DataTable( {
+                    'bPaginate':false,
+                    'bInfo':false,
+                    'bFilter': true
+                } );
+            }
             $('#userName').on( 'keyup', function () {
                 table
                         .columns( 2 )
@@ -139,6 +148,7 @@
     <div id="">
     <g:paginate total="${memberInstanceCount ?: 0}"/>
 
+    </div>
     </div>
     </div>
 </body>
