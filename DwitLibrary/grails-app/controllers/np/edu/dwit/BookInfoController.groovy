@@ -141,7 +141,7 @@ class BookInfoController {
         }
 
         bookInfoInstance.save flush:true
-        redirect(controller: params.currentController, action:'index',params:[id:bookInstance.id])
+        redirect(controller: params.currentController, action:'index',params:[id:bookInfoInstance.id])
 
 /*        request.withFormat {
             form {
