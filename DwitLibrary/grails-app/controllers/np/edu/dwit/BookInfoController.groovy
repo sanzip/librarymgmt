@@ -141,14 +141,15 @@ class BookInfoController {
         }
 
         bookInfoInstance.save flush:true
+        redirect(controller: params.currentController, action:'index',params:[id:bookInstance.id])
 
-        request.withFormat {
+/*        request.withFormat {
             form {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'BookInfo.label', default: 'BookInfo'), bookInfoInstance.id])
                 redirect bookInfoInstance
             }
             '*'{ respond bookInfoInstance, [status: OK] }
-        }
+        }*/
     }
 
     @Transactional
