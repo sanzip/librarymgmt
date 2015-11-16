@@ -55,7 +55,7 @@ class BookController {
         bookInstance.availableQuantity=bookInstance.totalQuantity
         bookInstance.save flush: true
 
-        redirect(controller:'book', action:'index')
+        redirect(controller:'bookInfo', action:'create',params:[id:bookInstance.id])
         /*request.withFormat {
             form {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'bookInstance.label', default: 'Book'), bookInstance.id])
