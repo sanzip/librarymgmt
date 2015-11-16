@@ -16,6 +16,14 @@
     .dataTables_filter {
         display: none;
     }
+    #wrapper1{
+        margin: 0px auto;
+        width: 95%;
+    }
+    #searchField{
+        margin:0px auto;
+        width:84%;
+    }
     </style>
     <script>
         function setValue(){
@@ -61,12 +69,43 @@
 </head>
 
 <body>
-<br>
-Returned To: <g:textField name="returned_to" id="returned_to"/>
-Returned by: <g:textField name="returned_by" id="returned_by"/>
-Book Name: <g:textField name="book_name" id="book_name"/>
-<br>
+<div id="wrapper1">
+    <br>
+    <hr>
+    <div id="searchField">
+    </br>
 
+        <strong><span style="font-size: 18px;">Returned To: </span></strong>
+        <div class="ui icon input">
+            <input type="text" placeholder="" id="returned_to" name="returned_to">
+            <i class="inverted circular search link icon"></i>
+        </div>
+        &nbsp;&nbsp;
+        <strong><span style="font-size: 18px;">Returned By: </span></strong>
+        <div class="ui icon input">
+            <input type="text" placeholder="" id="returned_by" name="returned_by">
+            <i class="inverted circular search link icon"></i>
+        </div>
+        &nbsp;&nbsp;
+        <strong><span style="font-size: 18px;">Book Name: </span></strong>
+        <div class="ui icon input">
+            <input type="text" placeholder="" id="book_name" name="book_name">
+            <i class="inverted circular search link icon"></i>
+        </div>
+        <br>
+    </div>
+    <br>
+    <hr>
+    <br>
+%{--
+Returned To: <g:textField name="returned_to" id="returned_to"/>
+--}%
+%{--
+Returned by: <g:textField name="returned_by" id="returned_by"/>
+--}%
+%{--
+Book Name: <g:textField name="book_name" id="book_name"/>
+--}%
     <table class="ui sortable celled table" id="return_table" style="margin: 0px auto;width: 95%">
         <thead>
         <tr>
@@ -91,5 +130,6 @@ Book Name: <g:textField name="book_name" id="book_name"/>
         </g:each>
         </tbody>
     </table>
+    </div>
 </body>
 </html>
