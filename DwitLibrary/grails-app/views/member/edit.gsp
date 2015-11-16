@@ -34,9 +34,8 @@
             <g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]"/></g:link>
         </div>
     </div>
-    <h2 style="text-align: center;font-family: "Open Sans", "Helvetica Neue', Helvetica, Arial, sans-serif'>Edit Member</h2>
+    %{--<h2 style="text-align: center;font-family: "Open Sans", "Helvetica Neue', Helvetica, Arial, sans-serif'>Edit Member</h2>--}%
 </div>
-<br>
 
 
 <div id="edit-member" class="content scaffold-edit" role="main">
