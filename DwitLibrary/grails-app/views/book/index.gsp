@@ -83,7 +83,7 @@
 
             <br><hr><br>
             <div id="head">
-                <div class="ui compact menu" >
+                <div class="ui compact menu"  style="float: left">
                     %{--<div class="active item">--}%
                     %{--<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>--}%
                     %{--</div>--}%
@@ -91,7 +91,7 @@
                         <g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
                     </div>
                 </div>
-                <h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]" /></h1>
+                %{--<h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]" /></h1>--}%
             </div>
 
 
