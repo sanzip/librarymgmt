@@ -82,7 +82,6 @@
             <div id="footer-push"></div>
         </div>
     </div>
-    <br>
     <g:render template="/layouts/footer"/>
 </body>
 </html>
