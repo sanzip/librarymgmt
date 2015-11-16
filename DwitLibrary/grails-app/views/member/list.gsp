@@ -75,7 +75,7 @@
 
 
     </div>
-    <br style="clear: both">
+    <br><br>
     <table class="ui celled table" id="user_table">
         <thead>
         <tr>
