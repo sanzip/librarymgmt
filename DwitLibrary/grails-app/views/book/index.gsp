@@ -93,7 +93,7 @@
                 </div>
                 %{--<h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]" /></h1>--}%
             </div>
-
+            <br><br>
 
             <table class="ui celled table" id="book_table">
 			<thead>
