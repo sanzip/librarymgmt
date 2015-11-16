@@ -43,9 +43,9 @@
         margin: 0px auto;
         width: 95%;
     }
-        #head{
-            text-align: center;
-        }
+        /*#head{*/
+            /*text-align: center;*/
+        /*}*/
         </style>
 </head>
 
@@ -53,13 +53,12 @@
 
 <div id="list-member" class="content scaffold-list" role="main">
     <br>
-    <h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]"/></h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
     <div id="head">
         <br>
-        <div class="ui compact menu" style="margin-left: 185px;">
+        <div class="ui compact menu" style="float: left">
             %{--<div class="active item">--}%
             %{--<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>--}%
             %{--</div>--}%
@@ -68,6 +67,7 @@
                 <g:link class="list" action="create">Create User</g:link>
             </div>
         </div>
+        <h1 style="float: left; margin-left: 380px;"><g:message code="default.list.label" args="[entityName]"/></h1>
         <div class="ui icon input" style="float: right">
             <g:textField name="userName" id="userName" placeholder="Search Username..."/>
             <i class="inverted circular search link icon"></i>
