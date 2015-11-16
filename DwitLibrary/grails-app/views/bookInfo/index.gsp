@@ -66,16 +66,15 @@
     <div id="wrappers">
         <br>
         <div id="head">
-            <div class="ui compact menu">
+            <div class="ui compact menu" style="float: left">
                 <div class="active item">
-				<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
-                    </div>
+				    <g:link controller="book" class="index" action="index">Book List</g:link>
+                </div>
                 <div class="active item" id="newbook">
 				    <g:link class="create" action="create" params="[id: params.id]"><g:message code="default.new.label" args="[entityName]" /></g:link>
                  </div>
             </div>
 		</div>
-    <br>
         %{--<div class="ui label" style="text-align: center;margin: 0px auto;width:300px;display: table;background-color: #F7F7F7">--}%
             %{--<div class="ui input">--}%
                 %{--Number Of Book Info remaining to add:--}%
@@ -83,9 +82,8 @@
             %{--</div>--}%
         %{--</div>--}%
 
-        <br>
 		<div id="list-bookInfo" class="content scaffold-list" role="main">
-            <h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]" /></h1>
+            %{--<h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]" /></h1>--}%
 
             %{--<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
@@ -95,6 +93,7 @@
                 <input type="text" name="bookNumber" id="bookNumber" placeholder="Book Number..."/>
                 <i class="inverted circular search link icon"></i>
             </div>
+        <br><br>
     <table class="ui celled table" id="book_info_table">
 			<thead>
 					<tr>
