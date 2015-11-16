@@ -37,7 +37,7 @@
 			<g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]"/></g:link>
 		</div>
     </div>
-        <h2 style="text-align: center;font-family:Open Sans Helvetica Neue Helvetica, Arial sans-serif">Create Book</h2>
+        %{--<h2 style="text-align: center;font-family:Open Sans Helvetica Neue Helvetica, Arial sans-serif">Create Book</h2>--}%
     </div>
     <div id="create-book" class="content scaffold-create" role="main">
 			%{--<h1><g:message code="default.create.label" args="[entityName]" /></h1>--}%
