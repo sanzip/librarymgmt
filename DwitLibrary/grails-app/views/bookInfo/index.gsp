@@ -28,8 +28,18 @@
             }
             $(document).ready(function(){
                 setValue();
-                var table = $('#book_info_table').DataTable();
 
+                var table;
+                if ( $.fn.dataTable.isDataTable( '#book_info_table' ) ) {
+                    table = $('#book_info_table').DataTable();
+                }
+                else {
+                    table = $('#book_info_table').DataTable( {
+                        'bPaginate':false,
+                        'bInfo':false,
+                        'bFilter': true
+                    } );
+                }
                 $('#bookNumber').on( 'keyup', function () {
                     table
                             .columns( 1 )

@@ -35,7 +35,17 @@
         }
         $(document).ready(function(){
             setValue();
-            var table = $('#book_table').DataTable();
+            var table;
+            if ( $.fn.dataTable.isDataTable( '#book_table' ) ) {
+                table = $('#book_table').DataTable();
+            }
+            else {
+                table = $('#book_table').DataTable( {
+                    'bPaginate':false,
+                    'bInfo':false,
+                    'bFilter': true
+                } );
+            }
 
             $('#bookName').on( 'keyup', function () {
                 table

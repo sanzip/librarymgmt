@@ -11,6 +11,8 @@
 <head>
     <title>Issued Books Report</title>
     <meta name="layout" content="main_page">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
+    <g:javascript src="datatable-min.js"/>
 
 
     <style>
@@ -22,6 +24,31 @@
         width: 95%;
     }
     </style>
+    <script>
+        function setValue(){
+            $("#bookName").val('');
+        }
+        $(document).ready(function(){
+            setValue();
+            var table;
+            if ( $.fn.dataTable.isDataTable( '#first_table' ) ) {
+                table = $('#first_table').DataTable();
+            }
+            else {
+                table = $('#first_table').DataTable( {
+                    'bPaginate':false,
+                    'bInfo':false,
+                    'bFilter': true
+                } );
+            }
+            $('#bookName').on( 'keyup', function () {
+                table
+                        .columns( 1 )
+                        .search( this.value )
+                        .draw();
+            } );
+        })
+    </script>
 
 </head>
 
@@ -51,6 +78,10 @@
 <div id="wrappers">
 
     <div id="ajaxed_div">
+        <div class="ui icon input" style="float: right; margin-bottom: 24px;">
+            <input type="text" name="bookName" id="bookName" placeholder="Search Book Name..."/>
+            <i class="inverted circular search link icon"></i>
+        </div>
         <table id="first_table" class="ui sortable celled table" cellspacing="0" width="100% margin: 0px">
             <thead>
             <tr>

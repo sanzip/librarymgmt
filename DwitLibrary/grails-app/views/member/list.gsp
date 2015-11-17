@@ -16,7 +16,7 @@
         $(document).ready(function(){
             setValue();
 
-
+            var table;
             if ( $.fn.dataTable.isDataTable( '#user_table' ) ) {
                 table = $('#user_table').DataTable();
             }
@@ -46,7 +46,8 @@
         #head{
             text-align: center;
         }
-        </style>
+
+    </style>
 </head>
 
 <div id="wrappers">
@@ -145,8 +146,9 @@
            </tr>
         </g:each>
         </tbody>
-    </table>
-    <div id="">
+    </table>  <br>
+
+    <div class="pagination">
     <g:paginate total="${memberInstanceCount ?: 0}"/>
 
     </div>
