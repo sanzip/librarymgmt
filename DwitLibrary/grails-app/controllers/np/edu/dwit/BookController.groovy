@@ -279,7 +279,7 @@ class BookController {
 
                     def role = borrowingUser.getAuthorities()[0].toString();
 
-                    def isAlreadyBorrowed = Borrow.findByBookInfoInListAndReturned(BookInfo.findAllByBook(borrowingBook), false)
+                    def isAlreadyBorrowed = Borrow.findByBookInfoInListAndReturned(BookInfo.findAllByBookNumber(params.bookNumber), false)
 
                     Borrow borrow = new Borrow();
 
@@ -355,7 +355,8 @@ class BookController {
                                 }
                             }
                         } else {
-                            flash.message = "Cannot Issue the book twice to same user"
+//                            flash.message = "Cannot Issue the book twice to same user"
+                            flash.message = "Book is already borrowed by other user."
                             redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                         }
 

@@ -40,9 +40,9 @@
         </div>
 		<div id="create-book" class="content scaffold-create" role="main">
 			%{--<h1><g:message code="default.create.label" args="[entityName]" /></h1>--}%
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
+			%{--<g:if test="${flash.message}">--}%
+			%{--<div class="message" role="status">${flash.message}</div>--}%
+			%{--</g:if>--}%
             <h2 style="text-align: center;font-family:Open Sans Helvetica Neue Helvetica, Arial sans-serif">Create Book</h2>
 
             <g:hasErrors bean="${bookInstance}">
