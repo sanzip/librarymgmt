@@ -29,21 +29,21 @@
 		</div>--}%
 <div id="head">
 	<div class="ui compact menu" style="margin: 13px;">
-		<div class="active item">
-			<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
-		</div>
+		%{--<div class="active item">--}%
+			%{--<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>--}%
+		%{--</div>--}%
 
 		<div class="active item">
 			<g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]"/></g:link>
 		</div>
-	</div>
-        </div>
-		<div id="create-book" class="content scaffold-create" role="main">
+    </div>
+        %{--<h2 style="text-align: center;font-family:Open Sans Helvetica Neue Helvetica, Arial sans-serif">Create Book</h2>--}%
+    </div>
+    <div id="create-book" class="content scaffold-create" role="main">
 			%{--<h1><g:message code="default.create.label" args="[entityName]" /></h1>--}%
-			%{--<g:if test="${flash.message}">--}%
-			%{--<div class="message" role="status">${flash.message}</div>--}%
-			%{--</g:if>--}%
-            <h2 style="text-align: center;font-family:Open Sans Helvetica Neue Helvetica, Arial sans-serif">Create Book</h2>
+			<g:if test="${flash.message}">
+                <div class="message" role="status">${flash.message}</div>
+            </g:if>
 
             <g:hasErrors bean="${bookInstance}">
 			<ul class="errors" role="alert">

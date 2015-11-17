@@ -26,21 +26,20 @@
 <body>
 <div id="head">
 <div class="ui compact menu" style="margin: 13px;">
-    <div class="active item">
-        <a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
-    </div>
+    %{--<div class="active item">--}%
+        %{--<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>--}%
+    %{--</div>--}%
 
-    <div class="active item">
+    <div class="active item" >
         <g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]"/></g:link>
     </div>
 </div>
-    </div>
-<br>
+    %{--<h2 style="text-align: center;font-family: "Open Sans", "Helvetica Neue', Helvetica, Arial, sans-serif'>Create Member</h2>--}%
+</div>
 <div id="create-member" class="content scaffold-create" role="main">
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-    <h2 style="text-align: center;font-family: "Open Sans", "Helvetica Neue', Helvetica, Arial, sans-serif'>Create Member</h2>
     <g:hasErrors bean="${memberInstance}">
         <ul class="errors" role="alert">
             <g:eachError bean="${memberInstance}" var="error">

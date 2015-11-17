@@ -55,19 +55,8 @@
 
     <div id="wrappers">
         <br>
-        <div id="head">
-            <div class="ui compact menu">
-                <div class="active item">
-				    <a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
-		        </div>
-                <div class="active item">
-                    <g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
-                </div>
-                </div>
-            </div>
-		<div id="list-book" class="content scaffold-list" role="main">
 
-            <br>
+		<div id="list-book" class="content scaffold-list" role="main">
 
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
@@ -93,7 +82,18 @@
             </div>
 
             <br><hr><br>
-            <h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]" /></h1>
+            <div id="head">
+                <div class="ui compact menu"  style="float: left">
+                    %{--<div class="active item">--}%
+                    %{--<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>--}%
+                    %{--</div>--}%
+                    <div class="active item">
+                        <g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+                    </div>
+                </div>
+                %{--<h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]" /></h1>--}%
+            </div>
+            <br><br>
 
             <table class="ui celled table" id="book_table">
 			<thead>

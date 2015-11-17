@@ -50,31 +50,32 @@
 </head>
 
 <div id="wrappers">
-    <div id="head">
-        <br>
-<div class="ui compact menu">
-    <div class="active item">
-        <a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
-    </div>
-
-    <div class="active item">
-        <g:link class="list" action="create">Create User</g:link>
-    </div>
-</div>
-        </div>
-
 
 <div id="list-member" class="content scaffold-list" role="main">
-    <br>
-    <h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]"/></h1>
+
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-    <div class="ui icon input" style="float: right">
-        <g:textField name="userName" id="userName" placeholder="Search Username..."/>
-        <i class="inverted circular search link icon"></i>
+    <div id="head">
+        <br>
+        <div class="ui compact menu" style="float: left;">
+            %{--<div class="active item">--}%
+            %{--<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>--}%
+            %{--</div>--}%
+
+            <div class="active item">
+                <g:link class="list" action="create">Create User</g:link>
+            </div>
+        </div>
+            %{--<h1 style="float: left; margin-left: 350px;margin-top: -5px;"><g:message code="default.list.label" args="[entityName]"/></h1>--}%
+            <div class="ui icon input" style="float: right">
+                <g:textField name="userName" id="userName" placeholder="Search Username..."/>
+                <i class="inverted circular search link icon"></i>
+            </div>
+
+
     </div>
-    <br>
+    <br><br>
     <table class="ui celled table" id="user_table">
         <thead>
         <tr>
@@ -94,8 +95,8 @@
 
             %{--<g:sortableColumn property="status" title="${message(code: 'member.status.label', default: 'Status')}"/>--}%
 
-            <g:sortableColumn property="accountExpired"
-                              title="${message(code: 'member.accountExpired.label', default: 'Account Expired')}"/>
+            %{--<g:sortableColumn property="accountExpired"--}%
+                              %{--title="${message(code: 'member.accountExpired.label', default: 'Account Expired')}"/>--}%
             <th> Action </th>
         </tr>
         </thead>
@@ -115,7 +116,7 @@
 
                %{-- <td>${fieldValue(bean: memberInstance, field: "status")}</td>--}%
 
-                <td>${fieldValue(bean: memberInstance, field: "accountExpired")}</td>
+                %{--<td>${fieldValue(bean: memberInstance, field: "accountExpired")}</td>--}%
 
                 %{--
                 <td>${fieldValue(bean: memberInstance, field: "password")}</td>--}%

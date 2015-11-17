@@ -22,18 +22,17 @@
 <body>
 <div id="head">
 	<div class="ui compact menu" style="margin: 13px;">
-		<div class="active item">
-			<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
+		%{--<div class="active item">--}%
+			%{--<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>--}%
 
-		</div>
+		%{--</div>--}%
         <div class="active item">
             <g:link class="list" controller="book" action="index">Book List</g:link>
         </div>
 	</div>
+    %{--<h2 style="text-align: center;font-family:Open Sans Helvetica Neue Helvetica, Arial sans-serif">New Book Info</h2>--}%
 </div>
 
-<br><br>
-<h2 style="text-align: center;font-family:Open Sans Helvetica Neue Helvetica, Arial sans-serif">New Book Info</h2>
 
 <div id="create-bookInfo" class="content scaffold-create" role="main">
 	%{--<g:if test="${flash.message}">

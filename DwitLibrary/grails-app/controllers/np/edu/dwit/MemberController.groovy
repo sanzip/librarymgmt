@@ -147,14 +147,15 @@ class MemberController {
         }
 
         memberInstance.save flush: true
+        redirect(controller: params.currentController, action:'list')
 
-        request.withFormat {
-            form {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Member.label', default: 'Member'), memberInstance.id])
-                redirect memberInstance
-            }
-            '*' { respond memberInstance, [status: OK] }
-        }
+//        request.withFormat {
+//            form {
+//                flash.message = message(code: 'default.updated.message', args: [message(code: 'Member.label', default: 'Member'), memberInstance.id])
+//                redirect memberInstance
+//            }
+//            '*' { respond memberInstance, [status: OK] }
+//        }
     }
 
     @Secured("ROLE_LIBRARIAN")
