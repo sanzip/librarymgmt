@@ -150,7 +150,7 @@
 <div class="two fields">
 <div class="field">
     <h3 class="ui dividing header">Email <span class="required-indicator">*</span> </h3>
-    <g:textField name="email" value="${memberInstance?.email}"/>
+    <g:textField name="email" id="email" value="${memberInstance?.email}"/>
 </div>
 <div class="field">
     <h3 class="ui dividing header">Contact <span class="required-indicator">*</span> </h3>

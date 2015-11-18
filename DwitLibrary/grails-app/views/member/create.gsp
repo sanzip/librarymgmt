@@ -20,6 +20,17 @@
             text-align: center;
         }
      </style>
+    <script>
+
+        function validateEmail(){
+            var pat=/(@deerwalk.edu.np)$/;
+            var email = document.getElementById("email").value;
+            if(!pat.test(email)){
+                alert("Email must have \"@deerwalk.edu.np\" top level domain");
+                return false;
+            }
+        }
+    </script>
 </head>
 
 
@@ -48,12 +59,12 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-    <g:form url="[resource: memberInstance, action: 'save']">
+    <g:form url="[resource: memberInstance, action: 'save']" >
         <fieldset class="form">
             <g:render template="form"/>
             <br>            <br>
 
-            <g:submitButton name="create" class="ui blue button" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
+            <g:submitButton name="create" onclick="return validateEmail()" class="ui blue button" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
 
             <g:field type="reset" class="ui red button" name="myReset" value="Reset" />
 
