@@ -79,8 +79,8 @@
     </tbody>
 </table>
 <br>
-<div id="space">
-    <g:paginate total="$list ?: 0}" />
+<div class="pagination">
+    <g:paginate total="${listCount ?: 0}" />
 </div>
 <script>
     function setValue(){
@@ -89,7 +89,18 @@
     }
     $(document).ready(function(){
         setValue();
-        var table = $('#first_table').DataTable();
+
+        var table;
+        if ( $.fn.dataTable.isDataTable( '#first_table' ) ) {
+            table = $('#first_table').DataTable();
+        }
+        else {
+            table = $('#first_table').DataTable( {
+                'bPaginate':false,
+                'bInfo':false,
+                'bFilter': true
+            } );
+        }
 
         $('#bookName').on( 'keyup', function () {
             table
