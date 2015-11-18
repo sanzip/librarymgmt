@@ -20,6 +20,17 @@
         text-align: center;
     }
     </style>
+    <script>
+
+        function validateEmail(){
+            var pat=/(@deerwalk.edu.np)$/;
+            var email = document.getElementById("email").value;
+            if(!pat.test(email)){
+                alert("Email must have \"@deerwalk.edu.np\" top level domain");
+                return false;
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -56,7 +67,7 @@
         <fieldset class="form">
             <g:render template="form"/>
             <br>
-            <g:actionSubmit class="ui blue button" action="update"
+            <g:actionSubmit class="ui blue button" onclick="return validateEmail()" action="update"
                             value="${message(code: 'default.button.update.label', default: 'Update')}"/>
         </fieldset>
 
