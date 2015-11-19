@@ -11,12 +11,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title><g:layoutTitle default="Grails"/></title>
-    <script type="text/javascript">
-        $(document).ready(function()
-        {
-            $("#datepicker").datepicker({dateFormat: 'yy/mm/dd'});
-        })
-    </script>
     <title><g:layoutTitle/></title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="generator" content="Bootply" />

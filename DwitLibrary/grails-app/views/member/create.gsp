@@ -1,10 +1,17 @@
-<%@ page import="np.edu.dwit.Member" %>
+<%@ page import="java.security.SecureRandom; np.edu.dwit.Member" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="layout" content="main_page">
     <g:set var="entityName" value="${message(code: 'member.label', default: 'Member')}"/>
     <title><g:message code="default.create.label" args="[entityName]"/></title>
+    <g:javascript>
+        $(document).ready(function(){
+
+            var generatedPassword = "${new BigInteger(64, new SecureRandom()).toString(32)}";
+            $("#password").val(generatedPassword);
+        });
+    </g:javascript>
     <style>
 
         form{
