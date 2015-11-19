@@ -110,12 +110,23 @@ class MemberController {
         memberInstance.username=fName[0]+"_"+memberInstance.userId
         params.role
 
+        def bodyOfEmail = "\nHello $memberInstance.fullName,\n\n\tYour account has been created on Library Management System.\n\tYour credentials are: \n" +
+                "\n\tUsername: $memberInstance.username\n\tPassword: $memberInstance.password\n\tYou can change this password right after you login.\n\nThanks,\nThe DWIT Library.";
+
         if (!memberInstance.save(flush: true)) {
             render(view: "create", model: [userInstance: memberInstance])
             return
         }
         if  (!memberInstance.authorities.contains( Role.findByAuthority(params.role))) {
             UserRole.create memberInstance, Role.findByAuthority(params.role)
+        }
+
+        sendMail {
+
+            async true
+            to memberInstance.email
+            subject "LMS: User Credentials"
+            text bodyOfEmail
         }
 
         redirect (controller:'member', action:'list')

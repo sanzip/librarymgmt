@@ -126,7 +126,7 @@
 
     <h3 class="ui dividing header">Password <span class="required-indicator">*</span> </h3>
 
-    <g:passwordField name="password" required="" value="${memberInstance?.password}"/>
+    <g:passwordField name="password" id = "password" required="" value="${memberInstance?.password}" readonly="readonly"/>
 
 </div>
 
