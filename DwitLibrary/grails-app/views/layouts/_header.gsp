@@ -583,6 +583,12 @@
             <div class="ui simple link item">
                 <g:link controller="member" action="history"><i class="history icon"></i> History</g:link>
             </div>
+            <div class="ui simple dropdown link item">
+                <i class="configure icon"></i> Configure <i class="dropdown icon"></i>
+                <div class="menu">
+                    <g:link controller="member" action="editPassword" class="item"> <i class="user icon"></i>   Password  </g:link>
+                </div>
+            </div>
         </sec:ifNotGranted>
 
 
@@ -615,7 +621,6 @@
                     <g:link controller="book" action="index" class="item"> <i class="book icon"></i>  Book  </g:link>
                 </div>
             </div>
-
         </sec:ifAllGranted>
     </div>
 </div>

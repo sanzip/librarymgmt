@@ -35,18 +35,20 @@
 
 <body>
 
-<div id="head">
-    <div class="ui compact menu" style="margin: 13px;">
-        <div class="active item">
-            <g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]"/></g:link>
-        </div>
+<sec:ifAllGranted roles="ROLE_LIBRARIAN">
+    <div id="head">
+        <div class="ui compact menu" style="margin: 13px;">
+            <div class="active item">
+                <g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]"/></g:link>
+            </div>
 
-        <div class="active item">
-            <g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]"/></g:link>
+            <div class="active item">
+                <g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]"/></g:link>
+            </div>
         </div>
+        %{--<h2 style="text-align: center;font-family: "Open Sans", "Helvetica Neue', Helvetica, Arial, sans-serif'>Edit Member</h2>--}%
     </div>
-    %{--<h2 style="text-align: center;font-family: "Open Sans", "Helvetica Neue', Helvetica, Arial, sans-serif'>Edit Member</h2>--}%
-</div>
+</sec:ifAllGranted>
 
 
 <div id="edit-member" class="content scaffold-edit" role="main">
@@ -64,11 +66,18 @@
 --}%
     <g:form url="[resource: memberInstance, action: 'update']" method="PUT">
         <g:hiddenField name="version" value="${memberInstance?.version}"/>
+        <br>
         <fieldset class="form">
             <g:render template="form"/>
             <br>
-            <g:actionSubmit class="ui blue button" onclick="return validateEmail()" action="update"
-                            value="${message(code: 'default.button.update.label', default: 'Update')}"/>
+            <sec:ifAllGranted roles="ROLE_LIBRARIAN">
+                <g:actionSubmit class="ui blue button" onclick="return validateEmail()" action="update"
+                                value="${message(code: 'default.button.update.label', default: 'Update')}"/>
+            </sec:ifAllGranted>
+            <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
+                <g:actionSubmit class="ui blue button" action="updatePassword"
+                                value="${message(code: 'default.button.update.label', default: 'Update')}"/>
+            </sec:ifAnyGranted>
         </fieldset>
 
     </g:form>

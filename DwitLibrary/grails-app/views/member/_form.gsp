@@ -103,6 +103,8 @@
     }
 
 </script>
+<sec:ifAllGranted roles="ROLE_LIBRARIAN">
+
 <div class="ui form" style="margin: 0px auto;width:90%;">
 <br>
 <div class="two fields">
@@ -203,4 +205,27 @@
 %{--    </label>--}%
 %{--    <g:checkBox name="passwordExpired" value="${memberInstance?.passwordExpired}"/>--}%
 %{--</div>--}%
+</sec:ifAllGranted>
 
+<sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
+    <div class="ui form" style="margin: 0px auto;width:90%;">
+<br>
+
+        <div class="field">
+
+            <h3 class="ui dividing header">New Password <span class="required-indicator">*</span> </h3>
+
+            <g:passwordField name="password" required=""/>
+
+        </div>
+
+        <div class="field">
+
+            <h3 class="ui dividing header">Re-type Password <span class="required-indicator">*</span> </h3>
+
+            <g:passwordField name="rpassword" required=""/>
+
+        </div>
+
+    </div>
+</sec:ifAnyGranted>

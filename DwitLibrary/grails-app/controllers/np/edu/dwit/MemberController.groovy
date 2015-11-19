@@ -27,7 +27,7 @@ class MemberController {
 
     }
 
-    @Secured(['permitAll'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def dashboard() {
 
         def currentUser= Member.findById(springSecurityService.principal.id)
@@ -76,14 +76,12 @@ class MemberController {
     }
 
     @Secured("ROLE_LIBRARIAN")
-
     def list(Integer max){
         params.max = Math.min(max ?: 10, 100)
         respond Member.list(params), model: [memberInstanceCount: Member.count()]
     }
 
     @Secured("ROLE_LIBRARIAN")
-
     def show(Member memberInstance) {
         respond memberInstance
     }
@@ -135,6 +133,30 @@ class MemberController {
         respond memberInstance
     }
 
+    @Secured("IS_AUTHENTICATED_FULLY")
+    def editPassword() {
+        render(view: "edit")
+    }
+
+    @Secured("IS_AUTHENTICATED_FULLY")
+    @Transactional
+    def updatePassword(){
+        def memberInstance = User.findById(springSecurityService.principal.id)
+        if (memberInstance == null) {
+            notFound()
+            return
+        }
+        def newPassword = params.password
+        def reTypePassword= params.rpassword
+        if(newPassword==reTypePassword){
+            memberInstance.password=newPassword
+            memberInstance.save flush: true, failOnError: true
+            redirect(controller: params.currentController, action: 'index')
+        }
+        else {
+            redirect(controller: params.currentController, action:'editPassword')
+        }
+    }
     @Secured("ROLE_LIBRARIAN")
     @Transactional
     def update(Member memberInstance) {
@@ -148,7 +170,7 @@ class MemberController {
             return
         }
 
-        memberInstance.save flush: true
+        memberInstance.save flush: true, failOnError: true
         redirect(controller: params.currentController, action:'list')
 
 //        request.withFormat {
