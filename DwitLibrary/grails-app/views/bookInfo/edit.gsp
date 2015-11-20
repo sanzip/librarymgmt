@@ -34,9 +34,9 @@
     </div>
 		<div id="edit-bookInfo" class="content scaffold-edit" role="main">
             %{--<h2 style="text-align: center;font-family:Open Sans Helvetica Neue Helvetica, Arial sans-serif">Edit Book Info</h2>--}%
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
+			%{--<g:if test="${flash.message}">--}%
+			%{--<div class="message" role="status">${flash.message}</div>--}%
+			%{--</g:if>--}%
 			<g:hasErrors bean="${bookInfoInstance}">
 			<ul class="errors" role="alert">
 				<g:eachError bean="${bookInfoInstance}" var="error">
