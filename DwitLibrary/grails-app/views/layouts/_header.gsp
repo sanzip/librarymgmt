@@ -565,14 +565,19 @@
     <h1 style="color:white;float:left; margin-left: 190px"><b>Library Management System</b></h1></g:link>
     <div style="float:right;color: white; font-style: oblique; font-size: 20px" class="item">
         <sec:ifLoggedIn>
-            <div>
-                Welcome ${session["userName"]}
+            <div class="ui simple dropdown link item">
+                Welcome ${session["userName"]}<i class="dropdown icon"></i>
+                <div class="menu">
+                    <g:link controller="member" action="editPassword" class="item">Change Password</g:link>
+                    <g:link controller="logout" class="item">Logout</g:link>
+                    %{--<form name="logout" method="POST" style="color: #E7746F" class="item" action="${createLink(controller:'logout') }">--}%
+                        %{--<em>--}%
+                            %{--<input type="submit" class="ui button" value="Logout" style="background-color: #fff;">--}%
+                        %{--</em>--}%
+                    %{--</form>--}%
+                </div>
             </div>
-            <form name="logout" method="POST" style="float: right;color: #E7746F" class="item" action="${createLink(controller:'logout') }">
-                <em>
-                    <input type="submit" class="ui button" value="Logout" style="color:#fff;background-color:rgba(255, 0, 0, 0.04)">
-                </em>
-            </form>
+
         </sec:ifLoggedIn>
     </div>
 </div>
@@ -582,12 +587,6 @@
         <sec:ifNotGranted roles="ROLE_LIBRARIAN">
             <div class="ui simple link item">
                 <g:link controller="member" action="history"><i class="history icon"></i> History</g:link>
-            </div>
-            <div class="ui simple dropdown link item">
-                <i class="configure icon"></i> Configure <i class="dropdown icon"></i>
-                <div class="menu">
-                    <g:link controller="member" action="editPassword" class="item"> <i class="user icon"></i>   Password  </g:link>
-                </div>
             </div>
         </sec:ifNotGranted>
 
