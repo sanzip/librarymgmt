@@ -19,7 +19,7 @@
         #authorSearch{
             text-align: center;
             margin-top:-37px;
-            margin-left:180px;
+            margin-left:424px;
         }
         #bookSearch{
             text-align: left;
@@ -73,7 +73,7 @@
 			%{--</g:if>--}%
             <br><hr><br>
 
-            <div style="text-align: center;">
+            <div style="margin: 0px auto;width: 77%;">
                 <div id="bookSearch">
                     <strong><span style="font-size: 18px;">Book Name:</span></strong>
                 <div class="ui icon input">
