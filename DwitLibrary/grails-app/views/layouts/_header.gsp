@@ -563,7 +563,7 @@
 <div class="ui center aligned segment" style="background-color: #3573A3;">
     <g:link controller="member" action="dashboard"> <img style="float: left; height: 80px;width: 80px" src="${resource(dir: 'img', file: 'deerwalk.png')}" alt="Logo" />
     <h1 style="color:white;float:left; margin-left: 190px"><b>Library Management System</b></h1></g:link>
-    <div style="float:right;color: white; font-style: oblique; font-size: 20px" class="item">
+    <div style="float:right;color: white; font-style: oblique; font-size: 20px; margin-top: 18px;" class="item">
         <sec:ifLoggedIn>
             <div class="ui simple dropdown link item">
                 Welcome ${session["userName"]}<i class="dropdown icon"></i>
