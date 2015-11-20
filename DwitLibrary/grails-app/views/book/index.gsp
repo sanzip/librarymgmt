@@ -68,9 +68,9 @@
 
 		<div id="list-book" class="content scaffold-list" role="main">
 
-			<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
-			</g:if>
+			%{--<g:if test="${flash.message}">--}%
+				%{--<div class="message" role="status">${flash.message}</div>--}%
+			%{--</g:if>--}%
             <br><hr><br>
 
             <div style="text-align: center;">

@@ -112,7 +112,7 @@ class MemberController {
         params.role
 
         def bodyOfEmail = "\nHello $memberInstance.fullName,\n\nYour account has been created on Library Management System.\n\nYour credentials are: \n" +
-                "\n\tUsername: $memberInstance.username\n\tPassword: $memberInstance.password\n\nYou can change this password right after you login.\n\nThanks,\nThe DWIT Library.";
+                "\n\tUsername: $memberInstance.username\n\tPassword: $memberInstance.password\nYou can change this password right after you login.\n\nThanks,\nThe DWIT Library.";
 
         if (!memberInstance.save(flush: true,failOnError: true)) {
             flash.message ='Unable to save new User'
