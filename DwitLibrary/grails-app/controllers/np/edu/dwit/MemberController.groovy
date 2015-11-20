@@ -1,6 +1,7 @@
 package np.edu.dwit
 
 import grails.converters.JSON
+import grails.plugin.springsecurity.authentication.encoding.BCryptPasswordEncoder
 import grails.transaction.Transactional
 import org.json.simple.JSONArray
 import org.json.simple.JSONObject
@@ -108,11 +109,13 @@ class MemberController {
         memberInstance.username=fName[0]+"_"+memberInstance.userId
         params.role
 
-        def bodyOfEmail = "\nHello $memberInstance.fullName,\n\n\tYour account has been created on Library Management System.\n\tYour credentials are: \n" +
-                "\n\tUsername: $memberInstance.username\n\tPassword: $memberInstance.password\n\tYou can change this password right after you login.\n\nThanks,\nThe DWIT Library.";
+        def bodyOfEmail = "\nHello $memberInstance.fullName,\n\nYour account has been created on Library Management System.\n\nYour credentials are: \n" +
+                "\n\tUsername: $memberInstance.username\n\tPassword: $memberInstance.password\n\nYou can change this password right after you login.\n\nThanks,\nThe DWIT Library.";
 
-        if (!memberInstance.save(flush: true)) {
-            render(view: "create", model: [userInstance: memberInstance])
+        if (!memberInstance.save(flush: true,failOnError: true)) {
+            flash.message ='Unable to save new User'
+            def messageType = 'success'
+            render view: "create", model: [userInstance: memberInstance], params: [messageType: messageType]
             return
         }
         if  (!memberInstance.authorities.contains( Role.findByAuthority(params.role))) {
@@ -126,8 +129,9 @@ class MemberController {
             subject "LMS: User Credentials"
             text bodyOfEmail
         }
-
-        redirect (controller:'member', action:'list')
+        flash.message ='New User saved'
+        def messageType = 'success'
+        redirect( action: 'list' ,params: [messageType: messageType])
         /*request.withFormat {
             form {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'memberInstance.label', default: 'Member'), memberInstance.id])
@@ -146,7 +150,7 @@ class MemberController {
 
     @Secured("IS_AUTHENTICATED_FULLY")
     def editPassword() {
-        render(view: "edit")
+        render(view: "editPassword")
     }
 
     @Secured("IS_AUTHENTICATED_FULLY")
@@ -157,16 +161,36 @@ class MemberController {
             notFound()
             return
         }
-        def newPassword = params.password
-        def reTypePassword= params.rpassword
-        if(newPassword==reTypePassword){
-            memberInstance.password=newPassword
-            memberInstance.save flush: true, failOnError: true
-            redirect(controller: params.currentController, action: 'index')
+        def password = params.password
+        def newPassword = params.npassword
+        def newPassword2= params.rpassword
+        def messageType
+
+        if (!password || !newPassword || !newPassword2 || newPassword != newPassword2) {
+            flash.message = 'Please enter your current password and a valid new password'
+            messageType = 'error'
+            redirect( action: 'editPassword', params: [messageType: messageType])
+            return
         }
-        else {
-            redirect(controller: params.currentController, action:'editPassword')
+
+        if (!springSecurityService.passwordEncoder.isPasswordValid(memberInstance.password, password, null /*salt*/)) {
+            flash.message =  'Current password is incorrect'
+            messageType = 'error'
+            redirect( action: 'editPassword', params: [messageType: messageType])
+            return
         }
+
+        if (springSecurityService.passwordEncoder.isPasswordValid(memberInstance.password, newPassword, null /*salt*/)) {
+            flash.message = 'Please choose a different password from your current one'
+            messageType = 'error'
+            redirect( action: 'editPassword', params: [messageType: messageType])
+            return
+        }
+        memberInstance.password = newPassword
+        memberInstance.save flush: true, failOnError: true
+        flash.message = 'Password changed.'
+        messageType = 'success'
+        redirect( action: 'dashboard', params: [messageType: messageType])
     }
     @Secured("ROLE_LIBRARIAN")
     @Transactional
@@ -182,7 +206,9 @@ class MemberController {
         }
 
         memberInstance.save flush: true, failOnError: true
-        redirect(controller: params.currentController, action:'list')
+        flash.message = 'User updated'
+        def messageType = 'success'
+        redirect action:  'list' ,params: [messageType: messageType]
 
 //        request.withFormat {
 //            form {
