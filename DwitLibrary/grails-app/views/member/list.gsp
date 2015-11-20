@@ -54,9 +54,9 @@
 
 <div id="list-member" class="content scaffold-list" role="main">
 
-    <g:if test="${flash.message}">
-        <div class="message" role="status">${flash.message}</div>
-    </g:if>
+    %{--<g:if test="${flash.message}">--}%
+        %{--<div class="message" role="status">${flash.message}</div>--}%
+    %{--</g:if>--}%
     <div id="head">
         <br>
         <div class="ui compact menu" style="float: left;">

@@ -52,9 +52,9 @@
 
 
 <div id="edit-member" class="content scaffold-edit" role="main">
-    <g:if test="${flash.message}">
-        <div class="message" role="status">${flash.message}</div>
-    </g:if>
+    %{--<g:if test="${flash.message}">--}%
+        %{--<div class="message" role="status">${flash.message}</div>--}%
+    %{--</g:if>--}%
 %{-- <g:hasErrors bean="${memberInstance}">
      <ul class="errors" role="alert">
          <g:eachError bean="${memberInstance}" var="error">
@@ -70,14 +70,8 @@
         <fieldset class="form">
             <g:render template="form"/>
             <br>
-            <sec:ifAllGranted roles="ROLE_LIBRARIAN">
-                <g:actionSubmit class="ui blue button" onclick="return validateEmail()" action="update"
+            <g:actionSubmit class="ui blue button" onclick="return validateEmail()" action="update"
                                 value="${message(code: 'default.button.update.label', default: 'Update')}"/>
-            </sec:ifAllGranted>
-            <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
-                <g:actionSubmit class="ui blue button" action="updatePassword"
-                                value="${message(code: 'default.button.update.label', default: 'Update')}"/>
-            </sec:ifAnyGranted>
         </fieldset>
 
     </g:form>
