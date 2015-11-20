@@ -1,13 +1,12 @@
 package np.edu.dwit
 
-import grails.converters.JSON
-import grails.plugin.springsecurity.authentication.encoding.BCryptPasswordEncoder
 import grails.transaction.Transactional
 import org.json.simple.JSONArray
 import org.json.simple.JSONObject
 import org.springframework.security.access.annotation.Secured
 
-import static org.springframework.http.HttpStatus.*
+import static org.springframework.http.HttpStatus.NOT_FOUND
+import static org.springframework.http.HttpStatus.NO_CONTENT
 
 @Transactional(readOnly = true)
 class MemberController {
@@ -90,7 +89,10 @@ class MemberController {
     def create() {
         respond new Member(params)
     }
+    @Secured("ROLE_LIBRARIAN")
+    def configDetails(){
 
+    }
     @Secured("ROLE_LIBRARIAN")
     @Transactional
     def save(Member memberInstance) {

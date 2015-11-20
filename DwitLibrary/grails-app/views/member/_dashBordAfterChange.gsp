@@ -58,7 +58,6 @@
             </sec:ifAllGranted>
             <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_STUDENT,ROLE_FACULTY">
                 <td  style="text-align: center;">${fieldValue(bean: book, field: "name")}</td>
-
             </sec:ifAnyGranted>
         </g:if>
         <g:else>

@@ -567,9 +567,9 @@
         <sec:ifLoggedIn>
             <div class="ui simple dropdown link item">
                 Welcome ${session["userName"]}<i class="dropdown icon"></i>
-                <div class="menu">
-                    <g:link controller="member" action="editPassword" class="item">Change Password</g:link>
-                    <g:link controller="logout" class="item">Logout</g:link>
+                <div class="menu" style="border-radius: 5px;border: none;">
+                    <g:link controller="member" action="editPassword" class="item" style="color:white;background-color:#3573A3">Change Password</g:link>
+                    <g:link controller="logout" class="item" style="color:white;background-color:#3573A3">Logout</g:link>
                     %{--<form name="logout" method="POST" style="color: #E7746F" class="item" action="${createLink(controller:'logout') }">--}%
                         %{--<em>--}%
                             %{--<input type="submit" class="ui button" value="Logout" style="background-color: #fff;">--}%
@@ -616,6 +616,7 @@
             <div class="ui simple dropdown link item">
                 <i class="configure icon"></i> Configure <i class="dropdown icon"></i>
                 <div class="menu">
+                    <g:link controller="member" action="configDetails" class="item"> <i class="user icon"></i>   New Gurung  </g:link>
                     <g:link controller="member" action="list" class="item"> <i class="user icon"></i>   User  </g:link>
                     <g:link controller="book" action="index" class="item"> <i class="book icon"></i>  Book  </g:link>
                 </div>
