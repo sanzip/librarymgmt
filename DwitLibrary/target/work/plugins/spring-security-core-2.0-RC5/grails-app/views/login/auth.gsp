@@ -128,7 +128,9 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta name="layout" content="main">
-	<title><g:message code="springSecurity.login.title"/></title>
+    <link rel="shortcut icon" href="${createLinkTo(dir:'img',file:'deerwalk.png')}" type="image/x-icon" />
+
+    <title><g:message code="springSecurity.login.title"/></title>
 	%{--<style type='text/css' media='screen'>
 	#login {
 		margin: 15px 0px;
