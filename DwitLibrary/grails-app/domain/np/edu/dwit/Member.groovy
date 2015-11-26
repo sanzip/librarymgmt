@@ -3,7 +3,7 @@ package np.edu.dwit
 class Member extends User {
     String email
     String contact
-    String status  //Developers: Why status???????
+    String status  
     String fullName
     String userId
 
