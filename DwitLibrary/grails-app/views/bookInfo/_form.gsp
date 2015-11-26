@@ -194,7 +194,7 @@ $('#bookNumberInput').append(' <br><input type="text" name="bookNumber" required
             <div class="field">
                 <h3 class="ui dividing header">Pages <span class="required-indicator">*</span> </h3>
 
-                <g:textField name="pages" id="pages" required="" onkeypress="return alphanumeric(event,this)" value="${bookInfoInstance?.pages}"/>
+                <g:textField name="pages" id="pages" required="" onkeypress="" value="${bookInfoInstance?.pages}"/>
             </div>
 
             <div class="field">
