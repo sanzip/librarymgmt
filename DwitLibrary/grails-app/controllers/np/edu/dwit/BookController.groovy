@@ -247,6 +247,8 @@ class BookController {
     def saveIssue() {
         def borrowingUser = Member.findByFullName(params.fullName)
         def bookInfo = BookInfo.findByBookNumber(params.bookNumber)
+        def currentlyloggedInUser = springSecurityService.principal.id
+
         if(!bookInfo) {
             flash.message = "Book number doesnot exist."
             redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
@@ -266,7 +268,11 @@ class BookController {
             } else if (bookInfo.bookType.equalsIgnoreCase("Reference") || bookInfo.bookType.equalsIgnoreCase("Gifted")) {
                 flash.message = "Reference or gifted book cannot be borrowed"
                 redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
-            } else {
+            }else if(borrowingUser.id==currentlyloggedInUser) {
+                flash.message = "Librarian are not allowed to issue book to themselves."
+                redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
+            }
+            else {
 
                 if (borrowingUser && borrowingBook) {
                     def c = Borrow.createCriteria()
@@ -398,7 +404,6 @@ class BookController {
                 }
             }
         }
-
 
     }
     def saveTimestamp(BookInfo bookInfo,Member member) {
