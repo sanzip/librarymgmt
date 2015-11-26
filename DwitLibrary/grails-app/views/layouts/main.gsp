@@ -10,6 +10,8 @@
 		<title></title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="${createLinkTo(dir:'img',file:'deerwalk.png')}" type="image/x-icon" />
+
     <link href="${resource(dir: 'semantic/dist', file: 'semantic.min.css')}" rel="stylesheet">
     <link href="${resource(dir: 'css/assets/css', file: 'style.css')}" rel="stylesheet">
     <link href="${resource(dir: 'css', file: 'jquery-ui.min.css')}" rel="stylesheet">
