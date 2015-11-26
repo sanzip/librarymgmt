@@ -11,7 +11,7 @@
 <head>
     <meta name="layout" content="main_page">
     <title> Dashboard </title>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />
+    %{--<link rel="stylesheet" href="${resource(dir: 'css', file: 'datatable.min.css')}" />--}%
     <g:javascript src="datatable-min.js"/>
     <style>
     .dataTables_filter {
