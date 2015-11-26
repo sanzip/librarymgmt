@@ -272,7 +272,7 @@
 			<div style="color: red" id="message" class="message" role="status">${flash.message}</div>
 		</g:if>
 	</header>
-	<section class="main"><h1 style="text-align: center; font-size: 28px;color:white;"><br>Login</h1>
+	<section class="main"><h1 style="text-align: center; font-size: 28px;color:white;"><br>LOGIN</h1>
 		<form class="form-5 clearfix" action="${postUrl}" autocomplete='off' method="POST" style="box-shadow: none">
 			%{--
                             <label for='username' style="color:white"><g:message code="springSecurity.login.username.label"/>:</label>
