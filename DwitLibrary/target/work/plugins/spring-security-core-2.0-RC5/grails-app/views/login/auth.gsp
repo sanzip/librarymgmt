@@ -127,7 +127,7 @@
 
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-	<meta name='layout' content='main'/>
+    <meta name="layout" content="main">
 	<title><g:message code="springSecurity.login.title"/></title>
 	%{--<style type='text/css' media='screen'>
 	#login {
@@ -232,8 +232,10 @@
 	}
 	.main{
 		width: 26%;
-		background-color: rgba(33, 45, 31, 0.38);
-		border-radius: 5px;
+		background-color:rgba(197, 175, 145, 0.06);
+		border-radius: 1px;
+        border:2px solid white;
+        box-shadow:1px 1px 1px 8px #3573A3;
 	}
 	.form-5{
 		background-color:rgba(129, 93, 61, 0);
@@ -263,13 +265,12 @@
 <body>
 <div class="container">
 	<header>
-		<h1 style="font-size: 40px"><strong>Library Management System</strong> </h1><br><br><br>
+		<h1 style="font-size: 40px"><img src="../images/logo.png" style="height: 160px;width: 180px;text-align: center"/> </h1><br><br><br>
 		<g:if test="${flash.message}">
 			<div style="color: red" id="message" class="message" role="status">${flash.message}</div>
 		</g:if>
 	</header>
-	<section class="main">
-		<h1 style="text-align: center; font-size: 0px;color:white;">Login</h1>
+	<section class="main"><h1 style="text-align: center; font-size: 28px;color:white;"><br>Login</h1>
 		<form class="form-5 clearfix" action="${postUrl}" autocomplete='off' method="POST" style="box-shadow: none">
 			%{--
                             <label for='username' style="color:white"><g:message code="springSecurity.login.username.label"/>:</label>
