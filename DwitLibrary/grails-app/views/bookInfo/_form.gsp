@@ -186,21 +186,16 @@ $('#bookNumberInput').append(' <br><input type="text" name="bookNumber" required
 
         <br>
         <div class="two fields">
-            <div class="field">
-                <h3 class="ui dividing header">Edition <span class="required-indicator">*</span> </h3>
+            %{--<div class="field">--}%
+                %{--<h3 class="ui dividing header">Edition <span class="required-indicator">*</span> </h3>--}%
 
-                <g:textField name="edition" required="" value="${bookInfoInstance?.edition}"/>
-            </div>
+                %{--<g:textField name="edition" required="" value="${bookInfoInstance?.edition}"/>--}%
+            %{--</div>--}%
             <div class="field">
                 <h3 class="ui dividing header">Pages <span class="required-indicator">*</span> </h3>
 
                 <g:textField name="pages" id="pages" required="" onkeypress="return alphanumeric(event,this)" value="${bookInfoInstance?.pages}"/>
             </div>
-
-        </div>
-        <br>
-
-        <div class="two fields">
 
             <div class="field">
                 <h3 class="ui dividing header">Cost <span class="required-indicator">*</span> </h3>
@@ -208,17 +203,33 @@ $('#bookNumberInput').append(' <br><input type="text" name="bookNumber" required
                 <g:textField type="" name="cost" id="cost" onkeypress="return onlyNumbersCost(event,this)" value="${fieldValue(bean: bookInfoInstance, field: 'cost')}" required=""/>
             </div>
 
+        </div>
+        <br>
+
+        <div class="two fields">
+
+            %{--<div class="field">--}%
+                %{--<h3 class="ui dividing header">Cost <span class="required-indicator">*</span> </h3>--}%
+
+                %{--<g:textField type="" name="cost" id="cost" onkeypress="return onlyNumbersCost(event,this)" value="${fieldValue(bean: bookInfoInstance, field: 'cost')}" required=""/>--}%
+            %{--</div>--}%
+
             <div class="field">
                 <h3 class="ui dividing header">Source <span class="required-indicator">*</span> </h3>
 
                 <g:textField name="source" required="" value="${bookInfoInstance?.source}"/>
             </div>
+            <div class="field">
+                <h3 class="ui dividing header">Book Type <span class="required-indicator">*</span> </h3>
+                <g:select name="bookType" from="${bookInfoInstance.constraints.bookType.inList}" required="" value="${bookInfoInstance?.bookType}" valueMessagePrefix="bookInfo.bookType"/>
+            </div>
+
         </div>
 <div class="two fields">
-    <div class="field">
-            <h3 class="ui dividing header">Book Type <span class="required-indicator">*</span> </h3>
-            <g:select name="bookType" from="${bookInfoInstance.constraints.bookType.inList}" required="" value="${bookInfoInstance?.bookType}" valueMessagePrefix="bookInfo.bookType"/>
-        </div>
+    %{--<div class="field">--}%
+            %{--<h3 class="ui dividing header">Book Type <span class="required-indicator">*</span> </h3>--}%
+            %{--<g:select name="bookType" from="${bookInfoInstance.constraints.bookType.inList}" required="" value="${bookInfoInstance?.bookType}" valueMessagePrefix="bookInfo.bookType"/>--}%
+        %{--</div>--}%
 
     <div class="field">
         <h3 class="ui dividing header">Book Number <span class="required-indicator">*</span> </h3>

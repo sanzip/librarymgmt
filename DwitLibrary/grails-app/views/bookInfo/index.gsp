@@ -112,7 +112,7 @@
 
 						<g:sortableColumn property="bookNumber" title="${message(code: 'bookInfo.bookNumber.label', default: 'Book Number')}" />
 
-						<g:sortableColumn property="edition" title="${message(code: 'bookInfo.edition.label', default: 'Edition')}" />
+						%{--<g:sortableColumn property="edition" title="${message(code: 'bookInfo.edition.label', default: 'Edition')}" />--}%
 
 						<g:sortableColumn property="publishedYear" title="${message(code: 'bookInfo.publishedYear.label', default: 'Published Year')}" />
 
@@ -138,7 +138,7 @@
 					--}%
 						<td>${fieldValue(bean: bookInfoInstance, field: "bookNumber")}</td>
 
-						<td>${fieldValue(bean: bookInfoInstance, field: "edition")}</td>
+						%{--<td>${fieldValue(bean: bookInfoInstance, field: "edition")}</td>--}%
 
 						<td>${fieldValue(bean: bookInfoInstance, field: "publishedYear")}</td>
 
