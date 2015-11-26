@@ -561,9 +561,9 @@
     <input type="submit" value="Reset" id="reset" onclick="resetclick();"/>
 </form>
 <div class="ui center aligned segment" style="background-color: #3573A3;">
-    <g:link controller="member" action="dashboard"> <img style="float: left; height: 130px;width: 150px" src="${resource(dir: 'images', file: 'logo.png')}" alt="Logo" />
-    <h1 style="color:white;float:left; margin-left: 190px"><b>Library Management System</b></h1></g:link>
-    <div style="float:right;color: white; font-style: oblique; font-size: 20px; margin-top: 18px;" class="item">
+    <g:link controller="member" action="dashboard"> <img style="float: left; height: 95px;width: 150px" src="${resource(dir: 'images', file: 'logo.png')}" alt="Logo" />
+    <h1 style="color:white;float:left; margin-left: 185px"><b style="font-size: 70px;">Gyan Sangalo</b></h1></g:link>
+    <div style="float:right;color: white; font-style: oblique; font-size: 20px; margin-top: 10px;" class="item">
         <sec:ifLoggedIn>
             <div class="ui simple dropdown link item">
                 Welcome ${session["userName"]}<i class="dropdown icon"></i>
