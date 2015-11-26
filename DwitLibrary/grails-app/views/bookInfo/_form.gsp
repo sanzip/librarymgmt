@@ -85,6 +85,32 @@ $('#bookNumberInput').append(' <br><input type="text" name="bookNumber" required
             }
         }
 
+        function alphanumeric(e, t) {
+            try {
+                if (window.event) {
+                    var code = window.event.keyCode;
+                }
+                else if (e) {
+                    var code = e.which;
+                }
+                else { return true; }
+                if ((code >=48   && code <= 57) || ((code > 64 && code < 91) || (code > 96 && code < 123)) ){
+                    return true;
+                }
+
+                else{
+
+                    alert("Please Enter alphanumeric characters");
+                     $("#pages").val('');
+                    return false;
+                }
+
+            }
+            catch (err) {
+                alert(err.Description);
+            }
+        }
+
       function onlyNumbersCost(e, t) {
             try {
                 if (window.event) {
@@ -168,7 +194,7 @@ $('#bookNumberInput').append(' <br><input type="text" name="bookNumber" required
             <div class="field">
                 <h3 class="ui dividing header">Pages <span class="required-indicator">*</span> </h3>
 
-                <g:textField name="pages" id="pages" required="" onkeypress="return onlyNumbers(event,this)" value="${bookInfoInstance?.pages}"/>
+                <g:textField name="pages" id="pages" required="" onkeypress="return alphanumeric(event,this)" value="${bookInfoInstance?.pages}"/>
             </div>
 
         </div>

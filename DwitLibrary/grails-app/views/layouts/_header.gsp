@@ -616,7 +616,7 @@
             <div class="ui simple dropdown link item">
                 <i class="configure icon"></i> Configure <i class="dropdown icon"></i>
                 <div class="menu">
-                    <g:link controller="member" action="configDetails" class="item"> <i class="user icon"></i>   New Gurung  </g:link>
+                    %{--<g:link controller="member" action="configDetails" class="item"> <i class="user icon"></i>   Fine  </g:link>--}%
                     <g:link controller="member" action="list" class="item"> <i class="user icon"></i>   User  </g:link>
                     <g:link controller="book" action="index" class="item"> <i class="book icon"></i>  Book  </g:link>
                 </div>
