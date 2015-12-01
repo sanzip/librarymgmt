@@ -27,8 +27,7 @@ class BookController {
     }
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Book.list(params), model: [bookInstanceCount: Book.count()]
+        respond Book.list(), model: [bookInstanceCount: Book.count()]
     }
 
     def show(Book bookInstance) {

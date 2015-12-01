@@ -13,7 +13,6 @@ class BookInfoController {
 
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
 
         def book = Book.findById(params.id)
 

@@ -32,8 +32,7 @@ class MemberController {
 
         def currentUser= Member.findById(springSecurityService.principal.id)
         def count = Borrow.findAllByMemberAndReturned(currentUser, false)
-        params.max = Math.min(params.max ?: 10, 100)
-        def bookList = Book.list(params);
+        def bookList = Book.list();
         render (view: "dashboard", model:[list: bookList, listCount:bookList.size(), count: (3-count.size())])
     }
 
@@ -77,8 +76,7 @@ class MemberController {
 
     @Secured("ROLE_LIBRARIAN")
     def list(Integer max){
-        params.max = Math.min(max ?: 10, 100)
-        respond Member.list(params), model: [memberInstanceCount: Member.count()]
+        respond Member.list(), model: [memberInstanceCount: Member.count()]
     }
 
     @Secured("ROLE_LIBRARIAN")
