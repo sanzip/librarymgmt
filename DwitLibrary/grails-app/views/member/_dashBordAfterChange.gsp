@@ -78,9 +78,6 @@
     </tbody>
 </table>
 <br>
-<div class="pagination">
-    <g:paginate total="${listCount ?: 0}" />
-</div>
 <script>
     function setValue(){
         $("#bookName").val('');
