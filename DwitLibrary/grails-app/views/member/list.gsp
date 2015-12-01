@@ -148,10 +148,10 @@
         </tbody>
     </table>  <br>
 
-    <div class="pagination">
-    <g:paginate total="${memberInstanceCount ?: 0}"/>
+    %{--<div class="pagination">--}%
+    %{--<g:paginate total="${memberInstanceCount ?: 0}"/>--}%
 
-    </div>
+    %{--</div>--}%
     </div>
     </div>
 </body>

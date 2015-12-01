@@ -161,9 +161,9 @@
 				</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
-				<g:paginate total="${bookInstanceCount ?: 0}" />
-			</div>
+			%{--<div class="pagination">--}%
+				%{--<g:paginate total="${bookInstanceCount ?: 0}" />--}%
+			%{--</div>--}%
 		</div>
         </div>
 	</body>
