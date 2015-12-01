@@ -25,7 +25,7 @@
     <link href="${resource(dir: 'semantic/dist/components', file: 'modal.min.css')}" rel="stylesheet">
     <script src="${resource(dir: 'js/noty/packaged', file: 'jquery.noty.packaged.min.js')}"></script>
     <script src="${resource(dir: 'js', file: 'jquery.sessionTimeout.js')}"></script>
-    <link href="${resource(dir: 'css',file: 'styles.css')}" rel="stylesheet">
+    <link href="${resource(dir: 'css',file: 'style.css')}" rel="stylesheet">
 		<script type="text/javascript">
 			$(function()
 			{

@@ -214,7 +214,9 @@
 	<link href="${resource(dir: 'css', file: 'login_style.css')}" rel="stylesheet">
 	<script src="${resource(dir: 'js', file: 'jquery.placeholder.min.js')}"></script>
 	<script src="${resource(dir: 'js', file: 'modernizr.custom.63321.js')}"></script>
-	<style>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <style>
 	@import url(http://fonts.googleapis.com/css?family=Raleway:400,700);
 	body {
 		background-image:url('${resource(dir: "images", file: "library3.jpg")}');
@@ -227,11 +229,7 @@
 		color: #fff;
 		text-shadow: 0 1px 1px rgba(0,0,0,0.7);
 	}
-	#message{
-		color: white;
-		font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-		font-size: 18px;
-	}
+
 	.main{
 		width: 26%;
 		background-color:rgba(197, 175, 145, 0.06);
@@ -261,33 +259,65 @@
         padding: 0;
         margin-left: 100px;
     }
+    #message{
+        transition: color 200ms ease;
+    }
+    #message.blink{
+        color: transparent;
+    }
 	</style>
 </head>
 
 <body>
 <div class="container">
-	<header>
+	%{--<header>
 		<h1 style="font-size: 40px"><img src="../images/logo.png" style="height: 160px;width: 180px;text-align: center"/> </h1><br><br><br>
 		<g:if test="${flash.message}">
 			<div style="color: red" id="message" class="message" role="status">${flash.message}</div>
 		</g:if>
-	</header>
-	<section class="main"><h1 style="text-align: center; font-size: 28px;color:white;"><br>LOGIN</h1>
+	</header>--}%
+	%{--<section class="main"><h1 style="text-align: center; font-size: 28px;color:white;"><br>LOGIN</h1>
 		<form class="form-5 clearfix" action="${postUrl}" autocomplete='off' method="POST" style="box-shadow: none">
-			%{--
+			--}%%{--
                             <label for='username' style="color:white"><g:message code="springSecurity.login.username.label"/>:</label>
-            --}%
+            --}%%{--
 			<input type='text' id="login" class='text_' name='j_username' id='username' placeholder="Username"/>
 			<br><br><br>
-			%{--
+			--}%%{--
                             <label for='password' style="color:white"><g:message code="springSecurity.login.password.label"/>:</label>
-            --}%
+            --}%%{--
 			<input type='password' placeholder="Password" class='text_' name='j_password' id='password'/>
 			<br><br>
 
              <input id="submit" type='submit' id="submit" value='Login'/>
 		</form>​​​​
-	</section>
+	</section>--}%
+
+    <div class="login-form">
+        <div class="head">
+            <img src="../images/logo.png" alt=""/>
+        </div>
+        <form action="${postUrl}" method="post">
+            <g:if test="${flash.message}">
+                <div style="color: #FF7878; font-family: fantasy;text-decoration: blink " id="message" class="message" role="status">${flash.message}</div>
+            </g:if>
+            <li>
+%{--
+                <input type='text' id="login" class='text_' name='j_username' id='username' placeholder="Username"/>
+--}%
+
+                <input type="text" id="login" name='j_username' id='username' class="text_" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'USERNAME';}" ><a href="#" class=" icon user"></a>
+            </li>
+            <li>
+                <input type="password" id='password' class='text_' value="Password" name='j_password' onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"><a href="#" class=" icon lock"></a>
+            </li>
+%{--
+                <label class="checkbox"><input type="checkbox" name="checkbox" checked><i></i>Remember Me</label>
+--}%
+                <input type='submit' id="submit" value='Sign In'/>
+        </form>
+    </div>
+
 </div>
 %{--<div id='login'>
 	<div class='inner'>
@@ -319,6 +349,7 @@
 		</form>
 	</div>
 </div>--}%
+
 
 <script type='text/javascript'>
 	(function() {
