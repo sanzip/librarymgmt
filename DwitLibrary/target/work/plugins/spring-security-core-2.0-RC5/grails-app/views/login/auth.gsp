@@ -295,7 +295,7 @@
 
     <div class="login-form">
         <div class="head">
-            <img src="../images/logo.png" alt=""/>
+            <img src="../images/libraryLogo.png" alt=""/>
         </div>
         <form action="${postUrl}" method="post">
             <g:if test="${flash.message}">
