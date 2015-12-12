@@ -111,16 +111,18 @@ class BookInfoController {
         String number = params.bookNumber
         bookInfoInstance.discard()
         def bookInfo = BookInfo.findByBookNumber(number)
+        def messageType
         if(bookInfo==null){
             bookInfoInstance.save flush:true
             flash.message='Book information updated'
-            redirect(controller: 'bookInfo', action:'index',params:[id:bookInfoInstance.book.id,messageType: 'success'])
+            messageType = 'success'
         }
         else {
-            flash.message='Book number already exist. Enter another.'
-            respond bookInfoInstance, view: 'edit', params:[messageType: 'error']
+            flash.message='Error! Book number already exist'
+            messageType = 'error'
+//            respond bookInfoInstance, view: 'edit', params:[messageType: 'error']
         }
-
+        redirect(controller: 'bookInfo', action:'index',params:[id:bookInfoInstance.book.id,messageType: messageType])
 /*        request.withFormat {
             form {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'BookInfo.label', default: 'BookInfo'), bookInfoInstance.id])
