@@ -79,9 +79,9 @@ class BookController {
             respond bookInstance.errors, view: 'edit'
             return
         }
-
+        flash.message = 'Book updated'
         bookInstance.save flush: true
-        redirect(controller: params.currentController, action:'index',params:[id:bookInstance.id])
+        redirect(controller: 'book', action:'index',params:[id:bookInstance.id, messageType: 'sucess'])
         /*request.withFormat {
             form {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Book.label', default: 'Book'), bookInstance.id])
@@ -126,66 +126,66 @@ class BookController {
     }
 
 
-    @Secured("ROLE_LIBRARIAN")
-    @Transactional
-    def beforeIssue() {
-        def borrowingUser = User.findByUsername(params.borrowingUsername);
-
-        if(borrowingUser){
-            def c = Borrow.createCriteria()
-
-            def borrowCount = c.count {
-                eq("member", borrowingUser)
-                eq("returned", false)
-
-            }
-            def role = borrowingUser.getAuthorities().toString().substring(6,9);
-            def book = Book.findById(Long.valueOf(params.bookId).longValue())
-
-            Borrow borrow = new Borrow();
-            borrow.book = book
-            borrow.borrowedDate=new Timestamp(new Date().getTime())
-            borrow.returned=false
-            borrow.member=borrowingUser
-
-            if(role.equals("FAC")){
-                if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_FACULTY) {
-                    render "greaterborrowcount"
-                }else {
-                    borrow.save(flush: true)
-                    render "issue"
-                }
-            }else if(role.equals("LIB")){
-                if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_LIBRARIAN) {
-                    render "greaterborrowcount"
-                }else {
-
-                    borrow.save(flush: true)
-                    render "issue"
-                }
-            }
-
-            else if(role.equals("ADM")){
-                if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_ADMIN) {
-                    render "greaterborrowcount"
-                }else {
-                    borrow.save(flush: true)
-                    render "issue"
-                }
-            }else if(role.equals("STU")){
-                if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_STUDENT) {
-                    render "greaterborrowcount"
-                }else {
-                    borrow.save(flush: true)
-                    render "issue"
-                }
-            }
-            else {
-                render "error"
-            }
-
-        }
-    }
+//    @Secured("ROLE_LIBRARIAN")
+//    @Transactional
+//    def beforeIssue() {
+//        def borrowingUser = User.findByUsername(params.borrowingUsername);
+//
+//        if(borrowingUser){
+//            def c = Borrow.createCriteria()
+//
+//            def borrowCount = c.count {
+//                eq("member", borrowingUser)
+//                eq("returned", false)
+//
+//            }
+//            def role = borrowingUser.getAuthorities().toString().substring(6,9);
+//            def book = Book.findById(Long.valueOf(params.bookId).longValue())
+//
+//            Borrow borrow = new Borrow();
+//            borrow.book = book
+//            borrow.borrowedDate=new Timestamp(new Date().getTime())
+//            borrow.returned=false
+//            borrow.member=borrowingUser
+//
+//            if(role.equals("FAC")){
+//                if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_FACULTY) {
+//                    render "greaterborrowcount"
+//                }else {
+//                    borrow.save(flush: true)
+//                    render "issue"
+//                }
+//            }else if(role.equals("LIB")){
+//                if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_LIBRARIAN) {
+//                    render "greaterborrowcount"
+//                }else {
+//
+//                    borrow.save(flush: true)
+//                    render "issue"
+//                }
+//            }
+//
+//            else if(role.equals("ADM")){
+//                if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_ADMIN) {
+//                    render "greaterborrowcount"
+//                }else {
+//                    borrow.save(flush: true)
+//                    render "issue"
+//                }
+//            }else if(role.equals("STU")){
+//                if(borrowCount>=DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_STUDENT) {
+//                    render "greaterborrowcount"
+//                }else {
+//                    borrow.save(flush: true)
+//                    render "issue"
+//                }
+//            }
+//            else {
+//                render "error"
+//            }
+//
+//        }
+//    }
 
     @Secured("ROLE_LIBRARIAN")
     def returnBookNav() {
@@ -382,10 +382,10 @@ class BookController {
                             issueSaved = true
 
                             flash.message = "Book Issued"
-                            redirect(controller: params.currentController, action: params.currentAction, params: [messageType: 'success'])
+                            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
                         } else {
                             flash.message = "Book is already borrowed by other user."
-                            redirect(controller: params.currentController, action: params.currentAction, params: [messageType: 'error'])
+                            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                         }
 
 
@@ -409,7 +409,7 @@ class BookController {
         TimeStamp timeStamp = new TimeStamp()
         def borrow =Borrow.findByBookInfoAndMemberAndReturned(bookInfo,member,false)
         def role = borrow.member.getAuthorities()[0].toString()
-        println(role.equals("ROLE_STUDENT"))
+//        println(role.equals("ROLE_STUDENT"))
         def date = getBorrowedDate(borrow)
         if(role.equals("ROLE_STUDENT")) {
 
@@ -565,17 +565,17 @@ class BookController {
 
                     flash.message = "Book Successfully returned"
 
-                    redirect(controller: params.currentController, action: params.currentAction, params: [messageType: 'success'])
+                    redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
                 }
             }else {
                 flash.message = "Book Number is not borrowed yet."
-                redirect(controller: params.currentController, action: params.currentAction, params: [messageType: 'error'])
+                redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
             }
 
 
         }else {
             flash.message = "Book Number does not exist"
-            redirect(controller: params.currentController, action: params.currentAction, params: [messageType: 'error'])
+            redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
         }
 
     }
