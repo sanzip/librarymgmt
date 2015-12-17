@@ -42,21 +42,9 @@ class BookInfoController {
     @Transactional
     def save(BookInfo bookInfoInstance) {
 
-        if (bookInfoInstance == null) {
-            notFound()
-            return
-        }
-
-        if (bookInfoInstance.hasErrors()) {
-            respond bookInfoInstance.errors, view:'create'
-            return
-        }
-
-
         def bookNumber = params.list('bookNumber')
 //        println bookInfoInstance.bookNumber
         boolean saved = false
-
 
         for(int i=0;i<bookNumber.size();i++) {
             def bookInfo = BookInfo.findByBookNumber(bookNumber[i])
