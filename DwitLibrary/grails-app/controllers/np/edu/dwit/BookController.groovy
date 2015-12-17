@@ -313,7 +313,7 @@ class BookController {
                                     flash.message = "Book Issued"
                                     redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
                                 }
-                            } else if (role.equals("ROLE_LIBRARY")) {
+                            } else if (role.equals("ROLE_LIBRARIAN")) {
                                 if (borrowCount >= DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_LIBRARIAN) {
                                     flash.message = "You have already borrowed three books"
                                     redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])

@@ -23,6 +23,11 @@
         background-color: white;
         color: black;
     }
+    td a:hover{
+        border: 1px solid skyblue;
+        padding: 4px;
+        border-radius: 4px;
+    }
 </style>
 <table id="first_table" class="ui sortable celled table" cellspacing="0" width="100% margin: 0px">
     <thead>
@@ -48,8 +53,8 @@
         <g:if test="${book.availableQuantity > 0}">
             <sec:ifAllGranted roles="ROLE_LIBRARIAN">
                 <td style="text-align: center">
-                  <a class="ui white tag label" href="#" onclick = "select(${book.id});" style="color: black;background-color:rgb(217, 217, 217)">${fieldValue(bean: book, field: "name")}</a>
-        </td>
+                  <a href="#" onclick = "select(${book.id});" style="color: black;">${fieldValue(bean: book, field: "name")}</a>
+            </td>
 %{--
                 <td  --}%
 %{--onmouseover="highlightTr(this);" onmouseout="removeHighlight(this);"--}%%{--

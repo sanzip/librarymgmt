@@ -561,7 +561,7 @@
     <input type="submit" value="Reset" id="reset" onclick="resetclick();"/>
 </form>
 <div class="ui center aligned segment" style="background-color: #3573A3;">
-    <g:link controller="member" action="dashboard"> <img style="float: left; height: 95px;width: 120px" src="${resource(dir: 'images', file: 'logo.png')}" alt="Logo" />
+    <g:link controller="member" action="dashboard"> <img style="float: left; height: 95px;width: 120px" src="${resource(dir: 'images', file: 'libraryLogo.png')}" alt="Logo" />
     <h1 style="color:white;float:left; margin-left: 230px"><b style="font-size: 70px;">Gyan Sangalo</b></h1></g:link>
     <div style="float:right;color: white; font-style: oblique; font-size: 20px; margin-top: 10px;" class="item">
         <sec:ifLoggedIn>
@@ -570,11 +570,6 @@
                 <div class="menu" style="border-radius: 5px;border: none;">
                     <g:link controller="member" action="editPassword" class="item" style="color:white;background-color:#3573A3">Change Password</g:link>
                     <g:link controller="logout" class="item" style="color:white;background-color:#3573A3">Logout</g:link>
-                    %{--<form name="logout" method="POST" style="color: #E7746F" class="item" action="${createLink(controller:'logout') }">--}%
-                        %{--<em>--}%
-                            %{--<input type="submit" class="ui button" value="Logout" style="background-color: #fff;">--}%
-                        %{--</em>--}%
-                    %{--</form>--}%
                 </div>
             </div>
 
