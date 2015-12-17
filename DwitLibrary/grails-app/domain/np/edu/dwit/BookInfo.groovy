@@ -16,7 +16,7 @@ class BookInfo {
     static constraints = {
         book blank: false, nullable: false
         bookNumber blank: false, nullable: false
-        edition blank: false, nullable: true
+        edition blank: true, nullable: true
         publishedYear blank: false, nullable: false
         pages blank: false, nullable: false
         cost blank:false, nullable: false
