@@ -77,8 +77,10 @@ class MemberService {
             }
             else if(!newMember){
                 fullName=memberInstance.fullName.split(' ')
+                memberInstance.fullName=""
+                memberInstance.username=""
                 memberInstance.fullName=fullName[0]+' '+fullName[1]+' -'+memberInstance.userId
-                memberInstance.username=fullName[0]+'_'+memberInstance.userId
+                memberInstance.username=fullName[0].toLowerCase()+'_'+memberInstance.userId
             }
 
             if (!memberInstance.save(flush: true,failOnError: true)) {
