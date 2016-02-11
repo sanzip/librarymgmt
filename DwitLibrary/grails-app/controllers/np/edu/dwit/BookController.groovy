@@ -299,7 +299,7 @@ class BookController {
 
                             if (role.equals("ROLE_FACULTY")) {
                                 if (borrowCount >= DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_FACULTY) {
-                                    flash.message = "You have already borrowed three books"
+                                    flash.message = "User have already borrowed three books"
                                     redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                                 } else {
                                     borrow.save(flush: true)
