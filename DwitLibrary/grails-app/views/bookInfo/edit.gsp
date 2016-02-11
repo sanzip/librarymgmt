@@ -25,10 +25,7 @@
     <div id="head">
         <div class="ui compact menu" style="margin: 13px;">
             <div class="active item">
-                <g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
-            </div>
-            <div class="active item">
-                <g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+                <g:link class="create" action="create" params="[id: params.id]"><g:message code="default.new.label" args="[entityName]" /></g:link>
                 </div>
         </div>
     </div>
