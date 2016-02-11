@@ -56,7 +56,7 @@
 
                 <div class="field">
 
-                    <h3 class="ui dividing header">Old Password <span class="required-indicator">*</span> </h3>
+                    <h3 class="ui dividing header">Current Password <span class="required-indicator">*</span> </h3>
 
                     <g:passwordField name="password" required=""/>
 
@@ -72,7 +72,7 @@
 
                 <div class="field">
 
-                    <h3 class="ui dividing header">Re-type Password <span class="required-indicator">*</span> </h3>
+                    <h3 class="ui dividing header">Confirm New Password <span class="required-indicator">*</span> </h3>
 
                     <g:passwordField name="rpassword" required=""/>
 
