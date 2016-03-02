@@ -1,10 +1,12 @@
 package np.edu.dwit
 
+import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
+@Secured("ROLE_LIBRARIAN")
 class ConfigureController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
