@@ -128,15 +128,53 @@ class BookInfoController {
             return
         }
 
-        bookInfoInstance.delete flush:true
+        def bookBorrow = Borrow.findAllByBookInfo(bookInfoInstance)
+        def timeStamp
+        def log
+        def messageType
+        if (bookBorrow!=null){
+            for (Borrow borrowInstance:bookBorrow){
+                if (borrowInstance.returned){
+                    timeStamp = TimeStamp.findAllByBorrow(borrowInstance)
+                    log = Log.findAllByBorrow(borrowInstance)
+                    if (timeStamp!=null){
+                        for (TimeStamp timeStampInstance: timeStamp){
+                            timeStampInstance.delete flush:true
+                        }
+                    }
+                    if (log!=null){
+                        for (Log logInstance:log){
+                            logInstance.delete flush:true
+                        }
+                    }
+                    borrowInstance.delete(flush: true)
+                }
+                else {
+                    flash.message='Delete Failed. Book has not been returned.'
+                    messageType = 'error'
+                    redirect(controller: 'bookInfo', action:'index',params:[id:bookInfoInstance.book.id,messageType: messageType])
+                }
+            }
+        }
+        if (bookInfoInstance.delete (flush:true)){
+            flash.message='BookInfo is deleted successfully.'
+            messageType = 'success'
+        }
+        else {
+            flash.message='Delete Failed. If the problem persists contact IT department.'
+            messageType = 'error'
 
+        }
+        redirect(controller: 'bookInfo', action:'index',params:[id:bookInfoInstance.book.id,messageType: messageType])
+
+/*
         request.withFormat {
             form {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'BookInfo.label', default: 'BookInfo'), bookInfoInstance.id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
-        }
+        }*/
     }
 
     protected void notFound() {

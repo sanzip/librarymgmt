@@ -1,6 +1,5 @@
 package np.edu.dwit
 
-import constants.DWITLibraryConstants
 import grails.plugin.springsecurity.annotation.Secured
 
 @Secured("ROLE_LIBRARIAN")
@@ -8,7 +7,7 @@ class LogController {
 
     def viewIssues() {
 
-        def issueLogs = Log.findAllByActionType(DWITLibraryConstants.ACTION_TYPE_ISSUE)
+        def issueLogs = Log.findAllByActionType(Configure.ACTION_TYPE_ISSUE)
 
         def messageType = ""
         if(issueLogs.size() == 0){
@@ -22,7 +21,7 @@ class LogController {
 
     def viewReturns(){
 
-        def returnLogs = Log.findAllByActionType(DWITLibraryConstants.ACTION_TYPE_RETURN)
+        def returnLogs = Log.findAllByActionType(Configure.ACTION_TYPE_RETURN)
 
         def messageType = ""
         if(returnLogs.size() == 0){

@@ -7,6 +7,7 @@ class Book {
     Integer availableQuantity
     Integer totalQuantity
 
+
     static constraints = {
         name blank: false, nullable: false
         author blank: false, nullable: false

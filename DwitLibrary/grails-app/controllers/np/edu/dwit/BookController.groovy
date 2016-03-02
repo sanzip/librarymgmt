@@ -100,19 +100,30 @@ class BookController {
         }
 
         def bookInfo = BookInfo.findAllByBook(bookInstance)
-        for (BookInfo bookInfoInstance : bookInfo){
-            bookInfoInstance.delete flush: true
+        def messageType
+        if (bookInfo==null){
+            if (bookInstance.delete(flush: true)){
+                flash.message='Book is deleted successfully.'
+                messageType = 'success'
+            }
+            else {
+                flash.message='Delete Failed. If the problem persists contact IT department.'
+                messageType = 'error'
+            }
+        }
+        else {
+                flash.message='Delete Failed. BookInfo of this book is not empty.'
+                messageType = 'error'
         }
 
-        bookInstance.delete flush: true
 
-        request.withFormat {
+       /* request.withFormat {
             form {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'Book.label', default: 'Book'), bookInstance.id])
                 redirect action: "index", method: "GET"
             }
             '*' { render status: NO_CONTENT }
-        }
+        }*/
     }
 
     protected void notFound() {
@@ -247,6 +258,7 @@ class BookController {
         def borrowingUser = Member.findByFullName(params.fullName)
         def bookInfo = BookInfo.findByBookNumber(params.bookNumber)
         def currentlyloggedInUser = springSecurityService.principal.id
+        def configure = Configure.get(1);
 
         if(!bookInfo) {
             flash.message = "Book number doesnot exist."
@@ -298,7 +310,7 @@ class BookController {
                             borrow.member = borrowingUser
 
                             if (role.equals("ROLE_FACULTY")) {
-                                if (borrowCount >= DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_FACULTY) {
+                                if (borrowCount >= configure.limitBookBorrowableFaculty) {
                                     flash.message = "User have already borrowed three books"
                                     redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                                 } else {
@@ -314,7 +326,7 @@ class BookController {
                                     redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
                                 }
                             } else if (role.equals("ROLE_LIBRARIAN")) {
-                                if (borrowCount >= DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_LIBRARIAN) {
+                                if (borrowCount >= configure.limitBookBorrowableLibrarian) {
                                     flash.message = "You have already borrowed three books"
                                     redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                                 } else {
@@ -329,7 +341,7 @@ class BookController {
                                     redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
                                 }
                             } else if (role.equals("ROLE_ADMIN")) {
-                                if (borrowCount >= DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_ADMIN) {
+                                if (borrowCount >= configure.limitBookBorrowableAdmin) {
                                     flash.message = "You have already borrowed three books"
                                     redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                                 } else {
@@ -344,7 +356,7 @@ class BookController {
                                     redirect(controller: 'member', action: 'dashboard', params: [messageType: 'success'])
                                 }
                             } else if (role.equals("ROLE_STUDENT")) {
-                                if (borrowCount >= DWITLibraryConstants.LIMIT_BOOK_BORROWABLE_STUDENT) {
+                                if (borrowCount >= configure.limitBookBorrowableStudent) {
                                     flash.message = "You have already borrowed three books"
                                     redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                                 } else {
@@ -360,7 +372,6 @@ class BookController {
                                 }
                             }
                         } else {
-//                            flash.message = "Cannot Issue the book twice to same user"
                             flash.message = "Book is already borrowed by other user."
                             redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                         }
@@ -397,7 +408,7 @@ class BookController {
                         log.by = springSecurityService.currentUser
                         log.borrow = borrow
                         log.to = borrow.member
-                        log.actionType = DWITLibraryConstants.ACTION_TYPE_ISSUE
+                        log.actionType = configure.ACTION_TYPE_ISSUE
                         log.save(failOnError: true)
                     }
                 }
@@ -406,20 +417,20 @@ class BookController {
 
     }
     def saveTimestamp(BookInfo bookInfo,Member member) {
+        def configure = Configure.get(1)
         TimeStamp timeStamp = new TimeStamp()
         def borrow =Borrow.findByBookInfoAndMemberAndReturned(bookInfo,member,false)
         def role = borrow.member.getAuthorities()[0].toString()
-//        println(role.equals("ROLE_STUDENT"))
         def date = getBorrowedDate(borrow)
         if(role.equals("ROLE_STUDENT")) {
 
             if(borrow.bookInfo.bookType.equalsIgnoreCase("Borrowable")) {
-                def deadline = addDays(date, DWITLibraryConstants.COURSE_BOOK_BORROWABLE_STUDENT);
+                def deadline = addDays(date, configure.courseBookBorrowableAdmin);
                 timeStamp.deadline = deadline;
 
             }else if(borrow.bookInfo.bookType.equalsIgnoreCase("Novel")) {
 
-                def deadline = addDays(date, DWITLibraryConstants.NOVEL_BOOK_BORROWABLE);
+                def deadline = addDays(date, configure.novelBookBorrowable);
 
                 timeStamp.deadline = deadline;
             }
@@ -428,11 +439,11 @@ class BookController {
 
         }else if(role.equals("ROLE_LIBRARIAN")) {
             if(borrow.bookInfo.bookType.equalsIgnoreCase("Borrowable")) {
-                def deadline = addDays(date, DWITLibraryConstants.COURSE_BOOK_BORROWABLE_LIBRARIAN)
+                def deadline = addDays(date, configure.courseBookBorrowableLibrarian)
 
                 timeStamp.deadline = deadline
             }else if(borrow.bookInfo.bookType.equalsIgnoreCase("Novel")) {
-                def deadline = addDays(date, DWITLibraryConstants.NOVEL_BOOK_BORROWABLE);
+                def deadline = addDays(date, configure.novelBookBorrowable);
 
                 timeStamp.deadline = deadline;
             }
@@ -441,11 +452,11 @@ class BookController {
 
         }else if(role.equals("ROLE_ADMIN")) {
             if(borrow.bookInfo.bookType.equalsIgnoreCase("Borrowable")) {
-                def deadline = addDays(date, DWITLibraryConstants.COURSE_BOOK_BORROWABLE_ADMIN)
+                def deadline = addDays(date, configure.courseBookBorrowableAdmin)
 
                 timeStamp.deadline = deadline
             }else if(borrow.bookInfo.bookType.equalsIgnoreCase("Novel")) {
-                def deadline = addDays(date, DWITLibraryConstants.NOVEL_BOOK_BORROWABLE);
+                def deadline = addDays(date, configure.novelBookBorrowable);
 
                 timeStamp.deadline = deadline;
             }
@@ -453,11 +464,11 @@ class BookController {
 
         }else if(role.equals("ROLE_FACULTY")) {
             if(borrow.bookInfo.bookType.equalsIgnoreCase("Borrowable")) {
-                def deadline = addDays(date, DWITLibraryConstants.COURSE_BOOK_BORROWABLE_FACULTY)
+                def deadline = addDays(date, configure.courseBookBorrowableFaculty)
 
                 timeStamp.deadline = deadline
             }else if(borrow.bookInfo.bookType.equalsIgnoreCase("Novel")) {
-                def deadline = addDays(date, DWITLibraryConstants.NOVEL_BOOK_BORROWABLE);
+                def deadline = addDays(date, configure.novelBookBorrowable);
 
                 timeStamp.deadline = deadline;
             }
@@ -467,7 +478,6 @@ class BookController {
 
 
     }
-
     def getBorrowedDate(Borrow borrow) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date = format.parse(borrow.borrowedDate.toString());
@@ -560,7 +570,7 @@ class BookController {
                     log.by = borrow.member
                     log.borrow = borrow
                     log.to = springSecurityService.currentUser
-                    log.actionType = DWITLibraryConstants.ACTION_TYPE_RETURN
+                    log.actionType = configure.ACTION_TYPE_RETURN
                     log.save(failOnError: true)
 
                     flash.message = "Book Successfully returned"

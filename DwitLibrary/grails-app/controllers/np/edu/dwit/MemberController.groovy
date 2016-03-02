@@ -142,17 +142,50 @@ class MemberController {
         }
 
         def userRole = UserRole.findByUser(memberInstance)
-
+        def borrower = Borrow.findAllByMember(memberInstance)
+        def timeStamp
+        def log
+        def messageType
+        for (Borrow borrowInstance: borrower){
+            if (borrowInstance.returned){
+                timeStamp = TimeStamp.findAllByBorrow(borrowInstance)
+                log = Log.findAllByBorrow(borrowInstance)
+                if (timeStamp!=null){
+                    for (TimeStamp timeStampInstance: timeStamp){
+                        timeStampInstance.delete flush:true
+                    }
+                }
+                if (log!=null){
+                    for (Log logInstance:log){
+                        logInstance.delete flush:true
+                    }
+                }
+                borrowInstance.delete(flush: true)
+            }
+            else {
+                flash.message='User has not returned some books. Delete failed'
+                redirect( action: 'list' ,params: [messageType: 'error'])
+            }
+        }
         userRole.delete flush: true
-        memberInstance.delete flush: true
 
-        request.withFormat {
+        if(memberInstance.delete(flush: true)){
+            flash.message='User successfully deleted.'
+            messageType = 'success'
+        }
+        else {
+            flash.message='Delete failed. If the problem persists contact IT department.'
+            messageType = 'error'
+        }
+        redirect( action: 'list' ,params: [messageType: 'success'])
+
+/*        request.withFormat {
             form {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'Member.label', default: 'Member'), memberInstance.id])
                 redirect action: "list", method: "GET"
             }
             '*' { render status: NO_CONTENT }
-        }
+        }*/
     }
 
     protected void notFound() {
