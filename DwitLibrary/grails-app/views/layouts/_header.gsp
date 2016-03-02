@@ -569,6 +569,7 @@
                 Welcome ${session["userName"]}<i class="dropdown icon"></i>
                 <div class="menu" style="border-radius: 5px;border: none;">
                     <g:link controller="member" action="editPassword" class="item" style="color:white;background-color:#3573A3">Change Password</g:link>
+                    <g:link controller="configure" action="create" class="item" style="color: white; background-color:#3573a3">Configure</g:link>
                     <g:link controller="logout" class="item" style="color:white;background-color:#3573A3">Logout</g:link>
                 </div>
             </div>
