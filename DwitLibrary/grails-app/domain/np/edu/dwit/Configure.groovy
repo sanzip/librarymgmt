@@ -9,6 +9,7 @@ class Configure {
     short courseBookBorrowableFaculty
     short courseBookBorrowableAdmin
     short courseBookBorrowableLibrarian
+
     short novelBookBorrowable
     short limitBookBorrowableStudent
     short limitBookBorrowableAdmin
