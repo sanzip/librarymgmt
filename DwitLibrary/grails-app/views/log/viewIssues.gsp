@@ -41,7 +41,7 @@
             }
             else {
                 table = $('#issue_table').DataTable( {
-                    'bPaginate':false,
+                    'bPaginate':true,
                     'bInfo':false,
                     'bFilter': true
                 } );

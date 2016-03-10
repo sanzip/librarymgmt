@@ -41,7 +41,7 @@
             }
             else {
                 table = $('#return_table').DataTable( {
-                    'bPaginate':false,
+                    'bPaginate':true,
                     'bInfo':false,
                     'bFilter': true
                 } );

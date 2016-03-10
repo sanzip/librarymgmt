@@ -35,7 +35,7 @@
                 }
                 else {
                     table = $('#book_info_table').DataTable( {
-                        'bPaginate':false,
+                        'bPaginate':true,
                         'bInfo':false,
                         'bFilter': true
                     } );
