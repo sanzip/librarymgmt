@@ -562,7 +562,7 @@
 </form>
 <div class="ui center aligned segment" style="background-color: #3573A3;">
     <g:link controller="member" action="dashboard"> <img style="float: left; height: 95px;width: 120px" src="${resource(dir: 'images', file: 'libraryLogo.png')}" alt="Logo" />
-    <h1 style="color:white;float:left; margin-left: 230px"><b style="font-size: 70px;">Gyan Sangalo</b></h1></g:link>
+    <h3 style="color:white;float:left; margin-left: 290px;margin-top:18px;"><b style="font-size: 50px;">Gyan Sangalo</b></h3></g:link>
     <div style="float:right;color: white; font-style: oblique; font-size: 20px; margin-top: 10px;" class="item">
         <sec:ifLoggedIn>
             <div class="ui simple dropdown link item">
@@ -572,7 +572,6 @@
                     <g:link controller="logout" class="item" style="color:white;background-color:#3573A3">Logout</g:link>
                 </div>
             </div>
-
         </sec:ifLoggedIn>
     </div>
 </div>
@@ -614,7 +613,7 @@
                     %{--<g:link controller="member" action="configDetails" class="item"> <i class="user icon"></i>   Fine  </g:link>--}%
                     <g:link controller="member" action="list" class="item"> <i class="user icon"></i>   User  </g:link>
                     <g:link controller="book" action="index" class="item"> <i class="book icon"></i>  Book  </g:link>
-                    <g:link controller="configure" action="index" class="item"> <i class="book icon"></i>  Setting  </g:link>
+                    <g:link controller="configure" action="index" class="item"> <i class="setting icon"></i>  Setting  </g:link>
                 </div>
             </div>
         </sec:ifAllGranted>

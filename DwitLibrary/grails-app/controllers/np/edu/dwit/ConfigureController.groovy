@@ -19,7 +19,9 @@ class ConfigureController {
     def show(Configure configureInstance) {
         respond configureInstance
     }
+def test(){
 
+}
     def create() {
         respond new Configure(params)
     }
