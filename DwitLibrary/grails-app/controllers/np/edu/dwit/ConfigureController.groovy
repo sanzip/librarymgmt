@@ -43,7 +43,7 @@ def test(){
         request.withFormat {
             form {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'configureInstance.label', default: 'Configure'), configureInstance.id])
-                redirect configureInstance
+                redirect controller: 'member', action: 'index'
             }
             '*' { respond configureInstance, [status: CREATED] }
         }
