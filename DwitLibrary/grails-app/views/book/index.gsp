@@ -147,14 +147,12 @@
                                         <g:message code="default.button.edit.label" default="Edit"/>
                                     </button>
                                 </g:link>
-                                %{--TODO<g:form url="[resource: bookInstance, action: 'delete']" method="DELETE">--}%
-                                    %{--<div class="or"></div>--}%
-
-                                    %{--<button type="submit" class="ui button" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">--}%
-                                        %{--<i class="delete icon"> </i>--}%
-                                        %{--<g:message code="default.button.delete.label" default="Delete"/>--}%
-                                    %{--</button>--}%
-                                %{--</g:form>--}%
+                                <g:form url="[resource: bookInstance, action: 'delete']" method="DELETE">
+                                    <button type="submit" class="ui button" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">
+                                        <i class="delete icon"> </i>
+                                        <g:message code="default.button.delete.label" default="Delete"/>
+                                    </button>
+                                </g:form>
                             </div>
                         </td>
 					</tr>
