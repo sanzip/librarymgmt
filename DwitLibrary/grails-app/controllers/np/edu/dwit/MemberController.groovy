@@ -17,7 +17,13 @@ class MemberController {
         if (springSecurityService.loggedIn) {
             def currentUser = memberService.getCurrentUser()
             session["userName"] = currentUser.username
-            redirect(controller:'Member', action:'dashboard')
+            List<Configure> configureList = Configure.list()
+            if(configureList.empty){
+                redirect(controller: 'Configure', action: 'create')
+            }
+            else {
+                redirect(controller:'Member', action:'dashboard')
+            }
         }
         else {
             redirect(controller:'login', action:'index')
