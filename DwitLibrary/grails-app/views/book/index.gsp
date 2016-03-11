@@ -18,8 +18,8 @@
         }
         #authorSearch{
             text-align: center;
-            margin-top:-37px;
-            margin-left:424px;
+            margin-top:-4%;
+            margin-left:50%;
         }
         #bookSearch{
             text-align: left;
@@ -94,14 +94,10 @@
             <br><hr><br>
             <div id="head">
                 <div class="ui compact menu"  style="float: left">
-                    %{--<div class="active item">--}%
-                    %{--<a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>--}%
-                    %{--</div>--}%
                     <div class="active item">
                         <g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
                     </div>
                 </div>
-                %{--<h1 style="text-align: center"><g:message code="default.list.label" args="[entityName]" /></h1>--}%
             </div>
             <br><br>
 
@@ -147,12 +143,10 @@
                                         <g:message code="default.button.edit.label" default="Edit"/>
                                     </button>
                                 </g:link>
-                                <g:form url="[resource: bookInstance, action: 'delete']" method="DELETE">
                                     <button type="submit" class="ui button" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">
                                         <i class="delete icon"> </i>
                                         <g:message code="default.button.delete.label" default="Delete"/>
                                     </button>
-                                </g:form>
                             </div>
                         </td>
 					</tr>

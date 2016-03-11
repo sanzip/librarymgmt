@@ -140,7 +140,6 @@
                                 <i class="delete icon"> </i>
                                 <g:message code="default.button.delete.label" default="Delete"/>
                             </button>
-                        %{--</g:form>--}%
                     </div>
                 </td>
            </tr>
