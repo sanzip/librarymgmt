@@ -628,7 +628,7 @@
                 <div class="menu">
                     <g:link controller="member" action="list" class="item"> <i class="user icon"></i>   User  </g:link>
                     <g:link controller="book" action="index" class="item"> <i class="book icon"></i>  Book  </g:link>
-                    <g:link controller="configure" action="index" class="item"> <i class="setting icon"></i>  Setting  </g:link>
+                    <g:link controller="configure" action="index" class="item"> <i class="setting icon"></i>  Settings  </g:link>
                 </div>
             </div>
         </sec:ifAllGranted>
