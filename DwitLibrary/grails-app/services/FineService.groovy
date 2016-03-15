@@ -1,5 +1,5 @@
-import constants.DWITLibraryConstants
 import np.edu.dwit.Borrow
+import np.edu.dwit.Configure
 import np.edu.dwit.Fine
 
 /**
@@ -14,6 +14,7 @@ class FineService {
 
     def calculatefine(Borrow borrow){
         Fine fine = new Fine()
+        Configure configure = Configure.get(1);
 
         def member = borrow.member
         def bDate = borrow.borrowedDate
@@ -22,60 +23,60 @@ class FineService {
 
         if(member.getAuthorities()[0].toString().equals("ROLE_STUDENT")){
             if(borrow.bookInfo.bookType.equals("Borrowable")){
-                fine.days=tDays - DWITLibraryConstants.COURSE_BOOK_BORROWABLE_STUDENT
+                fine.days=tDays - configure.courseBookBorrowableStudent /*DWITLibraryConstants.COURSE_BOOK_BORROWABLE_STUDENT*/
                 if(fine.days>0){
-                    fine.fineAmount=fine.days * DWITLibraryConstants.FINE_AMT_STUDENT
+                    fine.fineAmount=fine.days * configure.fineAmtStudent /*DWITLibraryConstants.FINE_AMT_STUDENT*/
                 }
             }
             else if (borrow.bookInfo.bookType.equals("Novel")){
-                fine.days=tDays - DWITLibraryConstants.NOVEL_BOOK_BORROWABLE
+                fine.days=tDays - configure.novelBookBorrowable /*DWITLibraryConstants.NOVEL_BOOK_BORROWABLE*/
                 if(fine.days>0){
-                    fine.fineAmount=fine.days * DWITLibraryConstants.FINE_AMT_STUDENT
+                    fine.fineAmount=fine.days * configure.fineAmtStudent /*DWITLibraryConstants.FINE_AMT_STUDENT*/
                 }
             }
         }
 
         if(member.getAuthorities()[0].toString().equals("ROLE_FACULTY")){
             if(borrow.bookInfo.bookType.equals("Borrowable")){
-                fine.days=tDays - DWITLibraryConstants.COURSE_BOOK_BORROWABLE_FACULTY
+                fine.days=tDays - configure.courseBookBorrowableFaculty /*DWITLibraryConstants.COURSE_BOOK_BORROWABLE_FACULTY*/
                 if(fine.days>0){
-                    fine.fineAmount=fine.days * DWITLibraryConstants.FINE_AMT_FACULTY
+                    fine.fineAmount=fine.days * configure.fineAmtFaculty /*DWITLibraryConstants.FINE_AMT_FACULTY*/
                 }
             }
             else if (borrow.bookInfo.bookType.equals("Novel")){
-                fine.days=tDays - DWITLibraryConstants.NOVEL_BOOK_BORROWABLE
+                fine.days=tDays - configure.novelBookBorrowable /*DWITLibraryConstants.NOVEL_BOOK_BORROWABLE*/
                 if(fine.days>0){
-                    fine.fineAmount=fine.days * DWITLibraryConstants.FINE_AMT_FACULTY
+                    fine.fineAmount=fine.days * configure.fineAmtFaculty /*DWITLibraryConstants.FINE_AMT_FACULTY*/
                 }
             }
         }
 
         if(member.getAuthorities()[0].toString().equals("ROLE_ADMIN")){
             if(borrow.bookInfo.bookType.equals("Borrowable")){
-                fine.days=tDays - DWITLibraryConstants.COURSE_BOOK_BORROWABLE_ADMIN
+                fine.days=tDays - configure.courseBookBorrowableAdmin /*DWITLibraryConstants.COURSE_BOOK_BORROWABLE_ADMIN*/
                 if(fine.days>0){
-                    fine.fineAmount=fine.days * DWITLibraryConstants.FINE_AMT_ADMIN
+                    fine.fineAmount=fine.days * configure.fineAmtAdmin /*DWITLibraryConstants.FINE_AMT_ADMIN*/
                 }
             }
             else if (borrow.bookInfo.bookType.equals("Novel")){
-                fine.days=tDays - DWITLibraryConstants.NOVEL_BOOK_BORROWABLE
+                fine.days=tDays - configure.novelBookBorrowable /*DWITLibraryConstants.NOVEL_BOOK_BORROWABLE*/
                 if(fine.days>0){
-                    fine.fineAmount=fine.days * DWITLibraryConstants.FINE_AMT_ADMIN
+                    fine.fineAmount=fine.days * configure.fineAmtAdmin /*DWITLibraryConstants.FINE_AMT_ADMIN*/
                 }
             }
         }
 
         if(member.getAuthorities()[0].toString().equals("ROLE_LIBRARIAN")){
             if(borrow.bookInfo.bookType.equals("Borrowable")){
-                fine.days=tDays - DWITLibraryConstants.COURSE_BOOK_BORROWABLE_LIBRARIAN
+                fine.days=tDays - configure.courseBookBorrowableLibrarian /*DWITLibraryConstants.COURSE_BOOK_BORROWABLE_LIBRARIAN*/
                 if(fine.days>0){
-                    fine.fineAmount=fine.days * DWITLibraryConstants.FINE_AMT_LIBRARIAN
+                    fine.fineAmount=fine.days * configure.fineAmtLibrarian /*DWITLibraryConstants.FINE_AMT_LIBRARIAN*/
                 }
             }
             else if (borrow.bookInfo.bookType.equals("Novel")){
-                fine.days=tDays - DWITLibraryConstants.NOVEL_BOOK_BORROWABLE
+                fine.days=tDays - configure.novelBookBorrowable /*DWITLibraryConstants.NOVEL_BOOK_BORROWABLE*/
                 if(fine.days>0){
-                    fine.fineAmount=fine.days * DWITLibraryConstants.FINE_AMT_LIBRARIAN
+                    fine.fineAmount=fine.days * configure.fineAmtLibrarian /*DWITLibraryConstants.FINE_AMT_LIBRARIAN*/
                 }
             }
         }
@@ -89,6 +90,7 @@ class FineService {
 
     def recalculatefine(Borrow borrow,int days){
         Fine fine = new Fine()
+        Configure configure = Configure.get(1);
 
         def member = borrow.member
         def bDate = borrow.borrowedDate
@@ -98,12 +100,12 @@ class FineService {
         if(member.getAuthorities()[0].toString().equals("ROLE_STUDENT")){
             if(borrow.bookInfo.bookType.equals("Borrowable")){
                 if(days>0){
-                    fine.fineAmount=days * DWITLibraryConstants.FINE_AMT_STUDENT
+                    fine.fineAmount=days * configure.fineAmtStudent /*DWITLibraryConstants.FINE_AMT_STUDENT*/
                 }
             }
             else if (borrow.bookInfo.bookType.equals("Novel")){
                 if(days>0){
-                    fine.fineAmount=days * DWITLibraryConstants.FINE_AMT_STUDENT
+                    fine.fineAmount=days * configure.fineAmtStudent /*DWITLibraryConstants.FINE_AMT_STUDENT*/
                 }
             }
         }
@@ -111,12 +113,12 @@ class FineService {
         if(member.getAuthorities()[0].toString().equals("ROLE_FACULTY")){
             if(borrow.bookInfo.bookType.equals("Borrowable")){
                 if(days>0){
-                    fine.fineAmount=days * DWITLibraryConstants.FINE_AMT_FACULTY
+                    fine.fineAmount=days * configure.fineAmtFaculty /*DWITLibraryConstants.FINE_AMT_FACULTY*/
                 }
             }
             else if (borrow.bookInfo.bookType.equals("Novel")){
                 if(days>0){
-                    fine.fineAmount=days * DWITLibraryConstants.FINE_AMT_FACULTY
+                    fine.fineAmount=days * configure.fineAmtFaculty /*DWITLibraryConstants.FINE_AMT_FACULTY*/
                 }
             }
         }
@@ -124,12 +126,12 @@ class FineService {
         if(member.getAuthorities()[0].toString().equals("ROLE_ADMIN")){
             if(borrow.bookInfo.bookType.equals("Borrowable")){
                 if(days>0){
-                    fine.fineAmount=days * DWITLibraryConstants.FINE_AMT_ADMIN
+                    fine.fineAmount=days * configure.fineAmtAdmin /*DWITLibraryConstants.FINE_AMT_ADMIN*/
                 }
             }
             else if (borrow.bookInfo.bookType.equals("Novel")){
                 if(days>0){
-                    fine.fineAmount=days * DWITLibraryConstants.FINE_AMT_ADMIN
+                    fine.fineAmount=days * configure.fineAmtAdmin /*DWITLibraryConstants.FINE_AMT_ADMIN*/
                 }
             }
         }
@@ -137,12 +139,12 @@ class FineService {
         if(member.getAuthorities()[0].toString().equals("ROLE_LIBRARIAN")){
             if(borrow.bookInfo.bookType.equals("Borrowable")){
                 if(days>0){
-                    fine.fineAmount=days * DWITLibraryConstants.FINE_AMT_LIBRARIAN
+                    fine.fineAmount=days * configure.fineAmtLibrarian /*DWITLibraryConstants.FINE_AMT_LIBRARIAN*/
                 }
             }
             else if (borrow.bookInfo.bookType.equals("Novel")){
                 if(days>0){
-                    fine.fineAmount=days * DWITLibraryConstants.FINE_AMT_LIBRARIAN
+                    fine.fineAmount=days * configure.fineAmtLibrarian /*DWITLibraryConstants.FINE_AMT_LIBRARIAN*/
                 }
             }
         }
