@@ -28,21 +28,11 @@
         </style>
 	</head>
 	<body>
-    <div id="wrappers">
-        <br><br>
-        <div id="head">
-                    <g:form url="[resource:bookInfoInstance, action:'delete']" method="DELETE" style="float:left">
-                            <g:link class="ui green button" action="edit" resource="${bookInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                    </g:form>
-
-
-            </div>
-        </div>
-        <br><br>
+        <br>
         <div class="ui one column grid" style="margin: 0px auto;text-align: center;background-color: #F7F7F7;width:50%;">
             <div class="column">
     <g:each in="${configureInstanceList}" status="i" var="configureInstance">
-    <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
         <div class="ui raised segment" style="text-align: left">
                     <a class="ui blue ribbon label"> Course Book Borrowable Admin </a>
                     <span>: <g:link action="show" id="${configureInstance.id}">${fieldValue(bean: configureInstance, field: "courseBookBorrowableAdmin")}</g:link></span>
@@ -94,6 +84,22 @@
             <p></p>
 
                 </div>
+<br>
+        <div id="">
+            <div id="head">
+                <g:link class="edit" action="edit" resource="${configureInstance}">
+                    <button type="button" class="ui green button">
+                        <i class="edit icon"> </i>
+                        <g:message code="default.button.edit.label" default="Edit"/>
+                    </button>
+                </g:link>
+            %{--<g:form url="[resource:bookInfoInstance, action:'delete']" method="DELETE" style="float:left">--}%
+            %{--<g:link class="ui green button" action="edit" resource="${bookInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>--}%
+            %{--</g:form>--}%
+
+
+            </div>
+        </div>
         </g:each>
                 <br>
             </div>

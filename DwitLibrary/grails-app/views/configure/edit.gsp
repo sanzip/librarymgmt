@@ -19,6 +19,43 @@
             text-align: center;
         }
         </style>
+        <script>
+
+            function validateAmount(){
+                var courseBookBorrowableAdmin = parseInt(document.getElementById("courseBookBorrowableAdmin").value);
+                var courseBookBorrowableFaculty = parseInt(document.getElementById("courseBookBorrowableFaculty").value);
+                var courseBookBorrowableLibrarian = parseInt(document.getElementById("courseBookBorrowableLibrarian").value);
+                var courseBookBorrowableStudent = parseInt(document.getElementById("courseBookBorrowableStudent").value);
+                var fineAmtAdmin = parseInt(document.getElementById("fineAmtAdmin").value);
+                var fineAmtFaculty = parseInt(document.getElementById("fineAmtFaculty").value);
+                var fineAmtLibrarian = parseInt(document.getElementById("fineAmtLibrarian").value);
+                var fineAmtStudent = parseInt(document.getElementById("fineAmtStudent").value);
+                var limitBookBorrowableAdmin = parseInt(document.getElementById("limitBookBorrowableAdmin").value);
+                var limitBookBorrowableFaculty = parseInt(document.getElementById("limitBookBorrowableFaculty").value);
+                var limitBookBorrowableLibrarian = parseInt(document.getElementById("limitBookBorrowableLibrarian").value);
+                var limitBookBorrowableStudent = parseInt(document.getElementById("limitBookBorrowableStudent").value);
+                var novelBookBorrowable = parseInt(document.getElementById("novelBookBorrowable").value);
+                console.log("Hello"+courseBookBorrowableAdmin);
+                if(nonNegative(courseBookBorrowableAdmin)&&nonNegative(courseBookBorrowableFaculty
+                        &&nonNegative(courseBookBorrowableLibrarian)&&nonNegative(courseBookBorrowableStudent)
+                        &&nonNegative(fineAmtAdmin)&&nonNegative(fineAmtFaculty)&&nonNegative(fineAmtLibrarian)
+                        &&nonNegative(fineAmtStudent)&&nonNegative(limitBookBorrowableAdmin)
+                        &&nonNegative(limitBookBorrowableFaculty)&&nonNegative(limitBookBorrowableLibrarian)
+                        &&nonNegative(limitBookBorrowableStudent)&&nonNegative(novelBookBorrowable))){
+
+                    return true;
+                }
+                else{
+                    alert("Amount cannot be negative!");
+                    return false;
+                }
+            }
+
+            function nonNegative(num){
+                console.log(num);
+                return num >= 0;
+            }
+        </script>
 	</head>
 	<body>
     <div id="head">
@@ -27,20 +64,13 @@
                 <g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>            </div>
         </div>
     </div>
-        <g:hasErrors bean="${configureInstance}">
-			<ul class="errors" role="alert">
-				<g:eachError bean="${configureInstance}" var="error">
-				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-				</g:eachError>
-			</ul>
-			</g:hasErrors>
 			<g:form url="[resource:configureInstance, action:'update']" method="PUT" >
 				<g:hiddenField name="version" value="${configureInstance?.version}" />
 				<fieldset class="form">
 					<g:render template="form"/>
-					<g:actionSubmit class="ui blue button" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					<g:actionSubmit class="ui blue button" onsubmit="return validateAmount()"
+                                    action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 				</fieldset>
 			</g:form>
-		</div>
 	</body>
 </html>
