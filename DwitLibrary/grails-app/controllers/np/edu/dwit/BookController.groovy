@@ -1,6 +1,5 @@
 package np.edu.dwit
 
-import constants.DWITLibraryConstants
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
@@ -101,21 +100,16 @@ class BookController {
 
         def bookInfo = BookInfo.findAllByBook(bookInstance)
         def messageType
-        if (bookInfo==null){
-            if (bookInstance.delete(flush: true)){
-                flash.message='Book is deleted successfully.'
-                messageType = 'success'
-            }
-            else {
-                flash.message='Delete Failed. If the problem persists contact IT department.'
-                messageType = 'error'
-            }
+        if (bookInfo.empty){
+            bookInstance.delete(flush: true)
+            flash.message='Book is deleted successfully.'
+            messageType = 'success'
         }
         else {
                 flash.message='Delete Failed. BookInfo of this book is not empty.'
                 messageType = 'error'
         }
-
+        redirect(controller: 'book', action:'index',params:[messageType: messageType])
 
        /* request.withFormat {
             form {
@@ -408,6 +402,7 @@ class BookController {
                         log.by = springSecurityService.currentUser
                         log.borrow = borrow
                         log.to = borrow.member
+                        println configure.ACTION_TYPE_ISSUE
                         log.actionType = configure.ACTION_TYPE_ISSUE
                         log.save(failOnError: true)
                     }
@@ -532,7 +527,7 @@ class BookController {
 
     @Secured("ROLE_LIBRARIAN")@Transactional
     def saveReturn() {
-
+        def configure = Configure.get(1);
         def borrowedBook = BookInfo.findByBookNumber(params.bookNumber)
         if(borrowedBook) {
             def borrowingUser = Member.findByFullName(params.fullName)
