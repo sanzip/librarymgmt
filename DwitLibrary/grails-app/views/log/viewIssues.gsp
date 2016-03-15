@@ -22,7 +22,7 @@
         }
     #searchField{
         margin:0px auto;
-        width:80%;
+        width:84%;
     }
     </style>
     <script>
