@@ -24,8 +24,11 @@
         #bookSearch{
             text-align: left;
         }
-        #head{
+        #head {
             text-align: center;
+        }
+        .action{
+            width: 122.6px;
         }
         </style>
     <script>
@@ -116,7 +119,7 @@
 						<g:sortableColumn property="totalQuantity" title="${message(code: 'book.totalQuantity.label', default: 'Total Quantity')}" />
 					
 
-                        <th> Action </th>
+                        <th class="action"> Action </th>
 
                     </tr>
 				</thead>
@@ -139,14 +142,18 @@
                             <div class="ui buttons">
                                 <g:link class="edit" action="edit" resource="${bookInstance}" style="color:#000000;">
                                     <button type="button" class="ui button">
-                                        <i class="edit icon"> </i>
+                                        <i class="edit icon"></i>
                                         <g:message code="default.button.edit.label" default="Edit"/>
                                     </button>
                                 </g:link>
+                                <g:form url="[resource: bookInstance, action: 'delete']" method="DELETE">
+                                    <div class="or"></div>
+
                                     <button type="submit" class="ui button" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">
-                                        <i class="delete icon"> </i>
-                                        <g:message code="default.button.delete.label" default="Delete"/>
+                                        <i class="delete icon"></i>
+                                        <g:message code="default.button.delete.label" default="Del"/>
                                     </button>
+                                </g:form>
                             </div>
                         </td>
 					</tr>

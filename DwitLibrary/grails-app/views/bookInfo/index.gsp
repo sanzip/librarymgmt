@@ -160,8 +160,8 @@
                                     <div class="or"></div>
 
                                     <button type="submit" class="ui button" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">
-                                        <i class="delete icon"> </i>
-                                        <g:message code="default.button.delete.label" default="Delete"/>
+                                        <i class="delete icon"></i>
+                                        <g:message code="default.button.delete.label" default="Del"/>
                                     </button>
                                 </g:form>
                             </div>
