@@ -23,7 +23,7 @@ def test(){
 
 }
     def create() {
-        respond new Configure(params)
+        render (view:'edit')
     }
 
     @Transactional
@@ -70,7 +70,7 @@ def test(){
         request.withFormat {
             form {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Configure.label', default: 'Configure'), configureInstance.id])
-                redirect configureInstance
+                redirect controller: 'member', action: 'index'
             }
             '*' { respond configureInstance, [status: OK] }
         }

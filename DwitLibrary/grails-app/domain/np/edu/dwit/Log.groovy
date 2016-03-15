@@ -1,6 +1,5 @@
 package np.edu.dwit
 
-import constants.DWITLibraryConstants
 
 class Log {
 
@@ -13,7 +12,7 @@ class Log {
 
         by nullable: false
         borrow nullable: false
-        actionType inList: [DWITLibraryConstants.ACTION_TYPE_ISSUE, DWITLibraryConstants.ACTION_TYPE_RETURN], nullable: false, blank: false
+        actionType inList: [Configure.ACTION_TYPE_ISSUE, Configure.ACTION_TYPE_RETURN], nullable: false, blank: false
     }
     static mapping = {
 
