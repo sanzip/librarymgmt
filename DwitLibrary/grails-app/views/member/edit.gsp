@@ -70,7 +70,7 @@
         <fieldset class="form">
             <g:render template="form"/>
             <br>
-            <g:actionSubmit class="ui blue button" onclick="return validateEmail()" action="update"
+            <g:actionSubmit class="ui blue button" onsubmit="return validateEmail()" action="update"
                                 value="${message(code: 'default.button.update.label', default: 'Update')}"/>
         </fieldset>
 
