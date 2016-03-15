@@ -19,7 +19,7 @@ class MemberController {
             session["userName"] = currentUser.username
             List<Configure> configureList = Configure.list()
             if(configureList.empty){
-                redirect(controller: 'Configure', action: 'create')
+                redirect(controller: 'Configure', action: 'edit')
             }
             else {
                 redirect(controller:'Member', action:'dashboard')
@@ -151,38 +151,42 @@ class MemberController {
         def borrower = Borrow.findAllByMember(memberInstance)
         def timeStamp
         def log
+        def fine
         def messageType
         for (Borrow borrowInstance: borrower){
             if (borrowInstance.returned){
                 timeStamp = TimeStamp.findAllByBorrow(borrowInstance)
                 log = Log.findAllByBorrow(borrowInstance)
-                if (timeStamp!=null){
+                fine=Fine.findAllByMember(memberInstance)
+                if (!timeStamp.empty){
                     for (TimeStamp timeStampInstance: timeStamp){
                         timeStampInstance.delete flush:true
                     }
                 }
-                if (log!=null){
+                if (!log.empty){
                     for (Log logInstance:log){
                         logInstance.delete flush:true
+                    }
+                }
+                if (!fine.empty){
+                    for(Fine fineInstance:fine){
+                        fineInstance.delete(flush: true)
                     }
                 }
                 borrowInstance.delete(flush: true)
             }
             else {
                 flash.message='User has not returned some books. Delete failed'
-                redirect( action: 'list' ,params: [messageType: 'error'])
+                return redirect( action: 'list' ,params: [messageType: 'error'])
             }
         }
+
+
         userRole.delete flush: true
 
-        if(memberInstance.delete(flush: true)){
-            flash.message='User successfully deleted.'
-            messageType = 'success'
-        }
-        else {
-            flash.message='Delete failed. If the problem persists contact IT department.'
-            messageType = 'error'
-        }
+        memberInstance.delete(flush: true)
+        flash.message='User successfully deleted.'
+        messageType = 'success'
         redirect( action: 'list' ,params: [messageType: 'success'])
 
 /*        request.withFormat {
