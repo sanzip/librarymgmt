@@ -132,17 +132,17 @@ class BookInfoController {
         def timeStamp
         def log
         def messageType
-        if (bookBorrow!=null){
+        if (!bookBorrow.empty){
             for (Borrow borrowInstance:bookBorrow){
                 if (borrowInstance.returned){
                     timeStamp = TimeStamp.findAllByBorrow(borrowInstance)
                     log = Log.findAllByBorrow(borrowInstance)
-                    if (timeStamp!=null){
+                    if (!timeStamp.empty){
                         for (TimeStamp timeStampInstance: timeStamp){
                             timeStampInstance.delete flush:true
                         }
                     }
-                    if (log!=null){
+                    if (!log.empty){
                         for (Log logInstance:log){
                             logInstance.delete flush:true
                         }
@@ -152,19 +152,17 @@ class BookInfoController {
                 else {
                     flash.message='Delete Failed. Book has not been returned.'
                     messageType = 'error'
-                    redirect(controller: 'bookInfo', action:'index',params:[id:bookInfoInstance.book.id,messageType: messageType])
+                    return redirect(controller: 'bookInfo', action:'index',params:[id:bookInfoInstance.book.id,messageType: messageType])
                 }
             }
         }
-        if (bookInfoInstance.delete (flush:true)){
-            flash.message='BookInfo is deleted successfully.'
-            messageType = 'success'
-        }
-        else {
-            flash.message='Delete Failed. If the problem persists contact IT department.'
-            messageType = 'error'
 
-        }
+        bookInfoInstance.book.totalQuantity-=1;
+        bookInfoInstance.book.availableQuantity-=1;
+        bookInfoInstance.delete (flush:true)
+        flash.message='BookInfo is deleted successfully.'
+        messageType = 'success'
+
         redirect(controller: 'bookInfo', action:'index',params:[id:bookInfoInstance.book.id,messageType: messageType])
 
 /*
