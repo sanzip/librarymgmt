@@ -50,6 +50,8 @@ def test(){
     }
 
     def edit(Configure configureInstance) {
+        if(Configure.count()==1)
+            configureInstance = Configure.get(1);
         respond configureInstance
     }
 
