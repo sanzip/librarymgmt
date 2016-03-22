@@ -35,25 +35,67 @@
                 var limitBookBorrowableLibrarian = parseInt(document.getElementById("limitBookBorrowableLibrarian").value);
                 var limitBookBorrowableStudent = parseInt(document.getElementById("limitBookBorrowableStudent").value);
                 var novelBookBorrowable = parseInt(document.getElementById("novelBookBorrowable").value);
-                console.log("Hello"+courseBookBorrowableAdmin);
-                if(nonNegative(courseBookBorrowableAdmin)&&nonNegative(courseBookBorrowableFaculty
-                        &&nonNegative(courseBookBorrowableLibrarian)&&nonNegative(courseBookBorrowableStudent)
-                        &&nonNegative(fineAmtAdmin)&&nonNegative(fineAmtFaculty)&&nonNegative(fineAmtLibrarian)
-                        &&nonNegative(fineAmtStudent)&&nonNegative(limitBookBorrowableAdmin)
-                        &&nonNegative(limitBookBorrowableFaculty)&&nonNegative(limitBookBorrowableLibrarian)
-                        &&nonNegative(limitBookBorrowableStudent)&&nonNegative(novelBookBorrowable))){
+                if(negative(courseBookBorrowableAdmin)){
+                    alert("Course Book Borrowable for admin is negative!!!")
+                    return false;
 
-                    return true;
+                }
+                else if(negative(courseBookBorrowableFaculty)){
+                    alert("Course Book Borrowable for faculty is negative!!!")
+                    return false;
+                }
+                else if(negative(courseBookBorrowableLibrarian)){
+                    alert("Course Book Borrowable for librarian is negative!!!")
+                    return false;
+                }
+                else if(negative(courseBookBorrowableStudent) )  {
+                    alert("Course Book Borrowable for student is negative!!!")
+                    return false;
+                }
+                else if(negative(fineAmtAdmin)){
+                    alert("Fine amount for Admin is negative!!!")
+                    return false;
+                }
+                else if(negative(fineAmtFaculty)){
+                    alert("Fine amount for faculty is negative!!!")
+                    return false;
+                }
+                else if(negative(fineAmtLibrarian)){
+                    alert("Fine amount for librarian is negative!!!")
+                    return false;
+                }
+                else if(negative(fineAmtStudent)){
+                    alert("Fine amount for student is negative!!!")
+                    return false;
+                }
+                else if(negative(limitBookBorrowableAdmin)){
+                    alert("Limit Book Borrowable for admin is negative!!!")
+                    return false;
+                }
+                else if(negative(limitBookBorrowableFaculty)){
+                    alert("Limit Book Borrowable for faculty is negative!!!")
+                    return false;
+                }
+                else if(negative(limitBookBorrowableLibrarian)){
+                    alert("Limit Book Borrowable for librarian is negative!!!")
+                    return false;
+                }
+                else if(negative(limitBookBorrowableStudent)){
+                    alert("Limit Book Borrowable for student is negative!!!")
+                    return false;
+                }
+                else if(negative(novelBookBorrowable)){
+                    alert("Novel Book Borrowable!!!")
+                    return false;
                 }
                 else{
-                    alert("Amount cannot be negative!");
-                    return false;
+                    return true;
                 }
             }
 
-            function nonNegative(num){
-                console.log(num);
-                return num >= 0;
+            function negative(num){
+                alert
+                return num < 0;
             }
         </script>
 	</head>
@@ -68,7 +110,7 @@
 				<g:hiddenField name="version" value="${configureInstance?.version}" />
 				<fieldset class="form">
 					<g:render template="form"/>
-					<g:actionSubmit class="ui blue button" onsubmit="return validateAmount()"
+					<g:actionSubmit class="ui blue button" onClick="return validateAmount()"
                                     action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 				</fieldset>
 			</g:form>
