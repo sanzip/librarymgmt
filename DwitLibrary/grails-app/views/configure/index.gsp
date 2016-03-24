@@ -35,7 +35,7 @@
         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
         <div class="ui raised segment" style="text-align: left">
                     <a class="ui blue ribbon label"> Course Book Borrowable Admin </a>
-                    <span>: <g:link action="show" id="${configureInstance.id}">${fieldValue(bean: configureInstance, field: "courseBookBorrowableAdmin")}</g:link></span>
+                    <span>: ${fieldValue(bean: configureInstance, field: "courseBookBorrowableAdmin")}</span>
                     <p></p>
 
                     <a class="ui blue ribbon label">Course Book Borrowable Faculty</a>
