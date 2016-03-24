@@ -305,7 +305,7 @@ class BookController {
 
                             if (role.equals("ROLE_FACULTY")) {
                                 if (borrowCount >= configure.limitBookBorrowableFaculty) {
-                                    flash.message = "User have already borrowed three books"
+                                    flash.message = "User have already borrowed "+configure.limitBookBorrowableFaculty+" books"
                                     redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                                 } else {
                                     borrow.save(flush: true)
@@ -321,7 +321,7 @@ class BookController {
                                 }
                             } else if (role.equals("ROLE_LIBRARIAN")) {
                                 if (borrowCount >= configure.limitBookBorrowableLibrarian) {
-                                    flash.message = "You have already borrowed three books"
+                                    flash.message = "You have already borrowed "+configure.limitBookBorrowableLibrarian+" books"
                                     redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                                 } else {
                                     borrow.save(flush: true)
@@ -336,7 +336,7 @@ class BookController {
                                 }
                             } else if (role.equals("ROLE_ADMIN")) {
                                 if (borrowCount >= configure.limitBookBorrowableAdmin) {
-                                    flash.message = "You have already borrowed three books"
+                                    flash.message = "You have already borrowed "+configure.limitBookBorrowableAdmin+" books"
                                     redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                                 } else {
                                     borrow.save(flush: true)
@@ -351,7 +351,7 @@ class BookController {
                                 }
                             } else if (role.equals("ROLE_STUDENT")) {
                                 if (borrowCount >= configure.limitBookBorrowableStudent) {
-                                    flash.message = "You have already borrowed three books"
+                                    flash.message = "You have already borrowed "+configure.limitBookBorrowableStudent+" books"
                                     redirect(controller: 'member', action: 'dashboard', params: [messageType: 'error'])
                                 } else {
                                     borrow.save(flush: true)
