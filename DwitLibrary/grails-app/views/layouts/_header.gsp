@@ -144,6 +144,7 @@
                             timeout: 10000
                         });
                         n.animate();
+                        setTimeout(window.location.replace('../member/dashboard'),2000);
                     }else if(result=="issue") {
                         $("#fullName").hide();
                         $("#issue").hide();
@@ -161,6 +162,8 @@
                             timeout: 10000
                         });
                         n.animate();
+                        setTimeout(window.location.replace('../member/dashboard'),2000);
+
                     }else if(result=="error") {
                         $("#bookNo").val("");
                         $("#fullName").val("");
@@ -180,6 +183,7 @@
                             timeout: 10000
                         });
                         n.animate();
+                        setTimeout(window.location.replace('../member/dashboard'),2000);
                     }
                 }
             })
