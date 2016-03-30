@@ -32,10 +32,24 @@ class MemberController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def dashboard() {
-
+        Configure configure = Configure.get(1);
+        String role = springSecurityService.getPrincipal().getAuthorities();
+        def maxBorrowCount=3;
+        if (role.contains("ROLE_STUDENT")){
+            maxBorrowCount = configure.courseBookBorrowableStudent;
+        }
+        else if (role.contains("ROLE_ADMIN")){
+            maxBorrowCount = configure.courseBookBorrowableAdmin;
+        }
+        else if (role.contains("ROLE_FACULTY")){
+            maxBorrowCount = configure.courseBookBorrowableFaculty;
+        }
+        else if(role.contains("ROLE_LIBRARIAN")){
+            maxBorrowCount = configure.courseBookBorrowableLibrarian;
+        }
         def count = memberService.getBorrowedBookCount()
         def bookList = memberService.getBookList()
-        render (view: "dashboard", model:[list: bookList, listCount:bookList.size(), count: (3-count.size())])
+        render (view: "dashboard", model:[list: bookList, listCount:bookList.size(), count: (maxBorrowCount-count.size())])
     }
 
 
