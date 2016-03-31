@@ -131,12 +131,16 @@ class BookInfoController {
         def bookBorrow = Borrow.findAllByBookInfo(bookInfoInstance)
         def timeStamp
         def log
+        def fine
         def messageType
         if (!bookBorrow.empty){
             for (Borrow borrowInstance:bookBorrow){
                 if (borrowInstance.returned){
                     timeStamp = TimeStamp.findAllByBorrow(borrowInstance)
                     log = Log.findAllByBorrow(borrowInstance)
+                    fine = Fine.findAllByBorrow(borrowInstance)
+                    println timeStamp
+                    println log
                     if (!timeStamp.empty){
                         for (TimeStamp timeStampInstance: timeStamp){
                             timeStampInstance.delete flush:true
@@ -145,6 +149,11 @@ class BookInfoController {
                     if (!log.empty){
                         for (Log logInstance:log){
                             logInstance.delete flush:true
+                        }
+                    }
+                    if(!fine.empty){
+                        for (Fine fineInstance:fine){
+                            fineInstance.delete flush: true
                         }
                     }
                     borrowInstance.delete(flush: true)
