@@ -139,8 +139,6 @@ class BookInfoController {
                     timeStamp = TimeStamp.findAllByBorrow(borrowInstance)
                     log = Log.findAllByBorrow(borrowInstance)
                     fine = Fine.findAllByBorrow(borrowInstance)
-                    println timeStamp
-                    println log
                     if (!timeStamp.empty){
                         for (TimeStamp timeStampInstance: timeStamp){
                             timeStampInstance.delete flush:true
