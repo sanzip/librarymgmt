@@ -31,10 +31,6 @@
                 var fineAmtLibrarian = parseInt(document.getElementById("fineAmtLibrarian").value);
                 var fineAmtStudent = parseInt(document.getElementById("fineAmtStudent").value);
                 var limitBookBorrowableAdmin = parseInt(document.getElementById("limitBookBorrowableAdmin").value);
-                var limitBookBorrowableFaculty = parseInt(document.getElementById("limitBookBorrowableFaculty").value);
-                var limitBookBorrowableLibrarian = parseInt(document.getElementById("limitBookBorrowableLibrarian").value);
-                var limitBookBorrowableStudent = parseInt(document.getElementById("limitBookBorrowableStudent").value);
-                var novelBookBorrowable = parseInt(document.getElementById("novelBookBorrowable").value);
                 if(negative(courseBookBorrowableAdmin)){
                     alert("Course Book Borrowable for admin is negative!!!")
                     return false;
@@ -66,22 +62,6 @@
                 }
                 else if(negative(fineAmtStudent)){
                     alert("Fine amount for student is negative!!!")
-                    return false;
-                }
-                else if(negative(limitBookBorrowableAdmin)){
-                    alert("Limit Book Borrowable for admin is negative!!!")
-                    return false;
-                }
-                else if(negative(limitBookBorrowableFaculty)){
-                    alert("Limit Book Borrowable for faculty is negative!!!")
-                    return false;
-                }
-                else if(negative(limitBookBorrowableLibrarian)){
-                    alert("Limit Book Borrowable for librarian is negative!!!")
-                    return false;
-                }
-                else if(negative(limitBookBorrowableStudent)){
-                    alert("Limit Book Borrowable for student is negative!!!")
                     return false;
                 }
                 else if(negative(novelBookBorrowable)){

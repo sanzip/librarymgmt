@@ -95,42 +95,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${configureInstance?.limitBookBorrowableAdmin}">
-				<li class="fieldcontain">
-					<span id="limitBookBorrowableAdmin-label" class="property-label"><g:message code="configure.limitBookBorrowableAdmin.label" default="Limit Book Borrowable Admin" /></span>
-					
-						<span class="property-value" aria-labelledby="limitBookBorrowableAdmin-label"><g:fieldValue bean="${configureInstance}" field="limitBookBorrowableAdmin"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${configureInstance?.limitBookBorrowableFaculty}">
-				<li class="fieldcontain">
-					<span id="limitBookBorrowableFaculty-label" class="property-label"><g:message code="configure.limitBookBorrowableFaculty.label" default="Limit Book Borrowable Faculty" /></span>
-					
-						<span class="property-value" aria-labelledby="limitBookBorrowableFaculty-label"><g:fieldValue bean="${configureInstance}" field="limitBookBorrowableFaculty"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${configureInstance?.limitBookBorrowableLibrarian}">
-				<li class="fieldcontain">
-					<span id="limitBookBorrowableLibrarian-label" class="property-label"><g:message code="configure.limitBookBorrowableLibrarian.label" default="Limit Book Borrowable Librarian" /></span>
-					
-						<span class="property-value" aria-labelledby="limitBookBorrowableLibrarian-label"><g:fieldValue bean="${configureInstance}" field="limitBookBorrowableLibrarian"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${configureInstance?.limitBookBorrowableStudent}">
-				<li class="fieldcontain">
-					<span id="limitBookBorrowableStudent-label" class="property-label"><g:message code="configure.limitBookBorrowableStudent.label" default="Limit Book Borrowable Student" /></span>
-					
-						<span class="property-value" aria-labelledby="limitBookBorrowableStudent-label"><g:fieldValue bean="${configureInstance}" field="limitBookBorrowableStudent"/></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${configureInstance?.novelBookBorrowable}">
 				<li class="fieldcontain">
 					<span id="novelBookBorrowable-label" class="property-label"><g:message code="configure.novelBookBorrowable.label" default="Novel Book Borrowable" /></span>

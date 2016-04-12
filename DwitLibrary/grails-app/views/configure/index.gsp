@@ -34,53 +34,40 @@
     <g:each in="${configureInstanceList}" status="i" var="configureInstance">
         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
         <div class="ui raised segment" style="text-align: left">
-                    <a class="ui blue ribbon label"> Course Book Borrowable Admin </a>
-                    <span>: ${fieldValue(bean: configureInstance, field: "courseBookBorrowableAdmin")}</span>
-                    <p></p>
+            <a class="ui blue ribbon label">Fine Amount Admin</a>
+            <span>: ${fieldValue(bean: configureInstance, field: "fineAmtAdmin")}</span>
+            <p></p>
 
-                    <a class="ui blue ribbon label">Course Book Borrowable Faculty</a>
-                    <span>: ${fieldValue(bean: configureInstance, field: "courseBookBorrowableFaculty")}</span>
-                    <p></p>
+            <a class="ui blue ribbon label">Fine Amount Faculty</a>
+            <span>: ${fieldValue(bean: configureInstance, field: "fineAmtFaculty")}</span>
+            <p></p>
 
-                    <a class="ui blue ribbon label"> Course Book Borrowable Librarian </a>
-                    <span>: ${fieldValue(bean: configureInstance, field: "courseBookBorrowableLibrarian")}</span>
-                    <p></p>
+            <a class="ui blue ribbon label">Fine Amount Student</a>
+            <span>: ${fieldValue(bean: configureInstance, field: "fineAmtStudent")}</span>
+            <p></p>
 
-                    <a class="ui blue ribbon label">Course Book Borrowable Student</a>
-                    <span>: ${fieldValue(bean: configureInstance, field: "courseBookBorrowableStudent")}</span>
-                    <p></p>
+            <a class="ui blue ribbon label">Fine Amount Librarian</a>
+            <span>: ${fieldValue(bean: configureInstance, field: "fineAmtLibrarian")}</span>
+            <p></p>
 
-                    <a class="ui blue ribbon label">Fine Amount Admin</a>
-                    <span>: ${fieldValue(bean: configureInstance, field: "fineAmtAdmin")}</span>
-                    <p></p>
+            <a class="ui blue ribbon label"> Course Book Borrowable Admin </a>
+            <span>: ${fieldValue(bean: configureInstance, field: "courseBookBorrowableAdmin")}</span>
+            <p></p>
 
-                    <a class="ui blue ribbon label">Fine Amount Faculty</a>
-                    <span>: ${fieldValue(bean: configureInstance, field: "fineAmtFaculty")}</span>
-                    <p></p>
+            <a class="ui blue ribbon label">Course Book Borrowable Faculty</a>
+            <span>: ${fieldValue(bean: configureInstance, field: "courseBookBorrowableFaculty")}</span>
+            <p></p>
 
-                    <a class="ui blue ribbon label">Fine Amount Student</a>
-                    <span>: ${fieldValue(bean: configureInstance, field: "fineAmtStudent")}</span>
-                    <p></p>
+            <a class="ui blue ribbon label"> Course Book Borrowable Librarian </a>
+            <span>: ${fieldValue(bean: configureInstance, field: "courseBookBorrowableLibrarian")}</span>
+            <p></p>
 
-                    <a class="ui blue ribbon label">Fine Amount Librarian</a>
-                    <span>: ${fieldValue(bean: configureInstance, field: "fineAmtLibrarian")}</span>
-                    <p></p>
+            <a class="ui blue ribbon label">Course Book Borrowable Student</a>
+            <span>: ${fieldValue(bean: configureInstance, field: "courseBookBorrowableStudent")}</span>
+            <p></p>
 
             <a class="ui blue ribbon label">Novel Book Borrowable</a>
             <span>: ${fieldValue(bean: configureInstance, field: "novelBookBorrowable")}</span>
-            <p></p>
-            <a class="ui blue ribbon label">Limit Book Borrowable Student</a>
-            <span>: ${fieldValue(bean: configureInstance, field: "limitBookBorrowableStudent")}</span>
-            <p></p>
-            <a class="ui blue ribbon label">Limit Book Borrowable Admin</a>
-            <span>: ${fieldValue(bean: configureInstance, field: "limitBookBorrowableAdmin")}</span>
-            <p></p>
-            <a class="ui blue ribbon label">Limit Book Borrowable Faculty</a>
-            <span>: ${fieldValue(bean: configureInstance, field: "limitBookBorrowableFaculty")}</span>
-            <p></p>
-
-            <a class="ui blue ribbon label">Limit Book Borrowable Librarian</a>
-            <span>: ${fieldValue(bean: configureInstance, field: "limitBookBorrowableLibrarian")}</span>
             <p></p>
 
                 </div>
