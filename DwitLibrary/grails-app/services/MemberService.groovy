@@ -49,11 +49,12 @@ class MemberService {
             }
         }
     }
-    def mailMember(Member memberInstance){
-        def bodyOfEmail = "\nHello $memberInstance.fullName,\n\nYour account has been created on GyanSangalo.\n\nYour credentials are: \n" +
-                "\n\tUsername: $memberInstance.username\n\tPassword: $memberInstance.password\nYou can change this password right after you login.\n\nThanks,\nThe DWIT Library.";
-
-
+    def mailMember(Member memberInstance, String password){
+        def name=memberInstance.fullName.split('-')
+        def fullNmae = name[0]
+        def bodyOfEmail = "\nHello $fullNmae,\n\nYour account has been created on GyanSangalo.\n\nYour credentials are: \n" +
+                "\n\tUsername: $memberInstance.username\n\tPassword: $password\n\nYou can change this password right after you login.\n\nThanks,\nThe DWIT Library.";
+        println bodyOfEmail
         sendMail {
 
             async true
@@ -82,7 +83,7 @@ class MemberService {
                 memberInstance.fullName=fullName[0]+' '+fullName[1]+' -'+memberInstance.userId
                 memberInstance.username=fullName[0].toLowerCase()+'_'+memberInstance.userId
             }
-
+            def pass = memberInstance.getPassword();
             if (!memberInstance.save(flush: true,failOnError: true)) {
                 return 'Unable to save new User,error'
             }
@@ -95,7 +96,7 @@ class MemberService {
 
             }
             if(newMember){
-                mailMember(memberInstance)
+                mailMember(memberInstance,pass)
             }
             return 'success'
         }
