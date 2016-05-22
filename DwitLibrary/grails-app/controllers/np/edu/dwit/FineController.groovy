@@ -29,7 +29,7 @@ class FineController {
         Borrow borrow = Borrow.findById(params?.borrowId as Long)
         Fine fine = fineService.calculatefine(borrow)
 
-        def bodyOfEmail = "\nHello ${member.fullName.split(' ')[0]},\n" +
+        def bodyOfEmail = "\nHello ${member.username},\n" +
                 "\t${borrow.bookInfo.book.name} book you borrowed has crossed the deadline. Your total fine as of today is ${fine.fineAmount}." +
                 "\n\tPlease return the book soon.\nRegards,\nThe DWIT Library";
 

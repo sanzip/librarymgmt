@@ -71,7 +71,7 @@
                 <thead>
                 <tr>
                     <th>S.No</th>
-                    <th>Student Name</th>
+                    <th>Borrower Name</th>
                     <th>Book Name</th>
                     <th>Borrowed Date</th>
                     <th>Fine Amount</th>
@@ -86,7 +86,7 @@
                         <td>${borrowWithFine.key.bookInfo.book.name}</td>
                         <td>${borrowWithFine.key.borrowedDate.format("yyyy/MM/dd")}</td>
                         <td>${borrowWithFine.value.fineAmount}</td>
-                        <td><button class="ui green basic button" style="text-align: center;" onclick="sendEmail(${borrowWithFine.key.member.id}, '${borrowWithFine.key.member.fullName}', ${borrowWithFine.key.id});">Email</button></td>
+                        <td><button class="ui green basic button" style="text-align: center;" onclick="sendEmail(${borrowWithFine.key.member.id}, '${borrowWithFine.key.member.username}', ${borrowWithFine.key.id});">Email</button></td>
                     </tr>
                 </g:each>
                 </tbody>
