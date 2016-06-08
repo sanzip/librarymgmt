@@ -34,8 +34,16 @@ class BookInfoController {
             respond new BookInfo(params)
         }
         else {
-            bookInfo.bookNumber=""
-            respond bookInfo
+            def bookInfoInstance = new BookInfo(params)
+            bookInfoInstance.bookNumber=""
+            bookInfoInstance.book=bookInfo.book
+            bookInfoInstance.cost=bookInfo.cost
+            bookInfoInstance.edition=bookInfo.edition
+            bookInfoInstance.pages=bookInfo.pages
+            bookInfoInstance.publishedYear=bookInfo.publishedYear
+            bookInfoInstance.source=bookInfo.source
+            bookInfoInstance.bookType=bookInfo.bookType
+            respond bookInfoInstance
         }
     }
 
@@ -43,12 +51,10 @@ class BookInfoController {
     def save(BookInfo bookInfoInstance) {
 
         def bookNumber = params.list('bookNumber')
-//        println bookInfoInstance.bookNumber
         boolean saved = false
-
+        def number =0
         for(int i=0;i<bookNumber.size();i++) {
             def bookInfo = BookInfo.findByBookNumber(bookNumber[i])
-
             if(bookInfo == null){
                 BookInfo bookInfos = new BookInfo()
                 bookInfos.bookNumber=bookNumber[i]
@@ -60,24 +66,31 @@ class BookInfoController {
                 bookInfos.source=bookInfoInstance.source
                 bookInfos.bookType=bookInfoInstance.bookType
 
-                def book = Book.findById(bookInfos.book.id)
+/*                def book = Book.findById(bookInfos.book.id)
                 book.totalQuantity+=1
-                book.availableQuantity+=1
+                book.availableQuantity+=1*/
+                bookInfos.book.totalQuantity+=1
+                bookInfos.book.availableQuantity+=1
 
-                if (bookInfos.save(flush: true,failOnError: true)){
+                bookInfos.save(flush: true,failOnError: true)
+/*                if (bookInfos.save(flush: true,failOnError: true)){
                     book.save flush: true, failOnError: true
-                }
-                flash.message="New book info added"
-                redirect(controller: 'book', action: "index", params: [messageType: 'success'])
+                }*/
+                saved=true
             }else{
-                flash.message="Book info with this book number is already added."
-                redirect(controller: 'bookInfo', action: "create", params: [id: bookInfo.book.id , messageType: 'error'])
+                saved=false
+                number=bookNumber[i]
                 break
             }
-
         }
-
-
+        if (saved){
+            flash.message="New book info added"
+            redirect(controller: 'book', action: "index", params: [messageType: 'success'])
+        }
+        else {
+            flash.message="Book info with "+number+" book number is already added."
+            redirect(controller: 'bookInfo', action: "create", params: [id: params.book.id , messageType: 'error'])
+        }
     }
 
     def edit(BookInfo bookInfoInstance) {

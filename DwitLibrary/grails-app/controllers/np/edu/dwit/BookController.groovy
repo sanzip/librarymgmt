@@ -420,12 +420,12 @@ class BookController {
         if(role.equals("ROLE_STUDENT")) {
 
             if(borrow.bookInfo.bookType.equalsIgnoreCase("Borrowable")) {
-                def deadline = addDays(date, configure.courseBookBorrowableAdmin);
+                def deadline = addDays(date, configure.daysCourseBookBorrowableStudent);
                 timeStamp.deadline = deadline;
 
             }else if(borrow.bookInfo.bookType.equalsIgnoreCase("Novel")) {
 
-                def deadline = addDays(date, configure.novelBookBorrowable);
+                def deadline = addDays(date, configure.daysNovelBookBorrowable);
 
                 timeStamp.deadline = deadline;
             }
@@ -434,11 +434,11 @@ class BookController {
 
         }else if(role.equals("ROLE_LIBRARIAN")) {
             if(borrow.bookInfo.bookType.equalsIgnoreCase("Borrowable")) {
-                def deadline = addDays(date, configure.courseBookBorrowableLibrarian)
+                def deadline = addDays(date, configure.daysCourseBookBorrowableLibrarian)
 
                 timeStamp.deadline = deadline
             }else if(borrow.bookInfo.bookType.equalsIgnoreCase("Novel")) {
-                def deadline = addDays(date, configure.novelBookBorrowable);
+                def deadline = addDays(date, configure.daysNovelBookBorrowable);
 
                 timeStamp.deadline = deadline;
             }
@@ -447,11 +447,11 @@ class BookController {
 
         }else if(role.equals("ROLE_ADMIN")) {
             if(borrow.bookInfo.bookType.equalsIgnoreCase("Borrowable")) {
-                def deadline = addDays(date, configure.courseBookBorrowableAdmin)
+                def deadline = addDays(date, configure.daysCourseBookBorrowableAdmin)
 
                 timeStamp.deadline = deadline
             }else if(borrow.bookInfo.bookType.equalsIgnoreCase("Novel")) {
-                def deadline = addDays(date, configure.novelBookBorrowable);
+                def deadline = addDays(date, configure.daysNovelBookBorrowable);
 
                 timeStamp.deadline = deadline;
             }
@@ -459,11 +459,11 @@ class BookController {
 
         }else if(role.equals("ROLE_FACULTY")) {
             if(borrow.bookInfo.bookType.equalsIgnoreCase("Borrowable")) {
-                def deadline = addDays(date, configure.courseBookBorrowableFaculty)
+                def deadline = addDays(date, configure.daysCourseBookBorrowableFaculty)
 
                 timeStamp.deadline = deadline
             }else if(borrow.bookInfo.bookType.equalsIgnoreCase("Novel")) {
-                def deadline = addDays(date, configure.novelBookBorrowable);
+                def deadline = addDays(date, configure.daysNovelBookBorrowable);
 
                 timeStamp.deadline = deadline;
             }

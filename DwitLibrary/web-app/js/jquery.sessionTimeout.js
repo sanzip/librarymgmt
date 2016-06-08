@@ -53,93 +53,115 @@
 //     If true, appends the current time stamp to the Keep Alive url to prevent caching issues
 //     Default: true
 //
-(function( $ ){
-    jQuery.sessionTimeout = function( options ) {
+(function ($) {
+    jQuery.sessionTimeout = function (options) {
         var defaults = {
-            message      : 'Your session is about to expire in 10 minutes. Do you want to refresh your session?',
-            keepAliveUrl : '/DwitLibrary/logout/ajaxKeepAlive',
-            logOutUrl : '/DwitLibrary/logout/index',
-            firstWarnAfter    :1200000, // 20 minutes   1200000 to test use 3000
-            secondWarnAfter   : 300000,//300000, // 5 minutes
-            thirdWarnAfter3   :240000, //240000, // 4 minute
-            forthWarnAfter   :70000 //70000 // 90sec
-
+            message: 'Your session is about to expire.',
+            keepAliveUrl: '/DwitLibrary/logout/ajaxKeepAlive',
+            keepAliveAjaxRequestType: 'POST',
+            redirUrl: '/DwitLibrary/logout/index',
+            logoutUrl: '/DwitLibrary/logout/index',
+            warnAfter: 900000, // 15 minutes 3000 for test
+            redirAfter: 1200000, // 20 minutes 3000 for test
+            appendTime: true // appends time stamp to keep alive url to prevent caching
         };
 
         // Extend user-set options over defaults
         var o = defaults,
-            dialogTimer;
+            dialogTimer,
+            redirTimer;
 
-        if ( options ) { o = $.extend( defaults, options ); }
+        if (options) { o = $.extend(defaults, options); }
 
         // Create timeout warning dialog
-        $('body').append('<div title="Session Timeout" id="sessionTimeout-dialog"></div>');
+        $('body').append('<div title="Session Timeout" style="background-color: #DEDEDE; text-align: center;" id="sessionTimeout-dialog">' + o.message + '</div>');
         $('#sessionTimeout-dialog').dialog({
             autoOpen: false,
             width: 400,
             modal: true,
             closeOnEscape: false,
-            open: function() { $(".ui-dialog-titlebar-close").hide(); },
+        open: function () { $(".ui-dialog-titlebar-close").hide(); },
             buttons: {
                 // Button one - takes user to logout URL
-                "Stay Connected": function() {
+                "Log Out Now": function () {
+                    window.location = o.logoutUrl;
+                },
+                // Button two - closes dialog and makes call to keep-alive URL
+                "Stay Connected": function () {
                     $(this).dialog('close');
 
                     $.ajax({
-                        type: 'POST',
-                        url: o.keepAliveUrl
+                        type: o.keepAliveAjaxRequestType,
+                        url: o.appendTime ? updateQueryStringParameter(o.keepAliveUrl, "_", new Date().getTime()) : o.keepAliveUrl
                     });
-                    clearTimeout(dialogTimer);
-                    // restart warning timer
-                    controlDialogTimer('start');
-                },
-                // Button two - closes dialog and makes call to keep-alive URL
-                "Cancel": function() {
-                    $(this).dialog('close');
-                }
 
+                    // Stop redirect timer and restart warning timer
+                    controlRedirTimer('stop');
+                    controlDialogTimer('start');
+                }
             }
         });
 
-        function controlDialogTimer(action){
-            switch(action) {
+        function controlDialogTimer(action) {
+            switch (action) {
                 case 'start':
-                    // After first warning period, show dialog and start redirect timer
-                    dialogTimer = setTimeout(function(){
-                        $("#sessionTimeout-dialog").text("Your session is about to expire in 10 minutes. Do you want to refresh your session?");
+                    // After warning period, show dialog and start redirect timer
+                    dialogTimer = setTimeout(function () {
                         $('#sessionTimeout-dialog').dialog('open');
-                        controlDialogTimer('start2');
-                    }, o.firstWarnAfter);
+                        controlRedirTimer('start');
+                    }, o.warnAfter);
                     break;
-                case 'start2':
-                    // After second warning period, show dialog and start redirect timer
-                    dialogTimer = setTimeout(function(){
-                        $("#sessionTimeout-dialog").text("Your session is about to expire in 5 minutes. Do you want to refresh your session?");
-                        $('#sessionTimeout-dialog').dialog('open');
-                        controlDialogTimer('start3');
-                    }, o.secondWarnAfter);
-                    break;
-                case 'start3':
-                    // After third warning period, show dialog and start redirect timer
-                    dialogTimer = setTimeout(function(){
-                        $("#sessionTimeout-dialog").text("Your session is about to expire in 1 minute. Do you want to refresh your session?");
-                        $('#sessionTimeout-dialog').dialog('open');
-                        controlDialogTimer('start4');
-                    }, o.thirdWarnAfter3);
-                    break;
-                case 'start4':
-                    // After forth warning period, show dialog and start redirect timer
-                    dialogTimer = setTimeout(function(){
-                        window.location = o.logOutUrl;
-                    }, o.forthWarnAfter);
-                    break;
+
                 case 'stop':
                     clearTimeout(dialogTimer);
                     break;
             }
         }
 
+        function controlRedirTimer(action) {
+            switch (action) {
+                case 'start':
+                    // Dialog has been shown, if no action taken during redir period, redirect
+                    redirTimer = setTimeout(function () {
+                        window.location = o.redirUrl;
+                    }, o.redirAfter - o.warnAfter);
+                    break;
+
+                case 'stop':
+                    clearTimeout(redirTimer);
+                    break;
+            }
+        }
+
+        // Courtesy of http://stackoverflow.com/questions/5999118/add-or-update-query-string-parameter
+        // Includes fix for angular ui-router as per comment by j_walker_dev
+        function updateQueryStringParameter(uri, key, value) {
+            var re = new RegExp("([?|&])" + key + "=.*?(&|#|$)", "i");
+
+            if (uri.match(re)) {
+                return uri.replace(re, '$1' + key + "=" + value + '$2');
+            } else {
+                var hash = '';
+
+                if (uri.indexOf('#') !== -1) {
+                    hash = uri.replace(/.*#/, '#');
+                    uri = uri.replace(/#.*/, '');
+                }
+
+                var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+                return uri + separator + key + "=" + value + hash;
+            }
+        }
+
+        $(document).ajaxComplete(function () {
+            if (!$('#sessionTimeout-dialog').dialog("isOpen")) {
+                controlRedirTimer('stop');
+                controlDialogTimer('stop');
+                controlDialogTimer('start');
+            }
+        });
+
         // Begin warning period
         controlDialogTimer('start');
     };
-})( jQuery );
+})(jQuery);

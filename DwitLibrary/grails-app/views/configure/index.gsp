@@ -50,24 +50,44 @@
             <span>: ${fieldValue(bean: configureInstance, field: "fineAmtLibrarian")}</span>
             <p></p>
 
-            <a class="ui blue ribbon label"> Course Book Borrowable Admin </a>
+            <a class="ui blue ribbon label">Course Book Borrowable Admin </a>
             <span>: ${fieldValue(bean: configureInstance, field: "courseBookBorrowableAdmin")}</span>
+            <p></p>
+
+            <a class="ui blue ribbon label">Days Course Book Borrowable Admin </a>
+            <span>: ${fieldValue(bean: configureInstance, field: "daysCourseBookBorrowableAdmin")}</span>
             <p></p>
 
             <a class="ui blue ribbon label">Course Book Borrowable Faculty</a>
             <span>: ${fieldValue(bean: configureInstance, field: "courseBookBorrowableFaculty")}</span>
             <p></p>
 
+            <a class="ui blue ribbon label">Days Course Book Borrowable Faculty</a>
+            <span>: ${fieldValue(bean: configureInstance, field: "daysCourseBookBorrowableFaculty")}</span>
+            <p></p>
+
             <a class="ui blue ribbon label"> Course Book Borrowable Librarian </a>
             <span>: ${fieldValue(bean: configureInstance, field: "courseBookBorrowableLibrarian")}</span>
+            <p></p>
+
+            <a class="ui blue ribbon label">Days Course Book Borrowable Librarian </a>
+            <span>: ${fieldValue(bean: configureInstance, field: "daysCourseBookBorrowableLibrarian")}</span>
             <p></p>
 
             <a class="ui blue ribbon label">Course Book Borrowable Student</a>
             <span>: ${fieldValue(bean: configureInstance, field: "courseBookBorrowableStudent")}</span>
             <p></p>
 
+            <a class="ui blue ribbon label">Days Course Book Borrowable Student</a>
+            <span>: ${fieldValue(bean: configureInstance, field: "daysCourseBookBorrowableStudent")}</span>
+            <p></p>
+
             <a class="ui blue ribbon label">Novel Book Borrowable</a>
             <span>: ${fieldValue(bean: configureInstance, field: "novelBookBorrowable")}</span>
+            <p></p>
+
+            <a class="ui blue ribbon label">Days Novel Book Borrowable</a>
+            <span>: ${fieldValue(bean: configureInstance, field: "daysNovelBookBorrowable")}</span>
             <p></p>
 
                 </div>
