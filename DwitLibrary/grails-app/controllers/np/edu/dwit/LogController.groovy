@@ -22,6 +22,7 @@ class LogController {
     def viewReturns(){
 
         def returnLogs = Log.findAllByActionType(Configure.ACTION_TYPE_RETURN)
+        def fineAmount = Fine.findAllByBorrow(returnLogs.borrow)
 
         def messageType = ""
         if(returnLogs.size() == 0){
@@ -30,6 +31,6 @@ class LogController {
             flash.message = "No records to show"
         }
 
-        [returnLogs: returnLogs, params: [messageType: messageType]]
+        [returnLogs: returnLogs,fineAmt: fineAmount, params: [messageType: messageType]]
     }
 }

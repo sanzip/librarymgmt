@@ -115,10 +115,12 @@ Book Name: <g:textField name="book_name" id="book_name"/>
             <th>Book Number</th>
             <th>Returned By</th>
             <th>Returned Date</th>
+            <th>Fine</th>
         </tr>
         </thead>
         <tbody>
         <g:each in="${returnLogs}" var="returnLog" status="i">
+            <g:each in="${fineAmt}" var="fine">
             <tr>
                 <td>${i + 1}</td>
                 <td>${returnLog.to.fullName}</td>
@@ -126,7 +128,9 @@ Book Name: <g:textField name="book_name" id="book_name"/>
                 <td>${returnLog.borrow.bookInfo.bookNumber}</td>
                 <td>${returnLog.by.fullName}</td>
                 <td>${returnLog.borrow.returnedDate}</td>
+                <td>${fine.fineAmount}</td>
             </tr>
+            </g:each>
         </g:each>
         </tbody>
     </table>
